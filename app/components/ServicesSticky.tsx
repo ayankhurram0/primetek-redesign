@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import FancyButton from "./button";
 import service1 from "@/src/assets/service1.png";
 import service2 from "@/src/assets/service2.png";
@@ -13,7 +13,7 @@ interface ServiceSectionProps {
   number: string;
   title: string;
   description: string;
-  imageSrc: string;
+  imageSrc: string | StaticImageData;
   imageAlt: string;
   zIndex: number;
 }

@@ -128,6 +128,8 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
 
   const heroY = useTransform(heroScroll, [0, 1], [0, 200]);
   const heroOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
+  const heroBgY1 = useTransform(heroScroll, [0, 1], [0, -150]);
+  const heroBgY2 = useTransform(heroScroll, [0, 1], [0, 100]);
 
   return (
   
@@ -194,11 +196,11 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
 
         {/* Parallax Background Elements */}
         <motion.div 
-          style={{ y: useTransform(heroScroll, [0, 1], [0, -150]) }}
+          style={{ y: heroBgY1 }}
           className="absolute top-1/4 right-0 -z-10 w-1/3 aspect-square bg-[#71c6a4]/5 rounded-full blur-3xl" 
         />
         <motion.div 
-          style={{ y: useTransform(heroScroll, [0, 1], [0, 100], { ease: "easeOut" }) }}
+          style={{ y: heroBgY2 }}
           className="absolute bottom-0 left-1/4 -z-10 w-1/4 aspect-square bg-[#2b4c8c]/5 rounded-full blur-3xl" 
         />
       </section>

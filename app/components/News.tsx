@@ -46,7 +46,13 @@ const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProp
   const scale = useTransform(
     scrollYProgress,
     inputRange,
-    [0.7, 0.85, 1, 0.85, 0.6]
+    [0.75, 0.9, 1.05, 0.9, 0.75]
+  );
+
+  const filter = useTransform(
+    scrollYProgress,
+    inputRange,
+    ["grayscale(100%) blur(4px)", "grayscale(50%) blur(2px)", "grayscale(0%) blur(0px)", "grayscale(50%) blur(2px)", "grayscale(100%) blur(4px)"]
   );
 
   const y = useTransform(
@@ -68,13 +74,13 @@ const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProp
   const slideOpacity = useTransform(
     scrollYProgress,
     opacityInputRange,
-    [0, 1, 1, 1, 0.2, 0]
+    [0, 0.3, 1, 1, 0.3, 0]
   );
 
   return (
     <motion.div
-      style={{ scale, opacity: slideOpacity, y }}
-      className="relative flex-shrink-0 w-[800px] h-[600px] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] bg-gray-50 origin-center group"
+      style={{ scale, opacity: slideOpacity, y, filter }}
+      className="relative flex-shrink-0 w-[800px] h-[600px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] bg-gray-50 origin-center group"
     >
       <Image
         src={slide.src}
@@ -157,7 +163,7 @@ export default function News() {
   ];
 
   const slideWidth = 800;
-  const gap = 10;
+  const gap = 48;
   const totalMove = (slides.length - 1) * (slideWidth + gap);
   const trackX = useTransform(scrollYProgress, [0.2, 0.9], [0, -totalMove], { clamp: true });
 
@@ -184,7 +190,7 @@ export default function News() {
           {/* Carousel Track */}
           <motion.div
             style={{ x: trackX, opacity: carouselOpacity }}
-            className="absolute left-0 right-0 flex items-center gap-12 px-[calc(50vw-275px)] z-10"
+            className="absolute left-0 right-0 flex items-center gap-12 px-[calc(50vw-400px)] z-10"
           >
             {slides.map((slide, i) => (
               <SlideCard
