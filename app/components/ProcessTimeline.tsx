@@ -1,8 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileSearch, Target, Zap, TrendingUp } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -37,38 +41,78 @@ const steps = [
 
 export default function ProcessTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  // Line progress from 0 to 100% as user scrolls through section
-  const lineHeight = useTransform(scrollYProgress, [0.1, 0.6], ["0%", "100%"]);
+  useEffect(() => {
+    if (!headerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        },
+        defaults: { ease: "power4.out", duration: 1 }
+      });
+
+      tl.from(".timeline-h2", {
+        y: 40,
+        opacity: 0,
+        delay: 0.1
+      })
+        .from(".timeline-p1", {
+          y: 30,
+          opacity: 0
+        }, "-=0.7")
+        .from(".timeline-p2", {
+          y: 20,
+          opacity: 0
+        }, "-=0.7")
+        .from(".timeline-h3", {
+          scale: 0.95,
+          opacity: 0
+        }, "-=0.6");
+    }, headerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const lineHeight = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.3, 0.45], [1, 1, 0]);
 
   return (
-    <section ref={containerRef} className="relative bg-white pb-32 min-h-[250vh] overflow-hidden pt-50">
+    <section ref={containerRef} className="relative bg-white pb-32 min-h-[200vh] overflow-hidden pt-50">
       {/* Header */}
-      <div className="text-center mb-20 px-6 max-w-4xl mx-auto">
-        <h2 className="text-[#2b4c8c] text-4xl md:text-5xl 2xl:text-6xl font-black tracking-tight mb-4">
+      <motion.div
+        ref={headerRef}
+        style={{ opacity: headerOpacity }}
+        className="text-center mb-0 px-6 max-w-4xl mx-auto"
+      >
+        <h2 className="timeline-h2 text-[#2b4c8c] text-4xl md:text-5xl 2xl:text-6xl font-black tracking-tight mb-4">
           Our Framework
         </h2>
-        <p className="text-black/80 text-xs uppercase 2xl:text-xl font-bold mb-2">
+        <p className="timeline-p1 text-black/80 text-xs uppercase 2xl:text-xl font-bold mb-2">
           A DISCIPLINED APPROACH TO MANAGING PERFORMANCE, REDUCING RISK, AND MAINTAINING OPERATIONAL CONTROL.
         </p>
-        <p className="text-black/50 text-sm mt-4 max-w-2xl 2xl:text-xl mx-auto leading-relaxed">
+        <p className="timeline-p2 text-black/50 text-sm mt-4 max-w-2xl 2xl:text-xl mx-auto leading-relaxed">
           PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
         </p>
-        <h3 className="text-black/70 text-lg 2xl:text-2xl font-bold mt-12 mb-8">
+        <h3 className="timeline-h3 text-black/70 text-lg 2xl:text-2xl font-bold mt-12 mb-8">
           Our 4-Step Operational Framework
         </h3>
-      </div>
+      </motion.div>
 
       {/* Timeline Container */}
       <div className="relative max-w-6xl mx-auto px-6 z-10">
         {/* Center Line - Background */}
         <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden md:block" />
-        
-        <motion.div 
+
+        <motion.div
           style={{ height: lineHeight }}
           className="absolute left-1/2 top-0 w-[6px] bg-[#71c6a4] hidden md:block -translate-x-1/2 rounded-full"
         />
@@ -95,17 +139,16 @@ export default function ProcessTimeline() {
               <motion.div
                 key={step.id}
                 style={{ opacity, y, scale }}
-                className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 ${
-                  isRight ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
+                className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 ${isRight ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
               >
                 {/* Content Side */}
                 <div className={`flex-1 ${isRight ? "md:text-left md:pr-16" : "md:text-right md:pl-16"}`}>
                   <div className={`flex flex-col ${isRight ? "md:items-start" : "md:items-end"}`}>
-                    <h3 className="text-[#2b4c8c] text-3xl md:text-4xl font-bold mb-4">
+                    <h3 className="text-[#2b4c8c] text-2xl 2xl:text-3xl font-bold mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-black/60 text-sm md:text-base leading-relaxed max-w-md">
+                    <p className="text-black/60 text-sm 2xl:text-base leading-relaxed max-w-md">
                       {step.desc}
                     </p>
                   </div>
@@ -118,15 +161,14 @@ export default function ProcessTimeline() {
                     <span className="text-white text-sm font-bold">{step.id}</span>
                   </div>
                 </div>
-                
+
                 {/* Icon - positioned to alternate sides */}
                 <motion.div
                   style={{ rotate: iconRotate }}
-                  className={`absolute top-1/2 -translate-y-1/2 z-10 hidden md:flex ${
-                    isRight 
-                      ? "left-[calc(50%+20rem)]" 
-                      : "right-[calc(50%+20rem)]"
-                  } w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full bg-[#71c6a4] border border-black/10 flex items-center justify-center`}
+                  className={`absolute top-1/2 -translate-y-1/2 z-10 hidden md:flex ${isRight
+                    ? "left-[calc(50%+20rem)]"
+                    : "right-[calc(50%+20rem)]"
+                    } w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full bg-[#71c6a4] border border-black/10 flex items-center justify-center`}
                 >
                   <Icon className="w-12 h-12 md:w-16 md:h-16 text-white" strokeWidth={1.5} />
                 </motion.div>

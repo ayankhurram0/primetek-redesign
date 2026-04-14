@@ -1,7 +1,12 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image, { type StaticImageData } from "next/image";
+
+gsap.registerPlugin(ScrollTrigger);
 import FancyButton from "./button";
 import service1 from "@/src/assets/service1.png";
 import service2 from "@/src/assets/service2.png";
@@ -24,12 +29,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
       style={{ zIndex }}
       className="sticky top-0 min-h-screen w-full flex flex-col justify-center bg-white border-t border-black/10 py-20 2xl:px-50 px-30"
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
+      <div className="max-w-[1400px] mx-auto w-full">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-center gap-6 mb-16 mt-10">
           <div className="flex items-center gap-8 flex-1">
@@ -68,13 +68,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
 
           {/* Right: Portfolio Grid Image */}
           <div className="lg:col-span-6">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl border border-black/5 aspect-[4/3]"
-            >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-black/5 aspect-[4/3]">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
@@ -82,15 +76,62 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#2b4c8c]/5 via-transparent to-[#71c6a4]/10 pointer-events-none" />
-            </motion.div>
+            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </motion.section>
   );
 };
 
 export default function ServicesSticky() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Set initial states explicitly
+      gsap.set([".hero-word", ".hero-desc", ".hero-btn"], { opacity: 0, y: 50 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top 80%", // Triggers when hero container top hits 80% of viewport
+          toggleActions: "play none none none"
+        },
+        defaults: { ease: "power4.out", duration: 1.2 }
+      });
+
+      tl.to(".hero-word", {
+        opacity: 1,
+        y: 0,
+        stagger: 0.08,
+        delay: 0.2
+      })
+      .to(".hero-desc", {
+        opacity: 1,
+        y: 0,
+        duration: 1
+      }, "-=0.8")
+      .to(".hero-btn", {
+        opacity: 1,
+        y: 0,
+        duration: 1
+      }, "-=0.8");
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Receding effect: Hero scales down and fades as services scroll up
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.85]);
+  const heroY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
+
   const services = [
     {
       number: "01",
@@ -129,56 +170,66 @@ export default function ServicesSticky() {
     }
   ];
 
+  const titleWords = "Operational Systems That Protect & Grow Pharmacy Revenue".split(" ");
+
   return (
-    <section id="services" className="bg-white">
+    <section id="services" ref={containerRef} className="bg-white relative">
       {/* Hero Section */}
-      <div className="sticky top-0 min-h-screen flex flex-col justify-center bg-white z-0 px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className=" 2xl:max-w-7xl mx-auto max-w-[78%]"
-        >
-          <h1 className="2xl:text-7xl text-6xl text-center font-bold leading-[1] tracking-tighter uppercase text-[#71c6a4]">
-            Operational Systems That <span className="text-[#2b4c8c]">Protect & Grow Pharmacy Revenue</span>
-          </h1>
-        </motion.div>
-
-        {/* Hero Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-7xl mx-auto">
+      <motion.div
+        ref={heroRef}
+        className="sticky top-0 min-h-screen flex flex-col justify-center bg-white z-0 px-6 overflow-hidden"
+      >
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 z-[-1] opacity-[0.03]">
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#2b4c8c 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="lg:col-span-7 relative group"
-          >
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#71c6a4]/20 to-transparent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          </motion.div>
+            animate={{
+              x: [0, -40, 0],
+              y: [0, -40, 0]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute inset-[-100px]"
+            style={{ backgroundImage: 'linear-gradient(to right, #71c6a4 1px, transparent 1px), linear-gradient(to bottom, #71c6a4 1px, transparent 1px)', backgroundSize: '100px 100px' }}
+          />
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="lg:col-span-12 space-y-12 text-center"
-          >
-            <p className="text-md 2xl:text-xl font-light text-center leading-snug text-gray-700">
+        <div className="max-w-[1400px] mx-auto w-full">
+          <div className="2xl:max-w-7xl mx-auto max-w-[70%] mb-12">
+            <h1 className="2xl:text-7xl text-5xl text-center font-bold leading-[1.1] tracking-tighter uppercase flex flex-wrap justify-center gap-x-4">
+              {titleWords.map((word, i) => (
+                <span
+                  key={i}
+                  className={`hero-word inline-block ${word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-[#71c6a4]"}`}
+                >
+                  {word}
+                </span>
+              ))}
+            </h1>
+          </div>
+
+          {/* Hero Content Grid */}
+          <div className="flex flex-col items-center gap-12 max-w-4xl mx-auto text-center">
+            <p className="hero-desc text-md 2xl:text-xl font-light leading-relaxed text-gray-700 max-w-3xl">
               Empower your pharmacy with automated workflows and data-driven insights that safeguard your margins and accelerate revenue generation.
             </p>
 
-            <FancyButton
-              label="Become a client"
-              textColor="white"
-              borderColor="[#71c6a4]"
-              bgColor="#71c6a4"
-              rippleColor="#2b4c8c"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 px-8 py-4 font-semibold text-md shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
-            />
-          </motion.div>
+            <div className="hero-btn">
+              <FancyButton
+                label="Become a client"
+                textColor="white"
+                borderColor="[#71c6a4]"
+                bgColor="#71c6a4"
+                rippleColor="#2b4c8c"
+                extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 px-10 py-5 font-bold text-sm shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Service Sections */}
       <div className="bg-white max-w-full mx-auto">

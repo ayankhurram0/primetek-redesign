@@ -9,6 +9,10 @@ import badge4 from "@/src/assets/badges4.png";
 import coloredlogo from "@/src/assets/logo-colored.png";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import {
   Target,
   BarChart3,
@@ -22,24 +26,21 @@ const StaticIcon = ({
   x,
   y,
   delay = 0,
-  className = ""
+  className = "",
+  id = ""
 }: {
   children: React.ReactNode;
   x: string;
   y: string;
   delay?: number;
   className?: string;
+  id?: string;
 }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.5 }}
     animate={{
-      opacity: 1,
-      scale: 1,
       y: [0, -10, 0],
     }}
     transition={{
-      opacity: { duration: 0.5, delay },
-      scale: { duration: 0.5, delay },
       y: {
         duration: 4,
         repeat: Infinity,
@@ -47,8 +48,8 @@ const StaticIcon = ({
         delay: delay * 2
       }
     }}
-    className={`absolute flex items-center justify-center bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white p-3 ${className}`}
-    style={{ left: x, top: y, transform: 'translate(-50%, -50%)' }}
+    className={`absolute hero-badge flex items-center justify-center bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white p-3 ${className}`}
+    style={{ left: x, top: y, transform: 'translate(-50%, -50%)', opacity: 0 }}
   >
     {children}
   </motion.div>
@@ -84,10 +85,49 @@ const STEPS = [
 
 export default function WhyPrimeTek() {
   const containerRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    if (!heroRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        },
+        defaults: { ease: "power4.out", duration: 1.2 }
+      });
+
+      tl.from(".hero-title", {
+        y: 60,
+        opacity: 0,
+        delay: 0.2
+      })
+        .from(".hero-text", {
+          y: 40,
+          opacity: 0
+        }, "-=0.8")
+        .from(".hero-logo", {
+          scale: 0.6,
+          opacity: 0,
+          ease: "elastic.out(1, 0.75)",
+          duration: 1.5
+        }, "-=0.6")
+        .to(".hero-badge", {
+          scale: 1,
+          opacity: 1,
+          stagger: 0.15,
+          ease: "back.out(1.7)",
+          duration: 0.8
+        }, "-=1");
+    }, heroRef);
+
+    return () => ctx.revert();
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -98,7 +138,7 @@ export default function WhyPrimeTek() {
   return (
     <div className="relative w-full bg-white font-sans">
       {/* Hero Section */}
-      <div className="relative min-h-screen w-full bg-[#f8fdfd] overflow-hidden flex flex-col items-center justify-start py-20">
+      <div ref={heroRef} className="relative min-h-screen w-full bg-[#f8fdfd] overflow-hidden flex flex-col items-center justify-start py-20">
         {/* Background Atmospheric Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-teal-50/50 rounded-full blur-[120px]" />
@@ -109,35 +149,17 @@ export default function WhyPrimeTek() {
         <div className="absolute top-12 flex items-center justify-center gap-12 w-full px-12">
           <div className="h-[1px] flex-grow max-w-[150px] bg-gray-200 opacity-30" />
           <div className="h-[1px] flex-grow max-w-[150px] bg-gray-200 opacity-30" />
-        </div>
-
-        {/* Intro Text Block */}
+        </div>       {/* Intro Text Block */}
         <div className="relative z-50 max-w-6xl px-8 mt-24 mb-4 text-center">
-          <h2 className="text-3xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#71c6a4] via-[#71c6a4] to-[#1e3a5f] bg-clip-text text-transparent">
+          <h2 className="hero-title text-3xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#71c6a4] via-[#71c6a4] to-[#1e3a5f] bg-clip-text text-transparent">
             Designed for <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
           </h2>
-          <motion.div
-            className="text-lg md:text-xl text-gray-700 leading-relaxed font-medium tracking-tight flex flex-wrap justify-center gap-x-1.5"
-          >
-            {"Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned frameworks to improve clarity, control, and consistency—enabling pharmacy owners to run their operations with greater stability. The model is focused on strengthening reimbursement performance and financial visibility, built around actual pharmacy workflows and payer dynamics, and designed to scale efficiently across both independent and multi-location pharmacies without adding operational burden.".split(" ").map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: i * 0.02,
-                  ease: "easeOut"
-                }}
-                className="inline-block"
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.div>
+          <p className="hero-text text-lg md:text-xl text-gray-700 leading-relaxed font-medium tracking-tight max-w-5xl mx-auto">
+            Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned frameworks to improve clarity, control, and consistency—enabling pharmacy owners to run their operations with greater stability. The model is focused on strengthening reimbursement performance and financial visibility, built around actual pharmacy workflows and payer dynamics, and designed to scale efficiently across both independent and multi-location pharmacies without adding operational burden.
+          </p>
         </div>
 
-        <div className="relative w-full max-w-5xl aspect-[16/9] flex items-center justify-center">
+        <div className="relative w-full max-w-5xl aspect-[16/9] flex items-center justify-center hero-visual-center">
           <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" viewBox="0 0 1000 600">
             <ellipse cx="500" cy="300" rx="250" ry="150" fill="none" stroke="black" strokeWidth="1" />
             <ellipse cx="500" cy="300" rx="400" ry="240" fill="none" stroke="black" strokeWidth="1" />
@@ -147,11 +169,8 @@ export default function WhyPrimeTek() {
 
           {/* Central Hub - Replaced Wand/Shield with PrimeTek Logo */}
           <div className="relative z-10 flex flex-col items-center">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.2, ease: "circOut" }}
-              className="w-96 h-96 bg-white rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.12)] flex items-center justify-center border border-white/50 relative overflow-hidden group"
+            <div
+              className="hero-logo w-96 h-96 bg-white rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.12)] flex items-center justify-center border border-white/50 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#71c6a4]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <Image
@@ -162,7 +181,7 @@ export default function WhyPrimeTek() {
                 priority
                 className="w-[60%] h-auto relative z-10"
               />
-            </motion.div>
+            </div>
           </div>
 
           {/* Integration Icons */}
@@ -210,7 +229,7 @@ export default function WhyPrimeTek() {
             </div>
           </div>
 
-          <div className="h-[45vh] 2xl:h-[50vh] flex flex-col md:flex-row border-t border-black relative">
+          <div className="h-[45vh] h-[50vh] flex flex-col md:flex-row border-t border-black relative">
             {STEPS.map((step, i) => {
               const stepStart = i / STEPS.length;
               const stepEnd = (i + 1) / STEPS.length;

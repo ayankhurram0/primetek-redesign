@@ -1,8 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Diamond, Square, Activity, LayoutGrid } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WorkingProcess = () => {
   const steps = [
@@ -49,25 +53,60 @@ const WorkingProcess = () => {
   ];
 
   const containerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
+  useEffect(() => {
+    if (!headerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        },
+        defaults: { ease: "power4.out", duration: 1.2 }
+      });
+
+      tl.from(".framework-label", {
+        y: 30,
+        opacity: 0,
+        delay: 0.1
+      })
+      .from(".framework-title-left", {
+        y: 40,
+        opacity: 0
+      }, "-=0.9")
+      .from(".framework-title-right", {
+        y: 40,
+        opacity: 0
+      }, "-=0.8")
+      .from(".framework-subtitle", {
+        y: 30,
+        opacity: 0
+      }, "-=0.8");
+    }, headerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="process" ref={containerRef} className="relative h-[500vh] bg-white text-black border-t border-black/10">
       <div className="sticky top-0 h-screen flex flex-col overflow-hidden ">
-        <div className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-30">
+        <div ref={headerRef} className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-30">
           <div>
-            <span className="text-black  text-xs uppercase tracking-[0.3em]">PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.</span>
-            <h3 className="text-3xl text-black md:text-5xl font-bold mt-10">Our 4-Step Operational Framework
-            </h3>
+            <span className="framework-label inline-block text-black  text-xs uppercase tracking-[0.3em]">PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.</span>
+            <h3 className="framework-title-left text-3xl text-black md:text-5xl font-bold mt-10">Our 4-Step Operational Framework</h3>
           </div>
           <div>
-            <h2 className="text-3xl text-black md:text-5xl font-bold max-w-3xl leading-tight uppercase">
+            <h2 className="framework-title-right text-3xl text-black md:text-5xl font-bold max-w-3xl leading-tight uppercase">
               Our Framework
             </h2>
-            <h4 className="text-3xl text-black md:text-lg font-medium max-w-3xl leading-tight uppercase mt-10">
+            <h4 className="framework-subtitle text-3xl text-black md:text-lg font-medium max-w-3xl leading-tight uppercase mt-10">
               A disciplined approach to managing performance, reducing risk, and maintaining operational control.
             </h4>
           </div>
