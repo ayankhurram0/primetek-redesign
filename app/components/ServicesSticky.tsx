@@ -22,7 +22,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
   return (
     <motion.section
       style={{ zIndex }}
-      className="sticky top-0 min-h-screen flex flex-col justify-center bg-white border-t border-black/10 py-20"
+      className="sticky top-0 min-h-screen w-full flex flex-col justify-center bg-white border-t border-black/10 py-20 2xl:px-50 px-30"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -31,14 +31,14 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-center gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-center gap-6 mb-16 mt-10">
           <div className="flex items-center gap-8 flex-1">
-            <h2 className="text-5xl md:text-7xl lg:text-6xl font-semibold tracking-tight text-[#2b4c8c]">
+            <h2 className="text-5xl 2xl:text-6xl font-semibold tracking-tight text-[#2b4c8c]">
               {title}
             </h2>
           </div>
           <div className="flex items-center gap-6">
-            <span className="text-4xl font-light text-[#71c6a4]">{number}</span>
+            <span className="2xl:text-4xl text-3xl font-light text-[#71c6a4]">{number}</span>
             <div className="w-[1px] h-12 bg-[#2b4c8c]/20" />
             <div className="flex gap-2">
               {[...Array(8)].map((_, i) => (
@@ -52,7 +52,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Left: Description */}
           <div className="lg:col-span-6 space-y-12">
-            <p className="text-2xl md:text-xl font-light leading-relaxed text-gray-600">
+            <p className="text-lg 2xl:text-xl font-light leading-relaxed text-gray-600">
               {description}
             </p>
 
@@ -138,9 +138,9 @@ export default function ServicesSticky() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className=" max-w-7xl mx-auto"
+          className=" 2xl:max-w-7xl mx-auto max-w-[78%]"
         >
-          <h1 className="text-[8vw] md:text-7xl text-center font-bold leading-[1] tracking-tighter uppercase text-[#71c6a4]">
+          <h1 className="2xl:text-7xl text-6xl text-center font-bold leading-[1] tracking-tighter uppercase text-[#71c6a4]">
             Operational Systems That <span className="text-[#2b4c8c]">Protect & Grow Pharmacy Revenue</span>
           </h1>
         </motion.div>
@@ -164,7 +164,7 @@ export default function ServicesSticky() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="lg:col-span-12 space-y-12 text-center"
           >
-            <p className="text-2xl md:text-3xl lg:text-xl font-light text-center leading-snug text-gray-700">
+            <p className="text-md 2xl:text-xl font-light text-center leading-snug text-gray-700">
               Empower your pharmacy with automated workflows and data-driven insights that safeguard your margins and accelerate revenue generation.
             </p>
 
@@ -181,7 +181,7 @@ export default function ServicesSticky() {
       </div>
 
       {/* Service Sections */}
-      <div className="bg-white max-w-8xl mx-auto px-50">
+      <div className="bg-white max-w-full mx-auto">
         {services.map((service, index) => (
           <ServiceSection
             key={service.number}
@@ -190,6 +190,6 @@ export default function ServicesSticky() {
           />
         ))}
       </div>
-    </section>
+    </section >
   );
 }

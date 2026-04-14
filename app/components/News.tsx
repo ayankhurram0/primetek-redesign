@@ -31,10 +31,8 @@ const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProp
   const step = 0.7 / (totalSlides - 1);
   const center = 0.16 + (index * step);
 
-  // Correctly clamp ranges and ensure unique mapping
   const safeCenter = Math.max(0.2, Math.min(0.8, center));
 
-  // Ensure all input keys are valid and in ascending order
   const inputRange = [
     0,
     Math.max(0.05, safeCenter - 0.15),
@@ -49,38 +47,16 @@ const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProp
     [0.75, 0.9, 1.05, 0.9, 0.75]
   );
 
-  const filter = useTransform(
-    scrollYProgress,
-    inputRange,
-    ["grayscale(100%) blur(4px)", "grayscale(50%) blur(2px)", "grayscale(0%) blur(0px)", "grayscale(50%) blur(2px)", "grayscale(100%) blur(4px)"]
-  );
-
   const y = useTransform(
     scrollYProgress,
     inputRange,
     [0, 0, 0, 100, 200]
   );
 
-  // Make slide disappear completely after scrolling past it
-  const opacityInputRange = [
-    0,
-    Math.max(0.05, safeCenter - 0.12),
-    Math.max(0.1, safeCenter - 0.05),
-    safeCenter,
-    Math.min(0.95, safeCenter + 0.05),
-    Math.min(1, safeCenter + 0.15)
-  ];
-
-  const slideOpacity = useTransform(
-    scrollYProgress,
-    opacityInputRange,
-    [0, 0.3, 1, 1, 0.3, 0]
-  );
-
   return (
     <motion.div
-      style={{ scale, opacity: slideOpacity, y, filter }}
-      className="relative flex-shrink-0 w-[800px] h-[600px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] bg-gray-50 origin-center group"
+      style={{ scale, y }}
+      className="relative flex-shrink-0 w-[600px] 2xl:w-[800px] h-[450px] 2xl:h-[600px] 2xl:h-[800px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] bg-white origin-center group"
     >
       <Image
         src={slide.src}
@@ -101,11 +77,11 @@ const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProp
 
       {/* Content HUD */}
       <motion.div className="absolute bottom-10 left-10 right-10">
-        <h3 className="text-white text-3xl font-bold mb-3 tracking-tight">{slide.title}</h3>
-        <p className="text-white/80 text-lg leading-relaxed mb-6 font-medium">
+        <h3 className="text-white text-xl 2xl:text-3xl font-bold mb-3 tracking-tight">{slide.title}</h3>
+        <p className="text-white text-sm 2xl:text-lg leading-relaxed mb-6 font-medium">
           {slide.desc}
         </p>
-        <button className="flex items-center gap-2 px-6 py-3 bg-[#71c6a4] text-white rounded-full text-md font-bold uppercase tracking-widest hover:bg-[#5eb08f] transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn">
+        <button className="flex items-center gap-2 px-6 py-3 bg-[#71c6a4] text-white rounded-full text-xs 2xl:text-md font-bold uppercase tracking-widest hover:bg-[#5eb08f] transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn">
           Analyze Exposure
           <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
         </button>
@@ -125,10 +101,10 @@ export default function News() {
   const textScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.5], { clamp: true });
   const textX = useTransform(scrollYProgress, [0, 0.2], ["0%", "-25%"], { clamp: true });
   const textY = useTransform(scrollYProgress, [0, 0.2], ["0%", "-80%"], { clamp: true });
-  const textOpacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 0.7], { clamp: true });
+  const textOpacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 1], { clamp: true });
 
-  // Carousel opacity - hidden initially, appears earlier as user scrolls
-  const carouselOpacity = useTransform(scrollYProgress, [0, 0.05, 0.15], [0, 0, 1], { clamp: true });
+  // Carousel opacity - hidden initially, then fully visible
+  const carouselOpacity = useTransform(scrollYProgress, [0, 0.05, 0.1], [0, 0, 1], { clamp: true });
 
   // Slide Data
   const slides = [
@@ -182,7 +158,7 @@ export default function News() {
             className="absolute z-40 pointer-events-none w-full px-12 md:px-24 text-left origin-center"
           >
             <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-3xl mb-4 uppercase tracking-[0.3em]">Critical Insights</p>
-            <h2 className="text-6xl md:text-8xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize max-w-8xl mx-auto">
+            <h2 className="text-6xl 2xl:text-8xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize w-[80%] 2xl:w-[100%]! ">
               Pharmacy Compliance & Revenue Performance
             </h2>
           </motion.div>
@@ -190,7 +166,7 @@ export default function News() {
           {/* Carousel Track */}
           <motion.div
             style={{ x: trackX, opacity: carouselOpacity }}
-            className="absolute left-0 right-0 flex items-center gap-12 px-[calc(50vw-400px)] z-10"
+            className="absolute 2xl:left-60 left-100 right-0 flex items-center gap-12 px-[calc(50vw-400px)] z-10"
           >
             {slides.map((slide, i) => (
               <SlideCard

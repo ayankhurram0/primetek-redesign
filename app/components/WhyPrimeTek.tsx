@@ -137,9 +137,7 @@ export default function WhyPrimeTek() {
           </motion.div>
         </div>
 
-        {/* Main Visualization Area */}
         <div className="relative w-full max-w-5xl aspect-[16/9] flex items-center justify-center">
-          {/* Orbital Paths (Subtle SVG) */}
           <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" viewBox="0 0 1000 600">
             <ellipse cx="500" cy="300" rx="250" ry="150" fill="none" stroke="black" strokeWidth="1" />
             <ellipse cx="500" cy="300" rx="400" ry="240" fill="none" stroke="black" strokeWidth="1" />
@@ -191,28 +189,28 @@ export default function WhyPrimeTek() {
       </div>
 
       {/* Accordion Steps Section - Like WorkingProcess */}
-      <section ref={containerRef} id="process" className="relative h-[500vh] bg-white text-black border-t border-black/10">
+      <section ref={containerRef} id="process" className="relative h-[400vh] bg-white text-black border-t border-black/10">
         <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
-          <div className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-30">
+          <div className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-20">
             <div className="w-[50%]">
-              <h2 className="text-3xl md:text-5xl font-bold max-w-3xl leading-tight uppercase text-[#2b4c8c]">
+              <h2 className="text-4xl 2xl:text-5xl font-bold max-w-3xl leading-tight uppercase text-[#2b4c8c]">
                 Why PrimeTek
               </h2>
-              <h4 className="text-3xl md:text-lg font-medium max-w-3xl leading-tight uppercase mt-10">
+              <h4 className="text-md 2xl:text-lg font-medium max-w-3xl leading-tight uppercase mt-10">
                 Operational Control for a Complex Pharmacy Environment
               </h4>
             </div>
             <div className="w-[50%]">
 
-              <span className="text-black text-md">Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
+              <span className="text-black 2xl:text-md text-sm">Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
 
               </span>
-              <h3 className="text-3xl md:text-5xl font-bold mt-10 text-[#71c6a4]">What Makes PrimeTek Different
+              <h3 className="text-3xl 2xl:text-5xl font-bold mt-10 text-[#71c6a4]">What Makes PrimeTek Different
               </h3>
             </div>
           </div>
 
-          <div className="h-[50vh] flex flex-col md:flex-row border-t border-black relative">
+          <div className="h-[45vh] 2xl:h-[50vh] flex flex-col md:flex-row border-t border-black relative">
             {STEPS.map((step, i) => {
               const stepStart = i / STEPS.length;
               const stepEnd = (i + 1) / STEPS.length;
@@ -259,7 +257,7 @@ export default function WhyPrimeTek() {
                   <div className="flex h-full w-full relative">
                     {/* Step Label (Always Visible) */}
                     <div className="w-14 border-r border-white/30 flex flex-col items-center justify-between py-12 flex-shrink-0 bg-[#2b4c8c] z-10">
-                      <span className="rotate-[-90deg] whitespace-nowrap text-[14px] font-bold uppercase tracking-[0.3em] text-white">
+                      <span className="rotate-[-90deg] whitespace-nowrap text-[12px] 2xl:text-[14px] font-bold uppercase tracking-[0.3em] text-white">
                         Step {step.number}
                       </span>
                       <div className="text-white group-hover:text-white transition-colors">
@@ -270,10 +268,10 @@ export default function WhyPrimeTek() {
                     {/* Expanded Content */}
                     <motion.div className="flex-1 p-8 md:p-16 flex flex-col min-w-[300px] md:min-w-[500px]">
                       <div className="mb-12">
-                        <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-8 leading-tight text-[#2b4c8c]">
+                        <h3 className="text-2xl 2xl:text-3xl font-bold uppercase tracking-tight mb-8 leading-tight text-[#2b4c8c]">
                           {step.title}
                         </h3>
-                        <p className="text-xl text-black mb-10 leading-relaxed max-w-xl">
+                        <p className="text-md 2xl:text-xl text-black mb-10 leading-relaxed max-w-xl">
                           {step.description}
                         </p>
                       </div>
