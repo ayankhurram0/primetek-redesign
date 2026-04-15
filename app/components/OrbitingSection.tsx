@@ -36,7 +36,7 @@ export const OrbitingSection: React.FC = () => {
           start: "top top",
           end: "+=300%",
           pin: true,
-          scrub: 1, 
+          scrub: 1,
         },
       });
 
@@ -56,42 +56,39 @@ export const OrbitingSection: React.FC = () => {
       // 2. Continuous Orbiting Animation
       const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
       badgeElements.forEach((badge, i) => {
-        const angle = (i / badgeElements.length) * (Math.PI * 2);
+        const startAngle = (i / badgeElements.length) * (Math.PI * 2);
         const radius = 220;
 
         // Position badges initially
         gsap.set(badge, {
-          x: Math.cos(angle) * radius,
-          y: Math.sin(angle) * radius,
+          x: Math.cos(startAngle) * radius,
+          y: Math.sin(startAngle) * radius,
         });
 
-        // Orbit animation
-        gsap.to(badge, {
-          duration: 20,
+        // Use a proxy object to handle the rotation smoothly
+        const orbitData = { angle: startAngle };
+
+        gsap.to(orbitData, {
+          angle: startAngle + Math.PI * 2,
+          duration: 30, // Slightly slower for better readability
           repeat: -1,
           ease: "none",
-          modifiers: {
-            x: (x, target) => {
-              const time = gsap.ticker.time * 0.3; // Speed control
-              const currentAngle = angle + time;
-              return Math.cos(currentAngle) * radius;
-            },
-            y: (y, target) => {
-              const time = gsap.ticker.time * 0.3;
-              const currentAngle = angle + time;
-              return Math.sin(currentAngle) * radius;
-            }
+          onUpdate: () => {
+            gsap.set(badge, {
+              x: Math.cos(orbitData.angle) * radius,
+              y: Math.sin(orbitData.angle) * radius
+            });
           }
         });
       });
 
-      // 3. Logo Pulse
+      // 3. Logo Pulse (Continuous)
       gsap.to(logoRef.current, {
         scale: 1.05,
-        duration: 2,
+        duration: 4,
         repeat: -1,
         yoyo: true,
-        ease: "power1.inOut"
+        ease: "sine.inOut"
       });
     }, sectionRef);
 
@@ -104,7 +101,7 @@ export const OrbitingSection: React.FC = () => {
         {/* Background decorative elements */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03)_0%,transparent_70%)]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="relative z-10 max-w-4xl mx-auto text-center mt-60">
           {/* Step 1: Heading */}
           <h2
             ref={headingRef}
@@ -135,7 +132,7 @@ export const OrbitingSection: React.FC = () => {
             {/* Central Logo */}
             <div
               ref={logoRef}
-              className="relative z-10 w-48 h-48 bg-white rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-6 border border-slate-100"
+              className="relative z-10 w-96 h-96 bg-white rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-18 border border-slate-100"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-emerald-500/10 rounded-full blur-2xl" />
@@ -146,18 +143,15 @@ export const OrbitingSection: React.FC = () => {
             {/* Step 4: Orbiting Badges */}
             <div
               ref={badgesRef}
-              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
             >
               {badgeImages.map((badge, i) => (
                 <div
                   key={i}
                   className="orbiting-badge-item absolute pointer-events-auto group"
                 >
-                  <div className={`w-20 h-20 ${badge.color} rounded-full flex flex-col items-center justify-center p-2 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 hover:shadow-2xl`}>
-                    <Image src={badge.src} alt={badge.label} className="w-full h-full object-contain" />
-                    <span className="text-[8px] font-bold text-slate-600 mt-1 text-center leading-tight">
-                      {badge.label}
-                    </span>
+                  <div className={`w-40 h-40 ${badge.color} rounded-full flex flex-col items-center justify-center p-2 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 hover:shadow-2xl`}>
+                    <Image src={badge.src} alt={badge.label} className="w-full h-full object-contain rounded-full" />
                   </div>
                 </div>
               ))}

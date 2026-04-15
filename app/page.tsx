@@ -9,7 +9,7 @@ import WhyPrimeTek from "./components/WhyPrimeTek";
 import Testimonials from "./components/Testimonials";
 import ConsultationCTA from "./components/ConsultationCTA";
 import { OrbitingSection } from "./components/OrbitingSection";
-import { FrameworkSection } from "./components/FrameworkSection";
+import ProcessTimeline from "./components/ProcessTimeline";
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
         <ServicesSticky />
         <OrbitingSection />
         <WhyPrimeTek />
-      <FrameworkSection/>
+        <ProcessTimeline />
         <Testimonials />
         <ConsultationCTA />
         <Footer />

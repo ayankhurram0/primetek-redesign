@@ -112,16 +112,16 @@ export default function ServicesSticky() {
         stagger: 0.08,
         delay: 0.2
       })
-      .to(".hero-desc", {
-        opacity: 1,
-        y: 0,
-        duration: 1
-      }, "-=0.8")
-      .to(".hero-btn", {
-        opacity: 1,
-        y: 0,
-        duration: 1
-      }, "-=0.8");
+        .to(".hero-desc", {
+          opacity: 1,
+          y: 0,
+          duration: 1
+        }, "-=0.8")
+        .to(".hero-btn", {
+          opacity: 1,
+          y: 0,
+          duration: 1
+        }, "-=0.8");
     }, heroRef);
 
     return () => ctx.revert();
@@ -177,7 +177,7 @@ export default function ServicesSticky() {
       {/* Hero Section - Fixed Left Sidebar */}
       <motion.div
         ref={heroRef}
-        className="sticky top-0 h-screen flex flex-col justify-center bg-white z-0 2xl:pl-30 pl-10 overflow-hidden 2xl:w-[38%] w-[40%] border-r self-start "
+        className="sticky top-0 h-screen flex flex-col justify-center bg-white z-0 2xl:pl-30 pl-10 overflow-hidden 2xl:w-[38%] w-[40%] self-start "
       >
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-[-1] opacity-[0.03]">
