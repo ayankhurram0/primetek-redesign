@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
-import { ChevronRight, BarChart3, AlertTriangle, ShieldCheck } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import type { StaticImageData } from "next/image";
 
 import auditCard from "@/src/assets/audit_card.png";
@@ -16,8 +16,6 @@ interface SlideData {
   src: string | StaticImageData;
   title: string;
   desc: string;
-  alertText: string;
-  icon: React.ReactNode;
 }
 
 interface SlideCardProps {
@@ -56,7 +54,7 @@ const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProp
   return (
     <motion.div
       style={{ scale, y }}
-      className="relative flex-shrink-0 w-[600px] 2xl:w-[800px] h-[450px] 2xl:h-[600px] 2xl:h-[800px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] bg-white origin-center group"
+      className="relative flex-shrink-0 2xl:mt-10 w-[600px] 2xl:w-[800px] h-[500px] 2xl:h-[600px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] bg-white origin-center group"
     >
       <Image
         src={slide.src}
@@ -68,12 +66,6 @@ const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProp
 
       {/* Subtle Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-      {/* Top Badge */}
-      <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-        {slide.icon}
-        <span className="text-[10px] font-bold text-white tracking-widest uppercase">{slide.alertText}</span>
-      </div>
 
       {/* Content HUD */}
       <motion.div className="absolute bottom-10 left-10 right-10">
@@ -100,7 +92,7 @@ export default function News() {
   // Phase 1: Text Conversion (0 to 0.2)
   const textScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.5], { clamp: true });
   const textX = useTransform(scrollYProgress, [0, 0.2], ["0%", "-25%"], { clamp: true });
-  const textY = useTransform(scrollYProgress, [0, 0.2], ["0%", "-80%"], { clamp: true });
+  const textY = useTransform(scrollYProgress, [0, 0.2], ["0%", "-100%"], { clamp: true });
   const textOpacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 1], { clamp: true });
 
   // Carousel opacity - hidden initially, then fully visible
@@ -111,30 +103,22 @@ export default function News() {
     {
       src: auditCard,
       title: "PBM Audit Compliance",
-      desc: "Would Your Pharmacy Pass a PBM Audit Today? Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss.",
-      alertText: "AUDIT RISK",
-      icon: <ShieldCheck className="w-5 h-5 text-[#71c6a4]" />
+      desc: "Would Your Pharmacy Pass a PBM Audit Today? Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss."
     },
     {
       src: operationalAnalysisChart,
       title: "Operational Analysis",
-      desc: "Are Small Operational Gaps Creating Significant Financial Exposure? Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks.",
-      alertText: "OPERATIONAL GAP",
-      icon: <AlertTriangle className="w-5 h-5 text-amber-500" />
+      desc: "Are Small Operational Gaps Creating Significant Financial Exposure? Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks."
     },
     {
       src: thresholdsCard,
       title: "Reimbursement Performance",
-      desc: "Are PBM Thresholds Quietly Reducing Your Reimbursements? Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability.",
-      alertText: "THRESHOLD ALERT",
-      icon: <BarChart3 className="w-5 h-5 text-blue-500" />
+      desc: "Are PBM Thresholds Quietly Reducing Your Reimbursements? Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability."
     },
     {
       src: mtfCard,
       title: "Backend Revenue Control",
-      desc: "MTF Revenue Leakage Control: If you are not actively tracking, reconciling, and disputing MTF payments, you are silently losing backend revenue on every eligible claim.",
-      alertText: "REVENUE LEAKAGE",
-      icon: <BarChart3 className="w-5 h-5 text-emerald-500" />
+      desc: "MTF Revenue Leakage Control: If you are not actively tracking, reconciling, and disputing MTF payments, you are silently losing backend revenue on every eligible claim."
     }
   ];
 
@@ -159,14 +143,14 @@ export default function News() {
           >
             <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-3xl mb-4 uppercase tracking-[0.3em]">Critical Insights</p>
             <h2 className="text-7xl 2xl:text-8xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize w-[80%] 2xl:w-[100%]! ">
-              Pharmacy Compliance & Revenue Performance
+              Pharmacy Compliance <br/>& Revenue Performance
             </h2>
           </motion.div>
 
           {/* Carousel Track */}
           <motion.div
             style={{ x: trackX, opacity: carouselOpacity }}
-            className="absolute 2xl:left-60 left-100 right-0 flex items-center gap-12 px-[calc(50vw-400px)] z-10"
+            className="absolute 2xl:left-80 left-100 right-0 flex items-center gap-12 px-[calc(50vw-400px)] z-10"
           >
             {slides.map((slide, i) => (
               <SlideCard

@@ -1,12 +1,4 @@
 "use client"
-
-import Image from "next/image";
-import hco1 from "@/src/assets/hco1.png";
-import badge1 from "@/src/assets/badges1.png";
-import badge2 from "@/src/assets/badges2.png";
-import badge3 from "@/src/assets/badges3.png";
-import badge4 from "@/src/assets/badges4.png";
-import coloredlogo from "@/src/assets/logo-colored.png";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
@@ -137,94 +129,22 @@ export default function WhyPrimeTek() {
 
   return (
     <div className="relative w-full bg-white font-sans">
-      {/* Hero Section */}
-      <div ref={heroRef} className="relative min-h-screen w-full bg-[#f8fdfd] overflow-hidden flex flex-col items-center justify-start py-20">
-        {/* Background Atmospheric Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-teal-50/50 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-blue-50/50 rounded-full blur-[120px]" />
-        </div>
 
-        {/* Top Navigation Decoration - Replaced with Badge Row */}
-        <div className="absolute top-12 flex items-center justify-center gap-12 w-full px-12">
-          <div className="h-[1px] flex-grow max-w-[150px] bg-gray-200 opacity-30" />
-          <div className="h-[1px] flex-grow max-w-[150px] bg-gray-200 opacity-30" />
-        </div>       {/* Intro Text Block */}
-        <div className="relative z-50 max-w-6xl px-8 mt-24 mb-4 text-center">
-          <h2 className="hero-title text-3xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#71c6a4] via-[#71c6a4] to-[#1e3a5f] bg-clip-text text-transparent">
-            Designed for <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
-          </h2>
-          <p className="hero-text text-lg md:text-xl text-gray-700 leading-relaxed font-medium tracking-tight max-w-5xl mx-auto">
-            Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned frameworks to improve clarity, control, and consistency—enabling pharmacy owners to run their operations with greater stability. The model is focused on strengthening reimbursement performance and financial visibility, built around actual pharmacy workflows and payer dynamics, and designed to scale efficiently across both independent and multi-location pharmacies without adding operational burden.
-          </p>
-        </div>
-
-        <div className="relative w-full max-w-5xl aspect-[16/9] flex items-center justify-center hero-visual-center">
-          <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" viewBox="0 0 1000 600">
-            <ellipse cx="500" cy="300" rx="250" ry="150" fill="none" stroke="black" strokeWidth="1" />
-            <ellipse cx="500" cy="300" rx="400" ry="240" fill="none" stroke="black" strokeWidth="1" />
-            <path d="M 200,300 Q 350,100 800,250" fill="none" stroke="black" strokeWidth="1" strokeDasharray="4 4" />
-            <path d="M 800,350 Q 650,550 200,350" fill="none" stroke="black" strokeWidth="1" strokeDasharray="4 4" />
-          </svg>
-
-          {/* Central Hub - Replaced Wand/Shield with PrimeTek Logo */}
-          <div className="relative z-10 flex flex-col items-center">
-            <div
-              className="hero-logo w-96 h-96 bg-white rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.12)] flex items-center justify-center border border-white/50 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#71c6a4]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <Image
-                src={coloredlogo}
-                alt="PrimeTek"
-                width={300}
-                height={100}
-                priority
-                className="w-[60%] h-auto relative z-10"
-              />
-            </div>
-          </div>
-
-          {/* Integration Icons */}
-          <StaticIcon x="65%" y="35%" delay={0} className="z-30 w-40 h-40">
-            <Image src={badge1} alt="Badge 1" width={100} height={100} className="w-[80%] h-auto hover:scale-110 transition-transform" />
-          </StaticIcon>
-
-          <StaticIcon x="62%" y="54%" delay={0.1} className="z-30 w-40 h-40">
-            <Image src={hco1} alt="HCO" width={80} height={40} className="w-[70%] h-auto hover:rotate-3 transition-transform" />
-          </StaticIcon>
-
-          <StaticIcon x="38%" y="56%" delay={0.2} className="z-30 w-40 h-40">
-            <Image src={badge2} alt="Badge 2" width={50} height={50} className="w-[80%] h-auto" />
-          </StaticIcon>
-
-          <StaticIcon x="36%" y="75%" delay={0.3} className="z-30 w-40 h-40">
-            <Image src={badge3} alt="Badge 3" width={60} height={60} className="w-[80%] h-auto" />
-          </StaticIcon>
-
-          <StaticIcon x="55%" y="75%" delay={0.4} className="z-30 w-40 h-40">
-            <Image src={badge4} alt="Badge 4" width={50} height={50} className="w-[80%] h-auto" />
-          </StaticIcon>
-        </div>
-      </div>
 
       {/* Accordion Steps Section - Like WorkingProcess */}
       <section ref={containerRef} id="process" className="relative h-[400vh] bg-white text-black border-t border-black/10">
         <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
           <div className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-20">
-            <div className="w-[50%]">
+            <div className="w-[100%]">
               <h2 className="text-4xl 2xl:text-5xl font-bold max-w-3xl leading-tight uppercase text-[#2b4c8c]">
                 Why PrimeTek
               </h2>
-              <h4 className="text-md 2xl:text-lg font-medium max-w-3xl leading-tight uppercase mt-10">
+              <h4 className="text-md 2xl:text-lg font-semibold max-w-3xl leading-tight uppercase mt-6">
                 Operational Control for a Complex Pharmacy Environment
               </h4>
-            </div>
-            <div className="w-[50%]">
-
-              <span className="text-black 2xl:text-md text-sm">Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
-
-              </span>
-              <h3 className="text-3xl 2xl:text-5xl font-bold mt-10 text-[#71c6a4]">What Makes PrimeTek Different
+              <p className="text-black 2xl:text-lg text-base mt-4">Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
+              </p>
+              <h3 className="text-2xl 2xl:text-3xl font-bold mt-6 text-black">What Makes PrimeTek Different
               </h3>
             </div>
           </div>
@@ -246,25 +166,25 @@ export default function WhyPrimeTek() {
               };
 
               const flexRange = getSafeRange([
-                i === 1 ? -0.1 : stepStart - 0.05,
-                i === 1 ? 0 : stepStart,
+                stepStart - 0.05,
+                stepStart,
                 i === STEPS.length - 1 ? 1 : stepEnd,
                 i === STEPS.length - 1 ? 1.1 : stepEnd + 0.05
               ]);
 
               const icons = [
-                <Target className="w-5 h-5" key="1" />,
-                <BarChart3 className="w-5 h-5" key="2" />,
-                <Settings className="w-5 h-5" key="3" />,
-                <ShieldCheck className="w-5 h-5" key="4" />,
-                <CheckCircle2 className="w-5 h-5" key="5" />
+                <Target className="2xl:w-8 2xl:h-8 w-6 h-6" key="1" />,
+                <BarChart3 className="2xl:w-8 2xl:h-8 w-6 h-6" key="2" />,
+                <Settings className="2xl:w-8 2xl:h-8 w-6 h-6" key="3" />,
+                <ShieldCheck className="2xl:w-8 2xl:h-8 w-6 h-6" key="4" />,
+                <CheckCircle2 className="2xl:w-8 2xl:h-8 w-6 h-6" key="5" />
               ];
 
               // Flex value: 8 when active, 0.15 when inactive
               const flexValue = useTransform(
                 scrollYProgress,
                 flexRange,
-                [i === 1 ? 8 : 0.15, 8, 8, i === STEPS.length - 1 ? 8 : 0.15]
+                [0.30, 8, 8, i === STEPS.length - 1 ? 8 : 0.30]
               );
 
               return (
@@ -275,10 +195,7 @@ export default function WhyPrimeTek() {
                 >
                   <div className="flex h-full w-full relative">
                     {/* Step Label (Always Visible) */}
-                    <div className="w-14 border-r border-white/30 flex flex-col items-center justify-between py-12 flex-shrink-0 bg-[#2b4c8c] z-10">
-                      <span className="rotate-[-90deg] whitespace-nowrap text-[12px] 2xl:text-[14px] font-bold uppercase tracking-[0.3em] text-white">
-                        Step {step.number}
-                      </span>
+                    <div className="2xl:w-18 w-12 border-r border-white/30 flex flex-col items-center justify-between py-12 flex-shrink-0 bg-[#2b4c8c] z-10">
                       <div className="text-white group-hover:text-white transition-colors">
                         {icons[i]}
                       </div>
@@ -302,7 +219,7 @@ export default function WhyPrimeTek() {
           </div>
 
           {/* Progress Bar */}
-          <div className="h-1 w-full bg-black relative">
+          <div className="h-1 w-full bg-white relative">
             <motion.div
               style={{ scaleX: scrollYProgress }}
               className="absolute top-0 left-0 h-full w-full bg-[#71c6a4] origin-left"

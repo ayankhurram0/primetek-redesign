@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from "react";
 import pharmacist from "@/src/assets/pharmacist.png";
 import Image from "next/image";
+import FancyButton from "./button";
 
 const auditData = [
   { name: 'Jan', value: 40 },
@@ -247,9 +248,9 @@ export default function App() {
       <div className="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
         <motion.div
           initial={{ x: 200, opacity: 0 }}
-          animate={{ x: 100, opacity: 1 }}
+          animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-          className="relative 2xl:h-[85%] w-auto flex items-end"
+          className="relative 2xl:h-[90%] w-auto flex items-end"
         >
           <Image
             src={pharmacist}
@@ -262,18 +263,22 @@ export default function App() {
         </motion.div>
       </div>
 
-      {/* Hero Content - Split Layout */}
-      <div className="relative z-10 w-full h-screen flex flex-col justify-between items-center py-16 px-6 pointer-events-none">
+      {/* Hero Content - Left Aligned Layout */}
+      <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start py-16 px-6 md:px-16 lg:px-24 pointer-events-none">
+        {/* White gradient overlay that blends from left and right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-none w-[65%]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50 pointer-events-none" />
+
         {/* Top Section: Badge + Heading */}
-        <div className="flex flex-col items-center text-center max-w-6xl pointer-events-auto">
+        <div className="relative flex flex-col items-start text-left 2xl:w-[60%] w-[55%] pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="mb-6"
           >
-            <div className="border px-6 py-2 rounded-full">
-              <span className="text-[10px] md:text-xs font-bold tracking-wider uppercase text-[#4a8c6d]">
+            <div className="py-2 rounded-full">
+              <span className="text-sm 2xl:text-md font-bold tracking-wider uppercase text-[#4a8c6d]">
                 OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT & MULTI-LOCATION PHARMACIES
               </span>
             </div>
@@ -290,12 +295,12 @@ export default function App() {
         </div>
 
         {/* Bottom Section: Description + Buttons */}
-        <div className="flex flex-col items-center text-center max-w-4xl pointer-events-auto">
+        <div className="flex flex-col items-start text-left max-w-3xl pointer-events-auto mt-8">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-lg md:text-xl text-slate-600 max-w-2xl mb-10 font-medium"
+            className="text-lg md:text-xl text-black max-w-2xl mb-10 font-medium z-10"
           >
             Built to support pharmacies navigating PBM pressure, audit risk, and operational complexity.
           </motion.p>
@@ -306,12 +311,22 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-6"
           >
-            <button className="bg-[#76c8a3] text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-[#65b08d] transition-all shadow-[0_20px_40px_rgba(118,200,163,0.3)]">
-              Request a Strategy Call
-            </button>
-            <button className="bg-white text-slate-900 border-2 border-slate-100 px-10 py-5 rounded-full font-bold text-lg hover:bg-slate-50 transition-all shadow-sm">
-              See How We Protect Revenue
-            </button>
+            <FancyButton
+              label="Request a Strategy Call"
+              textColor="white"
+              borderColor="[#71c6a4]"
+              rippleColor="#2b4c8c"
+              bgColor="#71c6a4"
+              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-6 2xl:px-12 2xl:text-lg" />s
+            <FancyButton
+              label="See How We Protect Revenue"
+              textColor="white"
+              borderColor="[#2b4c8c]"
+              rippleColor="#71c6a4"
+              bgColor="#2b4c8c"
+              extraClasses="backdrop-blur-md hover:border-[#71c6a4] transition-all duration-500 2xl:py-6 2xl:px-12 2xl:text-lg"
+              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+            />
           </motion.div>
         </div>
       </div>

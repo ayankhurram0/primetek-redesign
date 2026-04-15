@@ -27,13 +27,13 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
   return (
     <motion.section
       style={{ zIndex }}
-      className="sticky top-0 min-h-screen w-full flex flex-col justify-center bg-white border-t border-black/10 py-20 2xl:px-50 px-30"
+      className="sticky top-0 h-screen w-full flex flex-col justify-center bg-white border-t border-black/10 py-12 2xl:px-30 px-10"
     >
       <div className="max-w-[1400px] mx-auto w-full">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-center gap-6 mb-16 mt-10">
           <div className="flex items-center gap-8 flex-1">
-            <h2 className="text-5xl 2xl:text-6xl font-semibold tracking-tight text-[#2b4c8c]">
+            <h2 className="text-3xl 2xl:text-5xl font-semibold tracking-tight text-[#2b4c8c]">
               {title}
             </h2>
           </div>
@@ -62,7 +62,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
               borderColor="[#71c6a4]"
               bgColor="#71c6a4"
               rippleColor="#2b4c8c"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 px-10 py-5 font-bold text-sm shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-sm shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
             />
           </div>
 
@@ -173,11 +173,11 @@ export default function ServicesSticky() {
   const titleWords = "Operational Systems That Protect & Grow Pharmacy Revenue".split(" ");
 
   return (
-    <section id="services" ref={containerRef} className="bg-white relative">
-      {/* Hero Section */}
+    <section id="services" ref={containerRef} className="relative flex items-start">
+      {/* Hero Section - Fixed Left Sidebar */}
       <motion.div
         ref={heroRef}
-        className="sticky top-0 min-h-screen flex flex-col justify-center bg-white z-0 px-6 overflow-hidden"
+        className="sticky top-0 h-screen flex flex-col justify-center bg-white z-0 2xl:pl-30 pl-10 overflow-hidden 2xl:w-[38%] w-[40%] border-r self-start "
       >
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-[-1] opacity-[0.03]">
@@ -198,8 +198,8 @@ export default function ServicesSticky() {
         </div>
 
         <div className="max-w-[1400px] mx-auto w-full">
-          <div className="2xl:max-w-7xl mx-auto max-w-[70%] mb-12">
-            <h1 className="2xl:text-7xl text-5xl text-center font-bold leading-[1.1] tracking-tighter uppercase flex flex-wrap justify-center gap-x-4">
+          <div className="2xl:max-w-7xl mx-auto max-w-[100%] mb-12">
+            <h1 className="2xl:text-5xl text-4xl text-left font-bold uppercase flex flex-wrap justify-left gap-x-3">
               {titleWords.map((word, i) => (
                 <span
                   key={i}
@@ -212,7 +212,7 @@ export default function ServicesSticky() {
           </div>
 
           {/* Hero Content Grid */}
-          <div className="flex flex-col items-center gap-12 max-w-4xl mx-auto text-center">
+          <div className="flex flex-col items-left gap-12 max-w-4xl mx-auto text-left">
             <p className="hero-desc text-md 2xl:text-xl font-light leading-relaxed text-gray-700 max-w-3xl">
               Empower your pharmacy with automated workflows and data-driven insights that safeguard your margins and accelerate revenue generation.
             </p>
@@ -224,15 +224,15 @@ export default function ServicesSticky() {
                 borderColor="[#71c6a4]"
                 bgColor="#71c6a4"
                 rippleColor="#2b4c8c"
-                extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 px-10 py-5 font-bold text-sm shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+                extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-sm shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
               />
             </div>
           </div>
         </div>
       </motion.div>
 
-      {/* Service Sections */}
-      <div className="bg-white max-w-full mx-auto">
+      {/* Service Sections - Scrollable Right Content */}
+      <div className="bg-white 2xl:w-[62%] w-[60%]">
         {services.map((service, index) => (
           <ServiceSection
             key={service.number}
