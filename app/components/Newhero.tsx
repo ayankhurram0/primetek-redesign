@@ -43,23 +43,22 @@ const pbmData = [
 const COLORS = ['#93c5fd', '#60a5fa', '#3b82f6', '#2563eb'];
 
 const HealthCards = ({ mounted }: { mounted: boolean }) => (
-  // Only render charts on client to avoid hydration mismatch
   !mounted ? (
     <>
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="w-72 h-64 bg-blue-600/20 backdrop-blur-xl rounded-3xl p-5 border border-blue-400/20 flex flex-col justify-between shrink-0 animate-pulse" />
+        <div key={i} className="w-72 h-72 bg-blue-600/90 backdrop-blur-xl rounded-3xl p-5 border border-blue-400/20 flex flex-col justify-between shrink-0 animate-pulse" />
       ))}
     </>
   ) : (
     <>
       {/* Card 1: Audit Readiness (Line Chart) */}
-      <div className="w-72 h-64 bg-blue-600/30 backdrop-blur-xl rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <TrendingUp size={14} className="text-blue-700 font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-blue-900/80 font-bold">Audit Readiness</span>
+            <TrendingUp size={14} className="text-white font-bold" />
+            <span className="text-[10px] uppercase tracking-widest text-white font-bold">Audit Readiness</span>
           </div>
-          <Info size={14} className="text-blue-900/50" />
+          <Info size={14} className="text-white" />
         </div>
         <div className="flex-1 mt-4">
           <ResponsiveContainer width="100%" height={120}>
@@ -75,24 +74,24 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             </LineChart>
           </ResponsiveContainer>
           <div className="mt-2">
-            <h3 className="text-lg font-display font-bold leading-tight text-blue-900">Readiness Score</h3>
-            <p className="text-[10px] text-blue-900/60">90% increase in compliance readiness over Q1.</p>
+            <h3 className="text-lg font-display font-bold leading-tight text-white">Readiness Score</h3>
+            <p className="text-[10px] text-white">90% increase in compliance readiness over Q1.</p>
           </div>
         </div>
         <div className="bg-blue-900/5 p-2 px-3 rounded-2xl flex items-center justify-between mt-1">
-          <span className="text-[10px] font-bold text-blue-900">Ready for Review</span>
+          <span className="text-[10px] font-bold text-white">Ready for Review</span>
           <div className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
         </div>
       </div>
 
       {/* Card 2: Compliance Protocol (Area Chart) */}
-      <div className="w-72 h-64 bg-blue-600/30 backdrop-blur-xl rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <Activity size={14} className="text-blue-700 font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-blue-900/80 font-bold">Compliance Protocol</span>
+            <Activity size={14} className="text-white font-bold" />
+            <span className="text-[10px] uppercase tracking-widest text-white font-bold">Compliance Protocol</span>
           </div>
-          <div className="w-3 h-3 bg-blue-400/50 rounded-full animate-pulse" />
+          <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
         </div>
         <div className="flex-1 mt-4">
           <ResponsiveContainer width="100%" height={120}>
@@ -113,24 +112,24 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             </AreaChart>
           </ResponsiveContainer>
           <div className="mt-2">
-            <h3 className="text-lg font-display font-bold leading-tight text-blue-900">Protocol Adherence</h3>
-            <p className="text-[10px] text-blue-900/60">Real-time monitoring of institutional requirements.</p>
+            <h3 className="text-lg font-display font-bold leading-tight text-white">Protocol Adherence</h3>
+            <p className="text-[10px] text-white">Real-time monitoring of institutional requirements.</p>
           </div>
         </div>
-        <div className="flex justify-between items-end mt-2 text-blue-900">
+        <div className="flex justify-between items-end mt-2 text-white">
           <div className="text-2xl font-bold">85%</div>
           <div className="text-[10px] opacity-60 mb-1 font-bold">Weekly Avg</div>
         </div>
       </div>
 
       {/* Card 3: Reimbursement Reconciliation (Bar Chart) */}
-      <div className="w-72 h-64 bg-blue-600/30 backdrop-blur-xl rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <BarChart3 size={14} className="text-blue-700 font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-blue-900/80 font-bold">Reconciliation</span>
+            <BarChart3 size={14} className="text-white font-bold" />
+            <span className="text-[10px] uppercase tracking-widest text-white font-bold">Reconciliation</span>
           </div>
-          <ChevronRight size={14} className="text-blue-900/50" />
+          <ChevronRight size={14} className="text-white" />
         </div>
         <div className="flex-1 mt-4">
           <ResponsiveContainer width="100%" height={120}>
@@ -143,30 +142,30 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             </BarChart>
           </ResponsiveContainer>
           <div className="mt-2">
-            <h3 className="text-lg font-display font-bold leading-tight text-blue-900">Revenue Recovery</h3>
-            <p className="text-[10px] text-blue-900/60">Discrepancy resolution and cycle efficiency.</p>
+            <h3 className="text-lg font-display font-bold leading-tight text-white">Revenue Recovery</h3>
+            <p className="text-[10px] text-white">Discrepancy resolution and cycle efficiency.</p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 mt-2">
-          <div className="bg-blue-900/5 p-2 rounded-xl">
-            <div className="text-[8px] text-blue-900/50 uppercase font-bold">Recovered</div>
-            <div className="text-xs font-bold text-green-600">+$12.4k</div>
+          <div className="bg-white/5 p-2 rounded-xl">
+            <div className="text-[8px] text-white uppercase font-bold">Recovered</div>
+            <div className="text-xs font-bold text-green">+$12.4k</div>
           </div>
           <div className="bg-blue-900/5 p-2 rounded-xl">
-            <div className="text-[8px] text-blue-900/50 uppercase font-bold">Pending</div>
-            <div className="text-xs font-bold text-yellow-600">$4.2k</div>
+            <div className="text-[8px] text-white uppercase font-bold">Pending</div>
+            <div className="text-xs font-bold text-yellow">$4.2k</div>
           </div>
         </div>
       </div>
 
       {/* Card 4: PBM Checklist (Pie Chart) */}
-      <div className="w-72 h-64 bg-blue-600/30 backdrop-blur-xl rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <PieChartIcon size={14} className="text-blue-700 font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-blue-900/80 font-bold">PBM Checklist</span>
+            <PieChartIcon size={14} className="text-white font-bold" />
+            <span className="text-[10px] uppercase tracking-widest text-white font-bold">PBM Checklist</span>
           </div>
-          <Info size={14} className="text-blue-900/50" />
+          <Info size={14} className="text-white" />
         </div>
         <div className="flex-1 mt-4 flex items-center justify-center">
           <ResponsiveContainer width="100%" height={140}>
@@ -188,8 +187,8 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
           </ResponsiveContainer>
         </div>
         <div className="space-y-1 mt-2">
-          <h3 className="text-lg font-display font-bold leading-tight text-blue-900">Verification Audit</h3>
-          <div className="flex gap-2 text-[8px] text-blue-900/60 font-bold">
+          <h3 className="text-lg font-display font-bold leading-tight text-white">Verification Audit</h3>
+          <div className="flex gap-2 text-[8px] text-white font-bold">
             <div className="flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-600" /> Verified
             </div>
@@ -216,7 +215,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-white flex flex-col items-center justify-center overflow-hidden font-sans">
       {/* Background Cards Layer - 3D Infinite Autoplay */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden [perspective:1200px]">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden [perspective:1200px] -translate-y-60!">
         <motion.div
           animate={{
             x: ["0%", "-25%"]
@@ -226,7 +225,7 @@ export default function App() {
             ease: "linear",
             repeat: Infinity
           }}
-          className="flex transform -rotate-3 [transform-style:preserve-3d] opacity-40"
+          className="flex transform rotate-16 [transform-style:preserve-3d] opacity-40"
         >
           {/* Multiple Sets for Seamless Loop (Ensures coverage on wide screens) */}
           <div className="flex gap-12 pr-12">
@@ -266,7 +265,7 @@ export default function App() {
       {/* Hero Content - Left Aligned Layout */}
       <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start py-16 px-6 md:px-16 lg:px-24 pointer-events-none">
         {/* White gradient overlay that blends from left and right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-none w-[65%]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-none w-[70%]" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50 pointer-events-none" />
 
         {/* Top Section: Badge + Heading */}
@@ -317,7 +316,7 @@ export default function App() {
               borderColor="[#71c6a4]"
               rippleColor="#2b4c8c"
               bgColor="#71c6a4"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-6 2xl:px-12 2xl:text-lg" />s
+              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-6 2xl:px-12 2xl:text-lg" />
             <FancyButton
               label="See How We Protect Revenue"
               textColor="white"

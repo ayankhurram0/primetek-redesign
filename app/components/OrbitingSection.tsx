@@ -57,7 +57,7 @@ export const OrbitingSection: React.FC = () => {
       const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
       badgeElements.forEach((badge, i) => {
         const startAngle = (i / badgeElements.length) * (Math.PI * 2);
-        const radius = 220;
+        const radius = 180;
 
         // Position badges initially
         gsap.set(badge, {
@@ -97,15 +97,15 @@ export const OrbitingSection: React.FC = () => {
 
   return (
     <div ref={sectionRef} className="bg-white">
-      <div ref={triggerRef} className="h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6 relative">
+      <div ref={triggerRef} className="h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6 relative pb-10">
         {/* Background decorative elements */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03)_0%,transparent_70%)]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center mt-60">
+        <div className="relative z-10 2xl:w-[55%] w-[90%] mx-auto text-center mt-30">
           {/* Step 1: Heading */}
           <h2
             ref={headingRef}
-            className="text-4xl md:text-5xl font-display font-bold mb-8 tracking-tight"
+            className="text-4xl 2xl:text-5xl font-display font-bold mb-8 tracking-tight"
           >
             <span className="text-emerald-500">Designed for</span>{" "}
             <span className="text-slate-800">Pharmacies Operating Under Pressure</span>
@@ -114,7 +114,7 @@ export const OrbitingSection: React.FC = () => {
           {/* Step 2: Paragraph */}
           <p
             ref={paragraphRef}
-            className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto mb-12"
+            className="text-slate-600 2xl:text-xl text-md leading-relaxed 2xl:w-[100%] w-[90%] mx-auto mb-12"
           >
             Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
             operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned
@@ -125,14 +125,14 @@ export const OrbitingSection: React.FC = () => {
           <div className="relative flex items-center justify-center h-[500px]">
             {/* Orbit Paths */}
             <div ref={orbitRingsRef} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="absolute w-[440px] h-[440px] border border-slate-100/50 rounded-full" />
-              <div className="absolute w-[320px] h-[320px] border border-slate-100 rounded-full" />
+              <div className="absolute  2xl:w-[440px] 2xl:h-[440px] w-[320px] h-[320px] border border-slate-100/50 rounded-full" />
+              <div className="absolute  2xl:w-[320px] 2xl:h-[320px] w-[240px] h-[240px] border border-slate-100 rounded-full" />
             </div>
 
             {/* Central Logo */}
             <div
               ref={logoRef}
-              className="relative z-10 w-96 h-96 bg-white rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-18 border border-slate-100"
+              className="relative z-10 2xl:w-60 2xl:h-60 w-48 h-48 bg-white rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-10 border border-slate-100"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-emerald-500/10 rounded-full blur-2xl" />
@@ -150,7 +150,7 @@ export const OrbitingSection: React.FC = () => {
                   key={i}
                   className="orbiting-badge-item absolute pointer-events-auto group"
                 >
-                  <div className={`w-40 h-40 ${badge.color} rounded-full flex flex-col items-center justify-center p-2 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 hover:shadow-2xl`}>
+                  <div className={`w-18 h-18 2xl:w-24 2xl:h-24 ${badge.color} rounded-full flex flex-col items-center justify-center p-2 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 hover:shadow-2xl`}>
                     <Image src={badge.src} alt={badge.label} className="w-full h-full object-contain rounded-full" />
                   </div>
                 </div>

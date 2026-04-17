@@ -45,7 +45,7 @@ import AnimationWrapper from "./AnimationWrapper";
 
 export default function Testimonials() {
   return (
-    <section className="pb-40 bg-white overflow-hidden">
+    <section className="pb-40 bg-white z-10 overflow-hidden">
       <div className="w-[95%] max-w-[1800px] mx-auto px-6 md:px-12">
 
         {/* Header Section */}

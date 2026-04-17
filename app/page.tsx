@@ -10,6 +10,7 @@ import Testimonials from "./components/Testimonials";
 import ConsultationCTA from "./components/ConsultationCTA";
 import { OrbitingSection } from "./components/OrbitingSection";
 import ProcessTimeline from "./components/ProcessTimeline";
+import { FrameworkSection } from "./components/FrameworkSection";
 
 export default function Home() {
   return (

@@ -107,7 +107,7 @@ export default function ServicesPage() {
       <Navbar />
       
       <div className="relative min-h-screen bg-white">
-      {/* Scroll Progress Bar - Only show when navbar is transparent */}
+        
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-[#71c6a4] z-[60] origin-left"
         style={{ 

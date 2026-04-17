@@ -143,8 +143,8 @@ export default function ProcessTimeline() {
                   }`}
               >
                 {/* Content Side */}
-                <div className={`flex-1 ${isRight ? "md:text-left md:pr-16" : "md:text-right md:pl-16"}`}>
-                  <div className={`flex flex-col ${isRight ? "md:items-start" : "md:items-end"}`}>
+                <div className={`flex-1 ${isRight ? "md:text-right md:pr-16" : "md:text-left md:pl-16"}`}>
+                  <div className={`flex flex-col ${isRight ? "md:items-end" : "md:items-start"}`}>
                     <h3 className="text-[#2b4c8c] text-2xl 2xl:text-3xl font-bold mb-2">
                       {step.title}
                     </h3>
