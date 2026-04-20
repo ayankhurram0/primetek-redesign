@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Large Background Logo - Behind everything */}
-      <div className=" pointer-events-none select-none z-0 md:px-14">
+      <div className=" pointer-events-none select-none z-0 md:px-14 pb-10">
         <div className="text-[19vw] font-black text-[#2b4c8c] tracking-lose leading-none text-left ">
           <Image src={primetek} alt="PrimeTek" className="w-full h-full" />
         </div>

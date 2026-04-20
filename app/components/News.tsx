@@ -143,7 +143,7 @@ export default function News() {
           >
             <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-3xl mb-4 uppercase tracking-[0.3em]">Critical Insights</p>
             <h2 className="text-7xl 2xl:text-8xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize w-[80%] 2xl:w-[100%]! ">
-              Pharmacy Compliance <br/>& Revenue Performance
+              Pharmacy Compliance <br />& Revenue Performance
             </h2>
           </motion.div>
 

@@ -38,13 +38,13 @@ export default function Preloader() {
         {/* Logo Animation */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             y: 0
           }}
-          transition={{ 
-            duration: 1.2, 
-            ease: "easeOut" 
+          transition={{
+            duration: 1.2,
+            ease: "easeOut"
           }}
           className="mb-16"
         >
@@ -65,9 +65,9 @@ export default function Preloader() {
             <motion.div
               initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
-              transition={{ 
-                duration: 0.3, 
-                ease: "easeOut" 
+              transition={{
+                duration: 0.3,
+                ease: "easeOut"
               }}
               className="h-full bg-gradient-to-r from-white to-white/80 rounded-full relative overflow-hidden"
             >

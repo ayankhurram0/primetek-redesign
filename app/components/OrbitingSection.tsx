@@ -1,6 +1,9 @@
 "use client"
-import Image from "next/image";
-import React, { use, useEffect, useRef } from "react";
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import badge1 from "@/src/assets/badges1.png";
@@ -8,6 +11,16 @@ import badge2 from "@/src/assets/badges2.png";
 import badge3 from "@/src/assets/badges3.png";
 import badge4 from "@/src/assets/badges4.png";
 import coloredlogo from "@/src/assets/logo-colored.png";
+
+// Shim for next/image to keep JSX identical while working in Vite
+const Image = ({ src, alt, className }: any) => (
+  <img
+    src={typeof src === 'string' ? src : (src?.src || src)}
+    alt={alt}
+    className={className}
+    referrerPolicy="no-referrer"
+  />
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +40,7 @@ export const OrbitingSection: React.FC = () => {
   const badgesRef = useRef<HTMLDivElement>(null);
   const orbitRingsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // 1. Pinning and Sequential Animation
       const tl = gsap.timeline({
@@ -37,6 +50,9 @@ export const OrbitingSection: React.FC = () => {
           end: "+=300%",
           pin: true,
           scrub: 1,
+          pinSpacing: true,
+          invalidateOnRefresh: true,
+          refreshPriority: 5,
         },
       });
 
@@ -90,13 +106,13 @@ export const OrbitingSection: React.FC = () => {
         yoyo: true,
         ease: "sine.inOut"
       });
-    }, sectionRef);
+    }, sectionRef); // Scoping to the component root
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={sectionRef} className="bg-white">
+    <div id="orbit-section" ref={sectionRef} className="bg-white relative w-full overflow-hidden">
       <div ref={triggerRef} className="h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6 relative pb-10">
         {/* Background decorative elements */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03)_0%,transparent_70%)]" />
@@ -115,7 +131,7 @@ export const OrbitingSection: React.FC = () => {
             {/* Step 2: Paragraph */}
             <p
               ref={paragraphRef}
-              className="text-slate-600 2xl:text-xl text-md leading-relaxed mb-12 text-left" 
+              className="text-slate-600 2xl:text-xl text-md leading-relaxed mb-12 text-left"
             >
               Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
               operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned

@@ -1,3 +1,5 @@
+"use client"
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Newhero from "./components/Newhero";
 import Footer from "./components/Footer";
@@ -11,24 +13,40 @@ import ConsultationCTA from "./components/ConsultationCTA";
 import { OrbitingSection } from "./components/OrbitingSection";
 import ProcessTimeline from "./components/ProcessTimeline";
 import FrameworkSection from "./components/FrameworkSection";
+import { PharmacySlider } from "./components/PharmacySlider";
+import Blah from "./components/blah";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+
 
 export default function Home() {
+  useEffect(() => {
+    // Refresh ScrollTrigger after a short delay
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []);
   return (
     <>
       <Preloader />
       <ScrollIndicator />
-      <main className="flex min-h-screen flex-col">
-        <Navbar />
-        <Newhero />
-        <News />
-        <ServicesSticky />
-        <OrbitingSection />
-        <WhyPrimeTek />
-        <ProcessTimeline />
-        <Testimonials />
-        <ConsultationCTA />
-        <Footer />
-      </main>
+      <Navbar />
+      <Newhero />
+      <PharmacySlider />
+      <Blah />
+      <OrbitingSection />
+      <WhyPrimeTek />
+      <ProcessTimeline />
+      <Testimonials />
+      <ConsultationCTA />
+      <Footer />
     </>
   );
 }

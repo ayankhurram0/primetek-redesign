@@ -263,21 +263,19 @@ export default function App() {
       </div>
 
       {/* Hero Content - Left Aligned Layout */}
-      <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start py-16 px-6 md:px-16 lg:px-24 pointer-events-none">
-        {/* White gradient overlay that blends from left and right */}
+      <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start pt-15 px-6 2xl:px-24 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-none w-[70%]" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50 pointer-events-none" />
 
-        {/* Top Section: Badge + Heading */}
-        <div className="relative flex flex-col items-start text-left 2xl:w-[60%] w-[55%] pointer-events-auto">
+        <div className="relative flex flex-col items-center text-left 2xl:w-[58%] w-[55%] pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-6"
+            className=""
           >
-            <div className="py-2 rounded-full">
-              <span className="text-md 2xl:text-xl font-bold tracking-wider uppercase text-[#4a8c6d]">
+            <div className="py-12 rounded-full">
+              <span className="text-md 2xl:text-4xl font-bold tracking-wider uppercase text-[#71c6a4]">
                 OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT & MULTI-LOCATION PHARMACIES
               </span>
             </div>
@@ -287,9 +285,9 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl 2xl:text-7xl font-display font-bold leading-[1.1] tracking-tight text-[#2b4c8c]"
+            className="text-5xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight text-[#2b4c8c]"
           >
-            IS YOUR PHARMACY LOSING REVENUE DUE TO HIDDEN COMPLIANCE GAPS?
+            Is your pharmacy losing revenue due to hidden compliance gaps?
           </motion.h1>
         </div>
 
@@ -299,7 +297,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-lg md:text-xl text-black max-w-2xl mb-10 font-medium z-10"
+            className="text-lg 2xl:text-3xl text-slate-600 mb-14 font-medium z-10"
           >
             Built to support pharmacies navigating PBM pressure, audit risk, and operational complexity.
           </motion.p>
@@ -316,14 +314,14 @@ export default function App() {
               borderColor="[#71c6a4]"
               rippleColor="#2b4c8c"
               bgColor="#71c6a4"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-6 2xl:px-12 2xl:text-lg" />
+              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all font-bold! duration-200 2xl:py-6 2xl:px-8 2xl:text-[22px]" />
             <FancyButton
               label="See How We Protect Revenue"
               textColor="white"
               borderColor="[#2b4c8c]"
               rippleColor="#71c6a4"
               bgColor="#2b4c8c"
-              extraClasses="backdrop-blur-md hover:border-[#71c6a4] transition-all duration-500 2xl:py-6 2xl:px-12 2xl:text-lg"
+              extraClasses="backdrop-blur-md hover:border-[#71c6a4] font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-[22px]"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             />
           </motion.div>
