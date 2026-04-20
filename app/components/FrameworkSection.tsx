@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useLayoutEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import gsap from "gsap";
@@ -39,12 +38,10 @@ const steps = [
   }
 ];
 
-export const FrameworkSection: React.FC = () => {
+export default function FrameworkSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-
-  // We use useScroll on the containerRef which will be the tall spacer
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -52,131 +49,148 @@ export const FrameworkSection: React.FC = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Pinning the section
       ScrollTrigger.create({
         trigger: triggerRef.current,
         start: "top top",
-        end: () => `+=${containerRef.current?.offsetHeight || 0}`,
+        end: `+=${window.innerHeight * 6}`,
         pin: true,
-        pinSpacing: false, // We use the containerRef's height for spacing
+        pinSpacing: true,
       });
-
-      // Intro animations
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top 10%",
-          end: "top -20%",
-          scrub: 1,
-        }
-      });
-
-      tl.from(".timeline-h2", { y: 40, opacity: 0 })
-        .from(".timeline-p1", { y: 30, opacity: 0 }, "-=0.5")
-        .from(".timeline-p2", { y: 20, opacity: 0 }, "-=0.5")
-        .from(".timeline-h3", { scale: 0.95, opacity: 0 }, "-=0.4")
-        // Fade out header to make room for timeline
-        .to(".header-content", { opacity: 0, y: -50, duration: 1 }, "+=0.5");
-
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
+  // Header animations
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.15, 0.25], [0, 1, 0]);
+  const headingY = useTransform(scrollYProgress, [0, 0.15], [30, 0]);
+  
+  const subtitleOpacity = useTransform(scrollYProgress, [0.1, 0.2, 0.3], [0, 1, 0]);
+  const subtitleY = useTransform(scrollYProgress, [0.1, 0.2], [20, 0]);
+  
+  const descOpacity = useTransform(scrollYProgress, [0.15, 0.25, 0.35], [0, 1, 0]);
+  const descY = useTransform(scrollYProgress, [0.15, 0.25], [20, 0]);
+
+  // Timeline line animation
   const lineHeight = useTransform(scrollYProgress, [0.3, 0.9], ["0%", "100%"]);
 
+  // Pre-calculate all step transforms at top level
+  const stepTransforms = steps.map((_, index) => {
+    const stepStart = 0.3 + (index * 0.15);
+    const stepEnd = stepStart + 0.12;
+    
+    return {
+      opacity: useTransform(
+        scrollYProgress,
+        [stepStart, stepStart + 0.03, stepEnd - 0.03, stepEnd],
+        [0.2, 1, 1, 0.2]
+      ),
+      y: useTransform(
+        scrollYProgress,
+        [stepStart, stepStart + 0.05],
+        [20, 0]
+      ),
+      scale: useTransform(
+        scrollYProgress,
+        [stepStart, stepStart + 0.05],
+        [0.8, 1]
+      ),
+      iconScale: useTransform(
+        scrollYProgress,
+        [stepStart, stepStart + 0.05],
+        [0.9, 1]
+      )
+    };
+  });
+
   return (
-    <section ref={containerRef} className="relative bg-white min-h-[600vh]">
-      {/* Sticky Content */}
-      <div ref={triggerRef} className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+    <div className="bg-white">
+      <section ref={containerRef} className="relative min-h-[700vh]">
+        <div ref={triggerRef} className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+          
+          <motion.div 
+            style={{ opacity: headingOpacity, y: headingY }}
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-40"
+          >
+            <h2 className="text-[#2b4c8c] text-5xl md:text-7xl font-black tracking-tighter mb-4">
+              Our Framework
+            </h2>
+          </motion.div>
 
-        {/* Header */}
-        <div
-          ref={headerRef}
-          className="header-content text-center px-6 max-w-4xl mx-auto absolute z-20"
-        >
-          <h2 className="timeline-h2 text-[#2b4c8c] text-4xl md:text-5xl 2xl:text-6xl font-black tracking-tight mb-4">
-            Our Framework
-          </h2>
-          <p className="timeline-p1 text-black/80 text-xs uppercase 2xl:text-xl font-bold mb-2">
-            A DISCIPLINED APPROACH TO MANAGING PERFORMANCE, REDUCING RISK, AND MAINTAINING OPERATIONAL CONTROL.
-          </p>
-          <p className="timeline-p2 text-black/50 text-sm mt-4 max-w-2xl 2xl:text-xl mx-auto leading-relaxed">
-            PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
-          </p>
-          <h3 className="timeline-h3 text-black/70 text-lg 2xl:text-2xl font-bold mt-12 mb-8">
-            Our 4-Step Operational Framework
-          </h3>
-        </div>
+          <motion.div 
+            style={{ opacity: subtitleOpacity, y: subtitleY }}
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-30"
+          >
+            <p className="text-black/80 text-sm md:text-lg uppercase tracking-[0.2em] font-black mb-2">
+              OPERATIONAL CONTROL FOR A COMPLEX PHARMACY ENVIRONMENT
+            </p>
+          </motion.div>
 
-        {/* Timeline Container */}
-        <div className="relative w-full max-w-6xl mx-auto px-6 z-10 h-full flex items-center justify-center">
-          <div className="w-full relative">
-            {/* Center Line - Background */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 -translate-x-1/2 hidden md:block" />
+          <motion.div 
+            style={{ opacity: descOpacity, y: descY }}
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20"
+          >
+            <p className="text-black/60 text-base md:text-lg max-w-3xl leading-relaxed">
+              PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
+            </p>
+            <h3 className="text-[#71c6a4] text-xl md:text-2xl font-bold mt-8">
+              Our 4-Step Operational Framework
+            </h3>
+          </motion.div>
 
+          <div 
+            className="relative w-full max-w-6xl mx-auto px-6 h-[80vh] flex items-center justify-center z-10"
+          >
+            {/* Background track */}
+            <div className="absolute left-1/2 top-[10%] bottom-[10%] w-px bg-gray-200 -translate-x-1/2 hidden md:block" />
+            
+            {/* Animated line */}
             <motion.div
               style={{ height: lineHeight }}
-              className="absolute left-1/2 top-0 w-[6px] bg-[#71c6a4] hidden md:block -translate-x-1/2 rounded-full origin-top"
+              className="absolute left-1/2 top-[10%] w-[4px] bg-[#71c6a4] hidden md:block -translate-x-1/2 rounded-full origin-top"
             />
 
-            {/* Steps */}
-            <div className="relative flex flex-col items-center">
+            <div className="w-full h-full relative flex flex-col justify-center space-y-6">
               {steps.map((step, index) => {
-                // Calculate ranges for each step based on total scroll
-                const start = 0.35 + (index * 0.15);
-                const end = start + 0.1;
-
-                const stepProgress = useTransform(
-                  scrollYProgress,
-                  [start, end],
-                  [0, 1],
-                  { clamp: true }
-                );
-
-                const opacity = useTransform(stepProgress, [0, 1], [0, 1]);
-                const y = useTransform(stepProgress, [0, 1], [50, 0]);
-                const scale = useTransform(stepProgress, [0, 1], [0.9, 1]);
-                const iconRotate = useTransform(stepProgress, [0, 1], [180, 0]);
-
-                const isRight = step.position === "right";
                 const Icon = step.icon;
+                const isRight = step.position === "right";
+                const transforms = stepTransforms[index];
 
                 return (
                   <motion.div
                     key={step.id}
-                    style={{ opacity, y, scale }}
-                    className={`relative flex flex-col md:flex-row items-center w-full py-8 md:py-12 ${isRight ? "md:flex-row" : "md:flex-row-reverse"
-                      }`}
+                    style={{ opacity: transforms.opacity, y: transforms.y }}
+                    className={`relative flex items-center w-full ${isRight ? "flex-row" : "flex-row-reverse"}`}
                   >
-                    {/* Content Side */}
-                    <div className={`flex-1 ${isRight ? "md:text-left md:pr-16" : "md:text-right md:pl-16"}`}>
-                      <div className={`flex flex-col ${isRight ? "md:items-start" : "md:items-end"}`}>
-                        <h3 className="text-[#2b4c8c] text-2xl 2xl:text-3xl font-bold mb-2">
+                    <div className={`flex-1 ${isRight ? "pr-8 text-right" : "pl-8 text-left"}`}>
+                      <div className={`inline-block ${isRight ? "text-right" : "text-left"}`}>
+                        <span className="text-[#71c6a4] text-xs font-mono tracking-tighter mb-2 block">
+                          PHASE {step.id}
+                        </span>
+                        <h4 className="text-[#2b4c8c] text-2xl md:text-3xl font-black mb-3">
                           {step.title}
-                        </h3>
-                        <p className="text-black/60 text-sm 2xl:text-base leading-relaxed max-w-md">
+                        </h4>
+                        <p className="text-black/60 text-sm md:text-base leading-relaxed max-w-sm">
                           {step.desc}
                         </p>
                       </div>
                     </div>
 
-                    {/* Center Node with Number on Line */}
-                    <div className="relative z-10 flex items-center justify-center w-12 h-12 my-4 md:my-0">
-                      <div className="w-10 h-10 rounded-full bg-[#71c6a4] flex items-center justify-center shadow-lg">
-                        <span className="text-white text-sm font-bold">{step.id}</span>
-                      </div>
+                    <div className="relative z-30 mx-2 flex items-center justify-center">
+                      <motion.div 
+                        style={{ scale: transforms.scale }}
+                        className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#71c6a4] border-4 border-white shadow-lg flex items-center justify-center"
+                      >
+                        <span className="text-white font-black text-base">{step.id}</span>
+                      </motion.div>
                     </div>
 
-                    {/* Icon Area */}
-                    <div className="flex-1 flex justify-center">
-                      <motion.div
-                        style={{ rotate: iconRotate }}
-                        className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#71c6a4]/10 border border-[#71c6a4]/20 flex items-center justify-center"
+                    <div className={`flex-1 flex ${isRight ? "justify-start pl-8" : "justify-end pr-8"}`}>
+                      <motion.div 
+                        style={{ scale: transforms.iconScale }}
+                        className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white shadow-lg border border-gray-100 flex items-center justify-center"
                       >
-                        <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-[#71c6a4] flex items-center justify-center shadow-xl">
-                          <Icon className="w-10 h-10 md:w-14 md:h-14 text-white" strokeWidth={1.5} />
-                        </div>
+                        <Icon className="w-5 h-5 md:w-6 md:h-6 text-[#71c6a4]" strokeWidth={1.5} />
                       </motion.div>
                     </div>
                   </motion.div>
@@ -184,11 +198,12 @@ export const FrameworkSection: React.FC = () => {
               })}
             </div>
           </div>
-        </div>
 
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white pointer-events-none -z-10" />
-      </div>
-    </section>
+          <div className="absolute inset-0 -z-10 pointer-events-none">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white via-gray-50/50 to-white" />
+          </div>
+        </div>
+      </section>
+    </div>
   );
-};
+}

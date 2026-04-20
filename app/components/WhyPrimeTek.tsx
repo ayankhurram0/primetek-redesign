@@ -136,15 +136,15 @@ export default function WhyPrimeTek() {
         <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
           <div className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-20">
             <div className="w-[100%]">
-              <h2 className="text-4xl 2xl:text-5xl font-bold max-w-3xl leading-tight uppercase text-[#2b4c8c]">
-                Why PrimeTek
+              <h2 className="text-4xl 2xl:text-5xl font-bold leading-tight uppercase text-[#2b4c8c] text-center">
+                <span className="text-[#71c6a4]">Why </span>PrimeTek
               </h2>
-              <h4 className="text-md 2xl:text-lg font-semibold max-w-3xl leading-tight uppercase mt-6">
+              <h4 className="text-lg 2xl:text-2xl font-bold leading-tight uppercase mt-6 text-center">
                 Operational Control for a Complex Pharmacy Environment
               </h4>
-              <p className="text-black 2xl:text-lg text-base mt-4">Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
+              <p className="text-black 2xl:text-xl text-md mt-4 text-center">Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
               </p>
-              <h3 className="text-2xl 2xl:text-3xl font-bold mt-6 text-black">What Makes PrimeTek Different
+              <h3 className="text-2xl 2xl:text-3xl font-bold mt-6 text-black -ml-28">What Makes PrimeTek Different
               </h3>
             </div>
           </div>
@@ -173,11 +173,11 @@ export default function WhyPrimeTek() {
               ]);
 
               const icons = [
-                <Target className="2xl:w-8 2xl:h-8 w-6 h-6" key="1" />,
-                <BarChart3 className="2xl:w-8 2xl:h-8 w-6 h-6" key="2" />,
-                <Settings className="2xl:w-8 2xl:h-8 w-6 h-6" key="3" />,
-                <ShieldCheck className="2xl:w-8 2xl:h-8 w-6 h-6" key="4" />,
-                <CheckCircle2 className="2xl:w-8 2xl:h-8 w-6 h-6" key="5" />
+                <Target className="2xl:w-12 2xl:h-12 w-10 h-10" key="1" />,
+                <BarChart3 className="2xl:w-12 2xl:h-12 w-10 h-10" key="2" />,
+                <Settings className="2xl:w-12 2xl:h-12 w-10 h-10" key="3" />,
+                <ShieldCheck className="2xl:w-12 2xl:h-12 w-10 h-10" key="4" />,
+                <CheckCircle2 className="2xl:w-12 2xl:h-12 w-10 h-10" key="5" />
               ];
 
               // Flex value: 8 when active, 0.15 when inactive
@@ -202,14 +202,21 @@ export default function WhyPrimeTek() {
                     </div>
 
                     {/* Expanded Content */}
-                    <motion.div className="flex-1 p-8 md:p-16 flex flex-col min-w-[300px] md:min-w-[500px]">
-                      <div className="mb-12">
-                        <h3 className="text-2xl 2xl:text-3xl font-bold uppercase tracking-tight mb-8 leading-tight text-[#2b4c8c]">
+                    <motion.div className="p-8 md:p-16 flex gap-8 items-center min-w-[300px] md:min-w-[500px]">
+                      <div className="w-[65%]">
+                        <h3 className="text-2xl 2xl:text-[34px] font-bold uppercase tracking-tight mb-8 leading-tight text-[#2b4c8c]">
                           {step.title}
                         </h3>
-                        <p className="text-md 2xl:text-xl text-black mb-10 leading-relaxed max-w-xl">
+                        <p className="text-md 2xl:text-[22px] text-black leading-relaxed max-w-xl">
                           {step.description}
                         </p>
+                      </div>
+                      <div className="flex justify-end items-end w-[35%]">
+                        <div className="w-24 h-24 2xl:w-32 2xl:h-32 bg-[#71c6a4]/10 rounded-full flex items-center justify-center">
+                          <div className="text-[#71c6a4]">
+                            {icons[i]}
+                          </div>
+                        </div>
                       </div>
                     </motion.div>
                   </div>

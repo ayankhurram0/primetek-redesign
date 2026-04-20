@@ -86,23 +86,23 @@ export default function ProcessTimeline() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.3, 0.45], [1, 1, 0]);
 
   return (
-    <section ref={containerRef} className="relative bg-white pb-32 min-h-[200vh] overflow-hidden pt-50">
+    <section ref={containerRef} className="relative bg-white pb-60 min-h-[100vh] overflow-hidden pt-50">
       {/* Header */}
       <motion.div
         ref={headerRef}
         style={{ opacity: headerOpacity }}
         className="text-center mb-0 px-6 max-w-4xl mx-auto"
       >
-        <h2 className="timeline-h2 text-[#2b4c8c] text-4xl md:text-5xl 2xl:text-6xl font-black tracking-tight mb-4">
+        <h2 className="timeline-h2 text-[#2b4c8c] text-4xl  2xl:text-6xl font-black tracking-tight mb-4">
           Our Framework
         </h2>
-        <p className="timeline-p1 text-black/80 text-xs uppercase 2xl:text-xl font-bold mb-2">
+        <p className="timeline-p1 text-black/80 text-xs uppercase 2xl:text-2xl font-bold mb-2">
           A DISCIPLINED APPROACH TO MANAGING PERFORMANCE, REDUCING RISK, AND MAINTAINING OPERATIONAL CONTROL.
         </p>
         <p className="timeline-p2 text-black/50 text-sm mt-4 max-w-2xl 2xl:text-xl mx-auto leading-relaxed">
           PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
         </p>
-        <h3 className="timeline-h3 text-black/70 text-lg 2xl:text-2xl font-bold mt-12 mb-8">
+        <h3 className="timeline-h3 text-black/70 text-lg 2xl:text-3xl font-bold mt-12 mb-8">
           Our 4-Step Operational Framework
         </h3>
       </motion.div>
@@ -139,7 +139,7 @@ export default function ProcessTimeline() {
               <motion.div
                 key={step.id}
                 style={{ opacity, y, scale }}
-                className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 ${isRight ? "md:flex-row" : "md:flex-row-reverse"
+                className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-10 ${isRight ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
               >
                 {/* Content Side */}
@@ -165,12 +165,12 @@ export default function ProcessTimeline() {
                 {/* Icon - positioned to alternate sides */}
                 <motion.div
                   style={{ rotate: iconRotate }}
-                  className={`absolute top-1/2 -translate-y-1/2 z-10 hidden md:flex ${isRight
+                  className={`absolute top-1/2 -translate-y-1/2 right-0 z-10 hidden md:flex ${isRight
                     ? "left-[calc(50%+20rem)]"
                     : "right-[calc(50%+20rem)]"
-                    } w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full bg-[#71c6a4] border border-black/10 flex items-center justify-center`}
+                    } w-20 h-20 md:w-22 md:h-22 mx-auto rounded-full bg-[#71c6a4] border border-black/10 flex items-center justify-center`}
                 >
-                  <Icon className="w-12 h-12 md:w-16 md:h-16 text-white" strokeWidth={1.5} />
+                  <Icon className="w-8 h-8 md:w-12 md:h-12 text-white" strokeWidth={1.5} />
                 </motion.div>
 
                 {/* Empty Side for balance */}

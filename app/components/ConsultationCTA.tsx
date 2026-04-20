@@ -97,7 +97,7 @@ export default function ConsultationCTA() {
   }, []);
 
   return (
-    <section className="pb-24 bg-white pt-50">
+    <section className="pb-60 bg-white">
       <div className="w-[95%] max-w-[1800px] mx-auto px-6 md:px-12">
         <div ref={sectionRef} className="rounded-[4rem] py-24 px-8 text-center relative overflow-hidden group">
           {/* Interactive Globe Background */}
@@ -105,12 +105,12 @@ export default function ConsultationCTA() {
             <Globe />
           </div>
 
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 ref={headingRef} className="text-[#2b4c8c] text-5xl md:text-6xl font-black mb-8 leading-tight drop-shadow-sm">
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 ref={headingRef} className="text-[#2b4c8c] text-4xl md:text-6xl font-black mb-8 leading-tight drop-shadow-sm">
               Operational Support for Modern Healthcare
             </h2>
 
-            <p ref={textRef} className="text-slate-600 text-sm md:text-lg font-medium leading-relaxed mb-12 max-w-3xl mx-auto px-4">
+            <p ref={textRef} className="text-slate-600 text-md 2xl:text-xl font-medium leading-relaxed mb-12 max-w-3xl mx-auto px-4">
               Primetek Services delivers compliance-aware, non-clinical solutions that help healthcare organizations streamline operations, improve communication, and optimize performance—without crossing clinical boundaries.
             </p>
 

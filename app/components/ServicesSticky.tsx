@@ -1,33 +1,54 @@
-"use client";
-
+"use client"
 import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image, { type StaticImageData } from "next/image";
-
-gsap.registerPlugin(ScrollTrigger);
-import FancyButton from "./button";
+import { ChevronRight } from "lucide-react";
+import { StaticImageData } from "next/image";
 import service1 from "@/src/assets/service1.png";
 import service2 from "@/src/assets/service2.png";
 import service3 from "@/src/assets/service3.png";
 import service4 from "@/src/assets/service4.png";
 import service5 from "@/src/assets/service5.png";
 
+gsap.registerPlugin(ScrollTrigger);
+
+// --- Components ---
+
+interface FancyButtonProps {
+  label: string;
+  textColor?: string;
+  borderColor?: string;
+  bgColor?: string;
+  rippleColor?: string;
+  extraClasses?: string;
+}
+
+const FancyButton = ({ label, extraClasses, bgColor }: FancyButtonProps) => (
+  <button
+    style={{ backgroundColor: bgColor || "#71c6a4" }}
+    className={`relative overflow-hidden rounded-full border border-[#71c6a4] text-white px-8 py-4 font-bold text-sm transition-all duration-300 hover:scale-105 active:scale-95 ${extraClasses}`}
+  >
+    <span className="relative z-10">{label}</span>
+  </button>
+);
+
 interface ServiceSectionProps {
   number: string;
   title: string;
   description: string;
-  imageSrc: string | StaticImageData;
+  imageSrc: StaticImageData;
   imageAlt: string;
   zIndex: number;
+  key?: string | number;
 }
 
-const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex }: ServiceSectionProps) => {
+const ServiceSection = (props: ServiceSectionProps) => {
+  const { number, title, description, imageSrc, imageAlt, zIndex } = props;
   return (
     <motion.section
       style={{ zIndex }}
-      className="sticky top-0 h-screen w-full flex flex-col justify-center bg-white border-t border-black/10 py-12 2xl:px-30 px-10"
+      className="sticky top-0 h-screen w-full flex flex-col justify-center bg-white border-t border-black/10 py-12 px-6 md:px-12 2xl:px-20"
     >
       <div className="max-w-[1400px] mx-auto w-full">
         {/* Section Header */}
@@ -58,22 +79,19 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
 
             <FancyButton
               label="Explore Service"
-              textColor="white"
-              borderColor="[#71c6a4]"
               bgColor="#71c6a4"
-              rippleColor="#2b4c8c"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-sm shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+              extraClasses="shadow-[0_10px_30px_rgba(113,198,164,0.3)] hover:bg-[#2b4c8c] hover:border-[#2b4c8c]"
             />
           </div>
 
           {/* Right: Portfolio Grid Image */}
           <div className="lg:col-span-6">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-black/5 aspect-[4/3]">
-              <Image
-                src={imageSrc}
+              <img
+                src={imageSrc.src}
                 alt={imageAlt}
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#2b4c8c]/5 via-transparent to-[#71c6a4]/10 pointer-events-none" />
             </div>
@@ -84,53 +102,28 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
   );
 };
 
-export default function ServicesSticky() {
+// --- Main Page Component ---
+
+export default function CombinedLayout() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Set initial states explicitly
-      gsap.set([".hero-word", ".hero-desc", ".hero-btn"], { opacity: 0, y: 50 });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top 80%", // Triggers when hero container top hits 80% of viewport
-          toggleActions: "play none none none"
-        },
-        defaults: { ease: "power4.out", duration: 1.2 }
-      });
+  const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.75], { clamp: true });
+  const headingX = useTransform(scrollYProgress, [0, 0.15], ["0%", "-10%"], { clamp: true });
+  const headingY = useTransform(scrollYProgress, [0, 0.15], ["0%", "-33%"], { clamp: true });
 
-      tl.to(".hero-word", {
-        opacity: 1,
-        y: 0,
-        stagger: 0.08,
-        delay: 0.2
-      })
-        .to(".hero-desc", {
-          opacity: 1,
-          y: 0,
-          duration: 1
-        }, "-=0.8")
-        .to(".hero-btn", {
-          opacity: 1,
-          y: 0,
-          duration: 1
-        }, "-=0.8");
-    }, heroRef);
+  // Opacity of the "Critical Insights" label and the sub-heading
+  const subHeadingOpacity = useTransform(scrollYProgress, [0.12, 0.18], [0, 1]);
+  const introLabelOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-    return () => ctx.revert();
-  }, []);
-
-  // Receding effect: Hero scales down and fades as services scroll up
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.85]);
-  const heroY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
+  // Services reveal
+  const servicesX = useTransform(scrollYProgress, [0.1, 0.2], ["100%", "0%"]);
+  const dividerOpacity = useTransform(scrollYProgress, [0.15, 0.2], [0, 1]);
 
   const services = [
     {
@@ -170,77 +163,82 @@ export default function ServicesSticky() {
     }
   ];
 
-  const titleWords = "Operational Systems That Protect & Grow Pharmacy Revenue".split(" ");
-
   return (
-    <section id="services" ref={containerRef} className="relative flex items-start">
-      {/* Hero Section - Fixed Left Sidebar */}
-      <motion.div
-        ref={heroRef}
-        className="sticky top-0 h-screen flex flex-col justify-center bg-white z-0 2xl:pl-30 pl-10 overflow-hidden 2xl:w-[38%] w-[40%] self-start "
-      >
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 z-[-1] opacity-[0.03]">
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#2b4c8c 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+    <div ref={containerRef} className="relative bg-white min-h-[500vh]">
+      {/* Dynamic Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.03]">
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#2b4c8c 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      </div>
+
+      {/* Sticky Orchestrator */}
+      <div className="sticky top-0 h-screen w-[65%] flex overflow-hidden">
+
+        {/* Left Side: The Evolving Heading */}
+        <div className="relative h-screen 2xl:w-[40%] w-[45%] flex flex-col justify-center p-10 2xl:p-20 z-20">
           <motion.div
-            animate={{
-              x: [0, -40, 0],
-              y: [0, -40, 0]
+            style={{
+              scale: headingScale,
+              x: headingX,
+              y: headingY,
             }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute inset-[-100px]"
-            style={{ backgroundImage: 'linear-gradient(to right, #71c6a4 1px, transparent 1px), linear-gradient(to bottom, #71c6a4 1px, transparent 1px)', backgroundSize: '100px 100px' }}
-          />
-        </div>
-
-        <div className="max-w-[1400px] mx-auto w-full">
-          <div className="2xl:max-w-7xl mx-auto max-w-[100%] mb-12">
-            <h1 className="2xl:text-5xl text-4xl text-left font-bold uppercase flex flex-wrap justify-left gap-x-3">
-              {titleWords.map((word, i) => (
-                <span
-                  key={i}
-                  className={`hero-word inline-block ${word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-[#71c6a4]"}`}
-                >
-                  {word}
-                </span>
-              ))}
+            className="w-[180%] 2xl:w-[200%] origin-center pointer-events-none"
+          >
+            <h1 className="2xl:text-5xl text-4xl font-bold uppercase leading-tight">
+              <span className="block text-[#71c6a4]">
+                Operational Systems That
+              </span>
+              <span className="block text-[#2b4c8c]">
+                Protect & Grow
+                Pharmacy Revenue
+              </span>
             </h1>
-          </div>
 
-          {/* Hero Content Grid */}
-          <div className="flex flex-col items-left gap-12 max-w-4xl mx-auto text-left">
-            <p className="hero-desc text-md 2xl:text-xl font-light leading-relaxed text-gray-700 max-w-3xl">
+            <p className="text-lg 2xl:text-xl font-light leading-relaxed text-gray-700">
               Empower your pharmacy with automated workflows and data-driven insights that safeguard your margins and accelerate revenue generation.
             </p>
+            <FancyButton
+              label="Become a client"
+              bgColor="#71c6a4"
+              extraClasses="shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+            />
+          </motion.div>
 
-            <div className="hero-btn">
-              <FancyButton
-                label="Become a client"
-                textColor="white"
-                borderColor="[#71c6a4]"
-                bgColor="#71c6a4"
-                rippleColor="#2b4c8c"
-                extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-sm shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
-              />
-            </div>
-          </div>
         </div>
-      </motion.div>
 
-      {/* Service Sections - Scrollable Right Content */}
-      <div className="bg-white 2xl:w-[62%] w-[60%]">
+        {/* Divider line */}
+        <motion.div
+          style={{ opacity: dividerOpacity }}
+          className="w-[1px] h-[80vh] bg-[#2b4c8c]/10 self-center"
+        />
+
+        {/* Right Side: Scrollable Services viewport */}
+        <div className="relative h-screen flex-1 overflow-hidden">
+          <motion.div
+            style={{ x: servicesX }}
+            className="h-full w-full"
+          >
+            <div className="h-full w-full overflow-y-auto hidden-scrollbar">
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="relative z-10 2xl:ml-[40%] ml-[45%] 2xl:w-[60%] w-[55%] bg-white">
+        {/* Spacer for the intro stage */}
+        <div className="h-[120vh]" />
+
         {services.map((service, index) => (
           <ServiceSection
             key={service.number}
+            number={service.number}
+            title={service.title}
+            description={service.description}
+            imageSrc={service.imageSrc}
+            imageAlt={service.imageAlt}
             zIndex={index + 10}
-            {...service}
           />
         ))}
       </div>
-    </section >
+    </div>
   );
 }

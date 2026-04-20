@@ -1,5 +1,7 @@
 'use client'
 import Link from "next/link";
+import primetek from "@/src/assets/primetek.png";
+import Image from "next/image";
 
 export default function Footer() {
   const navLinks = [
@@ -81,7 +83,7 @@ export default function Footer() {
       {/* Large Background Logo - Behind everything */}
       <div className=" pointer-events-none select-none z-0 md:px-14">
         <div className="text-[19vw] font-black text-[#2b4c8c] tracking-lose leading-none text-left ">
-          Prime<span className="text-[#71c6a4]">Tek</span>
+          <Image src={primetek} alt="PrimeTek" className="w-full h-full" />
         </div>
       </div>
     </footer>

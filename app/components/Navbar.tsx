@@ -26,7 +26,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
       className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 md:px-16 py-5 font-sans transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-lg' : 'bg-transparent'
+        scrolled ? 'bg-white' : 'bg-transparent'
       }`}
     >
       <Link href="/" className="flex items-center justify-start w-[20%]">
@@ -36,12 +36,12 @@ export default function Navbar() {
           width={500}
           height={80}
           priority
-          className="h-18 w-auto"
+          className="h-24 w-auto"
         />
       </Link>
 
       <div className={`hidden lg:flex items-center justify-center space-x-8 text-md font-bold tracking-wide uppercase w-[60%] transition-colors duration-300 ${
-        scrolled ? 'text-black' : 'text-white'
+        scrolled ? 'text-black' : 'text-white text-[0px]'
       }`}>
         <Link href="/" className="cursor-pointer hover:text-[#71c6a4] transition-colors">Home</Link>
         <Link href="/about" className="cursor-pointer hover:text-[#71c6a4] transition-colors">About Us</Link>

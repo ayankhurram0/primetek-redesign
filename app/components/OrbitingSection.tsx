@@ -57,7 +57,7 @@ export const OrbitingSection: React.FC = () => {
       const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
       badgeElements.forEach((badge, i) => {
         const startAngle = (i / badgeElements.length) * (Math.PI * 2);
-        const radius = 180;
+        const radius = 280;
 
         // Position badges initially
         gsap.set(badge, {
@@ -101,28 +101,29 @@ export const OrbitingSection: React.FC = () => {
         {/* Background decorative elements */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03)_0%,transparent_70%)]" />
 
-        <div className="relative z-10 2xl:w-[55%] w-[90%] mx-auto text-center mt-30">
+        <div className="relative z-10 w-[100%] mx-auto text-center mt-30 flex items-center justify-center">
           {/* Step 1: Heading */}
-          <h2
-            ref={headingRef}
-            className="text-4xl 2xl:text-5xl font-display font-bold mb-8 tracking-tight"
-          >
-            <span className="text-emerald-500">Designed for</span>{" "}
-            <span className="text-slate-800">Pharmacies Operating Under Pressure</span>
-          </h2>
+          <div className="w-[40%] 2xl:pl-20 pl-10">
+            <h2
+              ref={headingRef}
+              className="text-4xl 2xl:text-5xl font-display font-bold mb-8 tracking-tight text-left"
+            >
+              <span className="text-[#71c6a4]">Designed for</span>{" "}
+              <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
+            </h2>
 
-          {/* Step 2: Paragraph */}
-          <p
-            ref={paragraphRef}
-            className="text-slate-600 2xl:text-xl text-md leading-relaxed 2xl:w-[100%] w-[90%] mx-auto mb-12"
-          >
-            Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
-            operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned
-            frameworks to improve clarity, control, and consistency.
-          </p>
-
+            {/* Step 2: Paragraph */}
+            <p
+              ref={paragraphRef}
+              className="text-slate-600 2xl:text-xl text-md leading-relaxed mb-12 text-left" 
+            >
+              Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
+              operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned
+              frameworks to improve clarity, control, and consistency.
+            </p>
+          </div>
           {/* Step 3 & 4: Orbit Visualization */}
-          <div className="relative flex items-center justify-center h-[500px]">
+          <div className="relative flex items-center justify-center h-[500px] w-[60%]">
             {/* Orbit Paths */}
             <div ref={orbitRingsRef} className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="absolute  2xl:w-[440px] 2xl:h-[440px] w-[320px] h-[320px] border border-slate-100/50 rounded-full" />
@@ -132,7 +133,7 @@ export const OrbitingSection: React.FC = () => {
             {/* Central Logo */}
             <div
               ref={logoRef}
-              className="relative z-10 2xl:w-60 2xl:h-60 w-48 h-48 bg-white rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-10 border border-slate-100"
+              className="relative z-10 2xl:w-72 2xl:h-72 w-60 h-60 bg-white rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-10 border border-slate-100"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-emerald-500/10 rounded-full blur-2xl" />
@@ -150,7 +151,7 @@ export const OrbitingSection: React.FC = () => {
                   key={i}
                   className="orbiting-badge-item absolute pointer-events-auto group"
                 >
-                  <div className={`w-18 h-18 2xl:w-24 2xl:h-24 ${badge.color} rounded-full flex flex-col items-center justify-center p-2 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 hover:shadow-2xl`}>
+                  <div className={`w-24 h-24 2xl:w-32 2xl:h-32 ${badge.color} rounded-full flex flex-col items-center justify-center p-2 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 hover:shadow-2xl`}>
                     <Image src={badge.src} alt={badge.label} className="w-full h-full object-contain rounded-full" />
                   </div>
                 </div>

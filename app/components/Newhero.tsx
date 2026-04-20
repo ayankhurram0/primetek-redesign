@@ -277,7 +277,7 @@ export default function App() {
             className="mb-6"
           >
             <div className="py-2 rounded-full">
-              <span className="text-sm 2xl:text-md font-bold tracking-wider uppercase text-[#4a8c6d]">
+              <span className="text-md 2xl:text-xl font-bold tracking-wider uppercase text-[#4a8c6d]">
                 OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT & MULTI-LOCATION PHARMACIES
               </span>
             </div>
@@ -287,7 +287,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl 2xl:text-6xl font-display font-bold leading-[1.1] tracking-tight text-[#2b4c8c]"
+            className="text-5xl 2xl:text-7xl font-display font-bold leading-[1.1] tracking-tight text-[#2b4c8c]"
           >
             IS YOUR PHARMACY LOSING REVENUE DUE TO HIDDEN COMPLIANCE GAPS?
           </motion.h1>

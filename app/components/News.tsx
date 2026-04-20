@@ -102,17 +102,17 @@ export default function News() {
   const slides = [
     {
       src: auditCard,
-      title: "PBM Audit Compliance",
+      title: "Would Your Pharmacy Pass a PBM Audit Today?",
       desc: "Would Your Pharmacy Pass a PBM Audit Today? Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss."
     },
     {
       src: operationalAnalysisChart,
-      title: "Operational Analysis",
+      title: "Are PBM Thresholds Quietly Reducing Your Reimbursements?",
       desc: "Are Small Operational Gaps Creating Significant Financial Exposure? Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks."
     },
     {
       src: thresholdsCard,
-      title: "Reimbursement Performance",
+      title: "Are Small Operational Gaps Creating Significant Financial Exposure?",
       desc: "Are PBM Thresholds Quietly Reducing Your Reimbursements? Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability."
     },
     {
