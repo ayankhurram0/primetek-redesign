@@ -166,8 +166,8 @@ export default function ProcessTimeline() {
                 <motion.div
                   style={{ rotate: iconRotate }}
                   className={`absolute top-1/2 -translate-y-1/2 right-0 z-10 hidden md:flex ${isRight
-                    ? "left-[calc(50%+20rem)]"
-                    : "right-[calc(50%+20rem)]"
+                    ? "left-[calc(0%+20rem)]"
+                    : "right-[calc(30%+20rem)]"
                     } w-20 h-20 md:w-22 md:h-22 mx-auto rounded-full bg-[#71c6a4] border border-black/10 flex items-center justify-center`}
                 >
                   <Icon className="w-8 h-8 md:w-12 md:h-12 text-white" strokeWidth={1.5} />

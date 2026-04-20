@@ -212,7 +212,7 @@ export default function WhyPrimeTek() {
                         </p>
                       </div>
                       <div className="flex justify-end items-end w-[35%]">
-                        <div className="w-24 h-24 2xl:w-32 2xl:h-32 bg-[#71c6a4]/10 rounded-full flex items-center justify-center">
+                        <div className="w-24 h-24 2xl:w-48 2xl:h-48 bg-[#71c6a4]/10 rounded-full flex items-center justify-center">
                           <div className="text-[#71c6a4]">
                             {icons[i]}
                           </div>

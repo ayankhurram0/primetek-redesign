@@ -8,14 +8,21 @@ import { motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FancyButton from "./button";
+import service1 from "@/src/assets/service1.png";
+import service2 from "@/src/assets/service2.png";
+import service3 from "@/src/assets/service3.png";
+import service4 from "@/src/assets/service4.png";
+import service5 from "@/src/assets/service5.png";
 
 gsap.registerPlugin(ScrollTrigger);
+
+import { StaticImageData } from "next/image";
 
 interface ServiceSectionProps {
   number: string;
   title: string;
   description: string;
-  imageSrc: string;
+  imageSrc: string | StaticImageData;
   imageAlt: string;
   zIndex: number;
 }
@@ -67,7 +74,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
           <div className="lg:col-span-6">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-black/5 aspect-[4/3]">
               <img
-                src={imageSrc}
+                src={typeof imageSrc === 'string' ? imageSrc : imageSrc.src}
                 alt={imageAlt}
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 referrerPolicy="no-referrer"
@@ -92,35 +99,35 @@ export default function ServicesSticky() {
       number: "01",
       title: "Revenue Intelligence & Reporting",
       description: "Identify Revenue Leakage, Monitor PBM Performance, And Stay Ahead Of Compliance Risks Through Structured Data Analysis.",
-      imageSrc: "https://picsum.photos/seed/revenue/1200/900",
+      imageSrc: service1,
       imageAlt: "Revenue Intelligence"
     },
     {
       number: "02",
       title: "Claims & Reimbursement Optimization",
       description: "Recover Lost Revenue, Reduce Claim Fees, And Improve Reimbursement Accuracy Across All Payers.",
-      imageSrc: "https://picsum.photos/seed/claims/1200/900",
+      imageSrc: service2,
       imageAlt: "Claims Optimization"
     },
     {
       number: "03",
       title: "Compliance & Audit Protection",
       description: "Stay Audit-Ready With Systems Designed To Reduce Recoupment Risk And Maintain Regulatory Alignment.",
-      imageSrc: "https://picsum.photos/seed/compliance/1200/900",
+      imageSrc: service3,
       imageAlt: "Compliance Protection"
     },
     {
       number: "04",
       title: "Patient & Operational Support Systems",
       description: "Streamline Communication, Improve Workflow Efficiency, And Enhance Patient Engagement Through Structured Support.",
-      imageSrc: "https://picsum.photos/seed/support/1200/900",
+      imageSrc: service4,
       imageAlt: "Patient Support"
     },
     {
       number: "05",
       title: "Pharmacy Growth & Performance Strategy",
       description: "Optimize Pricing, Sourcing, And Operational Strategy To Improve Profitability And Scalability.",
-      imageSrc: "https://picsum.photos/seed/growth/1200/900",
+      imageSrc: service5,
       imageAlt: "Growth Strategy"
     }
   ];
