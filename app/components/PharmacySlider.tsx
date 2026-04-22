@@ -75,7 +75,7 @@ const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smooth
             bgColor="#71c6a4"
             rippleColor="#2b4c8c"
             icon={<ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />}
-            extraClasses="text-xs 2xl:text-lg font-bold uppercase tracking-widest transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn"
+            extraClasses="text-xs 2xl:text-lg font-bold Capitalize tracking-widest transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn"
           />
         </div>
       </motion.div>
@@ -190,8 +190,8 @@ export const PharmacySlider: React.FC = () => {
             }}
             className="absolute z-40 pointer-events-none w-full px-12 2xl:px-24 text-left origin-center"
           >
-            <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-5xl mb-8 uppercase tracking-[0.3em]">Critical Insights</p>
-            <h2 className="text-7xl 2xl:text-6xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize w-[80%] 2xl:w-[100%]! ">
+            <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-6xl mb-8">Critical Insights</p>
+            <h2 className="2xl:text-5xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize w-[80%] 2xl:w-[100%]! ">
               Pharmacy Compliance  <br /> & Revenue Performance
             </h2>
           </motion.div>

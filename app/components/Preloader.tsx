@@ -51,8 +51,8 @@ export default function Preloader() {
           <Image
             src={logo}
             alt="PrimeTek"
-            width={300}
-            height={300}
+            width={500}
+            height={500}
             className="drop-shadow-2xl"
           />
         </motion.div>

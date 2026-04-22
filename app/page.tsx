@@ -7,12 +7,11 @@ import Preloader from "./components/Preloader";
 import ScrollIndicator from "./components/ScrollIndicator";
 import ServicesSticky from "./components/ServicesSticky";
 import News from "./components/News";
-import WhyPrimeTek from "./components/WhyPrimeTek";
+import { WhyPrimeTek } from "./components/WhyPrimeTek";
 import Testimonials from "./components/Testimonials";
 import ConsultationCTA from "./components/ConsultationCTA";
 import { OrbitingSection } from "./components/OrbitingSection";
-import ProcessTimeline from "./components/ProcessTimeline";
-import FrameworkSection from "./components/FrameworkSection";
+import { OurFramework } from "./components/OurFramework";
 import { PharmacySlider } from "./components/PharmacySlider";
 import Blah from "./components/blah";
 import gsap from 'gsap';
@@ -39,11 +38,11 @@ export default function Home() {
       <ScrollIndicator />
       <Navbar />
       <Newhero />
-      <PharmacySlider />
+      <News />
       <Blah />
       <OrbitingSection />
       <WhyPrimeTek />
-      <ProcessTimeline />
+      <OurFramework />
       <Testimonials />
       <ConsultationCTA />
       <Footer />

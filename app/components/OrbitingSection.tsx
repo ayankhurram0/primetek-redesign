@@ -47,7 +47,7 @@ export const OrbitingSection: React.FC = () => {
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: "+=300%",
+          end: "+=700%",
           pin: true,
           scrub: 1,
           pinSpacing: true,
@@ -67,7 +67,9 @@ export const OrbitingSection: React.FC = () => {
       tl.to(headingRef.current, { opacity: 1, y: 0, duration: 1 })
         .to(paragraphRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.5")
         .to([logoRef.current, orbitRingsRef.current], { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
-        .to(badgesRef.current, { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5");
+        .to(badgesRef.current, { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
+        // Dead scroll buffer (Now significantly longer to ensure ~2 full scrolls of dead space)
+        .to({}, { duration: 5.0 });
 
       // 2. Continuous Orbiting Animation
       const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
@@ -122,7 +124,7 @@ export const OrbitingSection: React.FC = () => {
           <div className="w-[40%] 2xl:pl-20 pl-10">
             <h2
               ref={headingRef}
-              className="text-4xl 2xl:text-5xl font-display font-bold mb-8 tracking-tight text-left"
+              className="text-4xl 2xl:text-5xl font-bold mb-8 tracking-tight text-left capitalize"
             >
               <span className="text-[#71c6a4]">Designed for</span>{" "}
               <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
@@ -131,7 +133,7 @@ export const OrbitingSection: React.FC = () => {
             {/* Step 2: Paragraph */}
             <p
               ref={paragraphRef}
-              className="text-slate-600 2xl:text-xl text-md leading-relaxed mb-12 text-left"
+              className="text-slate-600 2xl:text-2xl text-md leading-relaxed mb-12 text-left"
             >
               Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
               operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned

@@ -4,6 +4,12 @@ import { motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FancyButton from "./button";
+import Image, { StaticImageData } from 'next/image';
+import service1 from "@/src/assets/service1.png";
+import service2 from "@/src/assets/service2.png";
+import service3 from "@/src/assets/service3.png";
+import service4 from "@/src/assets/service4.png";
+import service5 from "@/src/assets/service5.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,7 +17,7 @@ interface ServiceSectionProps {
     number: string;
     title: string;
     description: string;
-    imageSrc: string;
+    imageSrc: string | StaticImageData;
     imageAlt: string;
     zIndex: number;
 }
@@ -62,11 +68,12 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
                     {/* Right: Portfolio Grid Image */}
                     <div className="lg:col-span-6">
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-black/5 aspect-[4/3]">
-                            <img
+                            <Image
                                 src={imageSrc}
                                 alt={imageAlt}
-                                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                                referrerPolicy="no-referrer"
+                                fill
+                                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
                             />
                             <div className="absolute inset-0 bg-gradient-to-br from-[#2b4c8c]/5 via-transparent to-[#71c6a4]/10 pointer-events-none" />
                         </div>
@@ -88,40 +95,40 @@ export default function ServicesSticky() {
             number: "01",
             title: "Revenue Intelligence & Reporting",
             description: "Identify Revenue Leakage, Monitor PBM Performance, And Stay Ahead Of Compliance Risks Through Structured Data Analysis.",
-            imageSrc: "https://picsum.photos/seed/revenue/1200/900",
+            imageSrc: service1,
             imageAlt: "Revenue Intelligence"
         },
         {
             number: "02",
             title: "Claims & Reimbursement Optimization",
             description: "Recover Lost Revenue, Reduce Claim Fees, And Improve Reimbursement Accuracy Across All Payers.",
-            imageSrc: "https://picsum.photos/seed/claims/1200/900",
+            imageSrc: service2,
             imageAlt: "Claims Optimization"
         },
         {
             number: "03",
             title: "Compliance & Audit Protection",
             description: "Stay Audit-Ready With Systems Designed To Reduce Recoupment Risk And Maintain Regulatory Alignment.",
-            imageSrc: "https://picsum.photos/seed/compliance/1200/900",
+            imageSrc: service3,
             imageAlt: "Compliance Protection"
         },
         {
             number: "04",
             title: "Patient & Operational Support Systems",
             description: "Streamline Communication, Improve Workflow Efficiency, And Enhance Patient Engagement Through Structured Support.",
-            imageSrc: "https://picsum.photos/seed/support/1200/900",
+            imageSrc: service4,
             imageAlt: "Patient Support"
         },
         {
             number: "05",
             title: "Pharmacy Growth & Performance Strategy",
             description: "Optimize Pricing, Sourcing, And Operational Strategy To Improve Profitability And Scalability.",
-            imageSrc: "https://picsum.photos/seed/growth/1200/900",
+            imageSrc: service5,
             imageAlt: "Growth Strategy"
         }
     ];
 
-    const titleWords = "Operational Systems That Protect & Grow Pharmacy Revenue".split(" ");
+    const titleWords = "Operational Systems that Protect & Grow Pharmacy Revenue".split(" ");
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -139,7 +146,7 @@ export default function ServicesSticky() {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
-                    end: `+=${(services.length + 3) * 100}%`,
+                    end: `+=${(services.length + 5) * 100}%`,
                     pin: true,
                     pinSpacing: true,
                     scrub: 1,
@@ -179,6 +186,9 @@ export default function ServicesSticky() {
                 }, `+=${index === 0 ? 1 : 0.5}`);
             });
 
+            // Dead scroll buffer (keeps the section locked for ~2 more scrolls)
+            tl.to({}, { duration: 3 });
+
         }, containerRef);
 
         return () => ctx.revert();
@@ -207,17 +217,17 @@ export default function ServicesSticky() {
                 </div>
 
                 <div className="max-w-[1400px] mx-auto w-full">
-                    <div className="2xl:max-w-7xl mx-auto max-w-[100%] mb-12 hero-word-wrap">
-                        <h1 ref={headingRef} className="2xl:text-6xl text-4xl text-left font-bold uppercase flex flex-wrap justify-left gap-x-3">
+                    <div className="mb-12 hero-word-wrap">
+                        <h2 ref={headingRef} className="2xl:text-5xl text-4xl text-left font-bold flex flex-wrap justify-left gap-x-3">
                             {titleWords.map((word, i) => (
                                 <span
                                     key={i}
-                                    className={`inline-block ${word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-[#71c6a4]"}`}
+                                    className={`inline-block ${word === "that" || word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-[#71c6a4]"}`}
                                 >
                                     {word}
                                 </span>
                             ))}
-                        </h1>
+                        </h2>
                     </div>
 
                     <div className="flex flex-col items-left gap-12 max-w-4xl mx-auto text-left">

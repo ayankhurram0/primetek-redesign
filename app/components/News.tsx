@@ -1,16 +1,14 @@
-"use client";
-
-import { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, MotionValue } from "motion/react";
+import { motion, useScroll, useTransform, useSpring, MotionValue } from "motion/react";
 import { ChevronRight } from "lucide-react";
+import FancyButton from "./button";
 import type { StaticImageData } from "next/image";
-
 import auditCard from "@/src/assets/audit_card.png";
-import gapsCard from "@/src/assets/gaps_card.png";
 import operationalAnalysisChart from "@/src/assets/operational_analysis_chart.png";
 import thresholdsCard from "@/src/assets/thresholds_card.png";
 import mtfCard from "@/src/assets/mtf_card.png";
+
 
 interface SlideData {
   src: string | StaticImageData;
@@ -22,164 +20,252 @@ interface SlideCardProps {
   slide: SlideData;
   index: number;
   totalSlides: number;
-  scrollYProgress: MotionValue<number>;
+  smoothProgress: MotionValue<number>;
 }
 
-const SlideCard = ({ slide, index, totalSlides, scrollYProgress }: SlideCardProps) => {
-  const step = 0.7 / (totalSlides - 1);
-  const center = 0.16 + (index * step);
+const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smoothProgress }) => {
+  const cardCenter = index / (totalSlides - 1);
 
-  const safeCenter = Math.max(0.2, Math.min(0.8, center));
-
-  const inputRange = [
-    0,
-    Math.max(0.05, safeCenter - 0.15),
-    safeCenter,
-    Math.min(0.95, safeCenter + 0.12),
-    Math.min(1, safeCenter + 0.25)
-  ];
-
-  const scale = useTransform(
-    scrollYProgress,
-    inputRange,
-    [0.75, 0.9, 1.05, 0.9, 0.75]
+  const focus = useTransform(
+    smoothProgress,
+    [cardCenter - 0.15, cardCenter, cardCenter + 0.15],
+    [0, 1, 0]
   );
 
-  const y = useTransform(
-    scrollYProgress,
-    inputRange,
-    [0, 0, 0, 100, 200]
-  );
+  const scale = useTransform(focus, [0, 1], [0.65, 1]);
+  const opacity = useTransform(focus, [0, 1], [0.25, 1]);
+  const blur = useTransform(focus, [0, 1], ["blur(8px)", "blur(0px)"]);
+  const uiOpacity = useTransform(focus, [0.85, 1], [0, 1]);
 
   return (
     <motion.div
-      style={{ scale, y }}
-      className="relative flex-shrink-0 2xl:mt-10 w-[600px] 2xl:w-[800px] h-[500px] 2xl:h-[600px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] bg-white origin-center group"
+      style={{
+        scale,
+        opacity,
+      }}
+      className="relative flex-shrink-0 w-[540px] 2xl:w-[700px] 2xl:h-[600px] h-[440px] rounded-3xl flex items-center justify-center will-change-transform"
     >
-      <Image
-        src={slide.src}
-        alt={slide.title}
-        fill
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
-        priority={index === 0}
-      />
+      <div className="absolute inset-0 overflow-hidden bg-gray-100 shadow-2xl rounded-3xl">
+        <motion.div
+          style={{ filter: blur }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src={slide.src}
+            alt={slide.title}
+            fill
+            className="object-cover"
+            priority={index === 0}
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0e1b35]/90 via-[#0e1b35]/30 to-transparent" />
+      </div>
 
-      {/* Subtle Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-      {/* Content HUD */}
-      <motion.div className="absolute bottom-10 left-10 right-10">
-        <h3 className="text-white text-xl 2xl:text-3xl font-bold mb-3 tracking-tight">{slide.title}</h3>
-        <p className="text-white text-sm 2xl:text-lg leading-relaxed mb-6 font-medium">
+      <motion.div
+        style={{ opacity: uiOpacity, y: useTransform(focus, [0, 1], [40, 0]) }}
+        className="absolute inset-0 pointer-events-none z-10 p-10 flex flex-col justify-end text-left"
+      >
+        <h3 className="text-white text-xl 2xl:text-4xl font-bold mb-3 tracking-tight">{slide.title}</h3>
+        <p className="text-white/80 text-lg 2xl:text-xl leading-relaxed mb-6 font-medium max-w-xl">
           {slide.desc}
         </p>
-        <button className="flex items-center gap-2 px-6 py-3 bg-[#71c6a4] text-white rounded-full text-xs 2xl:text-md font-bold uppercase tracking-widest hover:bg-[#5eb08f] transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn">
-          Analyze Exposure
-          <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-        </button>
+        <div className="pointer-events-auto">
+          <FancyButton
+            label="Analyze Exposure"
+            textColor="white"
+            borderColor="[#71c6a4]"
+            bgColor="#71c6a4"
+            rippleColor="#2b4c8c"
+            icon={<ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />}
+            extraClasses="text-xs 2xl:text-lg font-bold capitalize tracking-widest transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn"
+          />
+        </div>
       </motion.div>
     </motion.div>
   );
 };
 
-export default function News() {
-  const containerRef = useRef(null);
+interface PharmacySliderProps {
+  label?: string;
+  title?: React.ReactNode;
+  slides?: SlideData[];
+}
+
+const slides = [
+  {
+    src: auditCard,
+    title: "Would Your Pharmacy Pass a PBM Audit Today?",
+    desc: "Would Your Pharmacy Pass a PBM Audit Today? Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss."
+  },
+  {
+    src: operationalAnalysisChart,
+    title: "Are PBM Thresholds Quietly Reducing Your Reimbursements?",
+    desc: "Are Small Operational Gaps Creating Significant Financial Exposure? Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks."
+  },
+  {
+    src: thresholdsCard,
+    title: "Are Small Operational Gaps Creating Significant Financial Exposure?",
+    desc: "Are PBM Thresholds Quietly Reducing Your Reimbursements? Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability."
+  },
+  {
+    src: mtfCard,
+    title: "Backend Revenue Control",
+    desc: "MTF Revenue Leakage Control: If you are not actively tracking, reconciliation, and disputing MTF payments, you are silently losing backend revenue on every eligible claim."
+  }
+];
+
+const News: React.FC<PharmacySliderProps> = ({
+  label = "Critical Insights",
+  title = <>Pharmacy Compliance <br /> & Revenue Performance</>,
+  slides: passedSlides
+}) => {
+  const displaySlides = passedSlides || slides;
+  const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Phase 1: Text Conversion (0 to 0.2)
-  const textScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.5], { clamp: true });
-  const textX = useTransform(scrollYProgress, [0, 0.2], ["0%", "-25%"], { clamp: true });
-  const textY = useTransform(scrollYProgress, [0, 0.2], ["0%", "-100%"], { clamp: true });
-  const textOpacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 1], { clamp: true });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 35,
+    damping: 18,
+    restDelta: 0.0001,
+    mass: 1.2
+  });
 
-  // Carousel opacity - hidden initially, then fully visible
-  const carouselOpacity = useTransform(scrollYProgress, [0, 0.05, 0.1], [0, 0, 1], { clamp: true });
+  // Headings Animation split for sequence
+  // Label: "Critical Insights"
+  const labelOpacity = useTransform(scrollYProgress, [0, 0.05], [0, 1], { clamp: true });
+  const labelY = useTransform(scrollYProgress, [0, 0.05], [40, 0], { clamp: true });
 
-  // Slide Data
-  const slides = [
-    {
-      src: auditCard,
-      title: "Would Your Pharmacy Pass a PBM Audit Today?",
-      desc: "Would Your Pharmacy Pass a PBM Audit Today? Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss."
-    },
-    {
-      src: operationalAnalysisChart,
-      title: "Are PBM Thresholds Quietly Reducing Your Reimbursements?",
-      desc: "Are Small Operational Gaps Creating Significant Financial Exposure? Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks."
-    },
-    {
-      src: thresholdsCard,
-      title: "Are Small Operational Gaps Creating Significant Financial Exposure?",
-      desc: "Are PBM Thresholds Quietly Reducing Your Reimbursements? Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability."
-    },
-    {
-      src: mtfCard,
-      title: "Backend Revenue Control",
-      desc: "MTF Revenue Leakage Control: If you are not actively tracking, reconciling, and disputing MTF payments, you are silently losing backend revenue on every eligible claim."
-    }
-  ];
+  // Main Heading: "Pharmacy Compliance..."
+  const mainHeadingOpacity = useTransform(scrollYProgress, [0.05, 0.1], [0, 1], { clamp: true });
+  const mainHeadingY = useTransform(scrollYProgress, [0.05, 0.1], [40, 0], { clamp: true });
 
-  const slideWidth = 800;
+  // Fade out both at the end of the section
+  const finalFade = useTransform(scrollYProgress, [0.85, 0.95], [1, 0], { clamp: true });
+
+  const carouselRaw = useTransform(smoothProgress, [0.15, 0.85], [0, 1], { clamp: true });
+  const snappedValue = useTransform(carouselRaw, (val) => {
+    const steps = displaySlides.length - 1;
+    return Math.round(val * steps) / steps;
+  });
+
+  const carouselSnapProgress = useSpring(snappedValue, {
+    stiffness: 120,
+    damping: 22,
+    mass: 0.8
+  });
+
+  const carouselOpacity = useTransform(smoothProgress, [0.1, 0.15], [0, 1], { clamp: true });
+  const finalCarouselFade = useTransform(smoothProgress, [0.9, 0.98], [1, 0], { clamp: true });
+
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1600);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const is2xl = windowWidth >= 1536;
+  const slideWidth = is2xl ? 700 : 540;
   const gap = 48;
-  const totalMove = (slides.length - 1) * (slideWidth + gap);
-  const trackX = useTransform(scrollYProgress, [0.2, 0.9], [0, -totalMove], { clamp: true });
+  const slideStep = slideWidth + gap;
+  const totalTrackWidth = (displaySlides.length - 1) * slideStep;
+
+  // Track starts at left: 50%. We offset by half-slide width to center slide 0 initially.
+  const initialOffset = -(slideWidth / 2);
+  const trackX = useTransform(carouselSnapProgress, [0, 1], [initialOffset, initialOffset - totalTrackWidth]);
 
   return (
-    <section id="critical-insights" ref={containerRef} className="relative h-[600vh] bg-white">
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+    <section ref={containerRef} className="relative h-[1000vh] bg-white text-[#2b4c8c] font-sans selection:bg-[#71c6a4]/30">
+      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
 
-        <div className="relative w-full h-full flex items-center justify-center">
+        {/* Atmosphere */}
+        <div className="absolute inset-0 pointer-events-none">
           <motion.div
             style={{
-              scale: textScale,
-              x: textX,
-              y: textY,
-              opacity: textOpacity
+              x: useTransform(smoothProgress, [0, 1], ["-10vw", "10vw"]),
+              opacity: useTransform(smoothProgress, [0, 0.5, 1], [0.05, 0.1, 0.05])
             }}
-            className="absolute z-40 pointer-events-none w-full px-12 md:px-24 text-left origin-center"
-          >
-            <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-3xl mb-4 uppercase tracking-[0.3em]">Critical Insights</p>
-            <h2 className="text-7xl 2xl:text-8xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize w-[80%] 2xl:w-[100%]! ">
-              Pharmacy Compliance <br />& Revenue Performance
-            </h2>
-          </motion.div>
-
-          {/* Carousel Track */}
-          <motion.div
-            style={{ x: trackX, opacity: carouselOpacity }}
-            className="absolute 2xl:left-80 left-100 right-0 flex items-center gap-12 px-[calc(50vw-400px)] z-10"
-          >
-            {slides.map((slide, i) => (
-              <SlideCard
-                key={i}
-                slide={slide}
-                index={i}
-                totalSlides={slides.length}
-                scrollYProgress={scrollYProgress}
-              />
-            ))}
-          </motion.div>
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vh] bg-gradient-radial from-[#71c6a4]/30 via-transparent to-transparent"
+          />
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+        <div className="w-full h-full flex items-center max-w-[1700px] mx-auto px-16 relative">
+
+          {/* Left Column: 40% for Headings */}
+          <div className="w-[40%] h-full flex items-center pr-12 relative z-40">
+            <motion.div
+              style={{ opacity: finalFade }}
+              className="pointer-events-none origin-left"
+            >
+              <motion.p
+                style={{ opacity: labelOpacity, y: labelY }}
+                className="text-[#71c6a4] font-bold text-2xl 2xl:text-6xl mb-4 2xl:mb-8"
+              >
+                {label}
+              </motion.p>
+              <motion.h2
+                style={{ opacity: mainHeadingOpacity, y: mainHeadingY }}
+                className="2xl:text-5xl text-4xl font-bold tracking-tight leading-[1.05] text-[#2b4c8c] capitalize"
+              >
+                {title}
+              </motion.h2>
+            </motion.div>
+          </div>
+
+          {/* Right Column: 60% for Carousel Area */}
+          <motion.div
+            style={{ opacity: useTransform([carouselOpacity, finalCarouselFade], ([o1, o2]: number[]) => o1 * o2) }}
+            className="w-[60%] h-full flex items-center relative overflow-hidden"
+          >
+            {/* FIXED SELECTION FRAME - Centered in the 60% zone */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] 2xl:w-[700px] h-[440px] 2xl:h-[600px] z-30 pointer-events-none origin-center">
+              <div className="absolute inset-[-20px] border-[1.5px] border-dotted border-[#71c6a4]/90 rounded-[40px]" />
+              {/* Corner Accents */}
+              <div className="absolute top-[-24px] right-[-24px] w-5 h-5 bg-[#71c6a4] rounded-full shadow-[0_0_20px_rgba(113,198,164,0.6)]" />
+              <div className="absolute bottom-[-24px] left-[-24px] w-3 h-3 border-2 border-[#71c6a4] rounded-full" />
+            </div>
+
+            {/* Moving Track */}
+            <motion.div
+              style={{
+                x: trackX,
+                left: "50%",
+              }}
+              className="flex items-center gap-12 absolute top-1/2 -translate-y-1/2 will-change-transform"
+            >
+              {displaySlides.map((slide, i) => (
+                <SlideCard
+                  key={i}
+                  slide={slide}
+                  index={i}
+                  totalSlides={displaySlides.length}
+                  smoothProgress={carouselSnapProgress}
+                />
+              ))}
+            </motion.div>
+          </motion.div>
+
+        </div>
+
+        {/* HUD */}
+        <div className="absolute bottom-12 inset-x-0 flex flex-col items-center gap-4 pointer-events-none z-50">
           <motion.div
             animate={{ y: [0, 8, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="w-6 h-10 rounded-full border-2 border-black/20 flex justify-center p-1 will-change-transform"
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="w-10 h-10 rounded-full border border-[#2b4c8c]/10 flex items-center justify-center bg-white/50 backdrop-blur-sm"
           >
-            <div className="w-1 h-2 bg-[#71c6a4] rounded-full" />
+            <div className="w-[1.5px] h-3.5 bg-[#71c6a4] rounded-full" />
           </motion.div>
-          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/40">Scroll to Explore</span>
+          <span className="text-[10px] font-mono font-bold uppercase tracking-[8px] text-[#2b4c8c]/50 pl-2">Scroll to explore</span>
         </div>
+
       </div>
     </section>
   );
-}
+};
+
+export default News;

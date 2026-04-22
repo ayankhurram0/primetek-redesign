@@ -1,8 +1,5 @@
 "use client";
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+
 import React, { useRef, useLayoutEffect } from "react";
 import { motion } from "motion/react";
 import gsap from "gsap";
@@ -221,7 +218,7 @@ export default function ServicesSticky() {
 
         <div className="max-w-[1400px] mx-auto w-full">
           <div className="2xl:max-w-7xl mx-auto max-w-[100%] mb-12 hero-word-wrap">
-            <h1 ref={headingRef} className="2xl:text-6xl text-4xl text-left font-bold uppercase flex flex-wrap justify-left gap-x-3">
+            <h1 ref={headingRef} className="2xl:text-5xl text-4xl text-left font-bold uppercase flex flex-wrap justify-left gap-x-3">
               {titleWords.map((word, i) => (
                 <span
                   key={i}

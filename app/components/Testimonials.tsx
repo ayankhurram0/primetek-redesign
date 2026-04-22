@@ -50,7 +50,7 @@ export default function Testimonials() {
 
         {/* Header Section */}
         <AnimationWrapper direction="up" distance={30} className="flex flex-col md:flex-row justify-between items-start md:items-center mb-20 gap-8">
-          <h2 className="text-4xl 2xl:text-6xl font-black max-w-2xl leading-tight">
+          <h2 className="text-4xl 2xl:text-5xl font-bold max-w-2xl leading-tight">
             <span className="text-[#64c4ad]">A Trusted</span> <br />
             <span className="text-[#2b4c8c]">Operational Partner</span>
           </h2>
@@ -96,10 +96,10 @@ export default function Testimonials() {
             {testimonials.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="bg-white border-x border-slate-100 px-10 py-12 flex flex-col h-full hover:bg-slate-50/50 transition-colors duration-500">
-                  <h4 className="text-black font-black text-xl 2xl:text-2xl mb-6 leading-tight">
+                  <h4 className="text-black font-bold text-xl 2xl:text-3xl mb-6 leading-tight">
                     “{item.quote}”
                   </h4>
-                  <p className="text-black text-base 2xl:text-md leading-relaxed mb-10 flex-1">
+                  <p className="text-black text-base 2xl:text-xl leading-relaxed mb-10 flex-1">
                     {item.text}
                   </p>
 

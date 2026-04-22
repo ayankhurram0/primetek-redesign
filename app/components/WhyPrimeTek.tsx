@@ -1,10 +1,6 @@
-"use client"
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef, useState, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+"use client";
 
-gsap.registerPlugin(ScrollTrigger);
+import { useRef, useEffect } from "react";
 import {
   Target,
   BarChart3,
@@ -12,40 +8,11 @@ import {
   ShieldCheck,
   CheckCircle2
 } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-const StaticIcon = ({
-  children,
-  x,
-  y,
-  delay = 0,
-  className = "",
-  id = ""
-}: {
-  children: React.ReactNode;
-  x: string;
-  y: string;
-  delay?: number;
-  className?: string;
-  id?: string;
-}) => (
-  <motion.div
-    animate={{
-      y: [0, -10, 0],
-    }}
-    transition={{
-      y: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: delay * 2
-      }
-    }}
-    className={`absolute hero-badge flex items-center justify-center bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white p-3 ${className}`}
-    style={{ left: x, top: y, transform: 'translate(-50%, -50%)', opacity: 0 }}
-  >
-    {children}
-  </motion.div>
-);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const STEPS = [
   {
@@ -75,166 +42,155 @@ const STEPS = [
   }
 ];
 
-export default function WhyPrimeTek() {
+export function WhyPrimeTek() {
   const containerRef = useRef<HTMLElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const h1Ref = useRef<HTMLDivElement>(null);
+  const h2Ref = useRef<HTMLDivElement>(null);
+  const pRef = useRef<HTMLDivElement>(null);
+  const h3Ref = useRef<HTMLDivElement>(null);
+  const stepsContainerRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setMounted(true);
+  useGSAP(() => {
+    gsap.set([h1Ref.current, h2Ref.current, pRef.current, h3Ref.current, stepsContainerRef.current], {
+      opacity: 0,
+      y: 20
+    });
 
-    if (!heroRef.current) return;
+    stepRefs.current.forEach((el, i) => {
+      if (el) gsap.set(el, { flexGrow: i === 0 ? 8 : 0.1 });
+    });
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        },
-        defaults: { ease: "power4.out", duration: 1.2 }
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+        invalidateOnRefresh: true,
+      }
+    });
 
-      tl.from(".hero-title", {
-        y: 60,
-        opacity: 0,
-        delay: 0.2
-      })
-        .from(".hero-text", {
-          y: 40,
-          opacity: 0
-        }, "-=0.8")
-        .from(".hero-logo", {
-          scale: 0.6,
-          opacity: 0,
-          ease: "elastic.out(1, 0.75)",
-          duration: 1.5
-        }, "-=0.6")
-        .to(".hero-badge", {
-          scale: 1,
-          opacity: 1,
-          stagger: 0.15,
-          ease: "back.out(1.7)",
-          duration: 0.8
-        }, "-=1");
-    }, heroRef);
+    tl.to(h1Ref.current, { opacity: 1, y: 0, duration: 10 }, 0)
+      .to(h2Ref.current, { opacity: 1, y: 0, duration: 10 }, 10)
+      .to(pRef.current, { opacity: 1, y: 0, duration: 15 }, 20)
+      .to(h3Ref.current, { opacity: 1, y: 0, duration: 10 }, 35);
 
-    return () => ctx.revert();
-  }, []);
+    tl.to(stepsContainerRef.current, { opacity: 1, y: 0, duration: 20 }, 45);
+    const stepsCount = STEPS.length;
+    const accordionStart = 65;
+    const accordionEnd = 100;
+    const accordionDuration = accordionEnd - accordionStart;
+    const share = accordionDuration / (stepsCount - 1);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+    for (let i = 0; i < stepsCount - 1; i++) {
+      const currentStep = stepRefs.current[i];
+      const nextStep = stepRefs.current[i + 1];
+      const timeOffset = accordionStart + (i * share);
+
+      if (currentStep && nextStep) {
+        tl.to(currentStep, { flexGrow: 0.1, duration: share, ease: "power2.inOut" }, timeOffset)
+          .to(nextStep, { flexGrow: 8, duration: share, ease: "power2.inOut" }, timeOffset);
+      }
+    }
+
+    // 4. Progress Bar (Progress: 0% -> 100%)
+    tl.to(progressBarRef.current, { scaleX: 1, duration: 100, ease: "none" }, 0);
+
+  }, { scope: mainRef });
+
+  const icons = [
+    <Target className="w-8 h-8 md:w-12 md:h-12" key="1" />,
+    <BarChart3 className="w-8 h-8 md:w-12 md:h-12" key="2" />,
+    <Settings className="w-8 h-8 md:w-12 md:h-12" key="3" />,
+    <ShieldCheck className="w-8 h-8 md:w-12 md:h-12" key="4" />,
+    <CheckCircle2 className="w-8 h-8 md:w-12 md:h-12" key="5" />
+  ];
 
   return (
-    <div className="relative w-full bg-white font-sans">
+    <div ref={mainRef} className="relative w-full bg-white font-sans selection:bg-[#71c6a4]/30">
+      <section ref={containerRef} className="relative h-[600vh] bg-white">
+        <div className="sticky top-45 h-screen flex flex-col overflow-hidden">
 
-
-      {/* Accordion Steps Section - Like WorkingProcess */}
-      <section ref={containerRef} id="process" className="relative h-[400vh] bg-white text-black border-t border-black/10">
-        <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
-          <div className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-20">
-            <div className="w-[100%]">
-              <h2 className="text-4xl 2xl:text-5xl font-bold leading-tight uppercase text-[#2b4c8c] text-center">
-                <span className="text-[#71c6a4]">Why </span>PrimeTek
+          <div className="flex flex-col items-left justify-left 2xl:px-20 px-10 w-full text-left">
+            <div ref={h1Ref} className="mb-5">
+              <h2 className="text-4xl 2xl:text-5xl font-bold tracking-tight capitalize text-[#2b4c8c]">
+                <span className="text-[#71c6a4]">Why </span>PrimeTek ?
               </h2>
-              <h4 className="text-lg 2xl:text-2xl font-bold leading-tight uppercase mt-6 text-center">
+            </div>
+
+            <div ref={h2Ref} className="mb-5">
+              <h4 className="text-xl md:text-2xl 2xl:text-3xl font-semibold uppercase text-[#1e293b]">
                 Operational Control for a Complex Pharmacy Environment
               </h4>
-              <p className="text-black 2xl:text-xl text-md mt-4 text-center">Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
+            </div>
+
+            <div ref={pRef} className="mb-8">
+              <p className="text-[#334155] text-base 2xl:text-2xl leading-relaxed">
+                Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
               </p>
-              <h3 className="text-2xl 2xl:text-3xl font-bold mt-6 text-black -ml-28">What Makes PrimeTek Different
+            </div>
+
+            <div ref={h3Ref}>
+              <h3 className="text-2xl 2xl:text-3xl font-semibold text-[#2b4c8c] relative">
+                What Makes PrimeTek Different
               </h3>
             </div>
           </div>
 
-          <div className="h-[45vh] h-[50vh] flex flex-col md:flex-row border-t border-black relative">
-            {STEPS.map((step, i) => {
-              const stepStart = i / STEPS.length;
-              const stepEnd = (i + 1) / STEPS.length;
-
-              // Ensure ranges are within [0, 1] and strictly increasing
-              const getSafeRange = (baseRange: number[]) => {
-                return baseRange.map((val, idx, arr) => {
-                  const clamped = Math.max(0, Math.min(1, val));
-                  if (idx > 0 && clamped <= arr[idx - 1]) {
-                    return Math.min(1, arr[idx - 1] + 0.0001);
-                  }
-                  return clamped;
-                });
-              };
-
-              const flexRange = getSafeRange([
-                stepStart - 0.05,
-                stepStart,
-                i === STEPS.length - 1 ? 1 : stepEnd,
-                i === STEPS.length - 1 ? 1.1 : stepEnd + 0.05
-              ]);
-
-              const icons = [
-                <Target className="2xl:w-12 2xl:h-12 w-10 h-10" key="1" />,
-                <BarChart3 className="2xl:w-12 2xl:h-12 w-10 h-10" key="2" />,
-                <Settings className="2xl:w-12 2xl:h-12 w-10 h-10" key="3" />,
-                <ShieldCheck className="2xl:w-12 2xl:h-12 w-10 h-10" key="4" />,
-                <CheckCircle2 className="2xl:w-12 2xl:h-12 w-10 h-10" key="5" />
-              ];
-
-              // Flex value: 8 when active, 0.15 when inactive
-              const flexValue = useTransform(
-                scrollYProgress,
-                flexRange,
-                [0.30, 8, 8, i === STEPS.length - 1 ? 8 : 0.30]
-              );
-
-              return (
-                <motion.div
-                  key={i}
-                  style={{ flex: flexValue }}
-                  className={`relative flex flex-col border-black ${i !== STEPS.length - 1 ? 'md:border-r' : ''} border-b md:border-b-0 group overflow-hidden bg-white`}
-                >
-                  <div className="flex h-full w-full relative">
-                    {/* Step Label (Always Visible) */}
-                    <div className="2xl:w-18 w-12 border-r border-white/30 flex flex-col items-center justify-between py-12 flex-shrink-0 bg-[#2b4c8c] z-10">
-                      <div className="text-white group-hover:text-white transition-colors">
-                        {icons[i]}
-                      </div>
+          <div
+            ref={stepsContainerRef}
+            className="h-[45vh] 2xl:h-[40vh] flex flex-col 2xl:flex-row border-t border-slate-200 bg-slate-50 mt-10"
+          >
+            {STEPS.map((step, i) => (
+              <div
+                key={i}
+                ref={(el) => { stepRefs.current[i] = el; }}
+                className={`relative flex flex-col group overflow-hidden bg-white shadow-2xl grow-0`}
+                style={{ flexBasis: '3%' }}
+              >
+                <div className="flex h-full w-full relative">
+                  <div className="w-12 md:w-20 bg-[#2b4c8c] flex flex-col items-center justify-center flex-shrink-0">
+                    <div className="text-white transform group-hover:scale-110 transition-all duration-500">
+                      {icons[i]}
                     </div>
+                  </div>
 
-                    {/* Expanded Content */}
-                    <motion.div className="p-8 md:p-16 flex gap-8 items-center min-w-[300px] md:min-w-[500px]">
-                      <div className="w-[65%]">
-                        <h3 className="text-2xl 2xl:text-[34px] font-bold uppercase tracking-tight mb-8 leading-tight text-[#2b4c8c]">
+                  <div className="flex-1 min-w-[800px] 2xl:min-w-[1200px] flex-shrink-0 overflow-hidden">
+                    <div className="p-6 md:p-12 flex gap-8 items-center justify-between h-full">
+                      <div className="w-[60%]">
+                        <h3 className="text-xl md:text-3xl 2xl:text-4xl font-semibold uppercase text-[#2b4c8c] mb-6 leading-tight whitespace-nowrap">
                           {step.title}
                         </h3>
-                        <p className="text-md 2xl:text-[22px] text-black leading-relaxed max-w-xl">
+                        <p className="text-sm 2xl:text-2xl text-[#1e293b] leading-relaxed max-w-2xl">
                           {step.description}
                         </p>
                       </div>
-                      <div className="flex justify-end items-end w-[35%]">
-                        <div className="w-24 h-24 2xl:w-48 2xl:h-48 bg-[#71c6a4]/10 rounded-full flex items-center justify-center">
-                          <div className="text-[#71c6a4]">
+
+                      <div className="hidden xl:flex flex-1 justify-center items-center h-full w-[40%]">
+                        <div className="w-32 h-32 lg:w-48 lg:h-48 rounded-full bg-[#71c6a4]/30 flex items-center justify-center group-hover:bg-[#71c6a4]/10 transition-colors duration-700">
+                          <div className="text-[#71c6a4] scale-150 transition-transform duration-700">
                             {icons[i]}
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Progress Bar */}
-          <div className="h-1 w-full bg-white relative">
-            <motion.div
-              style={{ scaleX: scrollYProgress }}
-              className="absolute top-0 left-0 h-full w-full bg-[#71c6a4] origin-left"
+          <div className="h-1 w-full bg-slate-200 overflow-hidden">
+            <div
+              ref={progressBarRef}
+              className="h-full w-full bg-[#71c6a4] origin-left scale-x-0"
             />
           </div>
         </div>
       </section>
-
     </div>
   );
 }
