@@ -109,7 +109,7 @@ export default function Testimonials() {
                     </div>
                     <div>
                       <h5 className="text-black font-bold 2xl:text-lg">{item.author}</h5>
-                      <div className="flex text-yellow-400 2xl:text-lg">
+                      <div className="flex text-yellow-500 2xl:text-lg">
                         {Array.from({ length: item.rating }).map((_, i) => (
                           <span key={i}>★</span>
                         ))}
