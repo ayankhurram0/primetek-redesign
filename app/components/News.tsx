@@ -134,20 +134,20 @@ const News: React.FC<PharmacySliderProps> = ({
     mass: 1.2
   });
 
-  // Headings Animation - Left side appears first
-  // Label: "Critical Insights" appears first (0-15%)
-  const labelOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1], { clamp: true });
-  const labelY = useTransform(scrollYProgress, [0, 0.15], [40, 0], { clamp: true });
+  // Headings Animation - Left side appears IMMEDIATELY, carousel comes MUCH later
+  // Label: "Critical Insights" appears instantly (0-5%)
+  const labelOpacity = useTransform(scrollYProgress, [0, 0.05], [0, 1], { clamp: true });
+  const labelY = useTransform(scrollYProgress, [0, 0.05], [30, 0], { clamp: true });
 
-  // Main Heading: "Pharmacy Compliance..." appears second (15-30%)
-  const mainHeadingOpacity = useTransform(scrollYProgress, [0.15, 0.3], [0, 1], { clamp: true });
-  const mainHeadingY = useTransform(scrollYProgress, [0.15, 0.3], [40, 0], { clamp: true });
+  // Main Heading: "Pharmacy Compliance..." appears quickly after (5-15%)
+  const mainHeadingOpacity = useTransform(scrollYProgress, [0.05, 0.15], [0, 1], { clamp: true });
+  const mainHeadingY = useTransform(scrollYProgress, [0.05, 0.15], [30, 0], { clamp: true });
 
-  // Fade out both at the end of the section
-  const finalFade = useTransform(scrollYProgress, [0.85, 0.95], [1, 0], { clamp: true });
+  // Keep headings visible (no fade out until very end)
+  const finalFade = useTransform(scrollYProgress, [0.90, 0.98], [1, 0], { clamp: true });
 
-  // Carousel progress - starts at 0 when carousel becomes visible at 0.35
-  const carouselRaw = useTransform(smoothProgress, [0.35, 0.85], [0, 1], { clamp: true });
+  // Carousel progress - each slide takes 3x more scroll (range: 85-99.5%)
+  const carouselRaw = useTransform(smoothProgress, [0.85, 0.995], [0, 1], { clamp: true });
   const snappedValue = useTransform(carouselRaw, (val) => {
     const steps = displaySlides.length - 1;
     return Math.round(val * steps) / steps;
@@ -159,9 +159,9 @@ const News: React.FC<PharmacySliderProps> = ({
     mass: 0.8
   });
 
-  // Carousel appears after left side is fully visible (35-50%)
-  const carouselOpacity = useTransform(smoothProgress, [0.35, 0.5], [0, 1], { clamp: true });
-  const finalCarouselFade = useTransform(smoothProgress, [0.9, 0.98], [1, 0], { clamp: true });
+  // Carousel appears at 85%, fades in by 90%, stays until end
+  const carouselOpacity = useTransform(smoothProgress, [0.85, 0.90], [0, 1], { clamp: true });
+  const finalCarouselFade = useTransform(smoothProgress, [0.99, 0.999], [1, 0], { clamp: true });
 
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1600);
 

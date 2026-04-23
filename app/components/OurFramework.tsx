@@ -164,7 +164,7 @@ export const OurFramework: React.FC = () => {
             <div className="w-full text-center mb-8 absolute top-[6%] 2xl:top-[16%] left-0 z-30">
               <span
                 ref={subtitleRef}
-                className="inline-block text-[#2b4c8c] 2xl:text-2xl font-bold"
+                className="inline-block text-[#2b4c8c] 2xl:text-[32px] font-bold"
               >
                 Our 4-Step Operational Framework
               </span>
@@ -192,7 +192,7 @@ export const OurFramework: React.FC = () => {
                         {isTextOnLeft ? (
                           <div className="row-text flex flex-col space-y-1 md:items-end text-center md:text-right">
                             <h4 className="text-[#2b4c8c] text-2xl lg:text-3xl font-bold mb-1">{step.title}</h4>
-                            <p className="text-gray-500 text-sm lg:text-lg leading-snug font-medium max-w-[280px]">
+                            <p className="text-gray-500 text-sm lg:text-base leading-snug font-medium max-w-[280px]">
                               {step.desc}
                             </p>
                           </div>
@@ -221,7 +221,7 @@ export const OurFramework: React.FC = () => {
                         ) : (
                           <div className="row-text flex flex-col space-y-1 items-start text-center text-left">
                             <h4 className="text-[#2b4c8c] text-2xl lg:text-3xl font-bold mb-1">{step.title}</h4>
-                            <p className="text-gray-500 text-sm 2xl:text-lg leading-snug font-medium max-w-[280px]">
+                            <p className="text-gray-500 text-sm 2xl:text-base leading-snug font-medium max-w-[280px]">
                               {step.desc}
                             </p>
                           </div>

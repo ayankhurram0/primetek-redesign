@@ -17,27 +17,27 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const STEPS = [
   {
     number: "01",
-    title: "We Focus on What Directly Impacts Your Bottom Line",
+    title: "We focus on what directly impacts your bottom line",
     description: "Our work is centered around the areas that matter most — reimbursement performance, compliance exposure, operational efficiency, and long-term profitability."
   },
   {
     number: "02",
-    title: "We Translate Complexity Into Actionable Insight",
+    title: "We translate complexity into actionable insight",
     description: "Pharmacies are constantly receiving data, reports, and payer updates — but very little of it is actionable. We interpret that information and provide clear direction so you can make informed decisions quickly."
   },
   {
     number: "03",
-    title: "We Operate as a Structured Extension of Your Business",
+    title: "We operate as a structured extension of your business",
     description: "We are not a generic support vendor. We integrate into your operations with defined processes, consistent reporting, and ongoing visibility — allowing you to maintain control without increasing internal workload."
   },
   {
     number: "04",
-    title: "We Maintain Strict Non-Clinical Boundaries",
+    title: "We maintain strict non-clinical boundaries",
     description: "All services are designed to support your business operations while respecting clinical responsibilities — ensuring compliance without interfering with patient care decisions."
   },
   {
     number: "05",
-    title: "We Prioritize Consistency, Not One-Time Fixes",
+    title: "We prioritize consistency, not one-time fixes",
     description: "Our approach is ongoing and systematic. By monitoring performance, identifying issues early, and maintaining visibility across key areas, we help prevent problems before they escalate."
   }
 ];
@@ -161,7 +161,7 @@ export function WhyPrimeTek() {
                   <div className="flex-1 min-w-[800px] 2xl:min-w-[1200px] flex-shrink-0 overflow-hidden">
                     <div className="p-6 md:p-12 flex gap-8 items-center justify-between h-full">
                       <div className="w-[60%]">
-                        <h3 className="text-xl md:text-3xl 2xl:text-4xl font-semibold uppercase text-[#2b4c8c] mb-6 leading-tight whitespace-nowrap">
+                        <h3 className="text-xl md:text-3xl 2xl:text-4xl font-semibold text-[#2b4c8c] mb-6 leading-tight whitespace-nowrap">
                           {step.title}
                         </h3>
                         <p className="text-sm 2xl:text-2xl text-[#1e293b] leading-relaxed max-w-2xl">

@@ -197,7 +197,7 @@ export default function ServicesSticky() {
     return (
         <section id="services" ref={containerRef} className="relative h-screen flex overflow-hidden w-full bg-white">
             {/* Hero Section - Fixed Left Sidebar */}
-            <div className="relative h-full flex flex-col justify-center bg-white z-20 2xl:pl-30 pl-10 2xl:w-[38%] w-[40%] border-r self-start">
+            <div className="relative h-full flex flex-col justify-center bg-white z-20 2xl:pl-30 pl-10 2xl:w-[38%] w-[40%] self-start">
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 z-[-1] opacity-[0.03]">
                     <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#2b4c8c 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -250,11 +250,11 @@ export default function ServicesSticky() {
             </div>
 
             {/* Service Sections - Scrollable Right Content */}
-            <div className="bg-slate-50 2xl:w-[62%] w-[60%] relative h-full overflow-hidden">
+            <div className=" 2xl:w-[62%] w-[60%] relative h-full overflow-hidden">
                 {services.map((service, index) => (
                     <div
                         key={service.number}
-                        className="service-card absolute inset-0 bg-white shadow-[-20px_0_40px_rgba(0,0,0,0.05)] border-l border-black/5"
+                        className="service-card absolute inset-0 bg-white shadow-[-20px_0_40px_rgba(0,0,0,0.05)]"
                         style={{ zIndex: index + 10 }}
                     >
                         <ServiceSection
