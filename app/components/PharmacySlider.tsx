@@ -35,7 +35,7 @@ const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smooth
   );
 
   const scale = useTransform(focus, [0, 1], [0.65, 1]);
-  const opacity = useTransform(focus, [0, 1], [0.25, 1]);
+  const opacity = useTransform(focus, [0, 1], [0, 1]);
   const blur = useTransform(focus, [0, 1], ["blur(8px)", "blur(0px)"]);
   const uiOpacity = useTransform(focus, [0.85, 1], [0, 1]);
 
@@ -120,13 +120,17 @@ export const PharmacySlider: React.FC = () => {
     }
   ];
 
-  const textScale = useTransform(scrollYProgress, [0, 0.2], [1.5, 1], { clamp: true });
-  const textX = useTransform(scrollYProgress, [0, 0.2], ["30%", "-10%"], { clamp: true });
-  const textY = useTransform(scrollYProgress, [0, 0.2], ["0%", "-100%"], { clamp: true });
-  const textOpacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 1], { clamp: true });
+  // Phase 1: Critical Insights appears first (0-0.2)
+  const criticalOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1], { clamp: true });
+  const criticalY = useTransform(scrollYProgress, [0, 0.15], [30, 0], { clamp: true });
 
-  // Continuous RAW progress for the carousel phase (0.2 to 0.9 of total scroll)
-  const carouselRaw = useTransform(smoothProgress, [0.2, 0.9], [0, 1], { clamp: true });
+  // Phase 2: Pharmacy heading appears after Critical (0.25-0.4)
+  const pharmacyOpacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 1], { clamp: true });
+  const pharmacyY = useTransform(scrollYProgress, [0.25, 0.4], [30, 0], { clamp: true });
+
+  // Phase 3: Slides appear after headings (0.5-0.65)
+  // Continuous RAW progress for the carousel phase (0.65 to 0.95 of total scroll)
+  const carouselRaw = useTransform(smoothProgress, [0.65, 0.95], [0, 1], { clamp: true });
 
   // Snap the continuous progress to discrete slide steps (0, 0.33, 0.66, 1)
   const snappedValue = useTransform(carouselRaw, (val) => {
@@ -141,7 +145,8 @@ export const PharmacySlider: React.FC = () => {
     mass: 0.8
   });
 
-  const carouselOpacity = useTransform(smoothProgress, [0.05, 0.2], [0, 1], { clamp: true });
+  // Carousel appears after both headings are visible (0.55-0.75)
+  const carouselOpacity = useTransform(smoothProgress, [0.55, 0.75], [0, 1], { clamp: true });
 
 
 
@@ -180,32 +185,37 @@ export const PharmacySlider: React.FC = () => {
 
         <div className="container mx-auto px-16 relative h-full flex items-center max-w-[1600px] justify-center">
 
-          {/* Transitioning Heading */}
+          {/* Phase 1: Critical Insights (appears first on left) */}
           <motion.div
-            style={{
-              scale: textScale,
-              x: textX,
-              y: textY,
-              opacity: textOpacity
-            }}
-            className="absolute z-40 pointer-events-none w-full px-12 2xl:px-24 text-left origin-center"
+            style={{ opacity: criticalOpacity, y: criticalY }}
+            className="absolute z-40 pointer-events-none px-12 2xl:px-24 text-left left-0 top-[35%] -translate-y-1/2"
           >
-            <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-6xl mb-8">Critical Insights</p>
-            <h2 className="2xl:text-5xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize w-[80%] 2xl:w-[100%]! ">
-              Pharmacy Compliance  <br /> & Revenue Performance
+            <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-6xl">Critical Insights</p>
+          </motion.div>
+
+          {/* Phase 2: Pharmacy heading (appears below on second scroll) */}
+          <motion.div
+            style={{ opacity: pharmacyOpacity, y: pharmacyY }}
+            className="absolute z-40 pointer-events-none px-12 2xl:px-24 text-left left-0 top-[50%] -translate-y-1/2 w-[50%]"
+          >
+            <h2 className="text-3xl 2xl:text-5xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize">
+              Pharmacy Compliance<br/>& Revenue Performance
             </h2>
           </motion.div>
 
-          {/* Carousel Area - Centered in the right space next to heading */}
+          {/* Carousel Area - Hidden until phase 3 */}
           <motion.div
             style={{ opacity: carouselOpacity }}
-            className="flex-1 h-full flex items-center relative pl-[40%] 2xl:pl-[45%] overflow-visible"
+            className="flex-1 h-full flex items-center relative pl-[40%] 2xl:pl-[45%] overflow-visible pointer-events-none"
           >
-            {/* FIXED SELECTION FRAME - Synchronized centered position */}
-            <div className="absolute left-[40%] 2xl:left-[45%] top-1/2 -translate-y-1/2 w-[540px] 2xl:w-[700px] h-[440px] 2xl:h-[600px] z-20 pointer-events-none origin-center">
+            {/* FIXED SELECTION FRAME - Only visible when carousel appears */}
+            <motion.div
+              style={{ opacity: carouselOpacity }}
+              className="absolute left-[40%] 2xl:left-[45%] top-1/2 -translate-y-1/2 w-[540px] 2xl:w-[700px] h-[440px] 2xl:h-[600px] z-20 pointer-events-none origin-center"
+            >
               <div className="absolute inset-[-16px] border-[1.5px] border-dotted border-[#71c6a4]/90 rounded-3xl" />
               <div className="absolute top-[-22px] right-[-22px] w-3 h-3 bg-[#71c6a4] rounded-full shadow-[0_0_20px_rgba(113,198,164,0.5)]" />
-            </div>
+            </motion.div>
 
             <motion.div
               style={{ x: trackX }}

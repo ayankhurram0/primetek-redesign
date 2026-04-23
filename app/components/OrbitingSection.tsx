@@ -47,7 +47,7 @@ export const OrbitingSection: React.FC = () => {
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: "+=700%",
+          end: "+=500%",
           pin: true,
           scrub: 1,
           pinSpacing: true,
@@ -69,7 +69,7 @@ export const OrbitingSection: React.FC = () => {
         .to([logoRef.current, orbitRingsRef.current], { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
         .to(badgesRef.current, { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
         // Dead scroll buffer (Now significantly longer to ensure ~2 full scrolls of dead space)
-        .to({}, { duration: 5.0 });
+        .to({}, { duration: 3.0 });
 
       // 2. Continuous Orbiting Animation
       const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");

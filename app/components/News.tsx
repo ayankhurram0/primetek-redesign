@@ -26,14 +26,15 @@ interface SlideCardProps {
 const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smoothProgress }) => {
   const cardCenter = index / (totalSlides - 1);
 
+  // Use smoothProgress directly for focus calculation so first slide shows at start
   const focus = useTransform(
     smoothProgress,
-    [cardCenter - 0.15, cardCenter, cardCenter + 0.15],
+    [Math.max(0, cardCenter - 0.15), cardCenter, Math.min(1, cardCenter + 0.15)],
     [0, 1, 0]
   );
 
   const scale = useTransform(focus, [0, 1], [0.65, 1]);
-  const opacity = useTransform(focus, [0, 1], [0.25, 1]);
+  const opacity = useTransform(focus, [0, 1], [0, 1]);
   const blur = useTransform(focus, [0, 1], ["blur(8px)", "blur(0px)"]);
   const uiOpacity = useTransform(focus, [0.85, 1], [0, 1]);
 
@@ -133,19 +134,20 @@ const News: React.FC<PharmacySliderProps> = ({
     mass: 1.2
   });
 
-  // Headings Animation split for sequence
-  // Label: "Critical Insights"
-  const labelOpacity = useTransform(scrollYProgress, [0, 0.05], [0, 1], { clamp: true });
-  const labelY = useTransform(scrollYProgress, [0, 0.05], [40, 0], { clamp: true });
+  // Headings Animation - Left side appears first
+  // Label: "Critical Insights" appears first (0-15%)
+  const labelOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1], { clamp: true });
+  const labelY = useTransform(scrollYProgress, [0, 0.15], [40, 0], { clamp: true });
 
-  // Main Heading: "Pharmacy Compliance..."
-  const mainHeadingOpacity = useTransform(scrollYProgress, [0.05, 0.1], [0, 1], { clamp: true });
-  const mainHeadingY = useTransform(scrollYProgress, [0.05, 0.1], [40, 0], { clamp: true });
+  // Main Heading: "Pharmacy Compliance..." appears second (15-30%)
+  const mainHeadingOpacity = useTransform(scrollYProgress, [0.15, 0.3], [0, 1], { clamp: true });
+  const mainHeadingY = useTransform(scrollYProgress, [0.15, 0.3], [40, 0], { clamp: true });
 
   // Fade out both at the end of the section
   const finalFade = useTransform(scrollYProgress, [0.85, 0.95], [1, 0], { clamp: true });
 
-  const carouselRaw = useTransform(smoothProgress, [0.15, 0.85], [0, 1], { clamp: true });
+  // Carousel progress - starts at 0 when carousel becomes visible at 0.35
+  const carouselRaw = useTransform(smoothProgress, [0.35, 0.85], [0, 1], { clamp: true });
   const snappedValue = useTransform(carouselRaw, (val) => {
     const steps = displaySlides.length - 1;
     return Math.round(val * steps) / steps;
@@ -157,7 +159,8 @@ const News: React.FC<PharmacySliderProps> = ({
     mass: 0.8
   });
 
-  const carouselOpacity = useTransform(smoothProgress, [0.1, 0.15], [0, 1], { clamp: true });
+  // Carousel appears after left side is fully visible (35-50%)
+  const carouselOpacity = useTransform(smoothProgress, [0.35, 0.5], [0, 1], { clamp: true });
   const finalCarouselFade = useTransform(smoothProgress, [0.9, 0.98], [1, 0], { clamp: true });
 
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1600);

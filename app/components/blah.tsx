@@ -156,26 +156,26 @@ export default function ServicesSticky() {
                 }
             });
 
-            // Step 1: Heading
+            // Step 1: Heading (fast)
             tl.to(".hero-word-wrap", {
                 opacity: 1,
                 y: 0,
-                duration: 1
+                duration: 0.5
             });
 
-            // Step 2: Paragraph
+            // Step 2: Paragraph (quick follow)
             tl.to(paragraphRef.current, {
                 opacity: 1,
                 y: 0,
-                duration: 1
-            }, "+=1");
+                duration: 0.5
+            }, "+=0.3");
 
-            // Step 3: Button
+            // Step 3: Button (quick follow)
             tl.to(btnRef.current, {
                 opacity: 1,
                 y: 0,
-                duration: 1
-            }, "+=1");
+                duration: 0.5
+            }, "+=0.3");
 
             // Step 4: Services
             cards.forEach((card, index) => {

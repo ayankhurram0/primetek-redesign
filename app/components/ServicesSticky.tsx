@@ -164,18 +164,12 @@ export default function ServicesSticky() {
         duration: 1
       });
 
-      // Step 2: Paragraph
-      tl.to(paragraphRef.current, {
+      // Step 2: Paragraph and Button appear together
+      tl.to([paragraphRef.current, btnRef.current], {
         opacity: 1,
         y: 0,
-        duration: 1
-      }, "+=1");
-
-      // Step 3: Button
-      tl.to(btnRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1
+        duration: 1,
+        stagger: 0.2
       }, "+=1");
 
 
