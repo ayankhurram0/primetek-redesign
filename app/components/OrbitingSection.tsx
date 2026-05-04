@@ -45,7 +45,7 @@ export const OrbitingSection: React.FC = () => {
       // 1. Pinning and Sequential Animation
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: triggerRef.current,
+          trigger: sectionRef.current,
           start: "top top",
           end: "+=400%",
           pin: true,
@@ -63,13 +63,20 @@ export const OrbitingSection: React.FC = () => {
       });
       gsap.set([logoRef.current, badgesRef.current], { scale: 0.8 });
 
-      // Sequence
-      tl.to(headingRef.current, { opacity: 1, y: 0, duration: 1 })
-        .to(paragraphRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.5")
-        .to([logoRef.current, orbitRingsRef.current], { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
-        .to(badgesRef.current, { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
-        // Dead scroll buffer (Now significantly longer to ensure ~2 full scrolls of dead space)
-        .to({}, { duration: 1.0 });
+        // Sequence
+        tl.to(headingRef.current, { opacity: 1, y: 0, duration: 1 })
+          .to(paragraphRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.5")
+          .to([logoRef.current, orbitRingsRef.current], { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
+          .to(badgesRef.current, { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.5")
+          // Dead scroll buffer
+          .to({}, { duration: 1.5 })
+          // Fade out as we depart
+          .to([headingRef.current, paragraphRef.current, logoRef.current, orbitRingsRef.current, badgesRef.current], { 
+            opacity: 0, 
+            y: -50, 
+            duration: 1.5,
+            stagger: 0.2
+          });
 
       // 2. Continuous Orbiting Animation
       const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
@@ -114,7 +121,7 @@ export const OrbitingSection: React.FC = () => {
   }, []);
 
   return (
-    <div id="orbit-section" ref={sectionRef} className="bg-white relative w-full overflow-hidden">
+    <div id="orbit-section" ref={sectionRef} className="bg-[#020817] relative w-full overflow-hidden">
       <div ref={triggerRef} className="h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6 relative pb-10">
         {/* Background decorative elements */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03)_0%,transparent_70%)]" />
@@ -127,13 +134,13 @@ export const OrbitingSection: React.FC = () => {
               className="text-4xl 2xl:text-5xl font-bold mb-8 tracking-tight text-left capitalize"
             >
               <span className="text-[#71c6a4]">Designed for</span>{" "}
-              <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
+              <span className="text-white">Pharmacies Operating Under Pressure</span>
             </h2>
 
             {/* Step 2: Paragraph */}
             <p
               ref={paragraphRef}
-              className="text-slate-600 2xl:text-2xl text-md leading-relaxed mb-12 text-left"
+              className="text-slate-400 2xl:text-2xl text-md leading-relaxed mb-12 text-left"
             >
               Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
               operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned
@@ -144,14 +151,14 @@ export const OrbitingSection: React.FC = () => {
           <div className="relative flex items-center justify-center h-[500px] w-[60%]">
             {/* Orbit Paths */}
             <div ref={orbitRingsRef} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="absolute  2xl:w-[440px] 2xl:h-[440px] w-[320px] h-[320px] border border-slate-100/50 rounded-full" />
-              <div className="absolute  2xl:w-[320px] 2xl:h-[320px] w-[240px] h-[240px] border border-slate-100 rounded-full" />
+              <div className="absolute 2xl:w-[560px] 2xl:h-[560px] w-[320px] h-[320px] border border-[#71c6a4]/20 rounded-full" />
+              <div className="absolute 2xl:w-[400px] 2xl:h-[400px] w-[240px] h-[240px] border border-[#71c6a4]/40 rounded-full" />
             </div>
 
             {/* Central Logo */}
             <div
               ref={logoRef}
-              className="relative z-10 2xl:w-72 2xl:h-72 w-60 h-60 bg-white rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-10 border border-slate-100"
+              className="relative z-10 2xl:w-72 2xl:h-72 w-60 h-60 bg-white/5 backdrop-blur-xl rounded-full shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex items-center justify-center p-10 border border-white/10"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-emerald-500/10 rounded-full blur-2xl" />
@@ -169,7 +176,7 @@ export const OrbitingSection: React.FC = () => {
                   key={i}
                   className="orbiting-badge-item absolute pointer-events-auto group"
                 >
-                  <div className={`w-24 h-24 2xl:w-32 2xl:h-32 ${badge.color} rounded-full flex flex-col items-center justify-center p-2 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 hover:shadow-2xl`}>
+                  <div className={`w-24 h-24 2xl:w-40 2xl:h-40 bg-white/5 backdrop-blur-md rounded-full flex flex-col items-center justify-center p-4 shadow-2xl border-2 border-[#71c6a4] transition-all duration-300 hover:scale-110 hover:shadow-[#71c6a4]/20`}>
                     <Image src={badge.src} alt={badge.label} className="w-full h-full object-contain rounded-full" />
                   </div>
                 </div>

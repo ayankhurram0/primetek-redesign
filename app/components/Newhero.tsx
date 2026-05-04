@@ -40,19 +40,19 @@ const pbmData = [
   { name: 'Flagged', value: 100 },
 ];
 
-const COLORS = ['#93c5fd', '#60a5fa', '#3b82f6', '#2563eb'];
+const COLORS = ['#99f6e4', '#5eead4', '#2dd4bf', '#0d9488'];
 
 const HealthCards = ({ mounted }: { mounted: boolean }) => (
   !mounted ? (
     <>
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="w-72 h-72 bg-blue-600/90 backdrop-blur-xl rounded-3xl p-5 border border-blue-400/20 flex flex-col justify-between shrink-0 animate-pulse" />
+        <div key={i} className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-xl rounded-3xl p-5 border border-[#2dd4bf]/20 flex flex-col justify-between shrink-0 animate-pulse" />
       ))}
     </>
   ) : (
     <>
       {/* Card 1: Audit Readiness (Line Chart) */}
-      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <TrendingUp size={14} className="text-white font-bold" />
@@ -66,9 +66,9 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
               <Line
                 type="monotone"
                 dataKey="value"
-                stroke="#93c5fd"
+                stroke="#2dd4bf"
                 strokeWidth={3}
-                dot={{ r: 4, fill: '#93c5fd' }}
+                dot={{ r: 4, fill: '#2dd4bf' }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>
@@ -78,14 +78,14 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             <p className="text-[10px] text-white">90% increase in compliance readiness over Q1.</p>
           </div>
         </div>
-        <div className="bg-blue-900/5 p-2 px-3 rounded-2xl flex items-center justify-between mt-1">
+        <div className="bg-teal-900/20 p-2 px-3 rounded-2xl flex items-center justify-between mt-1">
           <span className="text-[10px] font-bold text-white">Ready for Review</span>
           <div className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
         </div>
       </div>
 
       {/* Card 2: Compliance Protocol (Area Chart) */}
-      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <Activity size={14} className="text-white font-bold" />
@@ -98,14 +98,14 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             <AreaChart data={complianceData}>
               <defs>
                 <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#93c5fd" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#93c5fd" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#2dd4bf" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#2dd4bf" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <Area
                 type="monotone"
                 dataKey="value"
-                stroke="#93c5fd"
+                stroke="#2dd4bf"
                 fillOpacity={1}
                 fill="url(#colorVal)"
               />
@@ -123,7 +123,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
       </div>
 
       {/* Card 3: Reimbursement Reconciliation (Bar Chart) */}
-      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <BarChart3 size={14} className="text-white font-bold" />
@@ -151,7 +151,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             <div className="text-[8px] text-white uppercase font-bold">Recovered</div>
             <div className="text-xs font-bold text-green">+$12.4k</div>
           </div>
-          <div className="bg-blue-900/5 p-2 rounded-xl">
+          <div className="bg-teal-900/20 p-2 rounded-xl">
             <div className="text-[8px] text-white uppercase font-bold">Pending</div>
             <div className="text-xs font-bold text-yellow">$4.2k</div>
           </div>
@@ -159,7 +159,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
       </div>
 
       {/* Card 4: PBM Checklist (Pie Chart) */}
-      <div className="w-72 h-72 bg-blue-600/90 backdrop-blur-lg rounded-3xl p-5 border border-blue-400/30 flex flex-col justify-between shrink-0 shadow-lg shadow-blue-900/10">
+      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <PieChartIcon size={14} className="text-white font-bold" />
@@ -190,13 +190,13 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
           <h3 className="text-lg font-display font-bold leading-tight text-white">Verification Audit</h3>
           <div className="flex gap-2 text-[8px] text-white font-bold">
             <div className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-600" /> Verified
+              <div className="w-1.5 h-1.5 rounded-full bg-[#2dd4bf]" /> Verified
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> Pending
+              <div className="w-1.5 h-1.5 rounded-full bg-[#5eead4]" /> Pending
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-400" /> Flagged
+              <div className="w-1.5 h-1.5 rounded-full bg-[#99f6e4]" /> Flagged
             </div>
           </div>
         </div>
@@ -213,7 +213,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-white flex flex-col items-center justify-center overflow-hidden font-sans">
+    <div className="relative min-h-screen bg-[#020617] flex flex-col items-center justify-center overflow-hidden font-sans">
+      {/* Background Spotlight Gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.1)_0%,transparent_80%)] pointer-events-none" />
       {/* Background Cards Layer - 3D Infinite Autoplay */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden [perspective:1200px] -translate-y-60!">
         <motion.div
@@ -225,7 +227,7 @@ export default function App() {
             ease: "linear",
             repeat: Infinity
           }}
-          className="flex transform rotate-16 [transform-style:preserve-3d] opacity-40"
+          className="flex transform rotate-16 [transform-style:preserve-3d] opacity-60"
         >
           {/* Multiple Sets for Seamless Loop (Ensures coverage on wide screens) */}
           <div className="flex gap-12 pr-12">
@@ -258,14 +260,14 @@ export default function App() {
             priority
           />
           {/* Gradient overlay on the bottom to blend in */}
-          <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-white via-white/90 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-[#020617] via-[#020617]/90 to-transparent" />
         </motion.div>
       </div>
 
       {/* Hero Content - Left Aligned Layout */}
       <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start pt-15 px-6 2xl:px-24 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-none w-[70%]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/95 to-transparent pointer-events-none w-[70%]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/50 via-transparent to-[#020617]/50 pointer-events-none" />
 
         <div className="relative flex flex-col items-center text-left 2xl:w-[58%] w-[55%] pointer-events-auto">
           <motion.div
@@ -275,7 +277,7 @@ export default function App() {
             className=""
           >
             <div className="py-12 rounded-full">
-              <span className="text-md 2xl:text-4xl font-bold tracking-wider uppercase text-[#71c6a4]">
+              <span className="text-md 2xl:text-4xl font-bold tracking-wider uppercase text-[#2dd4bf]">
                 OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT & MULTI-LOCATION PHARMACIES
               </span>
             </div>
@@ -285,9 +287,9 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight text-[#2b4c8c]"
+            className="text-5xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight text-white"
           >
-            Is your pharmacy losing revenue due to hidden compliance gaps?
+            Is your pharmacy losing revenue due to hidden <span className="text-[#2dd4bf]">compliance gaps?</span>
           </motion.h1>
         </div>
 
@@ -297,7 +299,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-lg 2xl:text-3xl text-slate-600 mb-14 font-medium z-10"
+            className="text-lg 2xl:text-3xl text-white/60 mb-14 font-medium z-10"
           >
             Built to support pharmacies navigating PBM pressure, audit risk, and operational complexity.
           </motion.p>
@@ -329,10 +331,10 @@ export default function App() {
       </div>
 
       {/* Subtle vignette for depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.03)_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
 
       {/* Bottom fade for the whole screen */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#020617] to-transparent pointer-events-none" />
     </div>
   );
 }

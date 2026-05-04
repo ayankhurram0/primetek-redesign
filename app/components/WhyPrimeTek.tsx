@@ -1,196 +1,166 @@
-"use client";
-
-import { useRef, useEffect } from "react";
+"use client"
+import React, { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Target,
   BarChart3,
-  Settings,
+  Users,
   ShieldCheck,
-  CheckCircle2
+  Search
 } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
-const STEPS = [
-  {
-    number: "01",
-    title: "We focus on what directly impacts your bottom line",
-    description: "Our work is centered around the areas that matter most — reimbursement performance, compliance exposure, operational efficiency, and long-term profitability."
-  },
-  {
-    number: "02",
-    title: "We translate complexity into actionable insight",
-    description: "Pharmacies are constantly receiving data, reports, and payer updates — but very little of it is actionable. We interpret that information and provide clear direction so you can make informed decisions quickly."
-  },
-  {
-    number: "03",
-    title: "We operate as a structured extension of your business",
-    description: "We are not a generic support vendor. We integrate into your operations with defined processes, consistent reporting, and ongoing visibility — allowing you to maintain control without increasing internal workload."
-  },
-  {
-    number: "04",
-    title: "We maintain strict non-clinical boundaries",
-    description: "All services are designed to support your business operations while respecting clinical responsibilities — ensuring compliance without interfering with patient care decisions."
-  },
-  {
-    number: "05",
-    title: "We prioritize consistency, not one-time fixes",
-    description: "Our approach is ongoing and systematic. By monitoring performance, identifying issues early, and maintaining visibility across key areas, we help prevent problems before they escalate."
-  }
-];
+export const WhyPrimeTekSection: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const subHeadingRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const progressLineRef = useRef<HTMLDivElement>(null);
 
-export function WhyPrimeTek() {
-  const containerRef = useRef<HTMLElement>(null);
-  const mainRef = useRef<HTMLDivElement>(null);
-  const h1Ref = useRef<HTMLDivElement>(null);
-  const h2Ref = useRef<HTMLDivElement>(null);
-  const pRef = useRef<HTMLDivElement>(null);
-  const h3Ref = useRef<HTMLDivElement>(null);
-  const stepsContainerRef = useRef<HTMLDivElement>(null);
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const progressBarRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    gsap.set([h1Ref.current, h2Ref.current, pRef.current, h3Ref.current, stepsContainerRef.current], {
-      opacity: 0,
-      y: 20
-    });
-
-    stepRefs.current.forEach((el, i) => {
-      if (el) gsap.set(el, { flexGrow: i === 0 ? 8 : 0.1 });
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    });
-
-    tl.to(h1Ref.current, { opacity: 1, y: 0, duration: 10 }, 0)
-      .to(h2Ref.current, { opacity: 1, y: 0, duration: 10 }, 10)
-      .to(pRef.current, { opacity: 1, y: 0, duration: 15 }, 20)
-      .to(h3Ref.current, { opacity: 1, y: 0, duration: 10 }, 35);
-
-    tl.to(stepsContainerRef.current, { opacity: 1, y: 0, duration: 20 }, 45);
-    const stepsCount = STEPS.length;
-    const accordionStart = 65;
-    const accordionEnd = 100;
-    const accordionDuration = accordionEnd - accordionStart;
-    const share = accordionDuration / (stepsCount - 1);
-
-    for (let i = 0; i < stepsCount - 1; i++) {
-      const currentStep = stepRefs.current[i];
-      const nextStep = stepRefs.current[i + 1];
-      const timeOffset = accordionStart + (i * share);
-
-      if (currentStep && nextStep) {
-        tl.to(currentStep, { flexGrow: 0.1, duration: share, ease: "power2.inOut" }, timeOffset)
-          .to(nextStep, { flexGrow: 8, duration: share, ease: "power2.inOut" }, timeOffset);
-      }
+  const steps = [
+    {
+      id: "01",
+      title: "Profit Focus",
+      icon: <Target className="w-8 h-8 text-[#71c6a4]" />,
+      description: "Prioritize reimbursement, audit exposure, and efficiency—everything else is noise."
+    },
+    {
+      id: "02",
+      title: "Actionable Data",
+      icon: <BarChart3 className="w-8 h-8 text-[#71c6a4]" />,
+      description: "Turn payer data into clear, executable decisions."
+    },
+    {
+      id: "03",
+      title: "Embedded Systems",
+      icon: <Users className="w-8 h-8 text-[#71c6a4]" />,
+      description: "Operate inside your workflows—not as external support."
+    },
+    {
+      id: "04",
+      title: "Compliance Control",
+      icon: <ShieldCheck className="w-8 h-8 text-[#71c6a4]" />,
+      description: "Maintain audit readiness without disrupting clinical operations."
+    },
+    {
+      id: "05",
+      title: "Continuous Monitoring",
+      icon: <Search className="w-8 h-8 text-[#71c6a4]" />,
+      description: "Identify issues early before they become financial losses."
     }
-
-    // 4. Progress Bar (Progress: 0% -> 100%)
-    tl.to(progressBarRef.current, { scaleX: 1, duration: 100, ease: "none" }, 0);
-
-  }, { scope: mainRef });
-
-  const icons = [
-    <Target className="w-8 h-8 md:w-12 md:h-12" key="1" />,
-    <BarChart3 className="w-8 h-8 md:w-12 md:h-12" key="2" />,
-    <Settings className="w-8 h-8 md:w-12 md:h-12" key="3" />,
-    <ShieldCheck className="w-8 h-8 md:w-12 md:h-12" key="4" />,
-    <CheckCircle2 className="w-8 h-8 md:w-12 md:h-12" key="5" />
   ];
 
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      if (!triggerRef.current) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top top",
+          end: "+=400%", // Longer area for more steps
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Initial State
+      gsap.set([subHeadingRef.current, headingRef.current, textRef.current], { opacity: 0, y: 30 });
+      gsap.set(".why-step-card", { opacity: 0, y: 50 });
+      gsap.set(".why-step-dot", { scale: 0.5, backgroundColor: "rgba(255,255,255,0.2)" });
+      gsap.set(progressLineRef.current, { scaleX: 0, transformOrigin: "left" });
+
+      // Sequence
+      tl.to(subHeadingRef.current, { opacity: 1, y: 0, duration: 1 })
+        .to(headingRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.5")
+        .to(textRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.5");
+
+      // Progress through steps
+      const cards = gsap.utils.toArray<HTMLElement>(".why-step-card");
+      const dots = gsap.utils.toArray<HTMLElement>(".why-step-dot");
+
+      cards.forEach((card, i) => {
+        tl.to(card, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, "+=0.5");
+        tl.to(dots[i], { scale: 1.2, backgroundColor: "#71c6a4", borderColor: "#71c6a4", duration: 0.5 }, "<");
+        tl.to(progressLineRef.current, { scaleX: (i + 1) / steps.length, duration: 1.5, ease: "none" }, "<");
+
+        // Add a bit of space between each step
+        if (i < steps.length - 1) {
+          tl.to({}, { duration: 1 });
+        }
+      });
+
+      tl.to({}, { duration: 2 }); // End buffer
+    }, sectionRef.current || undefined);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div ref={mainRef} className="relative w-full bg-white font-sans selection:bg-[#71c6a4]/30">
-      <section ref={containerRef} className="relative h-[600vh] bg-white">
-        <div className="sticky top-45 h-screen flex flex-col overflow-hidden">
-
-          <div className="flex flex-col items-left justify-left 2xl:px-20 px-10 w-full text-left">
-            <div ref={h1Ref} className="mb-5">
-              <h2 className="text-4xl 2xl:text-5xl font-bold tracking-tight capitalize text-[#2b4c8c]">
-                <span className="text-[#71c6a4]">Why </span>PrimeTek ?
-              </h2>
-            </div>
-
-            <div ref={h2Ref} className="mb-5">
-              <h4 className="text-xl md:text-2xl 2xl:text-3xl font-semibold uppercase text-[#1e293b]">
-                Operational Control for a Complex Pharmacy Environment
-              </h4>
-            </div>
-
-            <div ref={pRef} className="mb-8">
-              <p className="text-[#334155] text-base 2xl:text-2xl leading-relaxed">
-                Independent and multi-location pharmacies are operating in an increasingly complex environment — where PBM pressure, reimbursement variability, and audit exposure directly impact financial performance. PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
-              </p>
-            </div>
-
-            <div ref={h3Ref}>
-              <h3 className="text-2xl 2xl:text-3xl font-semibold text-[#2b4c8c] relative">
-                What Makes PrimeTek Different
-              </h3>
-            </div>
+    <section ref={sectionRef} className="bg-[#020817] relative w-full overflow-hidden">
+      <div ref={triggerRef} className="min-h-screen flex flex-col justify-center py-20">
+        <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10 px-12">
+          <div ref={subHeadingRef} className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-[1px] w-12 bg-[#71c6a4]/40" />
+            <span className="text-[#71c6a4] font-bold text-xs tracking-widest uppercase">WHY PRIMETEK</span>
+            <div className="h-[1px] w-12 bg-[#71c6a4]/40" />
           </div>
 
-          <div
-            ref={stepsContainerRef}
-            className="h-[45vh] 2xl:h-[40vh] flex flex-col 2xl:flex-row border-t border-slate-200 bg-slate-50 mt-10"
-          >
-            {STEPS.map((step, i) => (
+          <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+            Operational Control for Pharmacies<br />
+            <span className="text-[#71c6a4]">Under Constant Pressure</span>
+          </h2>
+
+          <p ref={textRef} className="text-white/60 text-2xl 2xl:w-[60%] mx-auto leading-relaxed">
+            PBM pressure, reimbursement variability, and audit exposure create financial instability.
+            PrimeTek installs structured systems that restore control and visibility.
+          </p>
+        </div>
+
+        <div className="max-w-[1700px] mx-auto relative px-12 w-full">
+          {/* Step Cards Grid */}
+          <div ref={cardsContainerRef} className="grid grid-cols-1 md:grid-cols-5 gap-4 relative z-10 pb-14">
+            {steps.map((step, idx) => (
               <div
-                key={i}
-                ref={(el) => { stepRefs.current[i] = el; }}
-                className={`relative flex flex-col group overflow-hidden bg-white shadow-2xl grow-0`}
-                style={{ flexBasis: '3%' }}
+                key={idx}
+                className="why-step-card bg-[#0a1122]/40 backdrop-blur-3xl border border-white/10 rounded-2xl p-6 flex flex-col items-start text-left min-h-[260px] relative transition-all hover:bg-[#0a1122]/60 hover:border-[#71c6a4]/30"
               >
-                <div className="flex h-full w-full relative">
-                  <div className="w-12 md:w-20 bg-[#2b4c8c] flex flex-col items-center justify-center flex-shrink-0">
-                    <div className="text-white transform group-hover:scale-110 transition-all duration-500">
-                      {icons[i]}
-                    </div>
-                  </div>
-
-                  <div className="flex-1 min-w-[800px] 2xl:min-w-[1200px] flex-shrink-0 overflow-hidden">
-                    <div className="p-6 md:p-12 flex gap-8 items-center justify-between h-full">
-                      <div className="w-[60%]">
-                        <h3 className="text-xl md:text-3xl 2xl:text-4xl font-semibold text-[#2b4c8c] mb-6 leading-tight whitespace-nowrap">
-                          {step.title}
-                        </h3>
-                        <p className="text-sm 2xl:text-2xl text-[#1e293b] leading-relaxed max-w-2xl">
-                          {step.description}
-                        </p>
-                      </div>
-
-                      <div className="hidden xl:flex flex-1 justify-center items-center h-full w-[40%]">
-                        <div className="w-32 h-32 lg:w-48 lg:h-48 rounded-full bg-[#71c6a4]/30 flex items-center justify-center group-hover:bg-[#71c6a4]/10 transition-colors duration-700">
-                          <div className="text-[#71c6a4] scale-150 transition-transform duration-700">
-                            {icons[i]}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex flex-col mb-4">
+                  <span className="text-xl font-bold text-[#71c6a4] mb-1">{step.id}</span>
+                  <div className="h-[2px] w-6 bg-[#71c6a4]" />
                 </div>
+
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 mb-6 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+                  {React.cloneElement(step.icon as React.ReactElement, { className: "w-6 h-6 text-[#71c6a4]" })}
+                </div>
+
+                <h3 className="text-lg font-bold text-white mb-4 transition-colors">{step.title}</h3>
+                <p className="text-white/40 text-lg leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
 
-          <div className="h-1 w-full bg-slate-200 overflow-hidden">
-            <div
-              ref={progressBarRef}
-              className="h-full w-full bg-[#71c6a4] origin-left scale-x-0"
-            />
+          {/* Timeline Indicator at Bottom */}
+          <div className="absolute bottom-4 left-12 right-12 flex items-center pointer-events-none">
+            <div className="h-[2px] w-full bg-white/10 relative flex items-center">
+              <div ref={progressLineRef} className="h-full w-full bg-[#71c6a4] shadow-[0_0_15px_#71c6a4]" />
+
+              <div className="absolute inset-0 flex justify-between items-center px-[2px]">
+                {steps.map((_, i) => (
+                  <div key={i} className="why-step-dot w-4 h-4 rounded-full border-2 border-white/10 bg-[#020817] z-20" />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
-}
+};

@@ -1,274 +1,304 @@
-import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring, MotionValue } from "motion/react";
-import { ChevronRight } from "lucide-react";
-import FancyButton from "./button";
-import type { StaticImageData } from "next/image";
-import auditCard from "@/src/assets/audit_card.png";
-import operationalAnalysisChart from "@/src/assets/operational_analysis_chart.png";
-import thresholdsCard from "@/src/assets/thresholds_card.png";
-import mtfCard from "@/src/assets/mtf_card.png";
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  Bell,
+  TriangleAlert,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  ShieldAlert,
+  Database,
+  Activity,
+  Layers
+} from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
+gsap.registerPlugin(useGSAP);
 
-interface SlideData {
-  src: string | StaticImageData;
-  title: string;
-  desc: string;
-}
+// Component: Stylized Badge
+const Badge = ({ children, variant = 'default', icon: Icon, className }: { children: React.ReactNode, variant?: 'default' | 'danger', icon?: any, className?: string }) => (
+  <div className={`flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] uppercase tracking-widest font-semibold ${variant === 'default' ? "bg-red-500/10 border-red-500/30 text-red-400" : "bg-red-600 border-red-400 text-white glow-red"
+    } ${className || ''}`}>
+    {Icon && <Icon size={12} className={variant === 'danger' ? "animate-pulse" : ""} />}
+    {children}
+    {variant === 'default' && <div className="inner-dot w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />}
+  </div>
+);
 
-interface SlideCardProps {
-  slide: SlideData;
-  index: number;
-  totalSlides: number;
-  smoothProgress: MotionValue<number>;
-}
+// Component: Cyber Button
+const CyberButton = ({ children, variant = 'primary', icon: Icon, className }: { children: React.ReactNode, variant?: 'primary' | 'outline', icon?: any, className?: string }) => (
+  <button className={`group relative flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 active:scale-95 ${variant === 'primary'
+    ? "bg-gradient-to-r from-red-600 to-red-800 text-white glow-red hover:glow-red-strong"
+    : "border border-red-500/30 text-white hover:bg-red-500/10"
+    } ${className || ''}`}>
+    {children}
+    {Icon && <Icon size={18} className="transition-transform group-hover:translate-x-1" />}
+  </button>
+);
 
-const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smoothProgress }) => {
-  const cardCenter = index / (totalSlides - 1);
+export const News = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  // Use smoothProgress directly for focus calculation so first slide shows at start
-  const focus = useTransform(
-    smoothProgress,
-    [Math.max(0, cardCenter - 0.15), cardCenter, Math.min(1, cardCenter + 0.15)],
-    [0, 1, 0]
-  );
+  const slides = [
+    {
+      title: "Would Your Pharmacy Pass a PBM Audit Today?",
+      description: "Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss.",
+      image: "https://images.unsplash.com/photo-1576091160550-217359f49f4c?auto=format&fit=crop&q=80&w=2000",
+      cta: "Analyze Exposure"
+    },
+    {
+      title: "Are PBM Thresholds Quietly Reducing Your Reimbursements?",
+      description: "Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks.",
+      image: "https://images.unsplash.com/photo-1551288049-bbbda50a5f4a?auto=format&fit=crop&q=80&w=2000",
+      cta: "Check Thresholds"
+    },
+    {
+      title: "Are Small Operational Gaps Creating Significant Financial Exposure?",
+      description: "Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
+      cta: "Audit Gaps"
+    },
+    {
+      title: "Backend Revenue Control",
+      description: "MTF Revenue Leakage Control: If you are not actively tracking or disputing MTF payments, you are silently losing backend revenue.",
+      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000",
+      cta: "Reconcile MTF"
+    }
+  ];
 
-  const scale = useTransform(focus, [0, 1], [0.65, 1]);
-  const opacity = useTransform(focus, [0, 1], [0, 1]);
-  const blur = useTransform(focus, [0, 1], ["blur(8px)", "blur(0px)"]);
-  const uiOpacity = useTransform(focus, [0.85, 1], [0, 1]);
+  useGSAP(() => {
+    // Initial Entrance
+    gsap.from(leftContentRef.current, {
+      x: -50,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out'
+    });
 
-  return (
-    <motion.div
-      style={{
-        scale,
-        opacity,
-      }}
-      className="relative flex-shrink-0 w-[540px] 2xl:w-[700px] 2xl:h-[600px] h-[440px] rounded-3xl flex items-center justify-center will-change-transform"
-    >
-      <div className="absolute inset-0 overflow-hidden bg-gray-100 shadow-2xl rounded-3xl">
-        <motion.div
-          style={{ filter: blur }}
-          className="relative w-full h-full"
-        >
-          <Image
-            src={slide.src}
-            alt={slide.title}
-            fill
-            className="object-cover"
-            priority={index === 0}
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0e1b35]/90 via-[#0e1b35]/30 to-transparent" />
-      </div>
+    gsap.from(cardRef.current, {
+      x: 100,
+      opacity: 0,
+      duration: 1.5,
+      ease: 'power4.out',
+      delay: 0.2
+    });
 
-      <motion.div
-        style={{ opacity: uiOpacity, y: useTransform(focus, [0, 1], [40, 0]) }}
-        className="absolute inset-0 pointer-events-none z-10 p-10 flex flex-col justify-end text-left"
-      >
-        <h3 className="text-white text-xl 2xl:text-4xl font-bold mb-3 tracking-tight">{slide.title}</h3>
-        <p className="text-white/80 text-lg 2xl:text-xl leading-relaxed mb-6 font-medium max-w-xl">
-          {slide.desc}
-        </p>
-        <div className="pointer-events-auto">
-          <FancyButton
-            label="Analyze Exposure"
-            textColor="white"
-            borderColor="[#71c6a4]"
-            bgColor="#71c6a4"
-            rippleColor="#2b4c8c"
-            icon={<ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />}
-            extraClasses="text-xs 2xl:text-lg font-bold capitalize tracking-widest transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn"
-          />
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
+    // Animate badge icons
+    gsap.to(".pulse-icon", {
+      scale: 1.1,
+      repeat: -1,
+      yoyo: true,
+      duration: 2,
+      ease: "sine.inOut"
+    });
 
-interface PharmacySliderProps {
-  label?: string;
-  title?: React.ReactNode;
-  slides?: SlideData[];
-}
+    // Pulse effect for Critical Insights
+    gsap.to(".pulse-badge", {
+      borderColor: "rgba(239, 68, 68, 0.8)",
+      backgroundColor: "rgba(239, 68, 68, 0.15)",
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
 
-const slides = [
-  {
-    src: auditCard,
-    title: "Would Your Pharmacy Pass a PBM Audit Today?",
-    desc: "Would Your Pharmacy Pass a PBM Audit Today? Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss."
-  },
-  {
-    src: operationalAnalysisChart,
-    title: "Are PBM Thresholds Quietly Reducing Your Reimbursements?",
-    desc: "Are Small Operational Gaps Creating Significant Financial Exposure? Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks."
-  },
-  {
-    src: thresholdsCard,
-    title: "Are Small Operational Gaps Creating Significant Financial Exposure?",
-    desc: "Are PBM Thresholds Quietly Reducing Your Reimbursements? Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability."
-  },
-  {
-    src: mtfCard,
-    title: "Backend Revenue Control",
-    desc: "MTF Revenue Leakage Control: If you are not actively tracking, reconciliation, and disputing MTF payments, you are silently losing backend revenue on every eligible claim."
-  }
-];
+    gsap.to(".inner-dot", {
+      opacity: 0.4,
+      scale: 1.5,
+      repeat: -1,
+      yoyo: true,
+      duration: 1,
+      ease: "power1.inOut"
+    });
+  }, { scope: containerRef });
 
-const News: React.FC<PharmacySliderProps> = ({
-  label = "Critical Insights",
-  title = <>Pharmacy Compliance <br /> & Revenue Performance</>,
-  slides: passedSlides
-}) => {
-  const displaySlides = passedSlides || slides;
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 35,
-    damping: 18,
-    restDelta: 0.0001,
-    mass: 1.2
-  });
-
-  // Headings Animation - Left side appears IMMEDIATELY, carousel comes MUCH later
-  // Label: "Critical Insights" appears instantly (0-5%)
-  const labelOpacity = useTransform(scrollYProgress, [0, 0.05], [0, 1], { clamp: true });
-  const labelY = useTransform(scrollYProgress, [0, 0.05], [30, 0], { clamp: true });
-
-  // Main Heading: "Pharmacy Compliance..." appears quickly after (5-15%)
-  const mainHeadingOpacity = useTransform(scrollYProgress, [0.05, 0.15], [0, 1], { clamp: true });
-  const mainHeadingY = useTransform(scrollYProgress, [0.05, 0.15], [30, 0], { clamp: true });
-
-  // Keep headings visible (no fade out until very end)
-  const finalFade = useTransform(scrollYProgress, [0.90, 0.98], [1, 0], { clamp: true });
-
-  // Carousel progress - each slide takes 3x more scroll (range: 85-99.5%)
-  const carouselRaw = useTransform(smoothProgress, [0.85, 0.995], [0, 1], { clamp: true });
-  const snappedValue = useTransform(carouselRaw, (val) => {
-    const steps = displaySlides.length - 1;
-    return Math.round(val * steps) / steps;
-  });
-
-  const carouselSnapProgress = useSpring(snappedValue, {
-    stiffness: 120,
-    damping: 22,
-    mass: 0.8
-  });
-
-  // Carousel appears at 85%, fades in by 90%, stays until end
-  const carouselOpacity = useTransform(smoothProgress, [0.85, 0.90], [0, 1], { clamp: true });
-  const finalCarouselFade = useTransform(smoothProgress, [0.99, 0.999], [1, 0], { clamp: true });
-
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1600);
-
+  // Auto-scroll logic
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000); // Change slide every 5 seconds
 
-  const is2xl = windowWidth >= 1536;
-  const slideWidth = is2xl ? 700 : 540;
-  const gap = 48;
-  const slideStep = slideWidth + gap;
-  const totalTrackWidth = (displaySlides.length - 1) * slideStep;
+    return () => clearInterval(timer);
+  }, [activeSlide]); // Reset timer on slide change (manual or auto)
 
-  // Track starts at left: 50%. We offset by half-slide width to center slide 0 initially.
-  const initialOffset = -(slideWidth / 2);
-  const trackX = useTransform(carouselSnapProgress, [0, 1], [initialOffset, initialOffset - totalTrackWidth]);
+  const nextSlide = () => {
+    gsap.to(cardRef.current, {
+      opacity: 0,
+      x: -20,
+      duration: 0.3,
+      onComplete: () => {
+        setActiveSlide((prev) => (prev + 1) % slides.length);
+        gsap.fromTo(cardRef.current,
+          { opacity: 0, x: 20 },
+          { opacity: 1, x: 0, duration: 0.5 }
+        );
+      }
+    });
+  };
+
+  const prevSlide = () => {
+    gsap.to(cardRef.current, {
+      opacity: 0,
+      x: 20,
+      duration: 0.3,
+      onComplete: () => {
+        setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length);
+        gsap.fromTo(cardRef.current,
+          { opacity: 0, x: -20 },
+          { opacity: 1, x: 0, duration: 0.5 }
+        );
+      }
+    });
+  };
 
   return (
-    <section ref={containerRef} className="relative h-[1000vh] bg-white text-[#2b4c8c] font-sans selection:bg-[#71c6a4]/30">
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+    <div ref={containerRef} className="min-h-screen relative flex items-center justify-center p-6 md:p-12 overflow-hidden bg-[#030508]">
 
-        {/* Atmosphere */}
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div
-            style={{
-              x: useTransform(smoothProgress, [0, 1], ["-10vw", "10vw"]),
-              opacity: useTransform(smoothProgress, [0, 0.5, 1], [0.05, 0.1, 0.05])
-            }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vh] bg-gradient-radial from-[#71c6a4]/30 via-transparent to-transparent"
-          />
-        </div>
+      {/* Background Decorative Elements */}
+      <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-red-900/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-900/5 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="w-full h-full flex items-center max-w-[1700px] mx-auto px-16 relative">
+      {/* Abstract Grid Overlays */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-          {/* Left Column: 40% for Headings */}
-          <div className="w-[40%] h-full flex items-center pr-12 relative z-40">
-            <motion.div
-              style={{ opacity: finalFade }}
-              className="pointer-events-none origin-left"
-            >
-              <motion.p
-                style={{ opacity: labelOpacity, y: labelY }}
-                className="text-[#71c6a4] font-bold text-2xl 2xl:text-6xl mb-4 2xl:mb-8"
-              >
-                {label}
-              </motion.p>
-              <motion.h2
-                style={{ opacity: mainHeadingOpacity, y: mainHeadingY }}
-                className="2xl:text-5xl text-4xl font-bold tracking-tight leading-[1.05] text-[#2b4c8c] capitalize"
-              >
-                {title}
-              </motion.h2>
-            </motion.div>
+      <main className="relative z-10 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        {/* Left Column: Alerts & Intro */}
+        <div ref={leftContentRef} className="lg:col-span-5 space-y-8">
+          <div className="space-y-4">
+            <Badge icon={Bell} className="pulse-badge">Critical Insights</Badge>
+
+            <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight">
+              Pharmacy <span className="text-white">Compliance</span><br />
+              & Revenue <span className="text-red-500 text-glow-red">Performance.</span>
+            </h1>
+
+            <p className="text-slate-400 text-lg md:text-xl max-w-md leading-relaxed">
+              Real-time alerts help you stay ahead of compliance risks, revenue leakage, and operational issues.
+            </p>
           </div>
 
-          {/* Right Column: 60% for Carousel Area */}
-          <motion.div
-            style={{ opacity: useTransform([carouselOpacity, finalCarouselFade], ([o1, o2]: number[]) => o1 * o2) }}
-            className="w-[60%] h-full flex items-center relative overflow-hidden"
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <CyberButton icon={ArrowRight}>
+              View All Alerts
+            </CyberButton>
+
+            <div className="flex items-center gap-4 px-4 py-2 border-l border-white/10">
+              <div className="flex -space-x-3">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="w-8 h-8 rounded-full border-2 border-[#030508] bg-slate-800 flex items-center justify-center text-[10px] font-bold">
+                    {i === 1 ? <ShieldAlert size={12} className="text-red-400" /> : i === 2 ? <Database size={12} className="text-blue-400" /> : <Activity size={12} className="text-green-400" />}
+                  </div>
+                ))}
+              </div>
+              <span className="text-xs text-slate-500 font-medium tracking-wide">
+                SYSTEM ACTIVE & SECURE
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Hero Card Slider */}
+        <div className="lg:col-span-7 relative group">
+
+          {/* Main Card */}
+          <div
+            ref={cardRef}
+            className="relative aspect-[16/10] w-full rounded-2xl md:rounded-3xl border-2 border-glow-red overflow-hidden bg-slate-900 shadow-2xl"
           >
-            {/* FIXED SELECTION FRAME - Centered in the 60% zone */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] 2xl:w-[700px] h-[440px] 2xl:h-[600px] z-30 pointer-events-none origin-center">
-              <div className="absolute inset-[-20px] border-[1.5px] border-dotted border-[#71c6a4]/90 rounded-[40px]" />
-              {/* Corner Accents */}
-              <div className="absolute top-[-24px] right-[-24px] w-5 h-5 bg-[#71c6a4] rounded-full shadow-[0_0_20px_rgba(113,198,164,0.6)]" />
-              <div className="absolute bottom-[-24px] left-[-24px] w-3 h-3 border-2 border-[#71c6a4] rounded-full" />
+            {/* Background Image */}
+            <img
+              src={slides[activeSlide].image}
+              alt="Pharmacy Professional"
+              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 transition-transform duration-700 group-hover:scale-105"
+            />
+
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030508] via-transparent to-transparent opacity-90" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#030508]/40 via-transparent to-transparent opacity-60" />
+
+            {/* Top Right Label */}
+            <div className="absolute top-6 right-6">
+              <Badge variant="danger" icon={TriangleAlert}>High Risk</Badge>
             </div>
 
-            {/* Moving Track */}
-            <motion.div
-              style={{
-                x: trackX,
-                left: "50%",
-              }}
-              className="flex items-center gap-12 absolute top-1/2 -translate-y-1/2 will-change-transform"
-            >
-              {displaySlides.map((slide, i) => (
-                <SlideCard
-                  key={i}
-                  slide={slide}
-                  index={i}
-                  totalSlides={displaySlides.length}
-                  smoothProgress={carouselSnapProgress}
-                />
-              ))}
-            </motion.div>
-          </motion.div>
+            {/* Content Overlay */}
+            <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 space-y-6">
+              <div className="space-y-4 max-w-xl">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-red-500" />
+                  <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1] text-white">
+                    {slides[activeSlide].title}
+                  </h2>
+                </div>
+                <p className="text-slate-300 text-lg leading-relaxed">
+                  {slides[activeSlide].description}
+                </p>
+              </div>
 
-        </div>
+              <CyberButton variant="outline" icon={ChevronRight} className="rounded-full px-8 border-red-500 text-red-500 hover:bg-red-500 hover:text-white glow-red hover:glow-red-strong">
+                {slides[activeSlide].cta}
+              </CyberButton>
+            </div>
+          </div>
 
-        {/* HUD */}
-        <div className="absolute bottom-12 inset-x-0 flex flex-col items-center gap-4 pointer-events-none z-50">
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="w-10 h-10 rounded-full border border-[#2b4c8c]/10 flex items-center justify-center bg-white/50 backdrop-blur-sm"
+          {/* Slider Controls */}
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black/80 border border-white/20 flex items-center justify-center text-white hover:border-red-500 hover:text-red-500 transition-all z-20 backdrop-blur-md"
           >
-            <div className="w-[1.5px] h-3.5 bg-[#71c6a4] rounded-full" />
-          </motion.div>
-          <span className="text-[10px] font-mono font-bold uppercase tracking-[8px] text-[#2b4c8c]/50 pl-2">Scroll to explore</span>
+            <ChevronLeft size={24} />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 rounded-full bg-black/80 border border-white/20 flex items-center justify-center text-white hover:border-red-500 hover:text-red-500 transition-all z-20 backdrop-blur-md"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Pagination */}
+          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveSlide(i)}
+                className={`h-1 transition-all duration-300 rounded-full ${activeSlide === i ? "w-12 bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]" : "w-6 bg-white/20 hover:bg-white/40"
+                  }`}
+              />
+            ))}
+          </div>
         </div>
 
-      </div>
-    </section>
+        {/* Sidebar Info (Bottom Mobile / Side Desktop) */}
+        <div className="lg:col-span-12 flex flex-wrap items-center justify-between gap-8 pt-12 border-t border-white/5 opacity-40 hover:opacity-100 transition-opacity">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <Layers size={16} />
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Protocol v.392</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Database size={16} />
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Data Integrity 100%</span>
+            </div>
+          </div>
+          <div className="text-[10px] uppercase tracking-[0.2em] font-bold">
+            © 2026 RISKPAS COMPLIANCE
+          </div>
+        </div>
+      </main>
+
+      {/* Decorative SVG Lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 100 Q 500 300 1000 100" stroke="white" fill="transparent" strokeWidth="0.5" />
+        <path d="M100 0 Q 300 500 100 1000" stroke="white" fill="transparent" strokeWidth="0.5" />
+      </svg>
+    </div>
   );
 };
-
-export default News;
