@@ -1,39 +1,33 @@
-"use client";
-
-import AnimationWrapper, { StaggerContainer, StaggerItem } from "@/app/components/AnimationWrapper";
-import Link from "next/link";
+import { motion } from 'motion/react';
+import { Search } from 'lucide-react';
 
 export default function BlogHero() {
   return (
-    <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white overflow-hidden pt-20 bg-[#2b4c8c]">
-      {/* Decorative pulse background */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#71c6a4] rounded-full blur-[120px] animate-pulse"></div>
-      </div>
+    <section className="relative pt-40 pb-20 border-b border-white/5 overflow-hidden">
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-brand-teal/5 blur-[120px] rounded-full -translate-y-1/2" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+        >
+          <span className="text-brand-teal font-display font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block italic">Resource Intelligence</span>
+          <h1 className="text-6xl md:text-8xl font-display font-medium text-white mb-8 tracking-tighter uppercase italic leading-none">
+            The <span className="text-gradient font-light">Lead</span> Line.
+          </h1>
+          <p className="text-slate-400 text-lg font-light max-w-2xl mx-auto leading-relaxed mb-12">
+            Dispatches on pharmacy operational excellence, PBM audit strategies, and revenue cycle management.
+          </p>
 
-      <div className="relative z-10 w-[95%] max-w-[1800px] px-8 flex flex-col items-center">
-        <StaggerContainer delayChildren={0.3} staggerChildren={0.15} className="flex flex-col items-center">
-          <StaggerItem>
-            <div className="flex items-center gap-2 text-sm font-medium tracking-widest uppercase mb-6 text-[#71c6a4]">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span>/</span>
-              <span className="text-white">Our Blogs</span>
-            </div>
-          </StaggerItem>
-
-          <StaggerItem>
-            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight text-white drop-shadow-xl">
-              NEWS & <br className="hidden md:block" />
-              PUBLICATIONS
-            </h1>
-          </StaggerItem>
-
-          <StaggerItem>
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light max-w-2xl mx-auto">
-              Stay ahead of the curve with PrimeTek's latest operational insights, compliance strategies, and industry news.
-            </p>
-          </StaggerItem>
-        </StaggerContainer>
+          <div className="max-w-md mx-auto relative group">
+            <input 
+              type="text" 
+              placeholder="Search Technical Papers..." 
+              className="w-full glass bg-white/5 border-white/10 rounded-full py-4 px-12 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-teal/50 transition-all font-mono"
+            />
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-brand-teal transition-colors" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

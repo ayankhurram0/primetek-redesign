@@ -46,7 +46,7 @@ import AnimationWrapper from "./AnimationWrapper";
 
 export default function Testimonials() {
   return (
-    <section className="pb-60 bg-[#020817] z-10 overflow-hidden">
+    <section className="pb-60 z-10 overflow-hidden">
       <div className="w-[95%] max-w-[1800px] mx-auto px-6 md:px-12">
 
         {/* Header Section */}
@@ -56,7 +56,7 @@ export default function Testimonials() {
             <span>Operational Partner</span>
           </h2>
 
-          <div className="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-white/10 shadow-sm backdrop-blur-md">
+          <div className="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-teal-400/60 shadow-sm backdrop-blur-md">
             <div className="flex -space-x-4">
               {[prof1, prof2, prof3].map((img, i) => (
                 <div key={i} className="w-12 h-12 rounded-full border-4 border-[#71c6a4]/40 overflow-hidden shadow-sm">
@@ -93,7 +93,7 @@ export default function Testimonials() {
             {testimonials.map((item, index) => (
               <SwiperSlide key={index} className="!h-auto flex">
 
-                <div className="bg-white/5 border border-[#71c6a4]/30 px-10 py-12 flex flex-col h-full hover:bg-white/10 hover:border-[#71c6a4]/60 transition-all duration-500 rounded-3xl backdrop-blur-md group relative">
+                <div className="bg-white/5 border border-teal-400/60 px-10 py-12 flex flex-col h-full hover:bg-white/10 hover:border-[#71c6a4]/60 transition-all duration-500 rounded-3xl backdrop-blur-md group relative">
                   <div className="w-3 h-3 rounded-full bg-[#71c6a4]/20 border border-[#71c6a4]/40 mb-6" />
                   <h4 className="text-white font-bold text-xl 2xl:text-3xl mb-6 leading-tight">
                     “{item.quote}”

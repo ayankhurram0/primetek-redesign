@@ -102,7 +102,7 @@ export const WhyPrimeTekSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#020817] relative w-full overflow-hidden">
+    <section ref={sectionRef} className="relative w-full overflow-hidden">
       <div ref={triggerRef} className="min-h-screen flex flex-col justify-center py-20">
         <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10 px-12">
           <div ref={subHeadingRef} className="flex items-center justify-center gap-4 mb-6">

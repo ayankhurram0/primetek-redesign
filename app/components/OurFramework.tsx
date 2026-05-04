@@ -137,7 +137,7 @@ export const OurFramework: React.FC = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-[500vh] bg-[#020817] font-sans selection:bg-[#71c6a4]/30 overflow-x-hidden pb-60">
+    <section ref={containerRef} className="relative min-h-[500vh] font-sans selection:bg-[#71c6a4]/30 overflow-x-hidden pb-60">
       <div ref={triggerRef} className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
 
         <div className="container mx-auto px-6 h-full flex flex-col lg:flex-row items-center lg:gap-12">

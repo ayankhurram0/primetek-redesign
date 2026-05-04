@@ -40,13 +40,13 @@ export default function Navbar() {
         />
       </Link>
 
-      <div className={`hidden lg:flex items-center justify-center space-x-8 text-md 2xl:text-xl font-bold tracking-wide uppercase w-[60%] transition-colors duration-300 ${scrolled ? 'text-white' : 'text-white text-[0px]'
+      <div className={`hidden lg:flex items-center justify-center space-x-10 text-md 2xl:text-xl font-bold tracking-wide uppercase w-[60%] transition-colors duration-300 ${scrolled ? 'text-white' : 'text-white'
         }`}>
         <Link href="/" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Home</Link>
         <Link href="/about" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">About Us</Link>
-        <Link href="/services" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Services</Link>
+        <Link href="/case-studies" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Case Studies</Link>
+        <Link href="/resources" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Resources</Link>
         <Link href="/blog" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Blog</Link>
-        <span className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Resources</span>
       </div>
 
       <div className="flex items-center justify-end w-[20%] space-x-4">

@@ -27,7 +27,13 @@ export default function RootLayout({
       lang="en"
       className={`${poppins.variable} antialiased`}
     >
-      <body className="flex flex-col" suppressHydrationWarning={true}>
+      <body className="flex flex-col relative" suppressHydrationWarning={true}>
+        {/* Global Background Gradient System */}
+        <div className="fixed inset-0 z-[-1] bg-[#020817]" />
+        <div className="fixed inset-0 z-[-1] bg-[radial-gradient(circle_at_50%_-20%,#0a192f_0%,transparent_50%)]" />
+        <div className="fixed inset-0 z-[-1] bg-[radial-gradient(circle_at_0%_0%,rgba(113,198,164,0.05)_0%,transparent_30%)]" />
+        <div className="fixed inset-0 z-[-1] bg-[radial-gradient(circle_at_100%_100%,rgba(59,130,246,0.05)_0%,transparent_30%)]" />
+        
         <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

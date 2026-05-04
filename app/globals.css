@@ -2,8 +2,8 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020817;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -17,15 +17,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #020817;
     --foreground: #ededed;
   }
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at 50% -20%, #0a192f 0%, #020817 100%);
   color: var(--foreground);
+  min-height: 100vh;
   font-family: var(--font-poppins) !important;
+}
+
+/* Global Section Gradient Utility */
+.section-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(113, 198, 164, 0.03) 0%, transparent 70%);
 }
 
 html.lenis,
