@@ -68,7 +68,7 @@ export default function NetworkPulse() {
                   Real-time visualization of audit interception nodes and revenue synchronization across the Northeast pharmacy corridor.
                 </p>
 
-                <div className="grid grid-cols-2 gap-8 mb-12">
+                <div className="grid grid-cols-2 gap-8 mb-10">
                   <div>
                     <div className="text-white font-display font-black text-3xl italic tracking-tighter">4,812</div>
                     <div className="text-[9px] text-slate-500 font-mono font-black uppercase tracking-widest mt-1">ACTIVE_NODES</div>
