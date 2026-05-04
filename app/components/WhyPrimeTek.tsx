@@ -136,7 +136,7 @@ export const WhyPrimeTekSection: React.FC = () => {
                 </div>
 
                 <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 mb-6 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-                  {React.cloneElement(step.icon as React.ReactElement, { className: "w-6 h-6 text-[#71c6a4]" })}
+                  {React.cloneElement(step.icon as React.ReactElement<{ className?: string }>, { className: "w-6 h-6 text-[#71c6a4]" })}
                 </div>
 
                 <h3 className="text-lg font-bold text-white mb-4 transition-colors">{step.title}</h3>

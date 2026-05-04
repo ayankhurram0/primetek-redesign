@@ -134,7 +134,7 @@ export default function ServicesPage() {
           
           <RevealText className="mb-8">
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter text-[#2b4c8c]">
-              Gain Clear Visibility Into Your Pharmacy's Financial Performance
+              Gain Clear Visibility Into Your Pharmacy&apos;s Financial Performance
             </h1>
           </RevealText>
           
@@ -190,7 +190,7 @@ export default function ServicesPage() {
               viewport={{ once: true }}
               className="text-gray-500 text-xl max-w-lg"
             >
-              Comprehensive monitoring and analysis tailored to your pharmacy's specific needs.
+              Comprehensive monitoring and analysis tailored to your pharmacy&apos;s specific needs.
             </motion.p>
           </div>
           <div className="text-right hidden md:block">

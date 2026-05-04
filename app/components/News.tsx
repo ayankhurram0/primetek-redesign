@@ -134,16 +134,7 @@ export const News = () => {
     });
   }, { scope: containerRef });
 
-  // Auto-scroll logic
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(timer);
-  }, [activeSlide]); // Reset timer on slide change (manual or auto)
-
-  const nextSlide = () => {
+  const nextSlide = React.useCallback(() => {
     gsap.to(cardRef.current, {
       opacity: 0,
       x: -20,
@@ -156,9 +147,9 @@ export const News = () => {
         );
       }
     });
-  };
+  }, [slides.length]);
 
-  const prevSlide = () => {
+  const prevSlide = React.useCallback(() => {
     gsap.to(cardRef.current, {
       opacity: 0,
       x: 20,
@@ -171,7 +162,16 @@ export const News = () => {
         );
       }
     });
-  };
+  }, [slides.length]);
+
+  // Auto-scroll logic
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, [nextSlide]); // Reset timer on slide change (manual or auto)
 
   return (
     <div ref={containerRef} className="min-h-screen relative flex items-center justify-center 2xl:px-24 overflow-hidden">
@@ -223,7 +223,7 @@ export const News = () => {
             >
               {/* Background Image */}
               <img
-                src={typeof slides[activeSlide].image === 'string' ? slides[activeSlide].image : (slides[activeSlide].image as any).src}
+                src={typeof slides[activeSlide].image === 'string' ? slides[activeSlide].image : (slides[activeSlide].image as { src: string }).src}
                 alt={slides[activeSlide].title}
                 className="absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-700"
               />

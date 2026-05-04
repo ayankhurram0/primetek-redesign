@@ -102,8 +102,8 @@ export default function ConsultationCTA() {
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 ref={headingRef} className="text-white text-4xl 2xl:text-6xl font-bold mb-8 drop-shadow-sm flex flex-wrap justify-center">
-              Operational Support for Modern Healthcare
+            <h2 ref={headingRef} className="text-white text-4xl 2xl:text-6xl font-bold mb-8 drop-shadow-sm flex flex-wrap justify-center leading-[1.2]">
+              Operational Support for <br /> Modern Healthcare
             </h2>
 
             <p ref={textRef} className="text-slate-400 text-md 2xl:text-xl font-medium leading-relaxed mb-12 max-w-3xl mx-auto px-4">

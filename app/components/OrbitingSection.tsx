@@ -13,9 +13,9 @@ import badge4 from "@/src/assets/badges4.png";
 import coloredlogo from "@/src/assets/logo-colored.png";
 
 // Shim for next/image to keep JSX identical while working in Vite
-const Image = ({ src, alt, className }: any) => (
+const Image = ({ src, alt, className }: { src: string | { src: string }; alt: string; className?: string }) => (
   <img
-    src={typeof src === 'string' ? src : (src?.src || src)}
+    src={typeof src === "string" ? src : (src as { src: string }).src}
     alt={alt}
     className={className}
     referrerPolicy="no-referrer"

@@ -12,8 +12,8 @@ export default function BlogHero() {
            animate={{ opacity: 1, y: 0 }}
         >
           <span className="text-brand-teal font-display font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block italic">Resource Intelligence</span>
-          <h1 className="text-6xl md:text-8xl font-display font-medium text-white mb-8 tracking-tighter uppercase italic leading-none">
-            The <span className="text-gradient font-light">Lead</span> Line.
+          <h1 className="text-6xl md:text-8xl font-display font-medium text-white mb-8 tracking-tighter uppercase italic leading-[0.9]">
+            The <span className="text-gradient font-light">Lead</span> <br /> Line.
           </h1>
           <p className="text-slate-400 text-lg font-light max-w-2xl mx-auto leading-relaxed mb-12">
             Dispatches on pharmacy operational excellence, PBM audit strategies, and revenue cycle management.
