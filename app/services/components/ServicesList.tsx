@@ -26,7 +26,7 @@ export default function ServicesList() {
 
                   <div className="p-10 pt-14 flex flex-col flex-1 z-10 relative">
                     <div className="absolute -top-12 left-10 z-20">
-                      <div className="bg-white p-5 rounded-2xl shadow-xl text-[#71c6a4] z-20 border border-slate-50">
+                      <div className="bg-white p-5 rounded-2xl shadow-xl text-teal-400 z-20 border border-slate-50">
                         <Image src={service.icon} alt={service.title} width={40} height={40} />
                       </div>
                     </div>
@@ -40,7 +40,7 @@ export default function ServicesList() {
                       <FancyButton
                         label="Read More"
                         textColor="white"
-                        borderColor="[#71c6a4]"
+                        borderColor="teal-400"
                         rippleColor="#2b4c8c"
                         bgColor="#71c6a4"
                         extraClasses="!py-3 !text-sm group-hover:translate-x-1 transition-all duration-200"

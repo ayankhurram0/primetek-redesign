@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { Download } from 'lucide-react';
 
@@ -13,8 +15,8 @@ export default function ResourcesHero() {
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
         >
-          <span className="text-brand-teal font-display font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block italic">Technical Documentation</span>
-          <h1 className="text-6xl md:text-8xl font-display font-medium text-white mb-8 tracking-tighter uppercase italic leading-none">
+          <span className="text-brand-teal font-display font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block">Technical Documentation</span>
+          <h1 className="text-6xl md:text-8xl font-display font-medium text-white mb-8 tracking-tighter uppercase leading-none">
             Support <span className="text-gradient font-light">Systems</span>.
           </h1>
           <p className="text-slate-400 text-lg font-light max-w-2xl mx-auto leading-relaxed mb-12">

@@ -71,11 +71,11 @@ const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smooth
           <FancyButton
             label="Analyze Exposure"
             textColor="white"
-            borderColor="[#71c6a4]"
+            borderColor="teal-400"
             bgColor="#71c6a4"
             rippleColor="#2b4c8c"
             icon={<ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />}
-            extraClasses="text-xs 2xl:text-lg font-bold Capitalize tracking-widest transition-colors shadow-lg shadow-[#71c6a4]/20 group/btn"
+            extraClasses="text-xs 2xl:text-lg font-bold Capitalize tracking-widest transition-colors shadow-lg shadow-teal-400/20 group/btn"
           />
         </div>
       </motion.div>
@@ -169,7 +169,7 @@ export const PharmacySlider: React.FC = () => {
   const trackX = useTransform(carouselSnapProgress, [0, 1], [0, -totalTrackWidth]);
 
   return (
-    <section ref={containerRef} className="relative h-[800vh] bg-white text-[#2b4c8c] font-sans selection:bg-[#71c6a4]/30">
+    <section ref={containerRef} className="relative h-[800vh] bg-white text-[#2b4c8c] font-sans selection:bg-teal-400/30">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
 
         {/* Subtle Atmosphere */}
@@ -179,7 +179,7 @@ export const PharmacySlider: React.FC = () => {
               x: useTransform(smoothProgress, [0, 1], ["-10vw", "10vw"]),
               opacity: useTransform(smoothProgress, [0, 0.5, 1], [0.1, 0.2, 0.1])
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vh] bg-gradient-radial from-[#71c6a4]/20 via-transparent to-transparent"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vh] bg-gradient-radial from-teal-400/20 via-transparent to-transparent"
           />
         </div>
 
@@ -190,7 +190,7 @@ export const PharmacySlider: React.FC = () => {
             style={{ opacity: criticalOpacity, y: criticalY }}
             className="absolute z-40 pointer-events-none px-12 2xl:px-24 text-left left-0 top-[35%] -translate-y-1/2"
           >
-            <p className="text-[#71c6a4] font-bold text-2xl 2xl:text-6xl">Critical Insights</p>
+            <p className="text-teal-400 font-bold text-2xl 2xl:text-6xl">Critical Insights</p>
           </motion.div>
 
           {/* Phase 2: Pharmacy heading (appears below on second scroll) */}
@@ -213,8 +213,8 @@ export const PharmacySlider: React.FC = () => {
               style={{ opacity: carouselOpacity }}
               className="absolute left-[40%] 2xl:left-[45%] top-1/2 -translate-y-1/2 w-[540px] 2xl:w-[700px] h-[440px] 2xl:h-[600px] z-20 pointer-events-none origin-center"
             >
-              <div className="absolute inset-[-16px] border-[1.5px] border-dotted border-[#71c6a4]/90 rounded-3xl" />
-              <div className="absolute top-[-22px] right-[-22px] w-3 h-3 bg-[#71c6a4] rounded-full shadow-[0_0_20px_rgba(113,198,164,0.5)]" />
+              <div className="absolute inset-[-16px] border-[1.5px] border-dotted border-teal-400/90 rounded-3xl" />
+              <div className="absolute top-[-22px] right-[-22px] w-3 h-3 bg-teal-400 rounded-full shadow-[0_0_20px_rgba(113,198,164,0.5)]" />
             </motion.div>
 
             <motion.div
@@ -242,7 +242,7 @@ export const PharmacySlider: React.FC = () => {
             transition={{ duration: 3, repeat: Infinity, ease: [0.45, 0, 0.55, 1] }}
             className="w-14 h-14 rounded-full border border-[#2b4c8c]/10 flex items-center justify-center"
           >
-            <div className="w-[1.5px] h-3.5 bg-[#71c6a4] rounded-full shadow-[0_0_10px_rgba(113,198,164,0.3)]" />
+            <div className="w-[1.5px] h-3.5 bg-teal-400 rounded-full shadow-[0_0_10px_rgba(113,198,164,0.3)]" />
           </motion.div>
           <span className="text-[10px] font-mono font-bold uppercase tracking-[10px] text-[#2b4c8c]/30 pl-4">Scroll to explore</span>
         </div>

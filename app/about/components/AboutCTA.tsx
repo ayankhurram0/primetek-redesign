@@ -1,26 +1,28 @@
-export default function AboutCTA() {
+import { motion } from "motion/react";
+
+export const AboutCTA = () => {
   return (
-    <section className="py-40 relative border-t border-white/5 bg-brand-900/20">
-       <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass border-brand-teal/20 mb-12">
-             <span className="w-2 h-2 rounded-full bg-brand-teal animate-ping" />
-             <span className="text-[10px] font-bold text-brand-teal uppercase tracking-[0.4em]">Live Operational Impact</span>
-          </div>
-          <h2 className="text-5xl md:text-7xl font-display font-medium text-white mb-10 leading-tight">
-             Secure your <span className="text-gradient italic">legacy</span> today.
-          </h2>
-          <p className="text-slate-400 text-lg font-light leading-relaxed mb-16 mx-auto max-w-2xl">
-             Join over 1,200 independent pharmacies who have reclaimed their operational narrative through PrimeTek intelligence.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-             <button className="px-10 py-5 bg-brand-teal text-brand-950 font-bold rounded-full hover:glow-teal active:scale-95 transition-all uppercase tracking-widest text-xs">
-                Request a Strategy Call
+    <section className="py-44 px-6 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
+      <div className="max-w-7xl mx-auto rounded-[60px] bg-brand-teal p-20 text-brand-dark text-center relative shadow-2xl z-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
+        >
+           <h2 className="text-6xl md:text-8xl font-display font-medium leading-[0.9] tracking-tighter mb-12 italic">Let's Reclaim Your <br /> Bottom Line.</h2>
+           <p className="text-xl font-bold uppercase tracking-widest bg-brand-dark/10 inline-block px-8 py-3 rounded-2xl mb-16">No Risk. Pure Logic.</p>
+           <div className="flex flex-wrap justify-center gap-8">
+             <button className="bg-brand-dark text-white px-12 py-6 rounded-3xl font-black uppercase tracking-[0.3em] text-xs hover:scale-105 active:scale-95 transition-all">
+               Schedule Analysis
              </button>
-             <button className="px-10 py-5 glass text-white font-bold rounded-full hover:bg-white/10 transition-all uppercase tracking-widest text-xs">
-                Explore Case Studies
+             <button className="border-2 border-brand-dark/20 text-brand-dark px-12 py-6 rounded-3xl font-black uppercase tracking-[0.3em] text-xs hover:border-brand-dark transition-all">
+               Download Methodology
              </button>
-          </div>
-       </div>
+           </div>
+        </motion.div>
+      </div>
     </section>
   );
-}
+};

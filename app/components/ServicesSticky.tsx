@@ -39,11 +39,11 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
             </h2>
           </div>
           <div className="flex items-center gap-6">
-            <span className="2xl:text-4xl text-3xl font-light text-[#71c6a4]">{number}</span>
+            <span className="2xl:text-4xl text-3xl font-light text-teal-400">{number}</span>
             <div className="w-[1px] h-12 bg-[#2b4c8c]/20" />
             <div className="flex gap-2">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="w-[1px] h-6 bg-[#71c6a4]/30" />
+                <div key={i} className="w-[1px] h-6 bg-teal-400/30" />
               ))}
             </div>
           </div>
@@ -60,7 +60,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
             <FancyButton
               label="Explore Service"
               textColor="white"
-              borderColor="[#71c6a4]"
+              borderColor="teal-400"
               bgColor="#71c6a4"
               rippleColor="#2b4c8c"
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
@@ -76,7 +76,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-[#2b4c8c]/5 via-transparent to-[#71c6a4]/10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#2b4c8c]/5 via-transparent to-teal-400/10 pointer-events-none" />
             </div>
           </div>
         </div>
@@ -216,7 +216,7 @@ export default function ServicesSticky() {
               {titleWords.map((word, i) => (
                 <span
                   key={i}
-                  className={`inline-block ${word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-[#71c6a4]"}`}
+                  className={`inline-block ${word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-teal-400"}`}
                 >
                   {word}
                 </span>
@@ -233,7 +233,7 @@ export default function ServicesSticky() {
               <FancyButton
                 label="Become a client"
                 textColor="white"
-                borderColor="[#71c6a4]"
+                borderColor="teal-400"
                 bgColor="#71c6a4"
                 rippleColor="#2b4c8c"
                 extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"

@@ -8,13 +8,13 @@ export default function ServicesHero() {
     <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white overflow-hidden pt-20 bg-[#2b4c8c]">
       {/* Decorative pulse background */}
       <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#71c6a4] rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-400 rounded-full blur-[120px] animate-pulse"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl px-8 flex flex-col items-center">
         <StaggerContainer delayChildren={0.3} staggerChildren={0.15} className="flex flex-col items-center">
           <StaggerItem>
-            <div className="flex items-center gap-2 text-sm font-medium tracking-widest uppercase mb-6 text-[#71c6a4]">
+            <div className="flex items-center gap-2 text-sm font-medium tracking-widest uppercase mb-6 text-teal-400">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
               <span className="text-white">Our Services</span>

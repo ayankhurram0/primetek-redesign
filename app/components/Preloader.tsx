@@ -32,7 +32,7 @@ export default function Preloader() {
       initial={{ opacity: 1 }}
       animate={{ opacity: loading ? 1 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-[#71c6a4] to-[#2b4c8c]"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-teal-400 to-[#2b4c8c]"
     >
       <div className="text-center">
         {/* Logo Animation */}

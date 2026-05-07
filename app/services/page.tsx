@@ -106,10 +106,10 @@ export default function ServicesPage() {
     <>
       <Navbar />
       
-      <div className="relative min-h-screen bg-white">
+      <div className="relative min-h-screen bg-white overflow-x-hidden">
         
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-[#71c6a4] z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-teal-400 z-[60] origin-left"
         style={{ 
           scaleX,
           opacity: useTransform(scrollYProgress, [0, 0.05], [1, 0])
@@ -117,7 +117,28 @@ export default function ServicesPage() {
       />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[80vh] flex items-center bg-gradient-to-br from-[#71c6a4]/10 to-[#2b4c8c]/10">
+      <section ref={heroRef} className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[80vh] flex items-center bg-gradient-to-br from-teal-400/10 to-[#2b4c8c]/10">
+        {/* Decorative Elements - Top Right */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#services-hero-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#services-hero-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#services-hero-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-hero-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
+
+        {/* Decorative Elements - Bottom Left */}
+        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#services-hero-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#services-hero-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#services-hero-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-hero-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
           className="max-w-5xl relative z-10"
@@ -155,12 +176,12 @@ export default function ServicesPage() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-wrap gap-6"
           >
-            <button className="group flex items-center gap-3 px-10 py-5 bg-[#71c6a4] text-white rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-lg shadow-[#71c6a4]/20">
+            <button className="group flex items-center gap-3 px-10 py-5 bg-teal-400 text-white rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-lg shadow-teal-400/20">
               View Reports
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <div className="flex items-center gap-4 px-8 py-5 border border-gray-200 rounded-full text-sm font-medium text-gray-500 bg-white/50 backdrop-blur-sm">
-              <span className="w-2.5 h-2.5 bg-[#71c6a4] rounded-full animate-pulse" />
+              <span className="w-2.5 h-2.5 bg-teal-400 rounded-full animate-pulse" />
               Reports delivered twice monthly
             </div>
           </motion.div>
@@ -169,7 +190,7 @@ export default function ServicesPage() {
         {/* Parallax Background Elements */}
         <motion.div 
           style={{ y: useTransform(heroScroll, [0, 1], [0, -150]) }}
-          className="absolute top-1/4 right-0 -z-10 w-1/3 aspect-square bg-[#71c6a4]/5 rounded-full blur-3xl" 
+          className="absolute top-1/4 right-0 -z-10 w-1/3 aspect-square bg-teal-400/5 rounded-full blur-3xl" 
         />
         <motion.div 
           style={{ y: useTransform(heroScroll, [0, 1], [0, 100]) }}
@@ -179,6 +200,27 @@ export default function ServicesPage() {
 
       {/* Services Grid */}
       <section id="services" className="py-32 px-6 md:px-12 lg:px-24 bg-white relative z-20">
+        {/* Decorative Elements - Top Right */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#services-grid-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#services-grid-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#services-grid-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-grid-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
+
+        {/* Decorative Elements - Bottom Left */}
+        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#services-grid-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#services-grid-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#services-grid-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-grid-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <div className="max-w-2xl">
             <RevealText>
@@ -221,12 +263,12 @@ export default function ServicesPage() {
             >
               {/* Animated background accent */}
               <motion.div 
-                className="absolute -right-12 -bottom-12 w-48 h-48 bg-[#71c6a4]/5 rounded-full blur-3xl group-hover:bg-[#71c6a4]/15 transition-colors duration-500"
+                className="absolute -right-12 -bottom-12 w-48 h-48 bg-teal-400/5 rounded-full blur-3xl group-hover:bg-teal-400/15 transition-colors duration-500"
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileHover={{ scale: 2, opacity: 1 }}
               />
               
-              <div className="absolute top-0 left-0 w-1 h-0 bg-[#71c6a4] group-hover:h-full transition-all duration-700" />
+              <div className="absolute top-0 left-0 w-1 h-0 bg-teal-400 group-hover:h-full transition-all duration-700" />
               
               <motion.div 
                 className="mb-10 text-[#2b4c8c] origin-left relative z-10"
@@ -249,7 +291,7 @@ export default function ServicesPage() {
               </p>
               
               <motion.div 
-                className="mt-8 flex items-center gap-2 text-[#71c6a4] font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 relative z-10"
+                className="mt-8 flex items-center gap-2 text-teal-400 font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 relative z-10"
                 initial={{ x: -20 }}
                 whileHover={{ x: 5 }}
               >
@@ -262,6 +304,27 @@ export default function ServicesPage() {
 
       {/* Alert System Section */}
       <section id="alerts" className="py-32 px-6 md:px-12 lg:px-24 bg-[#2b4c8c] text-white overflow-hidden relative">
+        {/* Decorative Elements - Top Right */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#services-alerts-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#services-alerts-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#services-alerts-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-alerts-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
+
+        {/* Decorative Elements - Bottom Left */}
+        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#services-alerts-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#services-alerts-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#services-alerts-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-alerts-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
         <div className="max-w-5xl relative z-10 mx-auto">
           <div className="flex flex-col lg:flex-row gap-20 items-center">
             <div className="flex-1">
@@ -271,10 +334,10 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 className="flex items-center gap-4 mb-8"
               >
-                <div className="w-12 h-12 bg-[#71c6a4] rounded-full flex items-center justify-center animate-pulse">
+                <div className="w-12 h-12 bg-teal-400 rounded-full flex items-center justify-center animate-pulse">
                   <AlertCircle className="w-7 h-7 text-[#2b4c8c]" />
                 </div>
-                <span className="text-sm font-bold uppercase tracking-[0.4em] text-[#71c6a4]">Alert System</span>
+                <span className="text-sm font-bold uppercase tracking-[0.4em] text-teal-400">Alert System</span>
               </motion.div>
               
               <RevealText>
@@ -298,8 +361,8 @@ export default function ServicesPage() {
                 transition={{ delay: 0.6 }}
                 className="flex items-center gap-6 p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm"
               >
-                <div className="p-3 bg-[#71c6a4]/20 rounded-xl">
-                  <CheckCircle2 className="w-6 h-6 text-[#71c6a4]" />
+                <div className="p-3 bg-teal-400/20 rounded-xl">
+                  <CheckCircle2 className="w-6 h-6 text-teal-400" />
                 </div>
                 <p className="text-lg font-medium">Real-time notifications for critical discrepancies</p>
               </motion.div>
@@ -312,10 +375,10 @@ export default function ServicesPage() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="w-full lg:w-2/5 aspect-square relative"
             >
-              <div className="absolute inset-0 bg-[#71c6a4]/20 rounded-full blur-3xl animate-pulse" />
+              <div className="absolute inset-0 bg-teal-400/20 rounded-full blur-3xl animate-pulse" />
               <div className="relative w-full h-full bg-white/5 rounded-full flex items-center justify-center border border-white/10 backdrop-blur-xl">
                 <div className="w-3/4 h-3/4 bg-white/5 rounded-full flex items-center justify-center border border-white/10">
-                  <div className="w-1/2 h-1/2 bg-[#71c6a4] rounded-full flex items-center justify-center shadow-2xl shadow-[#71c6a4]/50">
+                  <div className="w-1/2 h-1/2 bg-teal-400 rounded-full flex items-center justify-center shadow-2xl shadow-teal-400/50">
                     <BarChart3 className="w-12 h-12 text-[#2b4c8c]" />
                   </div>
                 </div>
@@ -330,6 +393,27 @@ export default function ServicesPage() {
 
       {/* Outcomes Section */}
       <section id="outcomes" className="py-32 px-6 md:px-12 lg:px-24 bg-gray-50 relative overflow-hidden">
+        {/* Decorative Elements - Top Right */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#services-outcomes-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#services-outcomes-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#services-outcomes-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-outcomes-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
+
+        {/* Decorative Elements - Bottom Left */}
+        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#services-outcomes-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#services-outcomes-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#services-outcomes-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="services-outcomes-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div>
@@ -368,11 +452,11 @@ export default function ServicesPage() {
                     transition: { duration: 0.4, ease: "easeOut" }
                   }}
                   transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
-                  className="flex items-center justify-between p-8 bg-white border border-gray-100 rounded-3xl group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[#71c6a4]/20 cursor-pointer"
+                  className="flex items-center justify-between p-8 bg-white border border-gray-100 rounded-3xl group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-teal-400/20 cursor-pointer"
                 >
                   <div className="flex items-center gap-6">
                     <motion.div 
-                      className="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#71c6a4] transition-all duration-500 shadow-inner"
+                      className="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-teal-400 transition-all duration-500 shadow-inner"
                       whileHover={{ 
                         scale: 1.2, 
                         rotate: 360,
@@ -387,7 +471,7 @@ export default function ServicesPage() {
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronRight className="w-7 h-7 text-gray-300 group-hover:text-[#71c6a4] transition-colors duration-500" />
+                    <ChevronRight className="w-7 h-7 text-gray-300 group-hover:text-teal-400 transition-colors duration-500" />
                   </motion.div>
                 </motion.div>
               ))}

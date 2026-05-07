@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'motion/react';
 import { CheckCircle2, Quote, MapPin, Calendar, Hash } from 'lucide-react';
@@ -94,7 +96,7 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
                   </div>
                </div>
                
-               <h2 className="text-5xl md:text-6xl font-display font-black text-white leading-[1] tracking-tighter uppercase italic mb-10">
+               <h2 className="text-5xl md:text-6xl font-display font-black text-teal-400 leading-[1] tracking-tighter uppercase italic mb-10">
                   {study.title}
                </h2>
                
@@ -145,7 +147,7 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
          {/* Quote Terminal */}
          <div className="bg-white/[0.02] border border-white/5 p-12 relative overflow-hidden">
             <Quote className={`absolute top-10 right-10 w-20 h-20 opacity-5 ${styles.text}`} />
-            <p className="text-2xl md:text-3xl font-display font-black text-white italic mb-10 relative z-10 leading-[1.1] tracking-tight">
+            <p className="text-2xl md:text-3xl font-display font-black text-teal-400 italic mb-10 relative z-10 leading-[1.1] tracking-tight">
                "{study.quote}"
             </p>
             <div className="flex items-center gap-6 relative z-10 border-l-2 border-teal-400 pl-6">

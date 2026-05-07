@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { FileText, Download, ChevronRight } from 'lucide-react';
 
@@ -21,7 +23,7 @@ export default function ResourcesFeatured() {
                  <div className="w-12 h-12 rounded-xl bg-brand-900 border border-white/10 flex items-center justify-center mb-8 group-hover:glow-teal transition-all">
                     <FileText className="text-brand-teal w-6 h-6" />
                  </div>
-                 <h3 className="text-lg font-display font-bold text-white uppercase italic tracking-tight mb-2">{asset.title}</h3>
+                 <h3 className="text-lg font-display font-bold text-white uppercase tracking-tight mb-2">{asset.title}</h3>
                  <div className="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-8">
                     <span>{asset.type}</span>
                     <span className="w-1 h-1 rounded-full bg-slate-800" />

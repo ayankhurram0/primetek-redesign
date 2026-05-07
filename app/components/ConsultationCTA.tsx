@@ -86,6 +86,28 @@ export default function ConsultationCTA() {
       ref={sectionRef}
       className="relative py-40 overflow-hidden"
     >
+      {/* Decorative Elements - Top Right */}
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#consultation-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#consultation-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#consultation-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="consultation-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
+      {/* Decorative Elements - Bottom Left */}
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#consultation-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#consultation-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#consultation-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="consultation-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
       {/* Blending Masks */}
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020817] to-transparent z-10" />
       <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#020817] to-transparent z-10" />
@@ -114,7 +136,7 @@ export default function ConsultationCTA() {
               <FancyButton
                 label="Request a Strategy Call"
                 textColor="white"
-                borderColor="[#71c6a4]"
+                borderColor="teal-400"
                 rippleColor="#2b4c8c"
                 bgColor="#71c6a4"
                 extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-300 py-6 px-12 text-lg shadow-lg border-2"

@@ -18,7 +18,7 @@ export default function BlogPage() {
       <BlogCategories />
       <BlogFeatured />
       <BlogGrid />
-
+      <BlogNewsletter />
       <ConsultationCTA />
       <Footer />
     </main>

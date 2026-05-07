@@ -72,8 +72,8 @@ export default function Navbar() {
                       href={`/services/${service.slug}`}
                       className="group/item flex flex-col p-3 rounded-xl hover:bg-white/5 transition-all relative overflow-hidden"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-[#71c6a4]/10 opacity-0 group-hover/item:opacity-100 transition-opacity" />
-                      <span className="text-sm font-bold text-white group-hover/item:text-[#71c6a4] transition-colors relative z-10">{service.title}</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-teal-400/10 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                      <span className="text-sm font-bold text-white group-hover/item:text-teal-400 transition-colors relative z-10">{service.title}</span>
                       <span className="text-[10px] text-slate-400 normal-case font-normal mt-1 leading-tight line-clamp-1 relative z-10">{service.shortDesc}</span>
                     </Link>
                   ))}
@@ -86,6 +86,7 @@ export default function Navbar() {
         <Link href="/case-studies" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Case Studies</Link>
         <Link href="/resources" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Resources</Link>
         <Link href="/blog" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Blog</Link>
+        <Link href="/contact" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Contact</Link>
       </div>
 
       <div className="flex items-center justify-end w-[20%] space-x-4">

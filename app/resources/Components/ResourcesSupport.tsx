@@ -6,7 +6,7 @@ export default function ResourcesSupport() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
            <div>
-              <h2 className="text-5xl md:text-7xl font-display font-medium text-white mb-8 uppercase italic leading-tight tracking-tighter">
+              <h2 className="text-5xl md:text-7xl font-display font-medium text-white mb-8 uppercase leading-tight tracking-tighter">
                  Operational <br/>
                  <span className="text-gradient">Advocacy</span>.
               </h2>
@@ -27,7 +27,7 @@ export default function ResourcesSupport() {
               <div className="absolute -inset-10 bg-brand-teal/5 blur-[120px] rounded-full pointer-events-none" />
               <div className="glass rounded-[48px] p-12 border-white/10 relative z-10 text-center">
                  <div className="text-brand-teal text-[8px] font-bold uppercase tracking-[0.5em] mb-4">Support Latency</div>
-                 <div className="text-6xl font-display font-black text-white italic mb-2 tracking-tighter">&lt; 15m</div>
+                 <div className="text-6xl font-display font-black text-white mb-2 tracking-tighter">&lt; 15m</div>
                  <div className="text-xs text-slate-500 font-bold uppercase tracking-[0.2em] mb-12">Average Response Time</div>
                  
                  <div className="h-40 w-full glass rounded-3xl border-brand-teal/10 flex items-center justify-center relative overflow-hidden group">

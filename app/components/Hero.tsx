@@ -52,6 +52,28 @@ export const Hero: React.FC = () => {
         style={{ backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)]" />
 
+      {/* Decorative Elements - Top Right */}
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#hero-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#hero-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#hero-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#3b82f6" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="hero-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" stopOpacity="1" /><stop offset="50%" stopColor="#3b82f6" stopOpacity="0.5" /><stop offset="100%" stopColor="#3b82f6" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
+      {/* Decorative Elements - Bottom Left */}
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#hero-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#hero-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#hero-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#3b82f6" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="hero-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#3b82f6" stopOpacity="1" /><stop offset="50%" stopColor="#3b82f6" stopOpacity="0.5" /><stop offset="100%" stopColor="#3b82f6" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
 
       {/* Main Content Area */}
       <div className="relative z-10 w-full max-w-[1700px] mx-auto h-screen flex items-center pt-20">
@@ -64,7 +86,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="mb-6"
           >
-            <span className="2xl:text-4xl font-bold tracking-widest uppercase text-[#71c6a4]">
+            <span className="2xl:text-4xl font-bold tracking-widest uppercase text-teal-400">
               OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT PHARMACIES
             </span>
           </motion.div>
@@ -75,7 +97,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-5xl 2xl:text-6xl font-bold leading-[1.1] tracking-tight text-white mb-8"
           >
-            Is your pharmacy losing revenue due to hidden <span className="text-[#71c6a4]">compliance gaps?</span>
+            Is your pharmacy losing revenue due to hidden <span className="text-teal-400">compliance gaps?</span>
           </motion.h1>
 
           <motion.p
@@ -96,7 +118,7 @@ export const Hero: React.FC = () => {
             <FancyButton
               label="Request a Strategy Call"
               textColor="white"
-              borderColor="[#71c6a4]"
+              borderColor="teal-400"
               rippleColor="#2b4c8c"
               bgColor="#71c6a4"
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all font-bold! duration-200 2xl:py-6 2xl:px-8 2xl:text-[18px]" />
@@ -106,7 +128,7 @@ export const Hero: React.FC = () => {
               borderColor="[#2b4c8c]"
               rippleColor="#71c6a4"
               bgColor="#2b4c8c"
-              extraClasses="backdrop-blur-md hover:border-[#71c6a4] font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-[18px]"
+              extraClasses="backdrop-blur-md hover:border-teal-400 font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-[18px]"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             />
           </motion.div>
@@ -120,7 +142,7 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col gap-6 scale-90 2xl:scale-100">
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black tracking-widest text-[#71c6a4] uppercase">Verification Audit</span>
+                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Verification Audit</span>
                   <Activity size={12} className="text-white/40" />
                 </div>
                 <div className="h-28">
@@ -147,7 +169,7 @@ export const Hero: React.FC = () => {
 
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black tracking-widest text-[#71c6a4] uppercase">Readiness Score</span>
+                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Readiness Score</span>
                   <TrendingUp size={12} className="text-white/40" />
                 </div>
                 <div className="h-28">
@@ -186,12 +208,12 @@ export const Hero: React.FC = () => {
               {/* Card: Revenues Recovery */}
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-[10px] font-black tracking-widest text-[#71c6a4] uppercase">Revenues Recovery</span>
+                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Revenues Recovery</span>
                   <BarChart3 size={12} className="text-white/40" />
                 </div>
                 <div className="text-center mb-2">
                   <div className="text-4xl font-bold text-white tracking-tighter">92%</div>
-                  <div className="text-[9px] text-[#71c6a4] font-bold uppercase mt-1">Ready for Review</div>
+                  <div className="text-[9px] text-teal-400 font-bold uppercase mt-1">Ready for Review</div>
                 </div>
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">
@@ -204,12 +226,12 @@ export const Hero: React.FC = () => {
 
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black tracking-widest text-[#71c6a4] uppercase">Revenue Identified</span>
+                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Revenue Identified</span>
                   <ChevronRight size={12} className="text-white/40" />
                 </div>
                 <div className="mb-2">
                   <div className="text-2xl font-bold text-white">$1.2M</div>
-                  <div className="text-[9px] text-[#71c6a4] font-bold">vs last month ↑ 18%</div>
+                  <div className="text-[9px] text-teal-400 font-bold">vs last month ↑ 18%</div>
                 </div>
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">

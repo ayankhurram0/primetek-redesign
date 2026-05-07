@@ -133,15 +133,15 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
 
   return (
   
-    <div className="relative min-h-screen bg-[#020817]">
+    <div className="relative min-h-screen bg-[#020817] overflow-x-hidden">
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-[#71c6a4] z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-teal-400 z-[60] origin-left"
         style={{ scaleX }}
       />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-48 pb-32 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[90vh] flex items-center bg-gradient-to-br from-[#71c6a4]/10 to-[#2b4c8c]/20">
+      <section ref={heroRef} className="relative pt-48 pb-32 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[90vh] flex items-center bg-gradient-to-br from-teal-400/10 to-[#2b4c8c]/20">
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
           className="max-w-5xl relative z-10"
@@ -151,7 +151,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-[#71c6a4]">
+            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-teal-400">
               {service.title}
             </span>
           </motion.div>
@@ -182,13 +182,13 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             <FancyButton
               label="Get Started"
               textColor="white"
-              borderColor="[#71c6a4]"
+              borderColor="teal-400"
               rippleColor="white"
               bgColor="#71c6a4"
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200"
             />
             <div className="flex items-center gap-4 px-8 py-5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-slate-400 bg-white/5 backdrop-blur-md">
-              <span className="w-2 h-2 bg-[#71c6a4] rounded-full animate-pulse shadow-[0_0_10px_rgba(113,198,164,0.5)]" />
+              <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(113,198,164,0.5)]" />
               Monthly Reports Delivered
             </div>
           </motion.div>
@@ -197,7 +197,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
         {/* Parallax Background Elements */}
         <motion.div 
           style={{ y: heroBgY1 }}
-          className="absolute top-1/4 right-0 -z-10 w-1/2 aspect-square bg-[#71c6a4]/5 rounded-full blur-[120px]" 
+          className="absolute top-1/4 right-0 -z-10 w-1/2 aspect-square bg-teal-400/5 rounded-full blur-[120px]" 
         />
         <motion.div 
           style={{ y: heroBgY2 }}
@@ -210,7 +210,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <RevealText>
-              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white uppercase italic leading-none">Key <span className="text-gradient font-light">Features</span></h2>
+              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase italic leading-none">Key <span className="text-gradient font-light">Features</span></h2>
             </RevealText>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -234,13 +234,13 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                   transition: { duration: 0.4, ease: "easeOut" }
                 }}
                 transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-                className="group glass p-10 border border-white/5 rounded-[32px] hover:border-[#71c6a4]/30 transition-all duration-500 cursor-pointer"
+                className="group glass p-10 border border-white/5 rounded-[32px] hover:border-teal-400/30 transition-all duration-500 cursor-pointer"
               >
                 <div className="flex items-center gap-6 mb-8">
-                  <div className="w-16 h-16 rounded-2xl bg-[#71c6a4] flex items-center justify-center text-brand-950 shadow-[0_0_20px_rgba(113,198,164,0.2)]">
+                  <div className="w-16 h-16 rounded-2xl bg-teal-400 flex items-center justify-center text-brand-950 shadow-[0_0_20px_rgba(113,198,164,0.2)]">
                     {feature.icon}
                   </div>
-                  <h3 className="font-display text-2xl font-medium text-white uppercase italic leading-tight group-hover:text-[#71c6a4] transition-colors duration-300">
+                  <h3 className="font-display text-2xl font-medium text-teal-400 uppercase italic leading-tight group-hover:text-teal-300 transition-colors duration-300">
                     {feature.title}
                   </h3>
                 </div>
@@ -258,7 +258,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <RevealText>
-              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white uppercase italic leading-none">How It <span className="text-gradient font-light">Works</span></h2>
+              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase italic leading-none">How It <span className="text-gradient font-light">Works</span></h2>
             </RevealText>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -280,11 +280,11 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                 transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
                 className="relative group"
               >
-                <div className="glass p-10 rounded-[32px] border border-white/5 hover:border-[#71c6a4]/20 transition-all duration-500 h-full">
-                  <div className="w-10 h-10 bg-[#71c6a4] text-brand-950 rounded-full flex items-center justify-center font-black text-sm mb-8">
+                <div className="glass p-10 rounded-[32px] border border-white/5 hover:border-teal-400/20 transition-all duration-500 h-full">
+                  <div className="w-10 h-10 bg-teal-400 text-brand-950 rounded-full flex items-center justify-center font-black text-sm mb-8">
                     {step.step}
                   </div>
-                  <h3 className="font-display text-xl font-medium text-white uppercase italic mb-4 leading-tight">
+                  <h3 className="font-display text-xl font-medium text-teal-400 uppercase italic mb-4 leading-tight">
                     {step.title}
                   </h3>
                   <p className="text-slate-400 leading-relaxed font-light">
@@ -303,7 +303,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div>
               <RevealText>
-                <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter mb-10 leading-[0.9] text-white uppercase italic">
+                <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter mb-10 leading-[0.9] text-teal-400 uppercase italic">
                   Transform Your <span className="text-gradient font-light">Pharmacy Operations</span>
                 </h2>
               </RevealText>
@@ -321,7 +321,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                 borderColor="[#2b4c8c]"
                 rippleColor="#71c6a4"
                 bgColor="#2b4c8c"
-                extraClasses="hover:border-[#71c6a4] font-bold! transition-all duration-500"
+                extraClasses="hover:border-teal-400 font-bold! transition-all duration-500"
               />
             </div>
             <div className="space-y-6">
@@ -341,12 +341,12 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                   className="flex items-center justify-between p-8 glass border border-white/5 rounded-[32px] group transition-all duration-500 cursor-pointer"
                 >
                   <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-[#71c6a4] group-hover:bg-[#71c6a4] group-hover:text-brand-950 transition-all duration-500">
+                    <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-teal-400 group-hover:bg-teal-400 group-hover:text-brand-950 transition-all duration-500">
                       <CheckCircle2 className="w-7 h-7" />
                     </div>
                     <span className="font-bold text-xl text-white group-hover:translate-x-2 transition-transform duration-500 ease-out">{benefit}</span>
                   </div>
-                  <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-[#71c6a4] group-hover:translate-x-1 transition-all duration-500" />
+                  <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-teal-400 group-hover:translate-x-1 transition-all duration-500" />
                 </motion.div>
               ))}
             </div>

@@ -20,7 +20,7 @@ export default function Operations() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           <AnimationWrapper direction="left" distance={50} className="w-full lg:w-1/2 pt-10 lg:pt-0">
             <h2 className="text-4xl md:text-5xl font-black leading-tight mb-4">
-              <span className="text-[#71c6a4]">Designed for</span>{" "}
+              <span className="text-teal-400">Designed for</span>{" "}
               <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
             </h2>
 
@@ -47,7 +47,7 @@ export default function Operations() {
               <FancyButton
                 label="Explore Our Services →"
                 textColor="white"
-                borderColor="[#71c6a4]"
+                borderColor="teal-400"
                 rippleColor="#2b4c8c"
                 bgColor="#71c6a4"
                 extraClasses="w-fit hover:border-[#2b4c8c] transition-all duration-200"

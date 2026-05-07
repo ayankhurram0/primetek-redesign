@@ -214,6 +214,28 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-[#020617] flex flex-col items-center justify-center overflow-hidden font-sans">
+      {/* Decorative Elements - Top Right */}
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#newhero-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#newhero-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#newhero-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#2dd4bf" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="newhero-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2dd4bf" stopOpacity="1" /><stop offset="50%" stopColor="#2dd4bf" stopOpacity="0.5" /><stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
+      {/* Decorative Elements - Bottom Left */}
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#newhero-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#newhero-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#newhero-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#2dd4bf" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="newhero-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#2dd4bf" stopOpacity="1" /><stop offset="50%" stopColor="#2dd4bf" stopOpacity="0.5" /><stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
       {/* Background Spotlight Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.1)_0%,transparent_80%)] pointer-events-none" />
       {/* Background Cards Layer - 3D Infinite Autoplay */}
@@ -313,7 +335,7 @@ export default function App() {
             <FancyButton
               label="Request a Strategy Call"
               textColor="white"
-              borderColor="[#71c6a4]"
+              borderColor="teal-400"
               rippleColor="#2b4c8c"
               bgColor="#71c6a4"
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all font-bold! duration-200 2xl:py-6 2xl:px-8 2xl:text-[22px]" />
@@ -323,7 +345,7 @@ export default function App() {
               borderColor="[#2b4c8c]"
               rippleColor="#71c6a4"
               bgColor="#2b4c8c"
-              extraClasses="backdrop-blur-md hover:border-[#71c6a4] font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-[22px]"
+              extraClasses="backdrop-blur-md hover:border-teal-400 font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-[22px]"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             />
           </motion.div>

@@ -137,7 +137,29 @@ export const OurFramework: React.FC = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-[500vh] font-sans selection:bg-[#71c6a4]/30 overflow-x-hidden pb-60">
+    <section ref={containerRef} className="relative min-h-[500vh] font-sans selection:bg-teal-400/30 overflow-x-hidden pb-60">
+      {/* Decorative Elements - Top Right */}
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#ourframework-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#ourframework-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#ourframework-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="ourframework-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
+      {/* Decorative Elements - Bottom Left */}
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#ourframework-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#ourframework-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+          <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#ourframework-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+          {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
+          <defs><linearGradient id="ourframework-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
+        </svg>
+      </div>
+
       <div ref={triggerRef} className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
 
         <div className="container mx-auto px-6 h-full flex flex-col lg:flex-row items-center lg:gap-12">
@@ -147,10 +169,10 @@ export const OurFramework: React.FC = () => {
             className="w-full lg:w-[45%] flex flex-col justify-center space-y-8 text-center lg:text-left z-20 pt-12 lg:pt-0"
           >
             <h2 className="framework-heading opacity-0 text-white 2xl:text-5xl font-bold flex gap-2">
-              <span className="text-[#71c6a4]">Our</span> Framework
+              <span className="text-teal-400">Our</span> Framework
             </h2>
             <div className="space-y-6">
-              <p className="framework-subtitle opacity-0 text-slate-300 text-xs 2xl:text-2xl font-semibold border-l-4 border-[#71c6a4] pl-4">
+              <p className="framework-subtitle opacity-0 text-slate-300 text-xs 2xl:text-2xl font-semibold border-l-4 border-teal-400 pl-4">
                 A DISCIPLINED APPROACH TO MANAGING PERFORMANCE, REDUCING RISK, AND MAINTAINING OPERATIONAL CONTROL.
               </p>
               <p className="framework-description opacity-0 text-slate-400 text-lg 2xl:text-2xl font-medium pl-5">
@@ -173,7 +195,7 @@ export const OurFramework: React.FC = () => {
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden md:block" />
               <div
                 ref={lineRef}
-                className="absolute left-1/2 top-0 w-px bg-[#71c6a4] -translate-x-1/2 origin-top hidden md:block h-0"
+                className="absolute left-1/2 top-0 w-px bg-teal-400 -translate-x-1/2 origin-top hidden md:block h-0"
               />
 
               <div className="space-y-12 lg:space-y-16 relative z-10 px-4">
@@ -197,7 +219,7 @@ export const OurFramework: React.FC = () => {
                           </div>
                         ) : (
                           <div className="row-icon flex justify-end items-center">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-[#71c6a4] flex items-center justify-center text-white shadow-lg group">
+                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-white shadow-lg group">
                               <Icon className="w-8 h-8 lg:w-12 lg:h-12" strokeWidth={1} />
                             </div>
                           </div>
@@ -213,7 +235,7 @@ export const OurFramework: React.FC = () => {
                       <div className="md:pl-10">
                         {isTextOnLeft ? (
                           <div className="row-icon flex justify-start items-center">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-[#71c6a4] flex items-center justify-center text-white shadow-lg group">
+                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-white shadow-lg group">
                               <Icon className="w-8 h-8 lg:w-12 lg:h-12" strokeWidth={1} />
                             </div>
                           </div>

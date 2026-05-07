@@ -11,7 +11,7 @@ export default function BlogNewsletter() {
               <div className="w-16 h-16 rounded-2xl bg-brand-teal flex items-center justify-center mb-8 mx-auto lg:mx-0">
                  <Briefcase className="text-brand-950 w-8 h-8" />
               </div>
-              <h2 className="text-4xl md:text-6xl font-display font-medium text-white mb-6 uppercase italic leading-tight">
+              <h2 className="text-4xl md:text-6xl font-display font-medium text-teal-400 mb-6 uppercase italic leading-tight">
                  Operational <span className="text-gradient">Briefing</span>.
               </h2>
               <p className="text-slate-400 font-light text-lg leading-relaxed max-w-lg">

@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { Search, ShieldAlert, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
 
@@ -34,7 +36,7 @@ export default function CaseMethodology() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-24">
           <span className="text-brand-teal font-mono text-[10px] font-black uppercase tracking-[0.5em] mb-4 block italic">Deployment_Protocol</span>
-          <h2 className="text-4xl md:text-7xl font-display font-black text-white leading-none tracking-tighter uppercase italic">
+          <h2 className="text-4xl md:text-7xl font-display font-black text-teal-400 leading-none tracking-tighter uppercase italic">
             How We Secure <br/>
             <span className="text-gradient">The Node.</span>
           </h2>
@@ -59,7 +61,7 @@ export default function CaseMethodology() {
                   <step.icon className="w-5 h-5 text-slate-500 group-hover:text-brand-teal transition-colors" />
                 </div>
                 
-                <h3 className="text-xl font-display font-black text-white uppercase italic tracking-tight mb-4">
+                <h3 className="text-xl font-display font-black text-teal-400 uppercase italic tracking-tight mb-4">
                   {step.title}
                 </h3>
                 <p className="text-sm text-slate-500 font-light leading-relaxed group-hover:text-slate-300 transition-colors">

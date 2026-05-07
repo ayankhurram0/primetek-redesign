@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { BarChart3, TrendingUp, Shield, FlaskConical } from 'lucide-react';
 
@@ -35,7 +37,7 @@ export default function PerformanceMatrix() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-4">
             <span className="text-brand-teal font-mono text-[10px] font-black uppercase tracking-[0.4em] mb-6 block italic">Impact_Data_Set</span>
-            <h2 className="text-4xl md:text-6xl font-display font-black text-white leading-[0.9] tracking-tighter uppercase italic mb-8">
+            <h2 className="text-4xl md:text-6xl font-display font-black text-teal-400 leading-[0.9] tracking-tighter uppercase italic mb-8">
                Performance <br/>
                <span className="text-gradient">Benchmarks.</span>
             </h2>
@@ -74,7 +76,7 @@ export default function PerformanceMatrix() {
                 <div className="space-y-8">
                    <div>
                       <div className="text-[9px] text-slate-500 font-mono font-black uppercase tracking-widest mb-1">AVG_MONTHLY_RECOVERY</div>
-                      <div className="text-3xl font-display font-black text-white italic tracking-tighter">{node.recovery}</div>
+                      <div className="text-3xl font-display font-black text-teal-400 italic tracking-tighter">{node.recovery}</div>
                    </div>
                    <div className="pt-6 border-t border-white/5">
                       <div className="text-[9px] text-slate-500 font-mono font-black uppercase tracking-widest mb-1">EFFICIENCY_DELTA</div>

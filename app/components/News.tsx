@@ -1,292 +1,353 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
-  Bell,
-  TriangleAlert,
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-  ShieldAlert,
-  Database,
   Activity,
-  Layers
+  AlertTriangle,
+  Monitor,
 } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-import Image from "next/image";
-
-// Local Assets
+import { motion } from 'framer-motion';
 import auditCard from "@/src/assets/audit_card.png";
 import thresholdsCard from "@/src/assets/thresholds_card.png";
 import gapsCard from "@/src/assets/gaps_card.png";
 import mtfCard from "@/src/assets/mtf_card.png";
+import type { StaticImageData } from 'next/image';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+export interface AlertItem {
+  id: string;
+  title: string;
+  category: string;
+  priority: 'High' | 'Medium' | 'Low';
+  description: string;
+  activities: { text: string; time: string }[];
+  accentColor: string;
+  image: string | StaticImageData;
+}
 
-// Component: Stylized Badge
-const Badge = ({ children, variant = 'default', icon: Icon, className }: { children: React.ReactNode, variant?: 'default' | 'danger', icon?: any, className?: string }) => (
-  <div className={`flex items-center gap-3 px-6 py-2 rounded-full border-2 uppercase tracking-[0.2em] font-black text-xs 2xl:text-lg ${variant === 'default'
-    ? "bg-red-950/30 border-red-500/60 text-red-500 shadow-[0_0_20px_rgba(239,68,68,0.2)]"
-    : "bg-red-600/30 border-red-500 text-white shadow-[0_0_25px_rgba(239,68,68,0.3)]"
-    } ${className || ''}`}>
-    {Icon && <Icon size={32} className={variant === 'danger' ? "animate-pulse" : ""} />}
-    <span className="flex-1">{children}</span>
-  </div>
-);
+export const ALERTS: AlertItem[] = [
+  {
+    id: 'pbm-audit-risk',
+    title: 'Would Your Pharmacy Pass a PBM Audit Today?',
+    category: 'Audit Compliance',
+    priority: 'High',
+    description: 'Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss.',
+    accentColor: 'text-red-500',
+    image: auditCard,
+    activities: [
+      { text: 'Documentation gaps detected in 3 key areas', time: '2h ago' },
+      { text: 'Audit probability increased by 47%', time: '4h ago' }
+    ]
+  },
+  {
+    id: 'pbm-thresholds',
+    title: 'Are PBM Thresholds Quietly Reducing Your Reimbursements?',
+    category: 'Revenue Optimization',
+    priority: 'High',
+    description: 'Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks.',
+    accentColor: 'text-brand-red',
+    image: thresholdsCard,
+    activities: [
+      { text: 'Therapeutic class limits exceeded by 23%', time: '30m ago' },
+      { text: 'Adherence benchmarks below threshold by 18%', time: '2h ago' }
+    ]
+  },
+  {
+    id: 'operational-gaps',
+    title: 'Are Small Operational Gaps Creating Significant Financial Exposure?',
+    category: 'Financial Risk',
+    priority: 'High',
+    description: 'Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability.',
+    accentColor: 'text-red-500',
+    image: gapsCard,
+    activities: [
+      { text: 'Workflow inefficiency costing $12.4K monthly', time: '1h ago' },
+      { text: 'Compliance exposure identified in 2 departments', time: '3h ago' }
+    ]
+  },
+  {
+    id: 'backend-revenue',
+    title: 'Backend Revenue Control',
+    category: 'Revenue Recovery',
+    priority: 'High',
+    description: 'MTF Revenue Leakage Control: If you are not actively tracking or disputing MTF payments, you are silently losing backend revenue.',
+    accentColor: 'text-brand-red',
+    image: mtfCard,
+    activities: [
+      { text: 'Unreconciled MTF payments: $8,200', time: '45m ago' },
+      { text: 'Revenue leakage detected in 4 categories', time: '2h ago' }
+    ]
+  }
+];
 
-// Component: Cyber Button
-const CyberButton = ({ children, variant = 'primary', icon: Icon, onClick, className }: { children: React.ReactNode, variant?: 'primary' | 'outline', icon?: any, onClick?: () => void, className?: string }) => (
-  <button
-    onClick={onClick}
-    className={`group relative flex items-center gap-3 px-8 py-4 rounded-xl font-bold transition-all duration-300 active:scale-95 ${variant === 'primary'
-      ? "bg-red-600 text-white shadow-[0_0_30px_rgba(220,38,38,0.4)] hover:bg-red-500 hover:shadow-[0_0_40px_rgba(220,38,38,0.6)]"
-      : "border-2 border-red-600/50 text-white hover:bg-red-600 hover:border-red-600 shadow-[0_0_20px_rgba(220,38,38,0.2)]"
-      } ${className || ''}`}>
-    {children}
-    {Icon && <Icon size={20} className="transition-transform group-hover:translate-x-1" />}
-  </button>
-);
+// --- Sub-components ---
 
-export const News = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const leftContentRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+function RadarAnimation() {
+  return (
+    <div className="relative w-48 h-48 flex items-center justify-center">
+      {[...Array(4)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full border border-red-500/50"
+          initial={{ width: 40, height: 40, opacity: 0 }}
+          animate={{
+            width: 40 + i * 40,
+            height: 40 + i * 40,
+            opacity: [0, 0.4, 0]
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            delay: i * 0.5,
+            ease: "linear"
+          }}
+        />
+      ))}
+      <div className="z-10 bg-red-500/20 p-4 rounded-full border-2 border-red-500">
+        <Activity className="w-8 h-8 text-red-500" />
+      </div>
+      <motion.div
+        className="absolute w-2 h-2 bg-red-500 rounded-full shadow-[0_0_15px_#ef4444]"
+        animate={{
+          rotate: 360,
+          x: [0, 60, 0, -60, 0],
+          y: [0, 0, 60, 0, -60],
+        }}
+        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+        style={{ originX: '0.5', originY: '0.5' }}
+      />
+    </div>
+  );
+}
 
-  const slides = [
-    {
-      title: "Would Your Pharmacy Pass a PBM Audit Today?",
-      description: "Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss.",
-      image: auditCard,
-      cta: "Analyze Exposure"
-    },
-    {
-      title: "Are PBM Thresholds Quietly Reducing Your Reimbursements?",
-      description: "Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks.",
-      image: thresholdsCard,
-      cta: "Check Thresholds"
-    },
-    {
-      title: "Are Small Operational Gaps Creating Significant Financial Exposure?",
-      description: "Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability.",
-      image: gapsCard,
-      cta: "Audit Gaps"
-    },
-    {
-      title: "Backend Revenue Control",
-      description: "MTF Revenue Leakage Control: If you are not actively tracking or disputing MTF payments, you are silently losing backend revenue.",
-      image: mtfCard,
-      cta: "Reconcile MTF"
-    }
-  ];
+export default function IntelligenceDashboard() {
+  const [activeAlertId, setActiveAlertId] = useState(ALERTS[2].id);
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
 
-  useGSAP(() => {
-    // Initial Entrance with ScrollTrigger
-    gsap.from(leftContentRef.current, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power3.out'
-    });
+  const activeAlert = ALERTS.find(a => a.id === activeAlertId) || ALERTS[0];
 
-    gsap.from(cardRef.current, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1.5,
-      ease: 'power4.out',
-      delay: 0.3
-    });
-
-    // Animate badge icons
-    gsap.to(".pulse-icon", {
-      scale: 1.1,
-      repeat: -1,
-      yoyo: true,
-      duration: 2,
-      ease: "sine.inOut"
-    });
-
-    // Pulse effect for Critical Insights
-    gsap.to(".pulse-badge", {
-      borderColor: "rgba(239, 68, 68, 0.8)",
-      backgroundColor: "rgba(239, 68, 68, 0.15)",
-      duration: 1.5,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
-
-    gsap.to(".inner-dot", {
-      opacity: 0.4,
-      scale: 1.5,
-      repeat: -1,
-      yoyo: true,
-      duration: 1,
-      ease: "power1.inOut"
-    });
-  }, { scope: containerRef });
-
-  const nextSlide = React.useCallback(() => {
-    gsap.to(cardRef.current, {
-      opacity: 0,
-      x: -20,
-      duration: 0.3,
-      onComplete: () => {
-        setActiveSlide((prev) => (prev + 1) % slides.length);
-        gsap.fromTo(cardRef.current,
-          { opacity: 0, x: 20 },
-          { opacity: 1, x: 0, duration: 0.5 }
-        );
-      }
-    });
-  }, [slides.length]);
-
-  const prevSlide = React.useCallback(() => {
-    gsap.to(cardRef.current, {
-      opacity: 0,
-      x: 20,
-      duration: 0.3,
-      onComplete: () => {
-        setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length);
-        gsap.fromTo(cardRef.current,
-          { opacity: 0, x: -20 },
-          { opacity: 1, x: 0, duration: 0.5 }
-        );
-      }
-    });
-  }, [slides.length]);
-
-  // Auto-scroll logic
   useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(timer);
-  }, [nextSlide]); // Reset timer on slide change (manual or auto)
+    if (!isAutoRotating) return;
+    const interval = setInterval(() => {
+      setActiveAlertId(prev => {
+        const currentIndex = ALERTS.findIndex(a => a.id === prev);
+        const nextIndex = (currentIndex + 1) % ALERTS.length;
+        return ALERTS[nextIndex].id;
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isAutoRotating]);
 
   return (
-    <div ref={containerRef} className="min-h-screen relative flex items-center justify-center 2xl:px-24 overflow-hidden">
+    <div className="space-y-16 2xl:px-24 2xl:py-20 relative overflow-hidden min-h-screen">
+      {/* Decorative Elements - Top Right */}
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path
+            d="M500 0 C250 0, 250 250, 0 250"
+            stroke="url(#news-gradient-tr)"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M500 80 C300 80, 300 300, 80 300"
+            stroke="url(#news-gradient-tr)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.6"
+          />
+          <path
+            d="M500 160 C350 160, 350 350, 160 350"
+            stroke="url(#news-gradient-tr)"
+            strokeWidth="1"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.4"
+          />
+          {[...Array(8)].map((_, i) => (
+            <circle
+              key={`tr-${i}`}
+              cx={450 - i * 35}
+              cy={30 + i * 25}
+              r="3"
+              fill="#ef4444"
+              opacity={0.6 + i * 0.05}
+            />
+          ))}
+          <defs>
+            <linearGradient id="news-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ef4444" stopOpacity="1" />
+              <stop offset="50%" stopColor="#ef4444" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-      {/* Background Decorative Elements */}
-      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* Decorative Elements - Bottom Left */}
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+          <path
+            d="M0 500 C250 500, 250 250, 500 250"
+            stroke="url(#news-gradient-bl)"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M0 420 C200 420, 200 200, 420 200"
+            stroke="url(#news-gradient-bl)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.6"
+          />
+          <path
+            d="M0 340 C150 340, 150 150, 340 150"
+            stroke="url(#news-gradient-bl)"
+            strokeWidth="1"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.4"
+          />
+          {[...Array(8)].map((_, i) => (
+            <circle
+              key={`bl-${i}`}
+              cx={30 + i * 35}
+              cy={470 - i * 25}
+              r="3"
+              fill="#ef4444"
+              opacity={0.6 + i * 0.05}
+            />
+          ))}
+          <defs>
+            <linearGradient id="news-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ef4444" stopOpacity="1" />
+              <stop offset="50%" stopColor="#ef4444" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-      {/* Red ambient glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
-
-      {/* Abstract Grid Overlays */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-      <main className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-
-        {/* Left Column: Alerts & Intro */}
-        <div ref={leftContentRef} className="lg:col-span-4 space-y-10">
-          <div className="space-y-6">
-            <Badge icon={Bell} className="w-fit"><span className="text-3xl font-semibold">Critical Insights</span></Badge>
-
-            <h1 className="text-4xl 2xl:text-6xl font-bold leading-[1.1] tracking-tight text-white">
-              Pharmacy Compliance
-              <br />
-              &<span className="text-red-600"> Revenue Performance</span>
-            </h1>
-
-            <p className="text-slate-400 text-xl md:text-2xl max-w-lg leading-relaxed font-medium">
-              Real-time alerts help you stay ahead of compliance risks, revenue leakage, and operational issues.
-            </p>
-          </div>
-
-          <div className="pt-6">
-            <CyberButton icon={ArrowRight} className="text-lg px-10 py-5">
-              View All Alerts
-            </CyberButton>
-          </div>
+      {/* Headings */}
+      <section className="space-y-4 text-center lg:text-left">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-4xl font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+          Critical Insights
         </div>
+        <h2 className="text-4xl 2xl:text-6xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+          Pharmacy Compliance <br />
+          <span className="text-white">& </span><span className="text-red-600">Revenue Performance</span>
+        </h2>
+      </section>
 
-        {/* Right Column: Hero Card Slider */}
-        <div className="lg:col-span-8 relative">
-          {/* Glowing Border Container */}
-          <div className="relative p-[1.5px] rounded-[3rem] bg-gradient-to-br from-red-500 via-red-600 to-red-900 shadow-[0_0_60px_rgba(220,38,38,0.3)]">
-            {/* Main Card */}
-            <div
-              ref={cardRef}
-              className="relative aspect-[16/10] w-full rounded-[2.9rem] overflow-hidden bg-[#02040a] z-10"
-            >
-              {/* Background Image */}
-              <img
-                src={typeof slides[activeSlide].image === 'string' ? slides[activeSlide].image : (slides[activeSlide].image as { src: string }).src}
-                alt={slides[activeSlide].title}
-                className="absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-700"
-              />
+      {/* Main Interaction Dashboard */}
+      <section id="intelligence" className="animate-in fade-in duration-700">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 items-start">
 
-              {/* Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-[#02040a]/20 to-transparent" />
-              <div className="absolute inset-0 border-[1px] border-red-500/10 rounded-[2.9rem]" />
-
-              {/* Top Right Label */}
-              <div className="absolute top-10 right-10">
-                <Badge variant="danger" icon={TriangleAlert} className="rounded-2xl border-red-500/50 bg-red-950/60 px-5 py-2.5 text-red-500 text-sm">
-                  High Risk
-                </Badge>
-              </div>
-
-              {/* Content Overlay */}
-              <div className="absolute inset-x-0 bottom-0 p-12 md:p-20 space-y-10">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight text-white max-w-2xl">
-                      {slides[activeSlide].title}
-                    </h2>
+          {/* Sidebar Controls */}
+          <div className="lg:col-span-4 w-full space-y-3">
+            {ALERTS.map((alert) => (
+              <button
+                key={alert.id}
+                onClick={() => {
+                  setActiveAlertId(alert.id);
+                  setIsAutoRotating(false);
+                }}
+                className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 backdrop-blur-sm group ${activeAlertId === alert.id
+                  ? 'bg-red-950/40 border-red-500 shadow-[0_0_25px_rgba(239,68,68,0.3)]'
+                  : 'bg-red-950/20 border-red-500/40 hover:border-red-400 hover:bg-red-950/30'
+                  }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? 'bg-red-600/20 text-red-400' : 'bg-red-950/30 text-red-500/60'}`}>
+                    {alert.priority === 'High' ? <AlertTriangle className="w-8 w-8" /> : <Monitor className="w-8 w-8" />}
                   </div>
-                  <p className="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl font-light">
-                    {slides[activeSlide].description}
-                  </p>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-base font-semibold uppercase tracking-wider text-red-400/80 mb-1">{alert.category}</div>
+                    <div className="text-2xl font-medium truncate text-white group-hover:text-red-100 transition-colors">{alert.title}</div>
+                  </div>
+                  {activeAlertId === alert.id && (
+                    <motion.div
+                      layoutId="active-dot"
+                      className="w-8 w-8 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444]"
+                    />
+                  )}
                 </div>
+              </button>
+            ))}
 
-                <CyberButton variant="outline" icon={ChevronRight} className="rounded-full px-12 py-5 border-red-600 text-red-600 hover:bg-red-600 hover:text-white text-xl">
-                  {slides[activeSlide].cta}
-                </CyberButton>
+            <div className="pt-4 flex items-center justify-between px-2 text-xs text-red-400/60">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  {[...Array(ALERTS.length)].map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-2 rounded-full transition-all duration-1000 ${isAutoRotating && ALERTS.indexOf(activeAlert) === i ? 'w-6 bg-red-500 shadow-[0_0_8px_#ef4444]' : 'w-2 bg-red-500/30'
+                        }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-red-300 text-xl">Auto-rotating</span>
               </div>
+              {!isAutoRotating && (
+                <button onClick={() => setIsAutoRotating(true)} className="text-red-400 hover:text-red-300 hover:underline transition-colors font-semibold shadow-[0_0_10px_rgba(239,68,68,0.2)]">Resume</button>
+              )}
             </div>
           </div>
 
-          {/* Slider Controls */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 rounded-full border-2 border-red-600/50 bg-[#02040a] flex items-center justify-center text-white hover:bg-red-600 transition-all z-20 shadow-[0_0_20px_rgba(220,38,38,0.2)]"
-          >
-            <ChevronLeft size={28} />
-          </button>
+          {/* Detail Panel */}
+          <div className="lg:col-span-8 w-full bg-gradient-to-br from-red-950/30 to-blue-950/40 backdrop-blur-xl rounded-2xl p-8 min-h-[460px] relative overflow-hidden group border-2 border-red-500/60">
+            <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-20 -z-10" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 blur-[100px] rounded-full -mr-20 -mt-20 group-hover:bg-red-600/30 transition-colors" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-900/10 blur-[80px] rounded-full -ml-10 -mb-10" />
 
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-14 h-14 rounded-full border-2 border-red-600/50 bg-[#02040a] flex items-center justify-center text-white hover:bg-red-600 transition-all z-20 shadow-[0_0_20px_rgba(220,38,38,0.2)]"
-          >
-            <ChevronRight size={28} />
-          </button>
+            <div className="relative z-10 h-full flex flex-col">
+              <div className="flex justify-between items-start mb-12">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.5)] border border-red-400">
+                      <AlertTriangle className="w-3 h-3" />
+                      {activeAlert.priority.toUpperCase()} PRIORITY
+                    </span>
+                    <span className="text-xs tracking-widest text-slate-500 uppercase font-mono">
+                      PRIME<span className="text-white">TEK</span> INTELLIGENCE FEED — LIVE
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_#ef4444]" />
+                    <span className="text-sm font-semibold uppercase tracking-wider text-red-400">Monitoring Active</span>
+                  </div>
+                </div>
+              </div>
 
-          {/* Pagination */}
-          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveSlide(i)}
-                className={`h-1.5 transition-all duration-300 rounded-full ${activeSlide === i ? "w-16 bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.8)]" : "w-8 bg-white/10 hover:bg-white/20"
-                  }`}
-              />
-            ))}
+              <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-between">
+                <div className="space-y-6 flex-1">
+                  <h2 className="text-5xl font-sans font-bold text-white leading-tight">
+                    {activeAlert.title}
+                  </h2>
+                  <p className="text-slate-400 leading-relaxed text-xl">
+                    {activeAlert.description}
+                  </p>
+
+                  <div className="space-y-3 pt-4">
+                    <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Activity</h3>
+                    {activeAlert.activities.map((act, i) => (
+                      <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-red-500/30 bg-red-950/20 group/item hover:border-red-500 hover:bg-red-950/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] transition-all">
+                        <div className="flex items-center gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
+                          <span className="text-lg font-medium text-white">{act.text}</span>
+                        </div>
+                        <span className="text-sm font-mono text-slate-500">{act.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                              </div>
+            </div>
           </div>
         </div>
-      </main>
+      </section>
     </div>
   );
-};
+}

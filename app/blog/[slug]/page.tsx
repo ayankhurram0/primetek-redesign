@@ -27,11 +27,11 @@ export default function BlogInnerPage({ params }: { params: Promise<{ slug: stri
       <Navbar />
 
       {/* Blog Hero Container - No large image bg, elegant text focus */}
-      <section className="relative pt-40 pb-20 bg-[#f8fbfa] border-b border-[#71c6a4]/20">
+      <section className="relative pt-40 pb-20 bg-[#f8fbfa] border-b border-teal-400/20">
         <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
           <StaggerContainer delayChildren={0.2} staggerChildren={0.15}>
             <StaggerItem>
-              <div className="flex items-center justify-center gap-2 text-sm font-black tracking-widest uppercase mb-6 text-[#71c6a4]">
+              <div className="flex items-center justify-center gap-2 text-sm font-black tracking-widest uppercase mb-6 text-teal-400">
                 <Link href="/" className="hover:text-[#2b4c8c] transition-colors">Home</Link>
                 <span className="text-slate-300">/</span>
                 <Link href="/blog" className="hover:text-[#2b4c8c] transition-colors">Blog</Link>
@@ -49,17 +49,17 @@ export default function BlogInnerPage({ params }: { params: Promise<{ slug: stri
             <StaggerItem>
               <div className="flex items-center justify-center gap-6 text-slate-500 font-medium text-sm md:text-base">
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-[#71c6a4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                  <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                   <span>{post.author}</span>
                 </div>
                 <div className="w-1.5 h-1.5 rounded-full bg-slate-300"></div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-[#71c6a4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                  <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                   <span>{post.date}</span>
                 </div>
                 <div className="w-1.5 h-1.5 rounded-full bg-slate-300"></div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-[#71c6a4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                   <span>{readTime} Min Read</span>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function BlogInnerPage({ params }: { params: Promise<{ slug: stri
                          prose-headings:font-black prose-headings:text-[#2b4c8c] prose-headings:mb-6
                          prose-h2:text-3xl prose-h2:mt-12
                          prose-p:font-light prose-p:text-slate-600 prose-p:leading-relaxed prose-p:mb-8
-                         prose-a:text-[#71c6a4] prose-a:font-bold hover:prose-a:text-[#2b4c8c]
+                         prose-a:text-teal-400 prose-a:font-bold hover:prose-a:text-[#2b4c8c]
                          prose-strong:text-[#2b4c8c] prose-strong:font-bold
                          prose-li:text-slate-600 prose-li:font-light
                          border-b border-slate-200 pb-16"
@@ -114,7 +114,7 @@ export default function BlogInnerPage({ params }: { params: Promise<{ slug: stri
                 </button>
               </div>
               
-              <Link href="/blog" className="px-6 py-3 bg-[#71c6a4]/10 text-[#2b4c8c] font-black uppercase tracking-wider text-xs rounded-full hover:bg-[#71c6a4] hover:text-white transition-colors">
+              <Link href="/blog" className="px-6 py-3 bg-teal-400/10 text-[#2b4c8c] font-black uppercase tracking-wider text-xs rounded-full hover:bg-teal-400 hover:text-white transition-colors">
                 Back to All Articles
               </Link>
             </div>

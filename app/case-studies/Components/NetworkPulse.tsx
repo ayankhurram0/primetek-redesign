@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { useEffect, useState, useRef } from 'react';
 import { Activity, Radio, Database, ShieldAlert, Cpu } from 'lucide-react';
@@ -70,7 +72,7 @@ export default function NetworkPulse() {
 
                 <div className="grid grid-cols-2 gap-8 mb-10">
                   <div>
-                    <div className="text-white font-display font-black text-3xl italic tracking-tighter">4,812</div>
+                    <div className="text-teal-400 font-display font-black text-3xl italic tracking-tighter">4,812</div>
                     <div className="text-[9px] text-slate-500 font-mono font-black uppercase tracking-widest mt-1">ACTIVE_NODES</div>
                   </div>
                   <div>

@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { Clock, ArrowUpRight } from 'lucide-react';
 
@@ -41,7 +43,7 @@ export default function BlogGrid() {
                       <Clock className="w-3 h-3" /> {post.date}
                     </span>
                   </div>
-                  <h3 className="text-xl font-display font-medium text-white uppercase italic leading-tight group-hover:text-brand-teal transition-colors">
+                  <h3 className="text-xl font-display font-medium text-teal-400 uppercase italic leading-tight group-hover:text-brand-teal transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-slate-400 font-light text-sm leading-relaxed line-clamp-2">

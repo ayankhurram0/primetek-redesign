@@ -31,11 +31,11 @@ function FAQItem({ question, answer }: { question: string, answer: string }) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between text-left group"
       >
-        <span className={`text-xl font-black transition-colors duration-300 ${isOpen ? 'text-[#71c6a4]' : 'text-[#2b4c8c] group-hover:text-[#71c6a4]'}`}>
+        <span className={`text-xl font-black transition-colors duration-300 ${isOpen ? 'text-teal-400' : 'text-[#2b4c8c] group-hover:text-teal-400'}`}>
           {question}
         </span>
         <span className={`shrink-0 ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-          <svg className="w-6 h-6 text-[#71c6a4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
           </svg>
         </span>
@@ -61,13 +61,13 @@ export default function ServicesFAQ() {
               Frequently Asked Questions
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-[#2b4c8c] leading-tight mb-6">
-              Got Questions? We Have <span className="text-[#71c6a4]">Answers</span>
+              Got Questions? We Have <span className="text-teal-400">Answers</span>
             </h2>
           </AnimationWrapper>
         </div>
 
         <AnimationWrapper direction="up" distance={30} delay={0.2}>
-          <div className="bg-white p-10 md:p-16 rounded-[3rem] shadow-2xl border border-slate-100 italic font-medium">
+          <div className="bg-white p-10 md:p-16 rounded-[3rem] shadow-2xl border border-slate-100 font-medium">
             {faqs.map((faq, index) => (
               <FAQItem key={index} question={faq.question} answer={faq.answer} />
             ))}

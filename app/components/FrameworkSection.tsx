@@ -106,6 +106,28 @@ export default function FrameworkSection() {
   return (
     <div className="bg-white">
       <section ref={containerRef} className="relative min-h-[700vh]">
+        {/* Decorative Elements - Top Right */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#framework-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#framework-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#framework-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="framework-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
+
+        {/* Decorative Elements - Bottom Left */}
+        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
+          <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
+            <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#framework-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#framework-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#framework-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
+            {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#2b4c8c" opacity={0.6 + i * 0.05} />))}
+            <defs><linearGradient id="framework-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#2b4c8c" stopOpacity="1" /><stop offset="50%" stopColor="#2b4c8c" stopOpacity="0.5" /><stop offset="100%" stopColor="#2b4c8c" stopOpacity="0" /></linearGradient></defs>
+          </svg>
+        </div>
+
         <div ref={triggerRef} className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
           
           <motion.div 
@@ -133,7 +155,7 @@ export default function FrameworkSection() {
             <p className="text-black/60 text-base md:text-lg max-w-3xl leading-relaxed">
               PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
             </p>
-            <h3 className="text-[#71c6a4] text-xl md:text-2xl font-bold mt-8">
+            <h3 className="text-teal-400 text-xl md:text-2xl font-bold mt-8">
               Our 4-Step Operational Framework
             </h3>
           </motion.div>
@@ -147,7 +169,7 @@ export default function FrameworkSection() {
             {/* Animated line */}
             <motion.div
               style={{ height: lineHeight }}
-              className="absolute left-1/2 top-[10%] w-[4px] bg-[#71c6a4] hidden md:block -translate-x-1/2 rounded-full origin-top"
+              className="absolute left-1/2 top-[10%] w-[4px] bg-teal-400 hidden md:block -translate-x-1/2 rounded-full origin-top"
             />
 
             <div className="w-full h-full relative flex flex-col justify-center space-y-6">
@@ -164,7 +186,7 @@ export default function FrameworkSection() {
                   >
                     <div className={`flex-1 ${isRight ? "pr-8 text-right" : "pl-8 text-left"}`}>
                       <div className={`inline-block ${isRight ? "text-right" : "text-left"}`}>
-                        <span className="text-[#71c6a4] text-xs font-mono tracking-tighter mb-2 block">
+                        <span className="text-teal-400 text-xs font-mono tracking-tighter mb-2 block">
                           PHASE {step.id}
                         </span>
                         <h4 className="text-[#2b4c8c] text-2xl md:text-3xl font-black mb-3">
@@ -179,7 +201,7 @@ export default function FrameworkSection() {
                     <div className="relative z-30 mx-2 flex items-center justify-center">
                       <motion.div 
                         style={{ scale: transforms.scale }}
-                        className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#71c6a4] border-4 border-white shadow-lg flex items-center justify-center"
+                        className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-teal-400 border-4 border-white shadow-lg flex items-center justify-center"
                       >
                         <span className="text-white font-black text-base">{step.id}</span>
                       </motion.div>
@@ -190,7 +212,7 @@ export default function FrameworkSection() {
                         style={{ scale: transforms.iconScale }}
                         className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white shadow-lg border border-gray-100 flex items-center justify-center"
                       >
-                        <Icon className="w-5 h-5 md:w-6 md:h-6 text-[#71c6a4]" strokeWidth={1.5} />
+                        <Icon className="w-5 h-5 md:w-6 md:h-6 text-teal-400" strokeWidth={1.5} />
                       </motion.div>
                     </div>
                   </motion.div>

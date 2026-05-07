@@ -35,9 +35,9 @@ export const TestingSection: React.FC = () => {
             stat: "$1.2M+",
             statLabel: "leakage identified across client pharmacies",
             link: "Analyze Revenue",
-            icon: <TrendingUp className="w-6 h-6 text-[#71c6a4]" />,
+            icon: <TrendingUp className="w-6 h-6 text-teal-400" />,
             glow: "from-emerald-500/10 to-transparent",
-            hoverClass: "hover:bg-[#71c6a4]/15 hover:border-[#71c6a4]/60 hover:shadow-[0_20px_80px_rgba(113,198,164,0.25)]",
+            hoverClass: "hover:bg-teal-400/15 hover:border-teal-400/60 hover:shadow-[0_20px_80px_rgba(113,198,164,0.25)]",
             accentColor: "#71c6a4"
         },
         {
@@ -145,12 +145,12 @@ export const TestingSection: React.FC = () => {
                     <div className="text-center mb-12 flex flex-col items-center">
                         <div ref={subHeadingRef} className="flex items-center gap-4 mb-6">
                             <div className="h-[1px] w-8 bg-white/20" />
-                            <span className="text-[#71c6a4] font-bold text-xs tracking-widest uppercase">OUR SERVICES</span>
+                            <span className="text-teal-400 font-bold text-xs tracking-widest uppercase">OUR SERVICES</span>
                             <div className="h-[1px] w-8 bg-white/20" />
                         </div>
                         <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
                             Operational Systems That Protect  <br />
-                            <span className="text-[#71c6a4]">& Grow Pharmacy Revenue</span>
+                            <span className="text-teal-400">& Grow Pharmacy Revenue</span>
                         </h2>
                         <p ref={textRef} className="text-white/60 text-lg max-w-2xl leading-relaxed">
                             We identify revenue leakage, reduce audit exposure, and optimize operations across your pharmacy using structured, data-driven systems.
