@@ -1,7 +1,8 @@
-import ContactHero from "./Components/ContactHero";
-import ContactForm from "./Components/ContactForm";
-import ContactInfo from "./Components/ContactInfo";
-import ContactStats from "./Components/ContactStats";
+
+import { ContactHero } from "./Components/ContactHero";
+import { ContactFormSection } from "./Components/ContactFormSection";
+import { ContactStats } from "./Components/ContactStats";
+import { OfficeLocations } from "./Components/OfficeLocations";
 
 export const metadata = {
   title: "Contact | PrimeTek Services",
@@ -14,14 +15,14 @@ export default function ContactPage() {
       <ContactHero />
       
       {/* Contact Section */}
-      <section className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12">
-          <ContactForm />
-          <ContactInfo />
+      <section className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <ContactFormSection />
         </div>
       </section>
       
       <ContactStats />
+      <OfficeLocations />
     </main>
   );
 }

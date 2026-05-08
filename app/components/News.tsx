@@ -234,7 +234,7 @@ export default function IntelligenceDashboard() {
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-4xl font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
           Critical Insights
         </div>
-        <h2 className="text-4xl 2xl:text-6xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+        <h2 className="text-6xl 2xl:text-6xl xl:text-6xl font-bold tracking-tight text-white leading-tight">
           Pharmacy Compliance <br />
           <span className="text-white">& </span><span className="text-red-600">Revenue Performance</span>
         </h2>

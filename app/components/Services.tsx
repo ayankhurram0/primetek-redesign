@@ -30,15 +30,15 @@ export const ServicesSection: React.FC = () => {
             title: "Revenue Intelligence & Reporting",
             tag: "REVENUE LOSS",
             tagColor: "text-red-500/90",
-            dotColor: "bg-red-500",
+            dotColor: "bg-red-500/90",
             description: "Track reimbursement trends, identify underpayments, and uncover revenue leakage across all payers.",
             stat: "$1.2M+",
             statLabel: "leakage identified across client pharmacies",
             link: "Analyze Revenue",
-            icon: <TrendingUp className="w-6 h-6 text-teal-400" />,
-            glow: "from-emerald-500/10 to-transparent",
-            hoverClass: "hover:bg-teal-400/15 hover:border-teal-400/60 hover:shadow-[0_20px_80px_rgba(113,198,164,0.25)]",
-            accentColor: "#71c6a4"
+            icon: <TrendingUp className="w-6 h-6 text-red-500/90" />,
+            glow: "from-red-500/10 to-transparent",
+            hoverClass: "hover:bg-red-500/15 hover:border-red-500/60 hover:shadow-[0_20px_80px_rgba(113,198,164,0.25)]",
+            accentColor: "red-500/90"
         },
         {
             title: "Claims & Reimbursement Optimization",
@@ -100,7 +100,7 @@ export const ServicesSection: React.FC = () => {
 
     useGSAP(() => {
         // Simple entrance animation instead of pinned scroll
-        gsap.fromTo([subHeadingRef.current, headingRef.current, textRef.current], 
+        gsap.fromTo([subHeadingRef.current, headingRef.current, textRef.current],
             { opacity: 0, y: 30 },
             {
                 opacity: 1,
@@ -116,7 +116,7 @@ export const ServicesSection: React.FC = () => {
             }
         );
 
-        gsap.fromTo(".service-category-card", 
+        gsap.fromTo(".service-category-card",
             { opacity: 0, y: 50 },
             {
                 opacity: 1,
@@ -216,7 +216,7 @@ export const ServicesSection: React.FC = () => {
                                                 {service.statLabel}
                                             </p>
                                         </div>
-                                        <button 
+                                        <button
                                             className="flex items-center gap-2 text-xs font-bold transition-all"
                                             style={{ color: service.accentColor }}
                                         >
@@ -264,7 +264,7 @@ export const ServicesSection: React.FC = () => {
                                                 {service.statLabel}
                                             </p>
                                         </div>
-                                        <button 
+                                        <button
                                             className="flex items-center gap-2 text-xs font-bold transition-all"
                                             style={{ color: service.accentColor }}
                                         >

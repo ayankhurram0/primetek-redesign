@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import { Target, Eye } from "lucide-react";
 
 const missionVision = [
@@ -17,29 +18,41 @@ const missionVision = [
 ];
 
 export const MissionVision = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".reveal-mv", {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+        }
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative py-44 px-6 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
+    <section ref={containerRef} className="relative py-44 px-6 overflow-hidden bg-brand-light">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-8">
           {missionVision.map((item, i) => (
-            <motion.div
+            <div
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              className={`p-16 rounded-[60px] relative overflow-hidden group
-                ${item.type === 'mission' ? 'bg-white/5 border border-white/10' : 'bg-brand-teal/10 border border-brand-teal/20'}
+              className={`reveal-mv p-16 rounded-[48px] relative overflow-hidden group bg-white border border-slate-100 shadow-xl hover:shadow-2xl transition-all duration-700
               `}
             >
-              <item.icon className="w-12 h-12 text-brand-teal mb-12 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
-              <h3 className="text-4xl font-display font-medium text-white mb-8 italic tracking-tighter">{item.title}</h3>
-              <p className="text-lg text-slate-400 font-light leading-relaxed group-hover:text-slate-200 transition-colors">
+              <item.icon className="w-16 h-16 text-brand-teal mb-16 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              <h3 className="text-6xl font-black text-brand-dark mb-8 tracking-tighter uppercase">{item.title}</h3>
+              <p className="text-xl text-slate-500 font-medium leading-relaxed">
                 {item.description}
               </p>
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-teal opacity-0 group-hover:opacity-5 blur-[100px] transition-opacity" />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

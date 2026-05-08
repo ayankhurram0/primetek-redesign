@@ -18,26 +18,17 @@ export default function CaseHero() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.1)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+      <div className="px-26 relative z-10 w-full">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-3 px-4 py-2 rounded-sm border border-brand-teal/30 bg-brand-teal/5 mb-10"
-          >
-            <Terminal className="w-4 h-4 text-brand-teal" />
-            <span className="text-[10px] font-mono text-brand-teal uppercase tracking-[0.4em] font-black">Archive_Protocol_Active</span>
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-9xl font-display font-black leading-[0.9] tracking-tighter uppercase italic mb-8"
+            className="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase mb-8"
           >
             <span className="text-teal-400">Proven</span> <br />
-            <span className="text-white font-light not-italic">Outcomes.</span>
+            <span className="text-white font-light">Outcomes.</span>
           </motion.h1>
 
           <motion.p

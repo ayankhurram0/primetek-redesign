@@ -1,37 +1,42 @@
 "use client";
-
-import { motion } from 'motion/react';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const stats = [
-  { label: 'Pharmacies Supported', value: '100+' },
-  { label: 'Revenue Recovered', value: '$4.2M+' },
-  { label: 'Audit Readiness Score', value: '98%' },
-  { label: 'Response Time', value: '1 Day' },
+  { value: "100+", label: "Pharmacies Supported" },
+  { value: "$4.2M+", label: "Revenue Recovered" },
+  { value: "98%", label: "Audit Readiness Score" },
 ];
 
-export default function ContactStats() {
+export const ContactStats = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".reveal-stat", {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 90%",
+        }
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-32 bg-brand-950 border-t border-white/5 relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-20 [mask-image:linear-gradient(to_bottom,black,transparent)]">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
-      </div>
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 border border-white/5">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-brand-950 p-12 flex flex-col items-center group hover:bg-brand-teal/[0.02] transition-colors"
-            >
-              <div className="text-4xl md:text-6xl font-display font-black text-white tracking-tighter mb-4 group-hover:scale-105 transition-transform">{stat.value}</div>
-              <div className="text-[9px] font-mono text-slate-500 font-black uppercase tracking-[0.4em] leading-tight text-center">{stat.label.replace(' ', '_')}</div>
-            </motion.div>
-          ))}
-        </div>
+    <section ref={containerRef} className="py-20 px-6 border-t border-white/5 bg-brand-dark">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center">
+        {stats.map((stat, i) => (
+          <div key={i} className="reveal-stat flex-1">
+            <div className="text-5xl font-black text-white mb-4 tracking-tighter">{stat.value}</div>
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">{stat.label}</div>
+          </div>
+        ))}
       </div>
     </section>
   );
-}
+};

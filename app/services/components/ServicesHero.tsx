@@ -1,41 +1,26 @@
-"use client";
+import { motion } from "motion/react";
 
-import AnimationWrapper, { StaggerContainer, StaggerItem } from "@/app/components/AnimationWrapper";
-import Link from "next/link";
-
-export default function ServicesHero() {
+export const ServicesHero = () => {
   return (
-    <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white overflow-hidden pt-20 bg-[#2b4c8c]">
-      {/* Decorative pulse background */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-400 rounded-full blur-[120px] animate-pulse"></div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl px-8 flex flex-col items-center">
-        <StaggerContainer delayChildren={0.3} staggerChildren={0.15} className="flex flex-col items-center">
-          <StaggerItem>
-            <div className="flex items-center gap-2 text-sm font-medium tracking-widest uppercase mb-6 text-teal-400">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span>/</span>
-              <span className="text-white">Our Services</span>
-            </div>
-          </StaggerItem>
-
-          <StaggerItem>
-            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight text-white drop-shadow-xl">
-              COMPREHENSIVE <br className="hidden md:block" />
-              SOLUTIONS
-            </h1>
-          </StaggerItem>
-
-          <StaggerItem>
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light max-w-2xl mx-auto">
-              PrimeTek Services provides the operational bridge your pharmacy needs to
-              standardize compliance and maximize revenue performance.
-            </p>
-          </StaggerItem>
-        </StaggerContainer>
+    <section className="relative pt-44 pb-20 px-26 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
+      <div className="relative z-10 text-center">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8 }}
+        >
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/[0.03] border border-white/10 text-brand-teal text-[10px] font-black uppercase tracking-[0.4em] mb-10">
+          </div>
+          <h1 className="text-6xl md:text-6xl xl:text-8xl font-poppins font-bold text-white tracking-tighter mb-8 leading-none">
+            Five Services. <br />
+            <span className="text-teal-400">One Mission.</span>
+          </h1>
+          <p className="text-2xl w-[80%] mx-auto font-poppins text-slate-400 font-light leading-relaxed">
+            Every PrimeTek service is built around a single goal — protecting and growing your pharmacy's financial performance through non-clinical operational intelligence.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
-}
+};
