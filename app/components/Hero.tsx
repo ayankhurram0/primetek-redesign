@@ -120,13 +120,13 @@ export const Hero: React.FC = () => {
               textColor="white"
               borderColor="teal-400"
               rippleColor="#2b4c8c"
-              bgColor="#71c6a4"
+              bgColor="teak-400"
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all font-bold! duration-200 2xl:py-6 2xl:px-8 2xl:text-[18px]" />
             <FancyButton
               label="See How We Protect Revenue"
               textColor="white"
               borderColor="[#2b4c8c]"
-              rippleColor="#71c6a4"
+              rippleColor="teak-400"
               bgColor="#2b4c8c"
               extraClasses="backdrop-blur-md hover:border-teal-400 font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-[18px]"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
@@ -142,7 +142,7 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col gap-6 scale-90 2xl:scale-100">
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Verification Audit</span>
+                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Verification Audit</span>
                   <Activity size={12} className="text-white/40" />
                 </div>
                 <div className="h-28">
@@ -169,13 +169,13 @@ export const Hero: React.FC = () => {
 
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Readiness Score</span>
+                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Readiness Score</span>
                   <TrendingUp size={12} className="text-white/40" />
                 </div>
                 <div className="h-28">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={auditData}>
-                      <Line type="monotone" dataKey="value" stroke="#71c6a4" strokeWidth={3} dot={false} />
+                      <Line type="monotone" dataKey="value" stroke="teak-400" strokeWidth={3} dot={false} />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -208,7 +208,7 @@ export const Hero: React.FC = () => {
               {/* Card: Revenues Recovery */}
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Revenues Recovery</span>
+                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Revenues Recovery</span>
                   <BarChart3 size={12} className="text-white/40" />
                 </div>
                 <div className="text-center mb-2">
@@ -218,7 +218,7 @@ export const Hero: React.FC = () => {
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={complianceData}>
-                      <Area type="monotone" dataKey="value" stroke="#71c6a4" fill="#71c6a4" fillOpacity={0.2} strokeWidth={2} />
+                      <Area type="monotone" dataKey="value" stroke="teak-400" fill="teak-400" fillOpacity={0.2} strokeWidth={2} />
                     </AreaChart>
                   </ResponsiveContainer>
                 </div>
@@ -226,7 +226,7 @@ export const Hero: React.FC = () => {
 
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black tracking-widest text-teal-400 uppercase">Revenue Identified</span>
+                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Revenue Identified</span>
                   <ChevronRight size={12} className="text-white/40" />
                 </div>
                 <div className="mb-2">
@@ -236,7 +236,7 @@ export const Hero: React.FC = () => {
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={auditData}>
-                      <Bar dataKey="value" fill="#71c6a4" radius={[2, 2, 0, 0]} />
+                      <Bar dataKey="value" fill="teak-400" radius={[2, 2, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>

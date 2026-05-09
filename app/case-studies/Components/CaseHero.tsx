@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { Terminal, Activity, ShieldCheck, Database, Target } from 'lucide-react';
+import { DecorativeBackground } from '../../components/DecorativeBackground';
 
 const stats = [
   { label: 'Revenue Recovered', value: '$2.1M+', icon: Database },
@@ -12,7 +13,8 @@ const stats = [
 
 export default function CaseHero() {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-44">
+      <DecorativeBackground id="casehero" />
       {/* Background technical grid */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.1)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
@@ -25,40 +27,20 @@ export default function CaseHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase mb-8"
+            className="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter uppercase mb-8"
           >
-            <span className="text-teal-400">Proven</span> <br />
-            <span className="text-white font-light">Outcomes.</span>
+            <span className="text-white">Proven</span> <br />
+            <span className="text-teal-400">Outcomes.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-xl md:text-2xl text-slate-400 font-mono uppercase tracking-tight max-w-2xl leading-tight mb-20"
+            className="text-xl md:text-2xl text-slate-400 max-w-3xl leading-tight mb-20"
           >
             Technical validation of PrimeTek system deployments across the Northeast independent pharmacy network.
           </motion.p>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 w-full">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                className="p-10 flex flex-col items-center group hover:bg-brand-teal/5 transition-all"
-              >
-                <stat.icon className="w-5 h-5 text-teal-400 mb-6 opacity-50 group-hover:opacity-100 transition-opacity" />
-                <div className="text-4xl md:text-5xl font-display font-black text-teal-400 mb-2 tracking-tighter italic">
-                  {stat.value}
-                </div>
-                <div className="text-[9px] text-teal-400 font-mono font-black uppercase tracking-[0.2em] leading-tight">
-                  {stat.label.replace(' ', '_')}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

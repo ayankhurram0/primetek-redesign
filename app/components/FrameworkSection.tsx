@@ -41,7 +41,7 @@ const steps = [
 export default function FrameworkSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -64,10 +64,10 @@ export default function FrameworkSection() {
   // Header animations
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15, 0.25], [0, 1, 0]);
   const headingY = useTransform(scrollYProgress, [0, 0.15], [30, 0]);
-  
+
   const subtitleOpacity = useTransform(scrollYProgress, [0.1, 0.2, 0.3], [0, 1, 0]);
   const subtitleY = useTransform(scrollYProgress, [0.1, 0.2], [20, 0]);
-  
+
   const descOpacity = useTransform(scrollYProgress, [0.15, 0.25, 0.35], [0, 1, 0]);
   const descY = useTransform(scrollYProgress, [0.15, 0.25], [20, 0]);
 
@@ -78,7 +78,7 @@ export default function FrameworkSection() {
   const stepTransforms = steps.map((_, index) => {
     const stepStart = 0.3 + (index * 0.15);
     const stepEnd = stepStart + 0.12;
-    
+
     return {
       opacity: useTransform(
         scrollYProgress,
@@ -129,26 +129,26 @@ export default function FrameworkSection() {
         </div>
 
         <div ref={triggerRef} className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-          
-          <motion.div 
+
+          <motion.div
             style={{ opacity: headingOpacity, y: headingY }}
             className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-40"
           >
-            <h2 className="text-[#2b4c8c] text-5xl md:text-7xl font-black tracking-tighter mb-4">
+            <h2 className="text-[#2b4c8c] text-5xl md:text-7xl font-bold tracking-tighter mb-4">
               Our Framework
             </h2>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             style={{ opacity: subtitleOpacity, y: subtitleY }}
             className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-30"
           >
-            <p className="text-black/80 text-sm md:text-lg uppercase tracking-[0.2em] font-black mb-2">
+            <p className="text-black/80 text-sm md:text-lg uppercase tracking-[0.2em] font-bold mb-2">
               OPERATIONAL CONTROL FOR A COMPLEX PHARMACY ENVIRONMENT
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             style={{ opacity: descOpacity, y: descY }}
             className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20"
           >
@@ -160,12 +160,12 @@ export default function FrameworkSection() {
             </h3>
           </motion.div>
 
-          <div 
+          <div
             className="relative w-full max-w-6xl mx-auto px-6 h-[80vh] flex items-center justify-center z-10"
           >
             {/* Background track */}
             <div className="absolute left-1/2 top-[10%] bottom-[10%] w-px bg-gray-200 -translate-x-1/2 hidden md:block" />
-            
+
             {/* Animated line */}
             <motion.div
               style={{ height: lineHeight }}
@@ -189,7 +189,7 @@ export default function FrameworkSection() {
                         <span className="text-teal-400 text-xs font-mono tracking-tighter mb-2 block">
                           PHASE {step.id}
                         </span>
-                        <h4 className="text-[#2b4c8c] text-2xl md:text-3xl font-black mb-3">
+                        <h4 className="text-[#2b4c8c] text-2xl md:text-3xl font-bold mb-3">
                           {step.title}
                         </h4>
                         <p className="text-black/60 text-sm md:text-base leading-relaxed max-w-sm">
@@ -199,16 +199,16 @@ export default function FrameworkSection() {
                     </div>
 
                     <div className="relative z-30 mx-2 flex items-center justify-center">
-                      <motion.div 
+                      <motion.div
                         style={{ scale: transforms.scale }}
                         className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-teal-400 border-4 border-white shadow-lg flex items-center justify-center"
                       >
-                        <span className="text-white font-black text-base">{step.id}</span>
+                        <span className="text-white font-bold text-base">{step.id}</span>
                       </motion.div>
                     </div>
 
                     <div className={`flex-1 flex ${isRight ? "justify-start pl-8" : "justify-end pr-8"}`}>
-                      <motion.div 
+                      <motion.div
                         style={{ scale: transforms.iconScale }}
                         className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white shadow-lg border border-gray-100 flex items-center justify-center"
                       >

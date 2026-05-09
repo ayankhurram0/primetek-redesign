@@ -11,6 +11,7 @@ import badge2 from "@/src/assets/badges2.png";
 import badge3 from "@/src/assets/badges3.png";
 import badge4 from "@/src/assets/badges4.png";
 import coloredlogo from "@/src/assets/logo-colored.png";
+import { DecorativeBackground } from "./DecorativeBackground";
 
 // Shim for next/image to keep JSX identical while working in Vite
 const Image = ({ src, alt, className }: { src: string | { src: string }; alt: string; className?: string }) => (
@@ -30,9 +31,9 @@ const badgeData = [
     title: "Audit",
     sub: "Monitoring",
     desc: "Proactive monitoring to identify issues before they become problems.",
-    accent: "#3b82f6",
-    hoverGlow: "hover:shadow-[0_0_50px_rgba(59,130,246,0.3)] hover:border-blue-400",
-    textColor: "text-blue-400",
+    accent: "#2dd4bf",
+    hoverGlow: "hover:shadow-[0_0_50px_rgba(45,212,191,0.3)] hover:border-teal-400",
+    textColor: "text-teal-400",
     labelPos: "right"
   },
   {
@@ -40,9 +41,9 @@ const badgeData = [
     title: "Operational",
     sub: "Efficiency",
     desc: "Improve workflows and consistency across your pharmacy.",
-    accent: "#ef4444",
-    hoverGlow: "hover:shadow-[0_0_50px_rgba(239,68,68,0.3)] hover:border-red-500",
-    textColor: "text-red-500",
+    accent: "orange",
+    hoverGlow: "hover:shadow-[0_0_50px_rgba(255,165,0,0.3)] hover:border-orange-500",
+    textColor: "text-orange-500",
     labelPos: "right"
   },
   {
@@ -50,9 +51,9 @@ const badgeData = [
     title: "Data Security",
     sub: "& Privacy",
     desc: "HIPAA-aligned systems designed to protect sensitive data.",
-    accent: "#71c6a4",
-    hoverGlow: "hover:shadow-[0_0_50px_rgba(113,198,164,0.3)] hover:border-teal-400",
-    textColor: "text-teal-400",
+    accent: "#2563eb",
+    hoverGlow: "hover:shadow-[0_0_50px_rgba(37,99,235,0.3)] hover:border-blue-500",
+    textColor: "text-blue-500",
     labelPos: "left"
   },
   {
@@ -60,9 +61,9 @@ const badgeData = [
     title: "Compliance",
     sub: "Frameworks",
     desc: "Structured support to maintain compliance and reduce risk.",
-    accent: "#fbbf24",
-    hoverGlow: "hover:shadow-[0_0_50px_rgba(251,191,36,0.3)] hover:border-yellow-400",
-    textColor: "text-yellow-400",
+    accent: "red",
+    hoverGlow: "hover:shadow-[0_0_50px_rgba(255,0,0,0.3)] hover:border-red-500",
+    textColor: "text-red-500",
     labelPos: "right"
   },
 ];
@@ -177,33 +178,13 @@ export const OrbitingSection: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.06)_0%,transparent_70%)]" />
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_100%_0%,rgba(113,198,164,0.04)_0%,transparent_40%)]" />
 
-        {/* Decorative Elements - Top Right */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-            <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-                <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#orbit-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
-                <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#orbit-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
-                <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#orbit-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
-                {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
-                <defs><linearGradient id="orbit-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
-            </svg>
-        </div>
-
-        {/* Decorative Elements - Bottom Left */}
-        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-            <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-                <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#orbit-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
-                <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#orbit-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
-                <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#orbit-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
-                {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
-                <defs><linearGradient id="orbit-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
-            </svg>
-        </div>
+        <DecorativeBackground id="orbit" />
 
         <div className="relative z-10 w-[100%] mx-auto text-center mt-30 flex items-center justify-center">
           <div className="w-[35%] 2xl:pl-20 pl-10">
             <h2
               ref={headingRef}
-              className="text-4xl 2xl:text-5xl font-bold mb-8 tracking-tight text-left capitalize"
+              className="text-4xl 2xl:text-6xl font-bold mb-8 tracking-tight text-left capitalize"
             >
               <span className="text-teal-400">Designed for</span>{" "}
               <span className="text-white">Pharmacies Operating Under Pressure</span>
@@ -211,7 +192,7 @@ export const OrbitingSection: React.FC = () => {
 
             <p
               ref={paragraphRef}
-              className="text-slate-400 2xl:text-xl text-md leading-relaxed mb-12 text-left"
+              className="text-slate-400 2xl:text-2xl text-md leading-relaxed mb-12 text-left"
             >
               Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
               operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned
@@ -251,7 +232,7 @@ export const OrbitingSection: React.FC = () => {
                     </div>
 
                     <div className={`text-left w-64 transition-all duration-300 ${badge.labelPos === 'left' ? 'text-right mr-4' : 'ml-4'}`}>
-                      <div className={`font-black text-xs uppercase tracking-[0.25em] mb-1 ${badge.textColor}`}>{badge.title}</div>
+                      <div className={`font-bold text-xs uppercase tracking-[0.25em] mb-1 ${badge.textColor}`}>{badge.title}</div>
                       <div className="text-white font-bold text-xl mb-1.5 leading-none">{badge.sub}</div>
                       <div className="text-white/50 text-[15px] leading-relaxed line-clamp-3 font-medium">{badge.desc}</div>
                     </div>

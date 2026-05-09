@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   Search
 } from "lucide-react";
+import { DecorativeBackground } from "./DecorativeBackground";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,7 +87,7 @@ export const WhyPrimeTekSection: React.FC = () => {
 
       cards.forEach((card, i) => {
         tl.to(card, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, "+=0.5");
-        tl.to(dots[i], { scale: 1.2, backgroundColor: "#71c6a4", borderColor: "#71c6a4", duration: 0.5 }, "<");
+        tl.to(dots[i], { scale: 1.2, backgroundColor: "teak-400", borderColor: "teak-400", duration: 0.5 }, "<");
         tl.to(progressLineRef.current, { scaleX: (i + 1) / steps.length, duration: 1.5, ease: "none" }, "<");
 
         // Add a bit of space between each step
@@ -103,27 +104,7 @@ export const WhyPrimeTekSection: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden">
-      {/* Decorative Elements - Top Right */}
-      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-          <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#whyprimetek-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#whyprimetek-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
-          <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#whyprimetek-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
-          {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
-          <defs><linearGradient id="whyprimetek-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
-        </svg>
-      </div>
-
-      {/* Decorative Elements - Bottom Left */}
-      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-          <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#whyprimetek-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#whyprimetek-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
-          <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#whyprimetek-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
-          {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#71c6a4" opacity={0.6 + i * 0.05} />))}
-          <defs><linearGradient id="whyprimetek-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#71c6a4" stopOpacity="1" /><stop offset="50%" stopColor="#71c6a4" stopOpacity="0.5" /><stop offset="100%" stopColor="#71c6a4" stopOpacity="0" /></linearGradient></defs>
-        </svg>
-      </div>
+      <DecorativeBackground id="whyprimetek" />
 
       <div ref={triggerRef} className="min-h-screen flex flex-col justify-center py-20">
         <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10 px-12">
@@ -161,8 +142,8 @@ export const WhyPrimeTekSection: React.FC = () => {
                   {React.cloneElement(step.icon as React.ReactElement<{ className?: string }>, { className: "w-6 h-6 text-teal-400" })}
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-4 transition-colors">{step.title}</h3>
-                <p className="text-white/40 text-lg leading-relaxed">
+                <h3 className="text-2xl font-bold text-white mb-4 transition-colors">{step.title}</h3>
+                <p className="text-white/40 text-xl leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -172,7 +153,7 @@ export const WhyPrimeTekSection: React.FC = () => {
           {/* Timeline Indicator at Bottom */}
           <div className="absolute bottom-4 left-12 right-12 flex items-center pointer-events-none">
             <div className="h-[2px] w-full bg-white/10 relative flex items-center">
-              <div ref={progressLineRef} className="h-full w-full bg-teal-400 shadow-[0_0_15px_#71c6a4]" />
+              <div ref={progressLineRef} className="h-full w-full bg-teal-400 shadow-[0_0_15px_rgba(45,212,191,0.5)]" />
 
               <div className="absolute inset-0 flex justify-between items-center px-[2px]">
                 {steps.map((_, i) => (

@@ -1,5 +1,9 @@
+"use client";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import { Target, Eye } from "lucide-react";
 
 const missionVision = [
@@ -22,33 +26,37 @@ export const MissionVision = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".reveal-mv", {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
+      gsap.fromTo(".reveal-mission",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.3,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
         }
-      });
+      );
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative py-44 px-6 overflow-hidden bg-brand-light">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section ref={containerRef} className="py-24 px-26 relative bg-transparent">
+      <div className="relative z-10">
         <div className="grid md:grid-cols-2 gap-8">
           {missionVision.map((item, i) => (
             <div
               key={item.title}
-              className={`reveal-mv p-16 rounded-[48px] relative overflow-hidden group bg-white border border-slate-100 shadow-xl hover:shadow-2xl transition-all duration-700
+              className={`reveal-mission p-16 rounded-[48px] relative overflow-hidden group bg-white/[0.02] border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-700 backdrop-blur-xl
               `}
             >
-              <item.icon className="w-16 h-16 text-brand-teal mb-16 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
-              <h3 className="text-6xl font-black text-brand-dark mb-8 tracking-tighter uppercase">{item.title}</h3>
-              <p className="text-xl text-slate-500 font-medium leading-relaxed">
+              <item.icon className="w-16 h-16 text-teal-400 mb-16 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              <h3 className="text-6xl font-bold text-white mb-8 tracking-tighter uppercase">{item.title}</h3>
+              <p className="text-2xl text-slate-400 font-medium leading-relaxed">
                 {item.description}
               </p>
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-teal opacity-0 group-hover:opacity-5 blur-[100px] transition-opacity" />

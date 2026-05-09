@@ -17,13 +17,13 @@ export default function Operations() {
   // Step-based animations (0 to 1 scroll progress)
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
   const headingY = useTransform(scrollYProgress, [0, 0.15], [50, 0]);
-  
+
   const textOpacity = useTransform(scrollYProgress, [0.15, 0.3], [0, 1]);
   const textY = useTransform(scrollYProgress, [0.15, 0.3], [50, 0]);
-  
+
   const imagesOpacity = useTransform(scrollYProgress, [0.3, 0.45], [0, 1]);
   const imagesScale = useTransform(scrollYProgress, [0.3, 0.45], [0.8, 1]);
-  
+
   const buttonOpacity = useTransform(scrollYProgress, [0.45, 0.6], [0, 1]);
   const buttonY = useTransform(scrollYProgress, [0.45, 0.6], [30, 0]);
 
@@ -38,15 +38,15 @@ export default function Operations() {
         <div className="w-[95%] max-w-[1800px] mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="w-full lg:w-1/2 pt-10 lg:pt-0">
-              <motion.h2 
+              <motion.h2
                 style={{ opacity: headingOpacity, y: headingY }}
-                className="text-4xl md:text-5xl font-black leading-tight mb-4"
+                className="text-4xl md:text-5xl font-bold leading-tight mb-4"
               >
                 <span className="text-teal-400">Designed for</span>{" "}
                 <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
               </motion.h2>
 
-              <motion.div 
+              <motion.div
                 style={{ opacity: textOpacity, y: textY }}
                 className="space-y-6"
               >
@@ -61,8 +61,8 @@ export default function Operations() {
                   </h3>
                   <div className="flex flex-col gap-2">
                     {highlights.map((item, index) => (
-                      <motion.div 
-                        key={index} 
+                      <motion.div
+                        key={index}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
@@ -77,7 +77,7 @@ export default function Operations() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 style={{ opacity: buttonOpacity, y: buttonY }}
                 className="flex flex-col gap-5 mt-8"
               >
@@ -86,13 +86,13 @@ export default function Operations() {
                   textColor="white"
                   borderColor="teal-400"
                   rippleColor="#2b4c8c"
-                  bgColor="#71c6a4"
+                  bgColor="teak-400"
                   extraClasses="w-fit hover:border-[#2b4c8c] transition-all duration-200"
                 />
               </motion.div>
             </div>
 
-            <motion.div 
+            <motion.div
               style={{ opacity: imagesOpacity, scale: imagesScale }}
               className="relative w-full lg:w-1/2 group"
             >
@@ -117,7 +117,7 @@ export default function Operations() {
           </div>
         </div>
       </section>
-      
+
       {/* Dead scroll section */}
       <div className="h-screen" />
     </div>

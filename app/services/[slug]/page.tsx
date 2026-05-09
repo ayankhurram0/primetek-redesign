@@ -2,15 +2,15 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView } from "motion/react";
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  TrendingUp, 
-  BarChart3, 
-  Search, 
-  ClipboardCheck, 
-  AlertCircle, 
-  CheckCircle2, 
+import {
+  ArrowRight,
+  ShieldCheck,
+  TrendingUp,
+  BarChart3,
+  Search,
+  ClipboardCheck,
+  AlertCircle,
+  CheckCircle2,
   ChevronRight,
   FileText,
   DollarSign,
@@ -132,7 +132,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
   const heroBgY2 = useTransform(heroScroll, [0, 1], [0, 100]);
 
   return (
-  
+
     <div className="relative min-h-screen bg-[#020817] overflow-x-hidden">
       {/* Scroll Progress Bar */}
       <motion.div
@@ -142,7 +142,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
 
       {/* Hero Section */}
       <section ref={heroRef} className="relative pt-48 pb-32 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[90vh] flex items-center bg-gradient-to-br from-teal-400/10 to-[#2b4c8c]/20">
-        <motion.div 
+        <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
           className="max-w-5xl relative z-10"
         >
@@ -151,18 +151,18 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-black uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-teal-400">
+            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-teal-400">
               {service.title}
             </span>
           </motion.div>
-          
+
           <RevealText className="mb-8">
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter text-white">
               Maximize Your Pharmacy <span className="text-gradient">Revenue Potential</span>
             </h1>
           </RevealText>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
@@ -172,8 +172,8 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             <br className="hidden md:block" />
             <span className="mt-4 block text-slate-300">Transform raw operational data into actionable insights that drive profitability and ensure regulatory alignment.</span>
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -184,7 +184,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
               textColor="white"
               borderColor="teal-400"
               rippleColor="white"
-              bgColor="#71c6a4"
+              bgColor="teak-400"
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200"
             />
             <div className="flex items-center gap-4 px-8 py-5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-slate-400 bg-white/5 backdrop-blur-md">
@@ -195,13 +195,13 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
         </motion.div>
 
         {/* Parallax Background Elements */}
-        <motion.div 
+        <motion.div
           style={{ y: heroBgY1 }}
-          className="absolute top-1/4 right-0 -z-10 w-1/2 aspect-square bg-teal-400/5 rounded-full blur-[120px]" 
+          className="absolute top-1/4 right-0 -z-10 w-1/2 aspect-square bg-teal-400/5 rounded-full blur-[120px]"
         />
-        <motion.div 
+        <motion.div
           style={{ y: heroBgY2 }}
-          className="absolute bottom-0 left-1/4 -z-10 w-1/3 aspect-square bg-[#2b4c8c]/10 rounded-full blur-[150px]" 
+          className="absolute bottom-0 left-1/4 -z-10 w-1/3 aspect-square bg-[#2b4c8c]/10 rounded-full blur-[150px]"
         />
       </section>
 
@@ -210,9 +210,9 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <RevealText>
-              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase italic leading-none">Key <span className="text-gradient font-light">Features</span></h2>
+              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase  leading-none">Key <span className="text-gradient font-light">Features</span></h2>
             </RevealText>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -229,7 +229,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                whileHover={{ 
+                whileHover={{
                   y: -10,
                   transition: { duration: 0.4, ease: "easeOut" }
                 }}
@@ -240,7 +240,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                   <div className="w-16 h-16 rounded-2xl bg-teal-400 flex items-center justify-center text-brand-950 shadow-[0_0_20px_rgba(113,198,164,0.2)]">
                     {feature.icon}
                   </div>
-                  <h3 className="font-display text-2xl font-medium text-teal-400 uppercase italic leading-tight group-hover:text-teal-300 transition-colors duration-300">
+                  <h3 className="font-display text-2xl font-medium text-teal-400 uppercase  leading-tight group-hover:text-teal-300 transition-colors duration-300">
                     {feature.title}
                   </h3>
                 </div>
@@ -258,9 +258,9 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <RevealText>
-              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase italic leading-none">How It <span className="text-gradient font-light">Works</span></h2>
+              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase  leading-none">How It <span className="text-gradient font-light">Works</span></h2>
             </RevealText>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -281,10 +281,10 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                 className="relative group"
               >
                 <div className="glass p-10 rounded-[32px] border border-white/5 hover:border-teal-400/20 transition-all duration-500 h-full">
-                  <div className="w-10 h-10 bg-teal-400 text-brand-950 rounded-full flex items-center justify-center font-black text-sm mb-8">
+                  <div className="w-10 h-10 bg-teal-400 text-brand-950 rounded-full flex items-center justify-center font-bold text-sm mb-8">
                     {step.step}
                   </div>
-                  <h3 className="font-display text-xl font-medium text-teal-400 uppercase italic mb-4 leading-tight">
+                  <h3 className="font-display text-xl font-medium text-teal-400 uppercase  mb-4 leading-tight">
                     {step.title}
                   </h3>
                   <p className="text-slate-400 leading-relaxed font-light">
@@ -303,11 +303,11 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div>
               <RevealText>
-                <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter mb-10 leading-[0.9] text-teal-400 uppercase italic">
+                <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter mb-10 leading-[0.9] text-teal-400 uppercase ">
                   Transform Your <span className="text-gradient font-light">Pharmacy Operations</span>
                 </h2>
               </RevealText>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -319,7 +319,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                 label="Schedule Consultation"
                 textColor="white"
                 borderColor="[#2b4c8c]"
-                rippleColor="#71c6a4"
+                rippleColor="teak-400"
                 bgColor="#2b4c8c"
                 extraClasses="hover:border-teal-400 font-bold! transition-all duration-500"
               />
@@ -331,7 +331,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  whileHover={{ 
+                  whileHover={{
                     x: -15,
                     backgroundColor: "rgba(113, 198, 164, 0.05)",
                     borderColor: "rgba(113, 198, 164, 0.3)",

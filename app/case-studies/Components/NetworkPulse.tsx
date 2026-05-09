@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState, useRef } from 'react';
-import { Activity, Radio, Database, ShieldAlert, Cpu } from 'lucide-react';
+import { Radio, Database, ShieldAlert, Activity, Cpu } from 'lucide-react';
+import { DecorativeBackground } from '../../components/DecorativeBackground';
 
 interface NetworkEvent {
   id: string;
@@ -50,19 +51,20 @@ export default function NetworkPulse() {
 
   return (
     <section className="py-24 bg-brand-950 relative overflow-hidden border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
+      <DecorativeBackground id="pulse" />
+      <div className="px-26">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
           {/* Tactical Visualization */}
           <div className="lg:col-span-12 mb-12">
             <div className="flex items-center gap-3 mb-8">
               <span className="w-12 h-px bg-brand-teal" />
-              <span className="text-teal-400 font-mono text-[10px] font-black uppercase tracking-[0.5em] italic">Live_Network_Telemetry</span>
+              <span className="text-teal-400 font-mono text-[10px] font-bold uppercase tracking-[0.5em] ">Live_Network_Telemetry</span>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-4xl md:text-6xl font-display font-black text-teal-400 italic uppercase tracking-tighter mb-8 leading-none">
+                <h2 className="text-4xl md:text-6xl font-display font-bold text-teal-400  uppercase tracking-tighter mb-8 leading-none">
                   Global <br />
                   <span className="text-white">Operational Grid.</span>
                 </h2>
@@ -72,12 +74,12 @@ export default function NetworkPulse() {
 
                 <div className="grid grid-cols-2 gap-8 mb-10">
                   <div>
-                    <div className="text-teal-400 font-display font-black text-3xl italic tracking-tighter">4,812</div>
-                    <div className="text-[9px] text-slate-500 font-mono font-black uppercase tracking-widest mt-1">ACTIVE_NODES</div>
+                    <div className="text-teal-400 font-display font-bold text-3xl  tracking-tighter">4,812</div>
+                    <div className="text-[9px] text-slate-500 font-mono font-bold uppercase tracking-widest mt-1">ACTIVE_NODES</div>
                   </div>
                   <div>
-                    <div className="text-brand-teal font-display font-black text-3xl italic tracking-tighter">128ms</div>
-                    <div className="text-[9px] text-slate-500 font-mono font-black uppercase tracking-widest mt-1">AVG_LATENCY</div>
+                    <div className="text-brand-teal font-display font-bold text-3xl  tracking-tighter">128ms</div>
+                    <div className="text-[9px] text-slate-500 font-mono font-bold uppercase tracking-widest mt-1">AVG_LATENCY</div>
                   </div>
                 </div>
               </div>
@@ -121,7 +123,7 @@ export default function NetworkPulse() {
                 <div className="absolute top-6 right-6 flex flex-col items-end">
                   <div className="flex items-center gap-2 px-3 py-1 rounded-sm border border-brand-teal/30 bg-brand-teal/5">
                     <Radio className="w-3 h-3 text-brand-teal animate-pulse" />
-                    <span className="text-[9px] font-mono text-brand-teal font-black uppercase tracking-widest">TRANSMISSION_ACTIVE</span>
+                    <span className="text-[9px] font-mono text-brand-teal font-bold uppercase tracking-widest">TRANSMISSION_ACTIVE</span>
                   </div>
                 </div>
 
@@ -138,7 +140,7 @@ export default function NetworkPulse() {
               <div className="px-6 py-3 border-b border-white/5 bg-white/[0.02] flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
-                  <span className="text-[10px] font-mono text-white font-black uppercase tracking-widest">LIVE_TELEMETRY_FEED</span>
+                  <span className="text-[10px] font-mono text-white font-bold uppercase tracking-widest">LIVE_TELEMETRY_FEED</span>
                 </div>
                 <span className="text-[9px] text-slate-500 font-mono font-bold uppercase">Uptime: 99.98%</span>
               </div>
@@ -160,9 +162,9 @@ export default function NetworkPulse() {
                       className="flex items-center gap-4 py-1 group"
                     >
                       <span className="text-slate-600 font-bold">[{event.timestamp}]</span>
-                      <span className={`${Meta.color} font-black w-24 shrink-0`}>{Meta.label}</span>
+                      <span className={`${Meta.color} font-bold w-24 shrink-0`}>{Meta.label}</span>
                       <span className="text-slate-400 group-hover:text-white transition-colors">{event.message}</span>
-                      <span className={`ml-auto font-black ${event.status === 'SUCCESS' ? 'text-brand-teal' : 'text-red-400 opacity-80'}`}>
+                      <span className={`ml-auto font-bold ${event.status === 'SUCCESS' ? 'text-brand-teal' : 'text-red-400 opacity-80'}`}>
                         {event.status}
                       </span>
                     </motion.div>

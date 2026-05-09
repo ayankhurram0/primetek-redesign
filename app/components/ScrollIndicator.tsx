@@ -20,7 +20,7 @@ export default function ScrollIndicator() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-[9998]">
+    <div className="fixed top-0 left-0 w-full h-1 bg-[#2b4c8c]/20 z-[9998]">
       <div 
         className="h-full bg-teal-400 transition-all duration-150 ease-out relative"
         style={{ width: `${scrollProgress}%` }}

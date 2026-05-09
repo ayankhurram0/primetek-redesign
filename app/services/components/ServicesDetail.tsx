@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { 
-  BarChart3, 
-  Settings, 
-  ShieldCheck, 
-  Users, 
-  TrendingUp, 
+import {
+  BarChart3,
+  Settings,
+  ShieldCheck,
+  Users,
+  TrendingUp,
   FileText,
   CheckCircle2,
   ArrowRight
@@ -248,28 +248,27 @@ export const ServicesDetail = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
       <div className="relative z-10">
         <div className="grid lg:grid-cols-[400px_1fr] gap-20 items-start">
-          
+
           {/* Sidebar Selector */}
           <div className="space-y-4 lg:sticky lg:top-32">
-            <h2 className="text-xl font-black uppercase text-teal-400 mb-8">Select a Service</h2>
+            <h2 className="text-xl font-bold uppercase text-teal-400 mb-8">Select a Service</h2>
             <div className="space-y-1">
               {services.map((service) => (
                 <button
                   key={service.id}
                   onClick={() => setActiveId(service.id)}
-                  className={`w-full text-left p-6 border-l-2 transition-all duration-500 group flex items-center justify-between ${
-                    activeId === service.id 
-                    ? "text-white" 
+                  className={`w-full text-left p-6 border-l-2 transition-all duration-500 group flex items-center justify-between ${activeId === service.id
+                    ? "text-white"
                     : "bg-white/[0.02] border-transparent text-slate-500 hover:bg-white/[0.04]"
-                  }`}
-                  style={{ 
+                    }`}
+                  style={{
                     borderColor: activeId === service.id ? colorMap[service.color] : 'transparent',
                     backgroundColor: activeId === service.id ? `${colorMap[service.color]}15` : ''
                   }}
                 >
                   <div className="flex items-center gap-6">
-                    <span 
-                      className="text-lg font-black tracking-widest transition-colors duration-500"
+                    <span
+                      className="text-lg font-bold tracking-widest transition-colors duration-500"
                       style={{ color: activeId === service.id ? colorMap[service.color] : '#334155' }}
                     >
                       {service.id}
@@ -278,18 +277,18 @@ export const ServicesDetail = () => {
                       {service.title.split(' ').slice(0, 2).join(' ')}
                     </span>
                   </div>
-                  <service.icon 
-                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-500" 
+                  <service.icon
+                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-500"
                     style={{ color: activeId === service.id ? colorMap[service.color] : '#334155' }}
                   />
                 </button>
               ))}
             </div>
-            
+
             <div className="pt-12 hidden lg:block">
               <div className="p-8 border border-white/5 bg-white/[0.01]">
-                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-600 mb-4">Current Identity</div>
-                <div className="text-3xl font-display italic text-white tracking-tight" style={{ color: colorMap[activeService.color] }}>{activeService.identity}</div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-600 mb-4">Current Identity</div>
+                <div className="text-3xl font-display  text-white tracking-tight" style={{ color: colorMap[activeService.color] }}>{activeService.identity}</div>
               </div>
             </div>
           </div>
@@ -305,18 +304,22 @@ export const ServicesDetail = () => {
                 transition={{ duration: 0.5, ease: "circOut" }}
                 className="w-full"
               >
-                <div className="glass-card p-12 md:p-16 relative overflow-hidden h-[800px] overflow-y-auto custom-scrollbar">
-                  <div 
+                <div
+                  className="glass-card p-12 md:p-16 relative overflow-x-hidden h-[800px] overflow-y-auto overscroll-contain custom-scrollbar"
+                  data-lenis-prevent="true"
+                  onWheel={(e) => e.stopPropagation()}
+                >
+                  <div
                     className="absolute top-0 right-0 w-96 h-96 opacity-5 blur-[120px] -z-10"
                     style={{ backgroundColor: colorMap[activeService.color] }}
                   />
-                  
+
                   <div className="flex flex-col md:flex-row justify-between gap-12 mb-24">
                     <div className="max-w-xl">
                       <div className="flex items-center gap-4 mb-8">
-                        <div 
+                        <div
                           className="w-14 h-14 border flex items-center justify-center transition-colors duration-500"
-                          style={{ 
+                          style={{
                             backgroundColor: `${colorMap[activeService.color]}15`,
                             borderColor: `${colorMap[activeService.color]}30`
                           }}
@@ -324,8 +327,8 @@ export const ServicesDetail = () => {
                           <activeService.icon className="w-7 h-7" style={{ color: colorMap[activeService.color] }} />
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-lg font-black uppercase tracking-[0.4em]" style={{ color: colorMap[activeService.color] }}>Service {activeService.id}</span>
-                          <span className="text-white/40 text-lg font-black uppercase tracking-[0.3em]">{activeService.identity}</span>
+                          <span className="text-lg font-bold uppercase tracking-[0.4em]" style={{ color: colorMap[activeService.color] }}>Service {activeService.id}</span>
+                          <span className="text-white/40 text-lg font-bold uppercase tracking-[0.3em]">{activeService.identity}</span>
                         </div>
                       </div>
                       <h3 className="text-6xl md:text-6xl xl:text-6xl font-poppins font-bold text-white mb-10 tracking-tighter leading-none">
@@ -336,15 +339,15 @@ export const ServicesDetail = () => {
                       </p>
                     </div>
 
-                    <div 
+                    <div
                       className="p-12 text-center flex flex-col justify-center min-w-[240px] h-fit sticky top-0 border transition-colors duration-500"
-                      style={{ 
+                      style={{
                         backgroundColor: `${colorMap[activeService.color]}10`,
                         borderColor: `${colorMap[activeService.color]}20`
                       }}
                     >
-                      <div className="text-6xl font-black font-outfit text-white mb-3 tracking-tighter">{activeService.stat}</div>
-                      <div className="text-[11px] font-black uppercase tracking-[0.2em] leading-tight max-w-[140px] mx-auto" style={{ color: colorMap[activeService.color] }}>
+                      <div className="text-6xl font-bold font-outfit text-white mb-3 tracking-tighter">{activeService.stat}</div>
+                      <div className="text-[11px] font-bold uppercase tracking-[0.2em] leading-tight max-w-[140px] mx-auto" style={{ color: colorMap[activeService.color] }}>
                         {activeService.statLabel}
                       </div>
                     </div>
@@ -353,7 +356,7 @@ export const ServicesDetail = () => {
                   <div className="space-y-32">
                     {/* WHAT WE DO Section */}
                     <div className="relative">
-                      <h4 className="text-lg font-black uppercase tracking-[0.5em] mb-12 flex items-center gap-4" style={{ color: colorMap[activeService.color] }}>
+                      <h4 className="text-lg font-bold uppercase tracking-[0.5em] mb-12 flex items-center gap-4" style={{ color: colorMap[activeService.color] }}>
                         <span className="w-12 h-px" style={{ backgroundColor: `${colorMap[activeService.color]}40` }} />
                         WHAT WE DO
                       </h4>
@@ -373,9 +376,9 @@ export const ServicesDetail = () => {
                     </div>
 
                     {/* Alert System Section */}
-                    <div 
+                    <div
                       className="p-12 relative overflow-hidden border transition-colors duration-500"
-                      style={{ 
+                      style={{
                         backgroundColor: `${colorMap[activeService.color]}08`,
                         borderColor: `${colorMap[activeService.color]}15`
                       }}
@@ -384,7 +387,7 @@ export const ServicesDetail = () => {
                         <activeService.icon className="w-40 h-40" style={{ color: colorMap[activeService.color] }} />
                       </div>
                       <div className="relative z-10">
-                        <h4 className="text-lg font-black uppercase tracking-[0.5em] mb-6" style={{ color: colorMap[activeService.color] }}>ALERT SYSTEM</h4>
+                        <h4 className="text-lg font-bold uppercase tracking-[0.5em] mb-6" style={{ color: colorMap[activeService.color] }}>ALERT SYSTEM</h4>
                         <h5 className="text-2xl font-poppins font-bold text-white mb-6 tracking-tight">{activeService.alertSystem.headline}</h5>
                         <p className="text-slate-400 text-xl font-light max-w-2xl leading-relaxed">
                           {activeService.alertSystem.desc}
@@ -394,7 +397,7 @@ export const ServicesDetail = () => {
 
                     {/* Outcomes Section */}
                     <div>
-                      <h4 className="text-lg font-black uppercase tracking-[0.5em] mb-12" style={{ color: colorMap[activeService.color] }}>OUTCOME</h4>
+                      <h4 className="text-lg font-bold uppercase tracking-[0.5em] mb-12" style={{ color: colorMap[activeService.color] }}>OUTCOME</h4>
                       <div className="grid sm:grid-cols-2 gap-6">
                         {activeService.outcomes.map((outcome, i) => (
                           <div key={i} className="flex items-start gap-4 p-6 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
@@ -409,22 +412,22 @@ export const ServicesDetail = () => {
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-6 pt-12 pb-12">
-                       <FancyButton
-                         label="Schedule Analysis"
-                         textColor="white"
-                         borderColor="teal-400"
-                         rippleColor="white"
-                         bgColor={colorMap[activeService.color]}
-                         extraClasses="text-base hover:text-black hover:border-white font-black uppercase tracking-[0.3em] px-12 py-6 shadow-2xl"
-                       />
-                       <FancyButton
-                         label="View Case Studies"
-                         textColor="white"
-                         borderColor="white/10"
-                         rippleColor="white"
-                         bgColor="transparent"
-                         extraClasses="text-base hover:text-black font-black uppercase tracking-[0.3em] px-12 py-6 border border-white/10 hover:bg-white/5"
-                       />
+                      <FancyButton
+                        label="Schedule Analysis"
+                        textColor="white"
+                        borderColor="teal-400"
+                        rippleColor="white"
+                        bgColor={colorMap[activeService.color]}
+                        extraClasses="text-base hover:text-black hover:border-white font-bold uppercase tracking-[0.3em] px-12 py-6 shadow-2xl"
+                      />
+                      <FancyButton
+                        label="View Case Studies"
+                        textColor="white"
+                        borderColor="white/10"
+                        rippleColor="white"
+                        bgColor="transparent"
+                        extraClasses="text-base hover:text-black font-bold uppercase tracking-[0.3em] px-12 py-6 border border-white/10 hover:bg-white/5"
+                      />
                     </div>
                   </div>
                 </div>

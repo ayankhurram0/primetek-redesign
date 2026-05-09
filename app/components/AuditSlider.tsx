@@ -32,7 +32,7 @@ export default function AuditSlider() {
             <SwiperSlide key={i}>
               <div className="relative aspect-21/9 w-full">
                 <div className="absolute bottom-20 left-20 max-w-2xl">
-                  <h2 className="text-white text-5xl  font-black leading-tight drop-shadow-2xl mb-8">
+                  <h2 className="text-white text-5xl  font-bold leading-tight drop-shadow-2xl mb-8">
                     PBM Audits And <br /> Recoupments
                   </h2>
                 </div>

@@ -72,7 +72,7 @@ const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smooth
             label="Analyze Exposure"
             textColor="white"
             borderColor="teal-400"
-            bgColor="#71c6a4"
+            bgColor="teak-400"
             rippleColor="#2b4c8c"
             icon={<ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />}
             extraClasses="text-xs 2xl:text-lg font-bold Capitalize tracking-widest transition-colors shadow-lg shadow-teal-400/20 group/btn"
@@ -199,7 +199,7 @@ export const PharmacySlider: React.FC = () => {
             className="absolute z-40 pointer-events-none px-12 2xl:px-24 text-left left-0 top-[50%] -translate-y-1/2 w-[50%]"
           >
             <h2 className="text-3xl 2xl:text-5xl font-bold tracking-tight leading-[0.9] text-[#2b4c8c] capitalize">
-              Pharmacy Compliance<br/>& Revenue Performance
+              Pharmacy Compliance<br />& Revenue Performance
             </h2>
           </motion.div>
 

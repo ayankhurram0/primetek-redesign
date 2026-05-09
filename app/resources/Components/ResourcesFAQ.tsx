@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
+import { DecorativeBackground } from '../../components/DecorativeBackground';
 
 const faqs = [
   {
@@ -20,33 +21,33 @@ const faqs = [
 
 export default function ResourcesFAQ() {
   return (
-    <section className="py-32 border-t border-white/5 bg-brand-900/10">
-      <div className="max-w-3xl mx-auto px-6 text-center mb-20">
-         <span className="text-brand-teal font-display font-bold text-[10px] uppercase tracking-[0.5em] mb-4 block">Intelligence Base</span>
-         <h2 className="text-4xl md:text-6xl font-display font-medium text-white mb-6 uppercase leading-tight">
-            Common <span className="text-gradient">Questions</span>.
-         </h2>
+    <section className="py-32 px-26 relative overflow-hidden bg-transparent border-t border-white/5">
+      <DecorativeBackground id="resources-faq" />
+      <div className="relative z-10 max-w-3xl mx-auto text-center mb-20">
+        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 uppercase leading-tight tracking-tighter">
+          Common <span className="text-teal-400">Questions.</span>
+        </h2>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 space-y-4">
-         {faqs.map((faq, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="glass rounded-3xl border-white/5 overflow-hidden group"
-            >
-               <details className="w-full">
-                  <summary className="flex items-center justify-between p-8 cursor-pointer list-none">
-                     <h3 className="text-lg font-display font-bold text-white uppercase tracking-tight">{faq.q}</h3>
-                     <ChevronDown className="text-brand-teal w-5 h-5 group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <div className="px-8 pb-8 text-slate-400 font-light text-sm leading-relaxed border-t border-white/5 pt-6">
-                     {faq.a}
-                  </div>
-               </details>
-            </motion.div>
-         ))}
+      <div className="relative z-10 max-w-5xl mx-auto space-y-4">
+        {faqs.map((faq, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden group hover:border-teal-400/30 transition-colors"
+          >
+            <details className="w-full">
+              <summary className="flex items-center justify-between p-8 cursor-pointer list-none">
+                <h3 className="text-2xl font-bold text-white uppercase tracking-tight">{faq.q}</h3>
+                <ChevronDown className="text-teal-400 w-10 h-10 group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="px-8 pb-8 text-slate-400 text-2xl leading-relaxed border-t border-white/5 pt-6">
+                {faq.a}
+              </div>
+            </details>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

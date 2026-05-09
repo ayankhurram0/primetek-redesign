@@ -130,16 +130,16 @@ export default function Authority() {
             tl.to(title, { opacity: 0, x: -50, duration: 0.5 }, "-=0.3");
             tl.to(desc, { opacity: 0, y: -20, duration: 0.5 }, "-=0.3");
             tl.to({}, { duration: 0.5 });
-            
+
             // Move next item to first position
             const nextItem = items[idx + 1];
             const nextNum = nextItem.querySelector(".frame-num");
             const nextTitle = nextItem.querySelector(".frame-title");
             const nextDesc = nextItem.querySelector(".frame-desc");
-            
+
             // Calculate the distance to move (based on gap and item height)
             const moveDistance = -96 * (idx + 1); // Approximate item height + gap
-            
+
             tl.to(nextItem, { y: moveDistance, duration: 0.5 });
           }
         });
@@ -150,7 +150,7 @@ export default function Authority() {
           const num = item.querySelector(".frame-num");
           const title = item.querySelector(".frame-title");
           const desc = item.querySelector(".frame-desc");
-          
+
           // Reset item position and show all with stagger
           tl.to(item, { y: 0, duration: 0.5 });
           tl.to(num, { opacity: 1, scale: 1, duration: 0.5 }, `-=${0.1 * idx}`);
@@ -168,7 +168,7 @@ export default function Authority() {
       <div className="w-[95%] max-w-[1800px] mx-auto">
         <div ref={whyContainerRef} className="flex flex-col lg:flex-row-reverse items-center min-h-screen py-30 pt-60 gap-16 lg:gap-24">
           <div className="w-full lg:w-1/2">
-            <h2 className="text-5xl font-black mb-10 leading-tight">
+            <h2 className="text-5xl font-bold mb-10 leading-tight">
               <span className="text-[#64c4ad]">Why</span>{" "}
               <span className="text-[#2b4c8c]">PrimeTek</span>
             </h2>
@@ -181,12 +181,12 @@ export default function Authority() {
                 PrimeTek was built to address these challenges through focused, non-clinical operational support that brings clarity, structure, and control to your day-to-day operations.
               </p>
               <div className="space-y-4 pt-6">
-                <h3 className="2xl:text-2xl text-black font-black text-xl mb-4">What Makes PrimeTek Different</h3>
+                <h3 className="2xl:text-2xl text-black font-bold text-xl mb-4">What Makes PrimeTek Different</h3>
                 <div ref={whyListRef} className="flex flex-col gap-8 text-sm">
                   {differentiators.map((item, idx) => (
                     <div key={idx} className="flex flex-col gap-1 text-black group diff-item">
                       <p className="2xl:text-2xl font-bold text-[#2b4c8c] text-lg flex items-center gap-3 diff-title-row">
-                        <span className="text-[#64c4ad] font-black text-md bg-[#64c4ad]/10 w-10 h-10 rounded-full flex items-center justify-center diff-num">
+                        <span className="text-[#64c4ad] font-bold text-md bg-[#64c4ad]/10 w-10 h-10 rounded-full flex items-center justify-center diff-num">
                           {(idx + 1).toString().padStart(2, '0')}
                         </span>
                         <span className="diff-title 2xl:text-2xl">{item.title}</span>
@@ -214,7 +214,7 @@ export default function Authority() {
         {/* Our Framework section with pin */}
         <div ref={frameContainerRef} className="flex flex-col lg:flex-row pt-10 min-h-screen items-center pb-30 pt-60 gap-16 lg:gap-24">
           <div className="w-full lg:w-1/2">
-            <h2 className="text-5xl font-black mb-10 leading-tight">
+            <h2 className="text-5xl font-bold mb-10 leading-tight">
               <span className="text-[#64c4ad]">Our</span>{" "}
               <span className="text-[#2b4c8c]">Framework</span>
             </h2>
@@ -226,12 +226,12 @@ export default function Authority() {
                 PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
               </p>
               <div className="flex flex-col gap-6 pt-6">
-                <h3 className="2xl:text-2xl text-black font-black text-xl mb-4">Our 4-Step Operational Framework</h3>
+                <h3 className="2xl:text-2xl text-black font-bold text-xl mb-4">Our 4-Step Operational Framework</h3>
                 <div ref={frameListRef} className="flex flex-col gap-8">
                   {frameworkSteps.map((item, idx) => (
                     <div key={idx} className="flex gap-6 group frame-item">
                       <div className="flex-shrink-0">
-                        <span className="text-[#64c4ad] lg:text-4xl font-black text-md bg-[#64c4ad]/10 w-20 h-20 rounded-full flex items-center justify-center frame-num">
+                        <span className="text-[#64c4ad] lg:text-4xl font-bold text-md bg-[#64c4ad]/10 w-20 h-20 rounded-full flex items-center justify-center frame-num">
                           {(idx + 1).toString().padStart(2, '0')}
                         </span>
                       </div>

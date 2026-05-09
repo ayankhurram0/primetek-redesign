@@ -61,7 +61,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
               label="Explore Service"
               textColor="white"
               borderColor="teal-400"
-              bgColor="#71c6a4"
+              bgColor="teak-400"
               rippleColor="#2b4c8c"
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
             />
@@ -206,7 +206,7 @@ export default function ServicesSticky() {
               ease: "linear"
             }}
             className="absolute inset-[-100px]"
-            style={{ backgroundImage: 'linear-gradient(to right, #71c6a4 1px, transparent 1px), linear-gradient(to bottom, #71c6a4 1px, transparent 1px)', backgroundSize: '100px 100px' }}
+            style={{ backgroundImage: 'linear-gradient(to right, teak-400 1px, transparent 1px), linear-gradient(to bottom, teak-400 1px, transparent 1px)', backgroundSize: '100px 100px' }}
           />
         </div>
 
@@ -234,7 +234,7 @@ export default function ServicesSticky() {
                 label="Become a client"
                 textColor="white"
                 borderColor="teal-400"
-                bgColor="#71c6a4"
+                bgColor="teak-400"
                 rippleColor="#2b4c8c"
                 extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
               />

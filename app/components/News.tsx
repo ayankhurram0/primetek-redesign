@@ -305,17 +305,17 @@ export default function IntelligenceDashboard() {
               <div className="flex justify-between items-start mb-12">
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-3">
-                    <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.5)] border border-red-400">
+                    <span className="bg-red-600 text-white text-lg font-bold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.5)] border border-red-400">
                       <AlertTriangle className="w-3 h-3" />
                       {activeAlert.priority.toUpperCase()} PRIORITY
                     </span>
-                    <span className="text-xs tracking-widest text-slate-500 uppercase font-mono">
+                    <span className="text-lg tracking-widest text-slate-500 uppercase font-mono">
                       PRIME<span className="text-white">TEK</span> INTELLIGENCE FEED — LIVE
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_#ef4444]" />
-                    <span className="text-sm font-semibold uppercase tracking-wider text-red-400">Monitoring Active</span>
+                    <span className="text-lg font-semibold uppercase tracking-wider text-red-400">Monitoring Active</span>
                   </div>
                 </div>
               </div>
@@ -325,7 +325,7 @@ export default function IntelligenceDashboard() {
                   <h2 className="text-5xl font-sans font-bold text-white leading-tight">
                     {activeAlert.title}
                   </h2>
-                  <p className="text-slate-400 leading-relaxed text-xl">
+                  <p className="text-slate-400 leading-relaxed text-2xl">
                     {activeAlert.description}
                   </p>
 
@@ -334,16 +334,16 @@ export default function IntelligenceDashboard() {
                     {activeAlert.activities.map((act, i) => (
                       <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-red-500/30 bg-red-950/20 group/item hover:border-red-500 hover:bg-red-950/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] transition-all">
                         <div className="flex items-center gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
-                          <span className="text-lg font-medium text-white">{act.text}</span>
+                          <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
+                          <span className="text-xl font-medium text-white">{act.text}</span>
                         </div>
-                        <span className="text-sm font-mono text-slate-500">{act.time}</span>
+                        <span className="text-lg font-mono text-slate-500">{act.time}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                              </div>
+              </div>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function BlogGrid() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {blogs.map((post, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -23,9 +23,9 @@ export default function BlogGrid() {
             >
               <Link href={`/blog/${post.slug}`} className="block">
                 <div className="aspect-[16/10] rounded-[32px] overflow-hidden mb-8 border border-white/5 bg-brand-900 group-hover:border-brand-teal/30 transition-all duration-500 relative">
-                  <Image 
-                    src={post.image} 
-                    alt={post.title} 
+                  <Image
+                    src={post.image}
+                    alt={post.title}
                     className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 group-hover:scale-105"
                   />
                   <div className="absolute top-4 right-4 group-hover:scale-110 transition-transform">
@@ -34,7 +34,7 @@ export default function BlogGrid() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
                     <span className="text-[10px] font-bold text-brand-teal uppercase tracking-widest">{post.category}</span>
@@ -43,7 +43,7 @@ export default function BlogGrid() {
                       <Clock className="w-3 h-3" /> {post.date}
                     </span>
                   </div>
-                  <h3 className="text-xl font-display font-medium text-teal-400 uppercase italic leading-tight group-hover:text-brand-teal transition-colors">
+                  <h3 className="text-xl font-display font-medium text-teal-400 uppercase  leading-tight group-hover:text-brand-teal transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-slate-400 font-light text-sm leading-relaxed line-clamp-2">
@@ -54,11 +54,11 @@ export default function BlogGrid() {
             </motion.div>
           ))}
         </div>
-        
+
         <div className="mt-24 text-center">
-           <button className="px-10 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all text-[10px] uppercase tracking-[0.3em]">
-              Load More Investigations
-           </button>
+          <button className="px-10 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all text-[10px] uppercase tracking-[0.3em]">
+            Load More Investigations
+          </button>
         </div>
       </div>
     </section>

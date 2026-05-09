@@ -87,7 +87,7 @@ export default function Testimonials() {
               ))}
             </div>
             <div>
-              <p className="text-white font-black text-sm">Happy Customer</p>
+              <p className="text-white font-bold text-sm">Happy Customer</p>
               <div className="flex items-center gap-1">
                 <span className="text-teal-400 text-xs">★</span>
                 <span className="text-white/60 text-[10px] font-bold">4.8 (15K Review)</span>

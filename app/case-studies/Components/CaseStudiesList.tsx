@@ -1,4 +1,5 @@
 import CaseStudyCard, { CaseStudyData } from './CaseStudyCard';
+import { DecorativeBackground } from '../../components/DecorativeBackground';
 
 const studies: CaseStudyData[] = [
   {
@@ -89,8 +90,9 @@ const studies: CaseStudyData[] = [
 
 export default function CaseStudiesList() {
   return (
-    <section className="py-24 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 px-26 relative overflow-hidden bg-transparent">
+      <DecorativeBackground id="studieslist" />
+      <div className="relative z-10">
         {studies.map((study, idx) => (
           <CaseStudyCard key={idx} study={study} idx={idx} />
         ))}

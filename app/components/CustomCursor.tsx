@@ -47,8 +47,8 @@ export default function CustomCursor() {
     if (cursorRef.current) {
       gsap.to(cursorRef.current, {
         scale: isHovered ? 1.5 : 1,
-        backgroundColor: "#2dd4bf",
-        mixBlendMode: isHovered ? "screen" : "multiply",
+        backgroundColor: "#ffffff",
+        mixBlendMode: isHovered ? "difference" : "normal",
         duration: 0.3,
       });
     }
@@ -60,8 +60,8 @@ export default function CustomCursor() {
         ref={cursorRef}
         className="fixed top-0 left-0 w-5 h-5 rounded-full pointer-events-none z-[9999] transition-colors"
         style={{
-          backgroundColor: "#2dd4bf",
-          boxShadow: "0 0 15px rgba(45, 212, 191, 0.6)"
+          backgroundColor: "#ffffff",
+          boxShadow: "0 0 15px rgba(255, 255, 255, 0.6)"
         }}
       />
       <style jsx global>{`

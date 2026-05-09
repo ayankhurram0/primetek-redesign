@@ -14,6 +14,7 @@ import {
     Users,
     BarChart3
 } from "lucide-react";
+import { DecorativeBackground } from "./DecorativeBackground";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,23 +101,26 @@ export const TestingSection: React.FC = () => {
 
     useGSAP(() => {
         // Simple entrance animation instead of pinned scroll
-        gsap.fromTo([subHeadingRef.current, headingRef.current, textRef.current], 
-            { opacity: 0, y: 30 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
+        const targets = [headingRef.current, textRef.current].filter(Boolean);
+        if (targets.length > 0) {
+            gsap.fromTo(targets, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
                 }
-            }
-        );
+            );
+        }
 
-        gsap.fromTo(".service-category-card", 
+        gsap.fromTo(".service-category-card",
             { opacity: 0, y: 50 },
             {
                 opacity: 1,
@@ -139,20 +143,16 @@ export const TestingSection: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(113,198,164,0.08)_0%,transparent_50%)]" />
             <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_70%,rgba(59,130,246,0.08)_0%,transparent_50%)]" />
+            <DecorativeBackground id="testing" />
 
             <div className="flex flex-col justify-center py-20 px-12">
                 <div className="max-w-[1600px] mx-auto relative z-10 w-full mt-20">
                     <div className="text-center mb-12 flex flex-col items-center">
-                        <div ref={subHeadingRef} className="flex items-center gap-4 mb-6">
-                            <div className="h-[1px] w-8 bg-white/20" />
-                            <span className="text-teal-400 font-bold text-xs tracking-widest uppercase">OUR SERVICES</span>
-                            <div className="h-[1px] w-8 bg-white/20" />
-                        </div>
                         <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
                             Operational Systems That Protect  <br />
                             <span className="text-teal-400">& Grow Pharmacy Revenue</span>
                         </h2>
-                        <p ref={textRef} className="text-white/60 text-lg max-w-2xl leading-relaxed">
+                        <p ref={textRef} className="text-white/60 text-2xl max-w-3xl leading-relaxed">
                             We identify revenue leakage, reduce audit exposure, and optimize operations across your pharmacy using structured, data-driven systems.
                         </p>
                     </div>
@@ -194,7 +194,7 @@ export const TestingSection: React.FC = () => {
                                                 {service.statLabel}
                                             </p>
                                         </div>
-                                        <button 
+                                        <button
                                             className="flex items-center gap-2 text-xs font-bold transition-all"
                                             style={{ color: service.accentColor }}
                                         >
@@ -242,7 +242,7 @@ export const TestingSection: React.FC = () => {
                                                 {service.statLabel}
                                             </p>
                                         </div>
-                                        <button 
+                                        <button
                                             className="flex items-center gap-2 text-xs font-bold transition-all"
                                             style={{ color: service.accentColor }}
                                         >

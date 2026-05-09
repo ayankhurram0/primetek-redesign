@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
   { value: "100+", label: "Pharmacies Supported" },
@@ -13,27 +16,31 @@ export const ContactStats = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".reveal-stat", {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 90%",
+      gsap.fromTo(".reveal-stat",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 95%",
+            toggleActions: "play none none none"
+          }
         }
-      });
+      );
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 px-6 border-t border-white/5 bg-brand-dark">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center">
+    <section ref={containerRef} className="py-20 px-26 border-t border-white/5 bg-transparent pb-40">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-12 text-center">
         {stats.map((stat, i) => (
           <div key={i} className="reveal-stat flex-1">
-            <div className="text-5xl font-black text-white mb-4 tracking-tighter">{stat.value}</div>
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">{stat.label}</div>
+            <div className="text-5xl font-bold text-teal-400 mb-4 tracking-tighter">{stat.value}</div>
+            <div className="text-lg font-bold uppercase tracking-[0.4em] text-white">{stat.label}</div>
           </div>
         ))}
       </div>
