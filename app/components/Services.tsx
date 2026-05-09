@@ -15,6 +15,7 @@ import {
     BarChart3
 } from "lucide-react";
 import { DecorativeBackground } from "./DecorativeBackground";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,7 +104,7 @@ export const ServicesSection: React.FC = () => {
         // Simple entrance animation instead of pinned scroll
         const targets = [headingRef.current, textRef.current].filter(Boolean);
         if (targets.length > 0) {
-            gsap.fromTo(targets, 
+            gsap.fromTo(targets,
                 { opacity: 0, y: 30 },
                 {
                     opacity: 1,
@@ -147,7 +148,7 @@ export const ServicesSection: React.FC = () => {
             <DecorativeBackground id="services" />
 
             <div className="flex flex-col justify-center py-20 px-12">
-                <div className="max-w-[1600px] mx-auto relative z-10 w-full mt-20">
+                <div className="relative z-10 w-full mt-20">
                     <div className="text-center mb-12 flex flex-col items-center">
                         <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
                             Operational Systems That Protect  <br />
@@ -160,11 +161,12 @@ export const ServicesSection: React.FC = () => {
 
                     <div className="flex flex-col gap-6">
                         {/* Top Row: 3 Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1800px] mx-auto w-full mb-6">
                             {services.slice(0, 3).map((service, idx) => (
-                                <div
+                                <Link
+                                    href="/services"
                                     key={idx}
-                                    className={`service-category-card group relative bg-[#0a1122]/40 backdrop-blur-3xl border border-white/10 rounded-3xl p-8 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-[#0a1122]/40 backdrop-blur-3xl border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] flex flex-col justify-between h-[380px] ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
@@ -195,22 +197,23 @@ export const ServicesSection: React.FC = () => {
                                                 {service.statLabel}
                                             </p>
                                         </div>
-                                        <button
+                                        <div
                                             className="flex items-center gap-2 text-base font-bold transition-all"
                                             style={{ color: service.accentColor }}
                                         >
                                             {service.link}
                                             <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-                                        </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
 
                         {/* Bottom Row: 2 Cards (Centered) */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1060px] mx-auto w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1300px] mx-auto w-full">
                             {services.slice(3, 5).map((service, idx) => (
-                                <div
+                                <Link
+                                    href="/services"
                                     key={idx}
                                     className={`service-category-card group relative bg-[#0a1122]/40 backdrop-blur-3xl border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] ${service.hoverClass}`}
                                 >
@@ -243,15 +246,15 @@ export const ServicesSection: React.FC = () => {
                                                 {service.statLabel}
                                             </p>
                                         </div>
-                                        <button
+                                        <div
                                             className="flex items-center gap-2 text-base font-bold transition-all"
                                             style={{ color: service.accentColor }}
                                         >
                                             {service.link}
                                             <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-                                        </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>

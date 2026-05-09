@@ -121,7 +121,7 @@ export default function ConsultationCTA() {
                   textColor="white"
                   borderColor="teal-400"
                   rippleColor="#2b4c8c"
-                  bgColor="teal-400"
+                  bgColor="#2dd4bf"
                   extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-300 py-6 px-12 text-lg shadow-lg border-2"
                 />
               </Link>
