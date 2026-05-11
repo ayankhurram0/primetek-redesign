@@ -45,7 +45,6 @@ export default function Navbar() {
         <Link href="/services" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Services</Link>
 
         <Link href="/case-studies" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Case Studies</Link>
-        <Link href="/resources" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Resources</Link>
                 <Link href="/contact" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Contact</Link>
       </div>
 

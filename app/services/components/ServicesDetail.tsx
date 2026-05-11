@@ -308,11 +308,10 @@ export const ServicesDetail = () => {
                   className="glass-card p-12 md:p-16 relative overflow-x-hidden h-[800px] overflow-y-auto overscroll-contain custom-scrollbar"
                   data-lenis-prevent="true"
                   onWheel={(e) => e.stopPropagation()}
+                  style={{ 
+                    background: `linear-gradient(135deg, ${colorMap[activeService.color]}20 0%, #1e40af15 100%)`
+                  }}
                 >
-                  <div
-                    className="absolute top-0 right-0 w-96 h-96 opacity-5 blur-[120px] -z-10"
-                    style={{ backgroundColor: colorMap[activeService.color] }}
-                  />
 
                   <div className="flex flex-col md:flex-row justify-between gap-12 mb-24">
                     <div className="max-w-xl">

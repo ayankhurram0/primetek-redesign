@@ -1,102 +1,302 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import type { MutableRefObject } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import logo from "@/src/assets/logo-white.png";
 
-export default function Preloader() {
-  const [loading, setLoading] = useState(true);
+const MIN_DISPLAY_MS = 500;
+const MAX_WAIT_MS = 12_000;
+
+/** Yield so React can commit the new route and client trees before we measure "ready". */
+function yieldToReact(): Promise<void> {
+  return new Promise((r) => setTimeout(r, 0));
+}
+
+function waitWindowLoad(): Promise<void> {
+  if (document.readyState === "complete") {
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    window.addEventListener("load", () => resolve(), { once: true });
+  });
+}
+
+async function waitFonts(): Promise<void> {
+  try {
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      await document.fonts.ready;
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
+/** After paint so layout from client components has settled. */
+function waitNextPaint(): Promise<void> {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => resolve());
+    });
+  });
+}
+
+/** Brief idle slice so low-priority hydration work can run (cap so we never hang forever). */
+function waitIdleCap(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    const ric = window.requestIdleCallback;
+    if (typeof ric === "function") {
+      ric(() => resolve(), { timeout: ms });
+    } else {
+      setTimeout(resolve, Math.min(ms, 80));
+    }
+  });
+}
+
+function smoothProgressTo(
+  target: number,
+  progressRef: MutableRefObject<number>,
+  setProgress: (n: number) => void,
+  signal: AbortSignal,
+): Promise<void> {
+  return new Promise((resolve) => {
+    const step = () => {
+      if (signal.aborted) {
+        resolve();
+        return;
+      }
+      const cur = progressRef.current;
+      if (cur >= target - 0.5) {
+        progressRef.current = target;
+        setProgress(target);
+        resolve();
+        return;
+      }
+      progressRef.current += (target - cur) * 0.18;
+      setProgress(progressRef.current);
+      requestAnimationFrame(step);
+    };
+    step();
+  });
+}
+
+async function runReadyPipeline(
+  signal: AbortSignal,
+  progressRef: MutableRefObject<number>,
+  setProgress: (n: number) => void,
+): Promise<void> {
+  if (signal.aborted) return;
+
+  await yieldToReact();
+  if (signal.aborted) return;
+  await smoothProgressTo(18, progressRef, setProgress, signal);
+  if (signal.aborted) return;
+
+  await waitWindowLoad();
+  if (signal.aborted) return;
+  await smoothProgressTo(48, progressRef, setProgress, signal);
+  if (signal.aborted) return;
+
+  await waitFonts();
+  if (signal.aborted) return;
+  await smoothProgressTo(72, progressRef, setProgress, signal);
+  if (signal.aborted) return;
+
+  await waitNextPaint();
+  if (signal.aborted) return;
+  await smoothProgressTo(90, progressRef, setProgress, signal);
+  if (signal.aborted) return;
+
+  await waitIdleCap(200);
+  if (signal.aborted) return;
+  await smoothProgressTo(99, progressRef, setProgress, signal);
+}
+
+function finishProgressAndHide(
+  startTime: number,
+  progressRef: MutableRefObject<number>,
+  setProgress: (n: number) => void,
+  setIsLoading: (v: boolean) => void,
+  signal: AbortSignal,
+) {
+  const elapsed = Date.now() - startTime;
+  const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
+
+  window.setTimeout(() => {
+    if (signal.aborted) return;
+
+    const animateToComplete = () => {
+      if (signal.aborted) return;
+      if (progressRef.current >= 100) {
+        window.setTimeout(() => {
+          if (signal.aborted) return;
+          setIsLoading(false);
+          window.dispatchEvent(new CustomEvent("preloaderComplete"));
+        }, 400);
+        return;
+      }
+
+      const diff = 100 - progressRef.current;
+      progressRef.current += diff * 0.14;
+      setProgress(progressRef.current);
+
+      if (progressRef.current < 99.9) {
+        requestAnimationFrame(animateToComplete);
+      } else {
+        progressRef.current = 100;
+        setProgress(100);
+        window.setTimeout(() => {
+          if (signal.aborted) return;
+          setIsLoading(false);
+          window.dispatchEvent(new CustomEvent("preloaderComplete"));
+        }, 400);
+      }
+    };
+
+    animateToComplete();
+  }, remaining);
+}
+
+const LoadingScreen = () => {
   const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname();
+  const progressRef = useRef(0);
+  const previousPathnameRef = useRef(pathname);
+  const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    // Simulate loading progress
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => setLoading(false), 500); // Hold at 100% for 500ms
-          return 100;
+    if (previousPathnameRef.current !== pathname) {
+      previousPathnameRef.current = pathname;
+      abortRef.current?.abort();
+      setIsLoading(true);
+      setProgress(0);
+      progressRef.current = 0;
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+    const { signal } = controller;
+    const startTime = Date.now();
+
+    let timeoutId: number | undefined;
+
+    const run = async () => {
+      try {
+        await Promise.race([
+          runReadyPipeline(signal, progressRef, setProgress),
+          new Promise<void>((_, reject) => {
+            timeoutId = window.setTimeout(
+              () => reject(new Error("timeout")),
+              MAX_WAIT_MS,
+            );
+          }),
+        ]);
+      } catch {
+        /* hard cap elapsed — still dismiss */
+      } finally {
+        if (timeoutId !== undefined) {
+          window.clearTimeout(timeoutId);
         }
-        return prev + Math.random() * 15; // Random increment for realistic loading
-      });
-    }, 100);
+      }
 
-    return () => clearInterval(interval);
-  }, []);
+      if (signal.aborted) return;
 
-  if (!loading) return null;
+      finishProgressAndHide(
+        startTime,
+        progressRef,
+        setProgress,
+        setIsLoading,
+        signal,
+      );
+    };
+
+    void run();
+
+    return () => {
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId);
+      }
+      controller.abort();
+    };
+  }, [pathname]);
+
+  if (!isLoading) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      animate={{ opacity: loading ? 1 : 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-teal-400 to-[#2b4c8c]"
+    <div
+      data-loading-screen="true"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#1e3a8a",
+        background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #2563eb 100%)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 99999,
+        transition: "opacity 0.8s ease-out",
+        opacity: isLoading ? 1 : 0,
+        pointerEvents: isLoading ? "auto" : "none",
+      }}
     >
-      <div className="text-center">
-        {/* Logo Animation */}
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{
-            opacity: 1,
-            y: 0
+      <div
+        style={{
+          position: "relative",
+          width: "200px",
+          height: "200px",
+        }}
+      >
+        <Image
+          src={logo}
+          alt="PrimeTek"
+          width={200}
+          height={200}
+          style={{
+            opacity: 0.15,
+            position: "absolute",
+            top: 0,
+            left: 0,
           }}
-          transition={{
-            duration: 1.2,
-            ease: "easeOut"
+          priority
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            WebkitMaskImage: `linear-gradient(to right, black ${progress}%, transparent ${Math.min(progress + 1.5, 100)}%)`,
+            maskImage: `linear-gradient(to right, black ${progress}%, transparent ${Math.min(progress + 1.5, 100)}%)`,
+            WebkitMaskSize: "100% 100%",
+            maskSize: "100% 100%",
+            willChange: "mask-image",
+            transition: "mask-image 0.03s linear",
           }}
-          className="mb-16"
         >
           <Image
             src={logo}
             alt="PrimeTek"
-            width={500}
-            height={500}
-            className="drop-shadow-2xl"
+            width={200}
+            height={200}
+            style={{
+              opacity: 1,
+            }}
+            priority
           />
-        </motion.div>
-
-        {/* Progress Bar Container */}
-        <div className="w-64 md:w-80 mx-auto">
-          {/* Progress Bar Background */}
-          <div className="h-1 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
-            {/* Progress Bar Fill */}
-            <motion.div
-              initial={{ width: "0%" }}
-              animate={{ width: `${progress}%` }}
-              transition={{
-                duration: 0.3,
-                ease: "easeOut"
-              }}
-              className="h-full bg-gradient-to-r from-white to-white/80 rounded-full relative overflow-hidden"
-            >
-              {/* Shimmer Effect */}
-              <motion.div
-                animate={{
-                  x: ["-100%", "200%"]
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-              />
-            </motion.div>
-          </div>
-
-          {/* Progress Percentage */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-4 text-white/80 text-sm font-medium"
-          >
-            {Math.round(progress)}%
-          </motion.div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-}
+};
+
+export default LoadingScreen;

@@ -1,53 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from 'motion/react';
-import { useEffect, useState, useRef } from 'react';
-import { Radio, Database, ShieldAlert, Activity, Cpu } from 'lucide-react';
+import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { Radio } from 'lucide-react';
 import { DecorativeBackground } from '../../components/DecorativeBackground';
 
-interface NetworkEvent {
-  id: string;
-  type: 'SYNC' | 'AUDIT' | 'REV' | 'NODE';
-  message: string;
-  timestamp: string;
-  status: 'SUCCESS' | 'WARNING' | 'CRITICAL';
-}
-
-const EVENT_TYPES = {
-  SYNC: { icon: Database, color: 'text-blue-400', label: 'NODE_SYNC' },
-  AUDIT: { icon: ShieldAlert, color: 'text-red-400', label: 'AUDIT_SHIELD' },
-  REV: { icon: Activity, color: 'text-brand-teal', label: 'REV_CAPTURE' },
-  NODE: { icon: Cpu, color: 'text-slate-400', label: 'SYSTEM_UP' },
-};
-
-const LOCATIONS = ['NEW_YORK', 'BOSTON', 'PHILADELPHIA', 'NEW_JERSEY', 'MARYLAND', 'VIRGINIA', 'DELAWARE'];
-
 export default function NetworkPulse() {
-  const [events, setEvents] = useState<NetworkEvent[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const generateEvent = () => {
-      const types: (keyof typeof EVENT_TYPES)[] = ['SYNC', 'AUDIT', 'REV', 'NODE'];
-      const type = types[Math.floor(Math.random() * types.length)];
-      const location = LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)];
-
-      const newEvent: NetworkEvent = {
-        id: Math.random().toString(36).substr(2, 9),
-        type,
-        message: `${location} :: ${Math.floor(Math.random() * 1000)}ms latency :: PROTOCOL_${Math.floor(Math.random() * 900) + 100}`,
-        timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
-        status: Math.random() > 0.8 ? 'WARNING' : 'SUCCESS',
-      };
-
-      setEvents(prev => [newEvent, ...prev].slice(0, 50));
-    };
-
-    const interval = setInterval(generateEvent, 3000);
-    generateEvent(); // Initial call
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="py-24 bg-brand-950 relative overflow-hidden border-t border-white/5">
@@ -130,46 +89,6 @@ export default function NetworkPulse() {
                 <div className="absolute bottom-6 left-6 text-[8px] font-mono text-slate-500 font-bold uppercase tracking-[0.2em]">
                   SECURE_LINK_ENCRYPTION_PROTOCOL_v4.2.0
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Telemetry Log */}
-          <div className="lg:col-span-12">
-            <div className="bg-brand-950 border border-white/5 rounded-sm overflow-hidden">
-              <div className="px-6 py-3 border-b border-white/5 bg-white/[0.02] flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
-                  <span className="text-[10px] font-mono text-white font-bold uppercase tracking-widest">LIVE_TELEMETRY_FEED</span>
-                </div>
-                <span className="text-[9px] text-slate-500 font-mono font-bold uppercase">Uptime: 99.98%</span>
-              </div>
-
-              <div
-                ref={scrollRef}
-                className="h-80 overflow-y-auto font-mono scrollbar-hide text-[10px] p-6 space-y-2 select-none"
-              >
-                {events.length === 0 && (
-                  <div className="text-slate-600 animate-pulse">Initializing data streams...</div>
-                )}
-                {events.map((event) => {
-                  const Meta = EVENT_TYPES[event.type];
-                  return (
-                    <motion.div
-                      key={event.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex items-center gap-4 py-1 group"
-                    >
-                      <span className="text-slate-600 font-bold">[{event.timestamp}]</span>
-                      <span className={`${Meta.color} font-bold w-24 shrink-0`}>{Meta.label}</span>
-                      <span className="text-slate-400 group-hover:text-white transition-colors">{event.message}</span>
-                      <span className={`ml-auto font-bold ${event.status === 'SUCCESS' ? 'text-brand-teal' : 'text-red-400 opacity-80'}`}>
-                        {event.status}
-                      </span>
-                    </motion.div>
-                  );
-                })}
               </div>
             </div>
           </div>

@@ -1,8 +1,12 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Activity,
   AlertTriangle,
   Monitor,
+  AlertCircle,
+  ShieldCheck,
+  TrendingUp,
+  DollarSign,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import auditCard from "@/src/assets/audit_card.png";
@@ -72,7 +76,8 @@ export const ALERTS: AlertItem[] = [
     image: mtfCard,
     activities: [
       { text: 'Unreconciled MTF payments: $8,200', time: '45m ago' },
-      { text: 'Revenue leakage detected in 4 categories', time: '2h ago' }
+      { text: 'Revenue leakage detected in 4 categories', time: '2h ago' },
+      { text: 'New activity', time: '1m ago' }
     ]
   }
 ];
@@ -116,6 +121,22 @@ function RadarAnimation() {
     </div>
   );
 }
+
+// Function to get appropriate icon based on alert category and priority
+const getAlertIcon = (category: string, priority: string) => {
+  switch (category) {
+    case 'Audit Compliance':
+      return AlertTriangle;
+    case 'Revenue Optimization':
+      return TrendingUp;
+    case 'Financial Risk':
+      return DollarSign;
+    case 'Revenue Recovery':
+      return ShieldCheck;
+    default:
+      return Monitor;
+  }
+};
 
 export default function IntelligenceDashboard() {
   const [activeAlertId, setActiveAlertId] = useState(ALERTS[2].id);
@@ -231,10 +252,10 @@ export default function IntelligenceDashboard() {
 
       {/* Headings */}
       <section className="space-y-4 text-center lg:text-left">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-4xl font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-xl font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
           Critical Insights
         </div>
-        <h2 className="text-6xl 2xl:text-6xl xl:text-6xl font-bold tracking-tight text-white leading-tight">
+        <h2 className="text-6xl 2xl:text-6xl xl:text-8xl font-bold tracking-tight text-white leading-tight">
           Pharmacy Compliance <br />
           <span className="text-white">& </span><span className="text-red-600">Revenue Performance</span>
         </h2>
@@ -260,11 +281,11 @@ export default function IntelligenceDashboard() {
               >
                 <div className="flex items-center gap-4">
                   <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? 'bg-red-600/20 text-red-400' : 'bg-red-950/30 text-red-500/60'}`}>
-                    {alert.priority === 'High' ? <AlertTriangle className="w-8 w-8" /> : <Monitor className="w-8 w-8" />}
+                    {React.createElement(getAlertIcon(alert.category, alert.priority), { className: "w-8 h-8" })}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-base font-semibold uppercase tracking-wider text-red-400/80 mb-1">{alert.category}</div>
-                    <div className="text-2xl font-medium truncate text-white group-hover:text-red-100 transition-colors">{alert.title}</div>
+                    <div className="text-xs font-medium truncate text-white group-hover:text-red-100 transition-colors">{alert.title}</div>
                   </div>
                   {activeAlertId === alert.id && (
                     <motion.div
@@ -296,30 +317,28 @@ export default function IntelligenceDashboard() {
           </div>
 
           {/* Detail Panel */}
-          <div className="lg:col-span-8 w-full bg-gradient-to-br from-red-950/30 to-blue-950/40 backdrop-blur-xl rounded-2xl p-8 min-h-[460px] relative overflow-hidden group border-2 border-red-500/60">
-            <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-20 -z-10" />
+          <div className="lg:col-span-8 w-full bg-gradient-to-br from-red-950/30 to-blue-950/40 backdrop-blur-xl rounded-2xl p-8 min-h-[500px] relative overflow-hidden group border-2 border-red-500/60 flex flex-col justify-end items-end">
+            <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-10 -z-10" />
             <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 blur-[100px] rounded-full -mr-20 -mt-20 group-hover:bg-red-600/30 transition-colors" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-900/10 blur-[80px] rounded-full -ml-10 -mb-10" />
-
-            <div className="relative z-10 h-full flex flex-col">
-              <div className="flex justify-between items-start mb-12">
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-3">
-                    <span className="bg-red-600 text-white text-lg font-bold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.5)] border border-red-400">
-                      <AlertTriangle className="w-3 h-3" />
-                      {activeAlert.priority.toUpperCase()} PRIORITY
-                    </span>
-                    <span className="text-lg tracking-widest text-slate-500 uppercase font-mono">
-                      PRIME<span className="text-white">TEK</span> INTELLIGENCE FEED — LIVE
-                    </span>
+            <div className="flex-1 bg-red-500/40 absolute top-0 w-full right-0 p-4 px-6">
+              <div className='flex gap-10 items-center'>
+                <div className="flex gap-3">
+                  <div className="w-4 h-4 rounded-full bg-white/40" />
+                  <div className="w-4 h-4 rounded-full bg-white/40" />
+                  <div className="w-4 h-4 rounded-full bg-white/40" />
+                </div>
+                <div>
+                  <div className={`p-3 rounded-full flex gap-3 ${activeAlertId === activeAlert.id ? 'bg-orange-600/20 text-red-400' : 'bg-red-950/30 text-red-500/60'}`}>
+                    {React.createElement(getAlertIcon(activeAlert.category, activeAlert.priority), { className: "w-6 h-6" })}
+                    <div className="text-white text-xl font-semibold">{activeAlert.category}</div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_#ef4444]" />
-                    <span className="text-lg font-semibold uppercase tracking-wider text-red-400">Monitoring Active</span>
-                  </div>
+                  
                 </div>
               </div>
-
+              <div></div>
+            </div>
+            <div className="relative z-10 h-full flex flex-col">
               <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-between">
                 <div className="space-y-6 flex-1">
                   <h2 className="text-5xl font-sans font-bold text-white leading-tight">
@@ -328,21 +347,7 @@ export default function IntelligenceDashboard() {
                   <p className="text-slate-400 leading-relaxed text-2xl">
                     {activeAlert.description}
                   </p>
-
-                  <div className="space-y-3 pt-4">
-                    <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Activity</h3>
-                    {activeAlert.activities.map((act, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-red-500/30 bg-red-950/20 group/item hover:border-red-500 hover:bg-red-950/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] transition-all">
-                        <div className="flex items-center gap-3">
-                          <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
-                          <span className="text-xl font-medium text-white">{act.text}</span>
-                        </div>
-                        <span className="text-lg font-mono text-slate-500">{act.time}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
-
               </div>
             </div>
           </div>
