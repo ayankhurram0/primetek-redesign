@@ -157,97 +157,6 @@ export default function IntelligenceDashboard() {
 
   return (
     <div className="space-y-16 2xl:px-24 2xl:py-20 relative overflow-hidden min-h-screen">
-      {/* Decorative Elements - Top Right */}
-      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-          <path
-            d="M500 0 C250 0, 250 250, 0 250"
-            stroke="url(#news-gradient-tr)"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M500 80 C300 80, 300 300, 80 300"
-            stroke="url(#news-gradient-tr)"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-          <path
-            d="M500 160 C350 160, 350 350, 160 350"
-            stroke="url(#news-gradient-tr)"
-            strokeWidth="1"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.4"
-          />
-          {[...Array(8)].map((_, i) => (
-            <circle
-              key={`tr-${i}`}
-              cx={450 - i * 35}
-              cy={30 + i * 25}
-              r="3"
-              fill="#ef4444"
-              opacity={0.6 + i * 0.05}
-            />
-          ))}
-          <defs>
-            <linearGradient id="news-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#ef4444" stopOpacity="1" />
-              <stop offset="50%" stopColor="#ef4444" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
-      {/* Decorative Elements - Bottom Left */}
-      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-          <path
-            d="M0 500 C250 500, 250 250, 500 250"
-            stroke="url(#news-gradient-bl)"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M0 420 C200 420, 200 200, 420 200"
-            stroke="url(#news-gradient-bl)"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-          <path
-            d="M0 340 C150 340, 150 150, 340 150"
-            stroke="url(#news-gradient-bl)"
-            strokeWidth="1"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.4"
-          />
-          {[...Array(8)].map((_, i) => (
-            <circle
-              key={`bl-${i}`}
-              cx={30 + i * 35}
-              cy={470 - i * 25}
-              r="3"
-              fill="#ef4444"
-              opacity={0.6 + i * 0.05}
-            />
-          ))}
-          <defs>
-            <linearGradient id="news-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#ef4444" stopOpacity="1" />
-              <stop offset="50%" stopColor="#ef4444" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
 
       {/* Headings */}
       <section className="space-y-4 text-center lg:text-left">
@@ -316,11 +225,11 @@ export default function IntelligenceDashboard() {
           </div>
 
           {/* Detail Panel */}
-          <div className="lg:col-span-8 w-full bg-gradient-to-br from-red-950/30 to-blue-950/40 backdrop-blur-xl rounded-2xl p-8 min-h-[500px] relative overflow-hidden group border-2 border-red-500/60 flex flex-col justify-end items-end">
+          <div className="lg:col-span-8 w-full backdrop-blur-xl rounded-2xl p-8 min-h-[500px] relative overflow-hidden group border-2 border-red-500/60 flex flex-col justify-end items-end">
             <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-10 -z-10" />
             <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 blur-[100px] rounded-full -mr-20 -mt-20 group-hover:bg-red-600/30 transition-colors" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-900/10 blur-[80px] rounded-full -ml-10 -mb-10" />
-            <div className="flex-1 bg-red-500/40 absolute top-0 w-full right-0 p-4 px-6">
+            <div className="flex-1 absolute top-0 w-full right-0 p-4 px-6">
               <div className='flex gap-10 items-center'>
                 <div className="flex gap-3">
                   <div className="w-4 h-4 rounded-full bg-white/40" />

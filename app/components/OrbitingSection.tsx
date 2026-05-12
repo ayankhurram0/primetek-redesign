@@ -173,10 +173,6 @@ export const OrbitingSection: React.FC = () => {
   return (
     <div id="orbit-section" ref={sectionRef} className="relative w-full overflow-hidden">
       <div ref={triggerRef} className="h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6 relative pb-10">
-        {/* Layered Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#020817] via-[#051125] to-[#020817]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.06)_0%,transparent_70%)]" />
-        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_100%_0%,rgba(113,198,164,0.04)_0%,transparent_40%)]" />
 
         <div className="relative z-10 w-[100%] mx-auto text-center mt-30 flex items-center justify-center">
           <div className="w-[35%] 2xl:pl-20 pl-10">

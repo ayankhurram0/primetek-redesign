@@ -213,7 +213,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#020617] flex flex-col items-center justify-center overflow-hidden font-sans">
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden font-sans">
       {/* Decorative Elements - Top Right */}
       <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
         <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
@@ -236,9 +236,7 @@ export default function App() {
         </svg>
       </div>
 
-      {/* Background Spotlight Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.1)_0%,transparent_80%)] pointer-events-none" />
-      {/* Background Cards Layer - 3D Infinite Autoplay */}
+            {/* Background Cards Layer - 3D Infinite Autoplay */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden [perspective:1200px] -translate-y-60!">
         <motion.div
           animate={{
@@ -281,16 +279,12 @@ export default function App() {
             className="h-full w-auto object-contain object-bottom drop-shadow-[-20px_20px_50px_rgba(0,0,0,0.2)]"
             priority
           />
-          {/* Gradient overlay on the bottom to blend in */}
-          <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-[#020617] via-[#020617]/90 to-transparent" />
-        </motion.div>
+                  </motion.div>
       </div>
 
       {/* Hero Content - Left Aligned Layout */}
       <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start pt-15 px-6 2xl:px-24 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/95 to-transparent pointer-events-none w-[70%]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/50 via-transparent to-[#020617]/50 pointer-events-none" />
-
+        
         <div className="relative flex flex-col items-center text-left 2xl:w-[58%] w-[55%] pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -352,11 +346,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Subtle vignette for depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-
-      {/* Bottom fade for the whole screen */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#020617] to-transparent pointer-events-none" />
-    </div>
+          </div>
   );
 }
