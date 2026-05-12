@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 export const ServicesHero = () => {
   return (
     <section className="relative pt-44 pb-20 px-26 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
       <div className="relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, BarChart3, ShieldCheck, Users, Calendar } from "lucide-react";
-import { DecorativeBackground } from "../../components/DecorativeBackground";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,7 +72,6 @@ export const AboutHero = () => {
 
   return (
     <section ref={containerRef} className="relative min-h-[90vh] flex flex-col justify-center px-26 pt-32 pb-20 overflow-hidden bg-transparent">
-      <DecorativeBackground id="abouthero" />
       <div className="absolute inset-0 bg-[#020817] z-0" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.08)_0%,transparent_70%)] blur-[120px] -z-10" />
 

@@ -25,7 +25,6 @@ const steps = [
 export const ServicesOnboarding = () => {
   return (
     <section className="relative py-44 px-26 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
       <div className="relative z-10 text-center">
         <h2 className="text-lg font-bold uppercase tracking-[0.5em] text-brand-teal mb-8">The Workflow</h2>
         <h3 className="text-6xl md:text-6xl xl:text-6xl font-poppins font-bold text-teal-400 mb-24 tracking-tighter">From Onboarding <br className="md:hidden" /> to Intelligence.</h3>

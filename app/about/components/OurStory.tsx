@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 import { CheckCircle2 } from "lucide-react";
-import { DecorativeBackground } from "../../components/DecorativeBackground";
 
 export const OurStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,9 +30,7 @@ export const OurStory = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-26 relative bg-transparent overflow-hidden">
-      <DecorativeBackground id="story" />
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+    <section ref={containerRef} className="py-24 px-26 relative bg-transparent overflow-hidden">      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
           <div
             data-dir="left"
             className="reveal-story relative"

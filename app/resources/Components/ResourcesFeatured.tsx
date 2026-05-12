@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { FileText, Download, ChevronRight } from 'lucide-react';
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 const assets = [
   { title: "2026 Audit Readiness Checklist", size: "2.4 MB", type: "PDF" },
@@ -13,7 +13,6 @@ const assets = [
 export default function ResourcesFeatured() {
   return (
     <section className="py-24 px-26 relative bg-transparent overflow-hidden border-b border-white/5">
-      <DecorativeBackground id="resources-featured" />
       <div className="relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {assets.map((asset, i) => (

@@ -14,7 +14,7 @@ import {
     Users,
     BarChart3
 } from "lucide-react";
-import { DecorativeBackground } from "./DecorativeBackground";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,11 +139,6 @@ export const TestingSection: React.FC = () => {
 
     return (
         <section ref={sectionRef} className="relative w-full overflow-hidden">
-            {/* Rich Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(113,198,164,0.08)_0%,transparent_50%)]" />
-            <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_70%,rgba(59,130,246,0.08)_0%,transparent_50%)]" />
-            <DecorativeBackground id="testing" />
 
             <div className="flex flex-col justify-center py-20 px-12">
                 <div className="max-w-[1600px] mx-auto relative z-10 w-full mt-20">

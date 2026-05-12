@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import logo from "@/src/assets/logo-white.png";
+import logo from "@/src/assets/footer-logo.png";
 
 const MIN_DISPLAY_MS = 500;
 const MAX_WAIT_MS = 12_000;
@@ -225,6 +225,17 @@ const LoadingScreen = () => {
     };
   }, [pathname]);
 
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLoading]);
+
   if (!isLoading) return null;
 
   return (
@@ -236,8 +247,6 @@ const LoadingScreen = () => {
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "#1e3a8a",
-        background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #2563eb 100%)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -247,23 +256,27 @@ const LoadingScreen = () => {
         pointerEvents: isLoading ? "auto" : "none",
       }}
     >
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(113,198,164,0.08)_0%,transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_70%,rgba(59,130,246,0.08)_0%,transparent_50%)]" />
+
       <div
         style={{
           position: "relative",
-          width: "200px",
-          height: "200px",
+          width: "600px",
+          maxWidth: "80vw",
         }}
       >
         <Image
           src={logo}
           alt="PrimeTek"
-          width={200}
-          height={200}
+          width={800}
+          height={400}
           style={{
             opacity: 0.15,
-            position: "absolute",
-            top: 0,
-            left: 0,
+            display: "block",
+            width: "100%",
+            height: "auto",
           }}
           priority
         />
@@ -286,10 +299,13 @@ const LoadingScreen = () => {
           <Image
             src={logo}
             alt="PrimeTek"
-            width={200}
-            height={200}
+            width={800}
+            height={400}
             style={{
               opacity: 1,
+              display: "block",
+              width: "100%",
+              height: "auto",
             }}
             priority
           />

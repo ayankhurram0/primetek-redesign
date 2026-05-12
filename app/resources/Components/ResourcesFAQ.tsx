@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 const faqs = [
   {
@@ -22,7 +22,6 @@ const faqs = [
 export default function ResourcesFAQ() {
   return (
     <section className="py-32 px-26 relative overflow-hidden bg-transparent border-t border-white/5">
-      <DecorativeBackground id="resources-faq" />
       <div className="relative z-10 max-w-3xl mx-auto text-center mb-20">
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 uppercase leading-tight tracking-tighter">
           Common <span className="text-teal-400">Questions.</span>

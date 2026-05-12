@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FancyButton from "./button";
 import Globe from "./Globe";
-import { DecorativeBackground } from "./DecorativeBackground";
+
 import Link from "next/link";
 
 if (typeof window !== "undefined") {
@@ -88,7 +88,6 @@ export default function ConsultationCTA() {
       ref={sectionRef}
       className="relative w-full overflow-hidden flex flex-col items-center justify-center py-24 px-26"
     >
-      <DecorativeBackground id="cta" />
 
       {/* Blending Masks */}
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020817] to-transparent z-10" />

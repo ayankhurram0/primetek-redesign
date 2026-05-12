@@ -245,7 +245,6 @@ export const ServicesDetail = () => {
 
   return (
     <section className="relative py-32 px-26 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
       <div className="relative z-10">
         <div className="grid lg:grid-cols-[400px_1fr] gap-20 items-start">
 
@@ -309,8 +308,9 @@ export const ServicesDetail = () => {
                   data-lenis-prevent="true"
                   onWheel={(e) => e.stopPropagation()}
                   style={{ 
-                    background: `linear-gradient(135deg, ${colorMap[activeService.color]}20 0%, #1e40af15 100%)`
-                  }}
+                    background: `linear-gradient(135deg, ${colorMap[activeService.color]}20 0%, #1e40af15 100%)`,
+                    '--scrollbar-color': colorMap[activeService.color],
+                  } as React.CSSProperties}
                 >
 
                   <div className="flex flex-col md:flex-row justify-between gap-12 mb-24">

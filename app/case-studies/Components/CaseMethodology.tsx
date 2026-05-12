@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { Search, ShieldAlert, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 const steps = [
   {
@@ -34,7 +34,6 @@ const steps = [
 export default function CaseMethodology() {
   return (
     <section className="py-32 relative border-t border-white/5 overflow-hidden">
-      <DecorativeBackground id="methodology" />
       <div className="px-26">
         <div className="mb-24">
           <h2 className="text-4xl md:text-6xl font-bold text-teal-400 leading-none tracking-tighter uppercase">

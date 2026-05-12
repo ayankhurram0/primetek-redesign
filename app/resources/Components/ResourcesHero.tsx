@@ -2,12 +2,11 @@
 
 import { motion } from 'motion/react';
 import { Download } from 'lucide-react';
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 export default function ResourcesHero() {
   return (
     <section className="relative pt-40 pb-20 border-b border-white/5 overflow-hidden bg-transparent">
-      <DecorativeBackground id="resources-hero" />
       <div className="absolute inset-0 bg-[#020817] z-0" />
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute bottom-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.08)_0%,transparent_70%)] blur-[120px] rounded-full translate-y-1/2" />

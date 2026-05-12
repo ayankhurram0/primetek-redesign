@@ -3,14 +3,13 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { Radio } from 'lucide-react';
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 export default function NetworkPulse() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="py-24 bg-brand-950 relative overflow-hidden border-t border-white/5">
-      <DecorativeBackground id="pulse" />
       <div className="px-26">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 

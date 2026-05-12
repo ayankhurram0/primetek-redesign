@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import Footer from "./components/Footer";
-import Preloader from "./components/Preloader";
 import ScrollIndicator from "./components/ScrollIndicator";
 import ServicesSticky from "./components/ServicesSticky";
 import News from "./components/News";
@@ -35,7 +34,6 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col overflow-x-hidden">
       <>
-      <Preloader />
       <ScrollIndicator />
       <Navbar />
       <Newhero />

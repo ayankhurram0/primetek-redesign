@@ -11,7 +11,7 @@ import badge2 from "@/src/assets/badges2.png";
 import badge3 from "@/src/assets/badges3.png";
 import badge4 from "@/src/assets/badges4.png";
 import coloredlogo from "@/src/assets/logo-colored.png";
-import { DecorativeBackground } from "./DecorativeBackground";
+
 
 // Shim for next/image to keep JSX identical while working in Vite
 const Image = ({ src, alt, className }: { src: string | { src: string }; alt: string; className?: string }) => (
@@ -177,8 +177,6 @@ export const OrbitingSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-tr from-[#020817] via-[#051125] to-[#020817]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.06)_0%,transparent_70%)]" />
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_100%_0%,rgba(113,198,164,0.04)_0%,transparent_40%)]" />
-
-        <DecorativeBackground id="orbit" />
 
         <div className="relative z-10 w-[100%] mx-auto text-center mt-30 flex items-center justify-center">
           <div className="w-[35%] 2xl:pl-20 pl-10">

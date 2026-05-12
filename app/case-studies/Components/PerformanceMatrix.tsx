@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { Shield, TrendingUp, Zap, BarChart3, FlaskConical } from 'lucide-react';
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 const tiers = [
   {
@@ -31,7 +31,6 @@ const tiers = [
 export default function PerformanceMatrix() {
   return (
     <section className="py-32 relative border-t border-white/5 overflow-hidden">
-      <DecorativeBackground id="performance" />
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-teal/[0.02] -skew-x-12 translate-x-32" />
 

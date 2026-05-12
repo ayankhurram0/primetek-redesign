@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 import { Mail } from "lucide-react";
-import { DecorativeBackground } from "../../components/DecorativeBackground";
+
 
 const team = [
   { name: "Michael Torres", role: "CEO", initials: "MT", size: "large", bio: "The visionary architect behind our operational logic." },
@@ -39,7 +39,6 @@ export const TheCollective = () => {
 
   return (
     <section ref={containerRef} className="py-24 px-26 relative bg-transparent overflow-hidden">
-      <DecorativeBackground id="collective" />
       <div className="relative z-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-24 gap-12">
           <div className="max-w-2xl reveal-collective">

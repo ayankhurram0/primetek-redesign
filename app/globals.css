@@ -1,6 +1,17 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Global Responsive Scaling */
+html {
+  font-size: 100%;
+}
+
+@media (min-width: 1280px) {
+  html {
+    font-size: 90%;
+  }
+}
+
 :root {
   --background: #020817;
   --foreground: #ededed;
@@ -97,4 +108,35 @@ html, body, * {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Dynamic scrollbar color — set --scrollbar-color on the element */
+.custom-scrollbar {
+  --scrollbar-color: #14b8a6;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color) !important;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  filter: brightness(0.85);
+  background: var(--scrollbar-color) !important;
+}
+
+@supports (scrollbar-color: auto) {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-color) rgba(0, 0, 0, 0.15) !important;
+  }
 }

@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 gsap.registerPlugin(ScrollTrigger);
 import { ShieldCheck, Target, Users, Lightbulb } from "lucide-react";
@@ -59,7 +59,6 @@ export const CorePhilosophy = () => {
 
   return (
     <section ref={containerRef} className="py-24 px-26 relative bg-transparent overflow-hidden">
-      <DecorativeBackground id="philosophy" />
       <div className="relative z-10">
         <div className="mb-24">
           <div className="text-6xl font-bold text-teal-400 uppercase leading-none tracking-tighter">We exist to shift the leverage back <br /><span className="text-white uppercase"> to the independent owner.</span></div>

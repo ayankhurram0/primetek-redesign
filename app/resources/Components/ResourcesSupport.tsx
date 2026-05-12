@@ -1,10 +1,9 @@
 import { MessageSquare, ArrowRight } from 'lucide-react';
-import { DecorativeBackground } from '../../components/DecorativeBackground';
+
 
 export default function ResourcesSupport() {
    return (
       <section className="py-32 px-26 relative overflow-hidden bg-transparent border-t border-white/5">
-         <DecorativeBackground id="resources-support" />
          <div className="relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                <div>

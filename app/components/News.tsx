@@ -75,7 +75,6 @@ export const ALERTS: AlertItem[] = [
     accentColor: 'text-brand-red',
     image: mtfCard,
     activities: [
-      { text: 'Unreconciled MTF payments: $8,200', time: '45m ago' },
       { text: 'Revenue leakage detected in 4 categories', time: '2h ago' },
       { text: 'New activity', time: '1m ago' }
     ]
@@ -349,6 +348,18 @@ export default function IntelligenceDashboard() {
                   </p>
                 </div>
               </div>
+              <div className="space-y-3 pt-4">
+                    <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
+                    {activeAlert.activities.map((act, i) => (
+                      <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-red-500/30 bg-red-950/20 group/item hover:border-red-500 hover:bg-red-950/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] transition-all">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
+                          <span className="text-xl font-medium text-white">{act.text}</span>
+                        </div>
+                        <span className="text-lg font-mono text-slate-500">{act.time}</span>
+                      </div>
+                    ))}
+                  </div>
             </div>
           </div>
         </div>

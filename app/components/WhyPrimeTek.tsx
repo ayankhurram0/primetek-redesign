@@ -9,7 +9,7 @@ import {
   ShieldCheck,
   Search
 } from "lucide-react";
-import { DecorativeBackground } from "./DecorativeBackground";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -104,7 +104,6 @@ export const WhyPrimeTekSection: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden">
-      <DecorativeBackground id="whyprimetek" />
 
       <div ref={triggerRef} className="min-h-screen flex flex-col justify-center py-20">
         <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10 px-12">
