@@ -9,6 +9,7 @@ const stats = [
   { value: "100+", label: "Pharmacies Supported" },
   { value: "$4.2M+", label: "Revenue Recovered" },
   { value: "98%", label: "Audit Readiness Score" },
+  { value: "1 Day", label: "Response Time" },
 ];
 
 export const ContactStats = () => {

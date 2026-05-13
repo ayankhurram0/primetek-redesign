@@ -64,7 +64,7 @@ export const CorePhilosophy = () => {
           <div className="text-6xl font-bold text-teal-400 uppercase leading-none tracking-tighter">We exist to shift the leverage back <br /><span className="text-white uppercase"> to the independent owner.</span></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[700px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-auto md:h-[400px]">
           {values.map((v, i) => (
             <div
               key={v.title}

@@ -36,11 +36,11 @@ export const ContactFormSection = () => {
       <div className="grid lg:grid-cols-12 gap-12 relative z-10">
 
         {/* Left Column: Info & Details */}
-        <div className="lg:col-span-4 space-y-8">
+        <div className="lg:col-span-4 space-y-12">
           {/* What to Expect */}
-          <div className="reveal-form bg-white/[0.03] p-10 border border-white/10 rounded-3xl">
-            <h3 className="text-3xl font-bold text-teal-400 mb-8 uppercase tracking-tight">What <span className="text-white">to Expect</span></h3>
-            <ul className="space-y-6">
+          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl">
+            <h3 className="text-3xl font-bold text-teal-400 mb-6 uppercase tracking-tight">What <span className="text-white">to Expect</span></h3>
+            <ul className="space-y-4">
               {[
                 "30-minute focused strategy call",
                 "Review of your current compliance posture",
@@ -52,29 +52,29 @@ export const ContactFormSection = () => {
                   <div className="w-8 h-8 rounded-full border border-teal-400 flex items-center justify-center flex-shrink-0 mt-1">
                     <Check className="w-6 h-6 text-teal-400" />
                   </div>
-                  <span className="text-slate-400 text-xl font-medium leading-tight">{item}</span>
+                  <span className="text-slate-400 text-lg font-medium leading-tight">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Contact Information */}
-          <div className="reveal-form bg-white/[0.03] p-10 border border-white/10 rounded-3xl">
-            <h3 className="text-3xl font-bold text-teal-400 mb-8 uppercase tracking-tight">Contact <span className="text-white">Information</span></h3>
-            <div className="space-y-8">
+          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl">
+            <h3 className="text-3xl font-bold text-teal-400 mb-6 uppercase tracking-tight">Contact <span className="text-white">Information</span></h3>
+            <div className="space-y-4">
               {[
                 { icon: Phone, label: "Phone", value: "(908) 521-4440" },
                 { icon: Printer, label: "Fax", value: "(908) 760-6990" },
                 { icon: Mail, label: "Email", value: "info@primetekservices.com" },
                 { icon: MapPin, label: "Location", value: "New Jersey, USA" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-5">
-                  <div className="w-10 h-10 bg-brand-teal/10 rounded-xl flex items-center justify-center text-teal-400">
-                    <item.icon className="w-5 h-5" />
+                <div key={i} className="flex items-center gap-4">
+                  <div className="w-8 h-8 bg-brand-teal/10 rounded-xl flex items-center justify-center text-teal-400">
+                    <item.icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold uppercase tracking-widest text-slate-500 mb-0.5">{item.label}</div>
-                    <div className="text-xl font-bold text-white">{item.value}</div>
+                    <div className="text-lg font-bold uppercase tracking-widest text-slate-500 mb-0.5">{item.label}</div>
+                    <div className="text-base font-bold text-white">{item.value}</div>
                   </div>
                 </div>
               ))}
@@ -82,12 +82,12 @@ export const ContactFormSection = () => {
           </div>
 
           {/* Office Hours */}
-          <div className="reveal-form bg-teal-400/5 p-10 border border-teal-400/10 rounded-3xl">
-            <div className="flex items-center gap-3 text-white mb-8">
+          <div className="reveal-form bg-teal-400/5 p-8 border border-teal-400/10 rounded-3xl">
+            <div className="flex items-center gap-3 text-white mb-6">
               <Clock className="w-6 h-6 text-brand-teal" />
               <h3 className="text-3xl font-bold text-teal-400 uppercase tracking-tight">Office <span className="text-white">Hours</span></h3>
             </div>
-            <div className="space-y-4 text-slate-400 font-bold uppercase tracking-widest text-xl">
+            <div className="space-y-4 text-slate-400 font-bold uppercase tracking-widest text-lg">
               <div className="flex justify-between">
                 <span>Monday – Friday</span>
                 <span className="text-white">9:00 AM – 6:00 PM ET</span>

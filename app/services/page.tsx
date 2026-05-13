@@ -16,7 +16,6 @@ export default function ServicesPage() {
       <div className="bg-[#020817]">
         <ServicesHero />
         <ServicesDetail />
-        <AlertSystem />
         <ServicesOnboarding />
       </div>
       <ConsultationCTA />

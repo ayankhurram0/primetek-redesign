@@ -1,24 +1,30 @@
 import { motion } from "motion/react";
-import { Search, FolderSync, FileCheck } from "lucide-react";
+import { Search, FolderSync, FileCheck, TrendingUp } from "lucide-react";
 
 const steps = [
   {
     id: "01",
-    title: "Discovery Audit",
-    description: "We learn your pharmacy's specific challenges, PBM contracts, and reimbursement goals through an initial deep-dive analysis.",
+    title: "Discovery Call",
+    description: "We learn your pharmacy's specific challenges, PBM contracts, and performance goals.",
     icon: Search
   },
   {
     id: "02",
-    title: "Secure Onboarding",
-    description: "Our technical team handles the secure data intake and system setup within the first seven days of partnership.",
+    title: "Data Onboarding",
+    description: "Secure data intake and system setup.",
     icon: FolderSync
   },
   {
     id: "03",
-    title: "Intelligence Cycle",
-    description: "Within 14 days, your first performance reports are delivered with immediate, actionable findings and risk alerts.",
+    title: "First Report Cycle",
+    description: "Your first performance report with immediate findings.",
     icon: FileCheck
+  },
+  {
+    id: "04",
+    title: "Ongoing Intelligence",
+    description: "Real-time alerts and quarterly strategy reviews.",
+    icon: TrendingUp
   }
 ];
 
@@ -29,9 +35,9 @@ export const ServicesOnboarding = () => {
         <h2 className="text-lg font-bold uppercase tracking-[0.5em] text-brand-teal mb-8">The Workflow</h2>
         <h3 className="text-6xl md:text-6xl xl:text-6xl font-poppins font-bold text-teal-400 mb-24 tracking-tighter">From Onboarding <br className="md:hidden" /> to Intelligence.</h3>
 
-        <div className="grid md:grid-cols-3 gap-12 relative">
+        <div className="grid md:grid-cols-4 gap-12 relative">
           {/* Connector Line */}
-          <div className="hidden md:block absolute top-[60px] left-[15%] right-[15%] h-px bg-white/5" />
+          <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-px bg-white/5" />
 
           {steps.map((step, i) => (
             <motion.div
