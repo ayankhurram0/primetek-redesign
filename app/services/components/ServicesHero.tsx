@@ -9,11 +9,11 @@ export const ServicesHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-6xl md:text-6xl xl:text-8xl font-poppins uppercase font-bold text-white tracking-tighter mb-8 leading-none">
+          <h1 className="text-6xl md:text-6xl xl:text-8xl font-montserrat uppercase font-bold text-white tracking-tighter mb-8 leading-none">
             Five Services. <br />
             <span className="text-teal-400">One Mission.</span>
           </h1>
-          <p className="text-2xl w-[80%] mx-auto font-poppins text-slate-400 font-light leading-relaxed">
+          <p className="text-2xl w-[80%] mx-auto font-montserrat text-slate-400 font-light leading-relaxed">
             Every PrimeTek service is built around a single goal — protecting and growing your pharmacy's financial performance through non-clinical operational intelligence.
           </p>
         </motion.div>

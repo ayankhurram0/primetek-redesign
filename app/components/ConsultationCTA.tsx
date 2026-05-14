@@ -86,16 +86,8 @@ export default function ConsultationCTA() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden flex flex-col items-center justify-center py-24 px-26"
+      className="relative w-full overflow-hidden flex flex-col items-center justify-center py-30 px-26 font-montserrat"
     >
-
-      {/* Blending Masks */}
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020817] to-transparent z-10" />
-      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#020817] to-transparent z-10" />
-
-      {/* Subtle Atmospheric Glows */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(113,198,164,0.05)_0%,transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.03)_0%,transparent_70%)]" />
 
       <div className="w-full px-26">
         <div className="rounded-[4rem] py-24 px-8 text-center relative overflow-hidden group">

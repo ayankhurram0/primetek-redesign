@@ -13,11 +13,9 @@ export default function ServicesPage() {
   return (
     <>
       <Navbar />
-      <div className="bg-[#020817]">
-        <ServicesHero />
-        <ServicesDetail />
-        <ServicesOnboarding />
-      </div>
+      <ServicesHero />
+      <ServicesDetail />
+      <ServicesOnboarding />
       <ConsultationCTA />
       <Footer />
     </>

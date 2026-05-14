@@ -33,21 +33,19 @@ export default function Operations() {
     "Scalable support for independent and multi-location operations"
   ];
   return (
-    <div ref={containerRef} className="relative min-h-[250vh]">
-      <section className="sticky top-0 h-screen flex items-center bg-white overflow-hidden">
+    <div className="relative">
+      <section className="flex items-center bg-white py-40">
         <div className="w-[95%] max-w-[1800px] mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="w-full lg:w-1/2 pt-10 lg:pt-0">
-              <motion.h2
-                style={{ opacity: headingOpacity, y: headingY }}
+              <h2
                 className="text-4xl md:text-5xl font-bold leading-tight mb-4"
               >
                 <span className="text-teal-400">Designed for</span>{" "}
                 <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
-              </motion.h2>
+              </h2>
 
-              <motion.div
-                style={{ opacity: textOpacity, y: textY }}
+              <div
                 className="space-y-6"
               >
                 <p className="text-black text-base md:text-base leading-relaxed mb-4 font-light">
@@ -61,24 +59,19 @@ export default function Operations() {
                   </h3>
                   <div className="flex flex-col gap-2">
                     {highlights.map((item, index) => (
-                      <motion.div
+                      <div
                         key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        viewport={{ once: true }}
                         className="flex items-center gap-2 text-black text-base"
                       >
                         <span className="w-2 h-2 rounded-full bg-blue-600"></span>
                         {item}
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                style={{ opacity: buttonOpacity, y: buttonY }}
+              <div
                 className="flex flex-col gap-5 mt-8"
               >
                 <FancyButton
@@ -89,11 +82,10 @@ export default function Operations() {
                   bgColor="teak-400"
                   extraClasses="w-fit hover:border-[#2b4c8c] transition-all duration-200"
                 />
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div
-              style={{ opacity: imagesOpacity, scale: imagesScale }}
+            <div
               className="relative w-full lg:w-1/2 group"
             >
               <div className="relative overflow-hidden transition-transform duration-700">
@@ -113,13 +105,11 @@ export default function Operations() {
                   className="w-full m-auto h-auto"
                 />
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Dead scroll section */}
-      <div className="h-screen" />
     </div>
   );
 }
+

@@ -89,18 +89,9 @@ const processSteps = [
 ];
 
 function RevealText({ children, className = "" }: { children: React.ReactNode, className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div
-        initial={{ y: "100%" }}
-        animate={isInView ? { y: 0 } : { y: "100%" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        {children}
-      </motion.div>
+    <div className={`relative ${className}`}>
+      {children}
     </div>
   );
 }
@@ -113,48 +104,19 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
     notFound();
   }
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  const heroRef = useRef(null);
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-
-  const heroY = useTransform(heroScroll, [0, 1], [0, 200]);
-  const heroOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
-  const heroBgY1 = useTransform(heroScroll, [0, 1], [0, -150]);
-  const heroBgY2 = useTransform(heroScroll, [0, 1], [0, 100]);
-
   return (
-
-    <div className="relative min-h-screen bg-[#020817] overflow-x-hidden">
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-teal-400 z-[60] origin-left"
-        style={{ scaleX }}
-      />
+    <div className="relative min-h-screen bg-transparent overflow-x-hidden font-montserrat">
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-48 pb-32 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[90vh] flex items-center bg-gradient-to-br from-teal-400/10 to-[#2b4c8c]/20">
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
+      <section className="relative pt-48 pb-32 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[90vh] flex items-center bg-gradient-to-br from-teal-400/5 to-[#2b4c8c]/10">
+        <div
           className="max-w-5xl relative z-10"
         >
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <div>
             <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-teal-400">
               {service.title}
             </span>
-          </motion.div>
+          </div>
 
           <RevealText className="mb-8">
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter text-white">
@@ -162,21 +124,15 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             </h1>
           </RevealText>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+          <p
             className="text-xl md:text-2xl text-slate-400 max-w-3xl leading-relaxed mb-12 font-light"
           >
             {service.fullDesc}
             <br className="hidden md:block" />
             <span className="mt-4 block text-slate-300">Transform raw operational data into actionable insights that drive profitability and ensure regulatory alignment.</span>
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+          <div
             className="flex flex-wrap gap-6"
           >
             <FancyButton
@@ -188,19 +144,17 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
               extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200"
             />
             <div className="flex items-center gap-4 px-8 py-5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-slate-400 bg-white/5 backdrop-blur-md">
-              <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(113,198,164,0.5)]" />
+              <span className="w-2 h-2 bg-teal-400 rounded-full shadow-[0_0_10px_rgba(113,198,164,0.5)]" />
               Monthly Reports Delivered
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Parallax Background Elements */}
-        <motion.div
-          style={{ y: heroBgY1 }}
+        <div
           className="absolute top-1/4 right-0 -z-10 w-1/2 aspect-square bg-teal-400/5 rounded-full blur-[120px]"
         />
-        <motion.div
-          style={{ y: heroBgY2 }}
+        <div
           className="absolute bottom-0 left-1/4 -z-10 w-1/3 aspect-square bg-[#2b4c8c]/10 rounded-full blur-[150px]"
         />
       </section>
@@ -212,28 +166,17 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             <RevealText>
               <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase  leading-none">Key <span className="text-gradient font-light">Features</span></h2>
             </RevealText>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <p
               className="text-slate-400 text-xl max-w-3xl mx-auto font-light"
             >
               Comprehensive tools and insights designed specifically for pharmacy revenue optimization and compliance management.
-            </motion.p>
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
-              <motion.div
+              <div
                 key={feature.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                whileHover={{
-                  y: -10,
-                  transition: { duration: 0.4, ease: "easeOut" }
-                }}
-                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
                 className="group glass p-10 border border-white/5 rounded-[32px] hover:border-teal-400/30 transition-all duration-500 cursor-pointer"
               >
                 <div className="flex items-center gap-6 mb-8">
@@ -247,37 +190,30 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                 <p className="text-slate-400 leading-relaxed font-light text-lg">
                   {feature.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-32 px-6 md:px-12 lg:px-24 bg-[#020817]/50 relative overflow-hidden border-y border-white/5">
+      <section className="py-32 px-6 md:px-12 lg:px-24 bg-transparent relative overflow-hidden border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <RevealText>
               <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase  leading-none">How It <span className="text-gradient font-light">Works</span></h2>
             </RevealText>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+            <p
               className="text-slate-400 text-xl max-w-3xl mx-auto font-light"
             >
               Our systematic approach ensures comprehensive coverage of your pharmacy&apos;s revenue and compliance landscape.
-            </motion.p>
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {processSteps.map((step, index) => (
-              <motion.div
+              <div
                 key={step.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
                 className="relative group"
               >
                 <div className="glass p-10 rounded-[32px] border border-white/5 hover:border-teal-400/20 transition-all duration-500 h-full">
@@ -291,7 +227,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                     {step.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -307,14 +243,11 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                   Transform Your <span className="text-gradient font-light">Pharmacy Operations</span>
                 </h2>
               </RevealText>
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+              <p
                 className="text-slate-400 text-xl mb-12 max-w-md font-light leading-relaxed"
               >
                 Our revenue intelligence service provides the foundation for sustainable growth and compliance excellence.
-              </motion.p>
+              </p>
               <FancyButton
                 label="Schedule Consultation"
                 textColor="white"
@@ -326,18 +259,8 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             </div>
             <div className="space-y-6">
               {benefits.map((benefit, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{
-                    x: -15,
-                    backgroundColor: "rgba(113, 198, 164, 0.05)",
-                    borderColor: "rgba(113, 198, 164, 0.3)",
-                    transition: { duration: 0.4, ease: "easeOut" }
-                  }}
-                  transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
                   className="flex items-center justify-between p-8 glass border border-white/5 rounded-[32px] group transition-all duration-500 cursor-pointer"
                 >
                   <div className="flex items-center gap-6">
@@ -347,7 +270,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                     <span className="font-bold text-xl text-white group-hover:translate-x-2 transition-transform duration-500 ease-out">{benefit}</span>
                   </div>
                   <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-teal-400 group-hover:translate-x-1 transition-all duration-500" />
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

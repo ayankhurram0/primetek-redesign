@@ -177,7 +177,7 @@ export const TestingSection: React.FC = () => {
                                         {service.description}
                                     </p>
 
-                                    <div className="bg-[#050a14] rounded-2xl p-4 border border-white/5 flex items-center justify-between">
+                                    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/5 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <div className="w-4 h-4 bg-white/5 rounded-full flex items-center justify-center">

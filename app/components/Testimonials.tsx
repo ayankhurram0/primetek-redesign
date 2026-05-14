@@ -46,7 +46,7 @@ import AnimationWrapper from "./AnimationWrapper";
 
 export default function Testimonials() {
   return (
-    <section className="pb-60 z-10 overflow-hidden relative">
+    <section className="py-30 z-10 overflow-hidden relative">
 
       <div className="w-[95%] max-w-[1800px] mx-auto px-6 md:px-12">
 
@@ -94,7 +94,7 @@ export default function Testimonials() {
             {testimonials.map((item, index) => (
               <SwiperSlide key={index} className="!h-auto flex">
 
-                <div className="bg-white/5 border border-teal-400/60 px-10 py-12 flex flex-col h-full hover:bg-white/10 hover:border-teal-400/60 transition-all duration-500 rounded-3xl backdrop-blur-md group relative">
+                <div className="bg-[#04212a] border border-white/10 px-10 py-12 flex flex-col h-full hover:bg-[#04212a]/80 transition-all duration-500 rounded-3xl group relative">
                   <div className="w-3 h-3 rounded-full bg-teal-400/20 border border-teal-400/40 mb-6" />
                   <h4 className="text-white font-bold text-xl 2xl:text-3xl mb-6 leading-tight">
                     “{item.quote}”

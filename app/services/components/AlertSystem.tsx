@@ -36,8 +36,7 @@ const alerts = [
 
 export const AlertSystem = () => {
   return (
-    <section className="relative py-44 px-26 overflow-hidden">
-      <div className="absolute inset-0 bg-[#020e1f]" />
+    <section className="relative py-44 px-26 overflow-hidden font-montserrat">
       <div className="relative z-10">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
 
@@ -50,11 +49,11 @@ export const AlertSystem = () => {
               <AlertCircle className="w-3 h-3 animate-pulse" />
               Real-Time Alert Protocol
             </div>
-            <h2 className="text-6xl md:text-5xl xl:text-6xl font-poppins font-bold text-white mb-10 tracking-tighter leading-none">
+            <h2 className="text-6xl md:text-5xl xl:text-6xl font-montserrat font-bold text-white mb-10 tracking-tighter leading-none">
               Issues Caught. <br />
               <span className="text-slate-500">Before They Cost You.</span>
             </h2>
-            <p className="text-xl font-poppins text-slate-400 leading-relaxed mb-12 max-w-2xl">
+            <p className="text-xl font-montserrat text-slate-400 leading-relaxed mb-12 max-w-2xl">
               Every PrimeTek service includes our real-time alert layer. When a threshold breach, compliance risk, or reporting cycle anomaly occurs, your dedicated team and your staff are notified instantly.
             </p>
 
@@ -79,7 +78,7 @@ export const AlertSystem = () => {
             viewport={{ once: true }}
             className="glass-card rounded-[48px] p-1 bg-white/5 border-white/10 shadow-2xl relative"
           >
-            <div className="bg-[#020817] rounded-[44px] overflow-hidden">
+            <div className="bg-[#010810]/40 backdrop-blur-3xl rounded-[44px] overflow-hidden border border-white/10">
               <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="flex gap-1.5">

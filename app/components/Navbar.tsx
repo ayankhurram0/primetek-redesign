@@ -24,7 +24,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 md:px-16 py-5 font-sans transition-all duration-300 ${scrolled ? 'bg-[#020817]/80 backdrop-blur-md border-b border-white/10' : 'bg-transparent'
+      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 md:px-16 py-5 font-montserrat transition-all duration-300 ${scrolled ? 'bg-transparent backdrop-blur-sm border-b border-white/5' : 'bg-transparent'
         }`}
     >
       <Link href="/" className="flex items-center justify-start w-[20%]">

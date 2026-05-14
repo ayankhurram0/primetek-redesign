@@ -28,7 +28,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
   return (
     <motion.section
       style={{ zIndex }}
-      className="sticky top-0 h-screen w-full flex flex-col justify-center bg-white border-t border-black/10 py-12 2xl:px-30 px-10"
+      className="sticky top-0 h-screen w-full flex flex-col justify-center bg-transparent backdrop-blur-sm border-t border-white/5 py-12 2xl:px-30 px-10 font-montserrat"
     >
       <div className="max-w-[1400px] mx-auto w-full">
         {/* Section Header */}
@@ -131,67 +131,16 @@ export default function ServicesSticky() {
 
   const titleWords = "Operational Systems That Protect & Grow Pharmacy Revenue".split(" ");
 
+  // Removed ScrollTrigger logic to disable animations
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // 1. Initial hidden states for Hero
-      gsap.set(".hero-word-wrap", { opacity: 0, y: 40 });
-      gsap.set(paragraphRef.current, { opacity: 0, y: 40 });
-      gsap.set(btnRef.current, { opacity: 0, y: 40 });
-
-      // 2. Initial hidden states for Services
-      const cards = gsap.utils.toArray<HTMLElement>(".service-card");
-      // Important: Set card visibility before the timeline to avoid flashes
-      gsap.set(cards, { yPercent: 100 });
-
-      // 3. Main Timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=1500%", // Significantly increased distance to ensure full completion
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          pinSpacing: true,
-          invalidateOnRefresh: true,
-        }
-      });
-
-      // Step 1: Heading
-      tl.to(".hero-word-wrap", {
-        opacity: 1,
-        y: 0,
-        duration: 1
-      });
-
-      // Step 2: Paragraph and Button appear together
-      tl.to([paragraphRef.current, btnRef.current], {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.2
-      }, "+=1");
-
-
-      // Step 4: Services
-      cards.forEach((card, index) => {
-        tl.to(card, {
-          yPercent: 0,
-          duration: 1.5,
-          ease: "power2.inOut"
-        }, `+=${index === 0 ? 1 : 0.5}`);
-      });
-
-
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [services.length]);
+    // No animations
+    return () => {};
+  }, []);
 
   return (
-    <section id="services" ref={containerRef} className="relative h-screen flex overflow-hidden w-full bg-white">
+    <section id="services" ref={containerRef} className="relative min-h-screen flex flex-col md:flex-row w-full bg-transparent font-montserrat">
       {/* Hero Section - Fixed Left Sidebar */}
-      <div className="relative h-full flex flex-col justify-center bg-white z-20 2xl:pl-30 pl-10 2xl:w-[38%] w-[40%] border-r self-start">
+      <div className="relative md:sticky md:top-0 h-fit md:h-screen flex flex-col justify-center bg-transparent z-20 2xl:pl-30 pl-10 md:w-[38%] w-full border-r border-white/5 self-start py-20">
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-[-1] opacity-[0.03]">
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#2b4c8c 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -243,12 +192,12 @@ export default function ServicesSticky() {
         </div>
       </div>
 
-      {/* Service Sections - Scrollable Right Content */}
-      <div className="bg-slate-50 2xl:w-[62%] w-[60%] relative h-full overflow-hidden">
+      {/* Service Sections - Normal Stacking */}
+      <div className="bg-transparent md:w-[62%] w-full relative">
         {services.map((service, index) => (
           <div
             key={service.number}
-            className="service-card absolute inset-0 bg-white shadow-[-20px_0_40px_rgba(0,0,0,0.05)] border-l border-black/5"
+            className="service-card relative bg-white/2 backdrop-blur-md shadow-[-20px_0_40px_rgba(0,0,0,0.2)] border-l border-white/5 min-h-screen"
             style={{ zIndex: index + 10 }}
           >
             <ServiceSection

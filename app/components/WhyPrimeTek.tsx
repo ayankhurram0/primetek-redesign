@@ -57,55 +57,20 @@ export const WhyPrimeTekSection: React.FC = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      if (!triggerRef.current) return;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top top",
-          end: "+=400%", // Longer area for more steps
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      // Initial State
-      gsap.set([subHeadingRef.current, headingRef.current, textRef.current], { opacity: 0, y: 30 });
-      gsap.set(".why-step-card", { opacity: 0, y: 50 });
-      gsap.set(".why-step-dot", { scale: 0.5, backgroundColor: "rgba(255,255,255,0.2)" });
-      gsap.set(progressLineRef.current, { scaleX: 0, transformOrigin: "left" });
-
-      // Sequence
-      tl.to(subHeadingRef.current, { opacity: 1, y: 0, duration: 1 })
-        .to(headingRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.5")
-        .to(textRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.5");
-
-      // Progress through steps
-      const cards = gsap.utils.toArray<HTMLElement>(".why-step-card");
-      const dots = gsap.utils.toArray<HTMLElement>(".why-step-dot");
-
-      cards.forEach((card, i) => {
-        tl.to(card, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, "+=0.5");
-        tl.to(dots[i], { scale: 1.2, backgroundColor: "teak-400", borderColor: "teak-400", duration: 0.5 }, "<");
-        tl.to(progressLineRef.current, { scaleX: (i + 1) / steps.length, duration: 1.5, ease: "none" }, "<");
-
-        // Add a bit of space between each step
-        if (i < steps.length - 1) {
-          tl.to({}, { duration: 1 });
-        }
-      });
-
-      tl.to({}, { duration: 2 }); // End buffer
+      // Set all elements to their final visible states
+      gsap.set([subHeadingRef.current, headingRef.current, textRef.current], { opacity: 1, y: 0 });
+      gsap.set(".why-step-card", { opacity: 1, y: 0 });
+      gsap.set(".why-step-dot", { scale: 1, backgroundColor: "teak-400", borderColor: "teak-400" });
+      gsap.set(progressLineRef.current, { scaleX: 1, transformOrigin: "left" });
     }, sectionRef.current || undefined);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden">
+    <section ref={sectionRef} className="relative w-full overflow-hidden font-montserrat">
 
-      <div ref={triggerRef} className="min-h-screen flex flex-col justify-center py-20">
+      <div ref={triggerRef} className="relative h-auto flex flex-col justify-center py-40">
         <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10 px-12">
           <div ref={subHeadingRef} className="flex items-center justify-center gap-4 mb-6">
             <div className="h-[1px] w-12 bg-teal-400/40" />
@@ -130,7 +95,7 @@ export const WhyPrimeTekSection: React.FC = () => {
             {steps.map((step, idx) => (
               <div
                 key={idx}
-                className="why-step-card bg-[#0a1122]/40 backdrop-blur-3xl border border-white/10 rounded-2xl p-6 flex flex-col items-start text-left min-h-[260px] relative transition-all hover:bg-[#0a1122]/60 hover:border-teal-400/30"
+                className="why-step-card bg-[#04212a] border border-white/10 rounded-2xl p-6 flex flex-col items-start text-left min-h-[260px] relative transition-all hover:bg-[#04212a]/80 hover:border-teal-400/30"
               >
                 <div className="flex flex-col mb-4">
                   <span className="text-xl font-bold text-teal-400 mb-1">{step.id}</span>

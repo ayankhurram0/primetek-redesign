@@ -28,55 +28,55 @@ export interface AlertItem {
 
 export const ALERTS: AlertItem[] = [
   {
-    id: 'pbm-audit-risk',
-    title: 'Would Your Pharmacy Pass a PBM Audit Today?',
+    id: 'optumrx-cap',
+    title: 'OptumRx 25% Therapeutic Class Cap Tracking',
     category: 'Audit Compliance',
     priority: 'High',
-    description: 'Small documentation and compliance issues can trigger audits, recoupments, and long-term revenue loss.',
+    description: 'Monitor and maintain compliance with OptumRx therapeutic class limits to prevent recoupments.',
     accentColor: 'text-red-500',
     image: auditCard,
     activities: [
-      { text: 'Documentation gaps detected in 3 key areas', time: '2h ago' },
-      { text: 'Audit probability increased by 47%', time: '4h ago' }
+      { text: 'Therapeutic class limits approaching 22%', time: '2h ago' },
+      { text: 'Audit probability increased by 12%', time: '4h ago' }
     ]
   },
   {
-    id: 'pbm-thresholds',
-    title: 'Are PBM Thresholds Quietly Reducing Your Reimbursements?',
+    id: 'mtf-mtp-detection',
+    title: 'MTF / MTP Claims Issue Detection',
     category: 'Revenue Optimization',
     priority: 'High',
-    description: 'Minor inefficiencies in workflow and reporting often lead to major financial and compliance risks.',
+    description: 'Proactive detection of MTF and MTP claim issues before they impact your backend revenue.',
     accentColor: 'text-brand-red',
     image: thresholdsCard,
     activities: [
-      { text: 'Therapeutic class limits exceeded by 23%', time: '30m ago' },
-      { text: 'Adherence benchmarks below threshold by 18%', time: '2h ago' }
+      { text: 'MTF leakage detected in class B', time: '30m ago' },
+      { text: 'Reimbursement variance flagged', time: '2h ago' }
     ]
   },
   {
-    id: 'operational-gaps',
-    title: 'Are Small Operational Gaps Creating Significant Financial Exposure?',
+    id: 'reimbursement-flagging',
+    title: 'Reimbursement Irregularity Flagging',
     category: 'Financial Risk',
     priority: 'High',
-    description: 'Many pharmacies unknowingly exceed PBM thresholds — increasing audit risk and reducing profitability.',
+    description: 'Identify and flag reimbursement patterns that deviate from expected PBM contracts.',
     accentColor: 'text-red-500',
     image: gapsCard,
     activities: [
-      { text: 'Workflow inefficiency costing $12.4K monthly', time: '1h ago' },
-      { text: 'Compliance exposure identified in 2 departments', time: '3h ago' }
+      { text: 'Irregularity flagged in 4 claims', time: '1h ago' },
+      { text: 'Contractual variance detected', time: '3h ago' }
     ]
   },
   {
-    id: 'backend-revenue',
-    title: 'Backend Revenue Control',
+    id: 'audit-risk-trigger',
+    title: 'Audit Risk Trigger Identification',
     category: 'Revenue Recovery',
     priority: 'High',
-    description: 'MTF Revenue Leakage Control: If you are not actively tracking or disputing MTF payments, you are silently losing backend revenue.',
+    description: 'Spotting the specific triggers that lead to PBM audits and financial exposure.',
     accentColor: 'text-brand-red',
     image: mtfCard,
     activities: [
-      { text: 'Revenue leakage detected in 4 categories', time: '2h ago' },
-      { text: 'New activity', time: '1m ago' }
+      { text: 'New audit risk trigger identified', time: '2h ago' },
+      { text: 'Documentation gap found', time: '1m ago' }
     ]
   }
 ];
@@ -121,7 +121,6 @@ function RadarAnimation() {
   );
 }
 
-// Function to get appropriate icon based on alert category and priority
 const getAlertIcon = (category: string, priority: string) => {
   switch (category) {
     case 'Audit Compliance':
@@ -156,16 +155,16 @@ export default function IntelligenceDashboard() {
   }, [isAutoRotating]);
 
   return (
-    <div className="space-y-16 2xl:px-24 2xl:py-20 relative overflow-hidden min-h-screen">
+    <div className="space-y-16 2xl:px-24 2xl:py-30 relative overflow-hidden h-auto">
 
       {/* Headings */}
       <section className="space-y-4 text-center lg:text-left">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-xl font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
-          Critical Insights
+          Real-Time Alerts for Critical Issues
         </div>
         <h2 className="text-6xl 2xl:text-6xl xl:text-8xl font-bold tracking-tight text-white leading-tight">
-          Pharmacy Compliance <br />
-          <span className="text-white">& </span><span className="text-red-600">Revenue Performance</span>
+          Proactive Risk <br />
+          <span className="text-red-600"> Alerts Included</span>
         </h2>
       </section>
 
@@ -193,7 +192,7 @@ export default function IntelligenceDashboard() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-base font-semibold uppercase tracking-wider text-red-400/80 mb-1">{alert.category}</div>
-                    <div className="text-xs font-medium truncate text-white group-hover:text-red-100 transition-colors">{alert.title}</div>
+                    <div className="text-lg font-medium truncate text-white group-hover:text-red-100 transition-colors">{alert.title}</div>
                   </div>
                   {activeAlertId === alert.id && (
                     <motion.div
@@ -227,10 +226,8 @@ export default function IntelligenceDashboard() {
           {/* Detail Panel */}
           <div className="lg:col-span-8 w-full backdrop-blur-xl rounded-2xl p-8 min-h-[500px] relative overflow-hidden group border-2 border-red-500/60 flex flex-col justify-end items-end">
             <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-10 -z-10" />
-            <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 blur-[100px] rounded-full -mr-20 -mt-20 group-hover:bg-red-600/30 transition-colors" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-900/10 blur-[80px] rounded-full -ml-10 -mb-10" />
-            <div className="flex-1 absolute top-0 w-full right-0 p-4 px-6">
-              <div className='flex gap-10 items-center'>
+            <div className="flex-1 absolute top-0 w-full right-0 p-4 px-6 bg-red-700/40">
+              <div className='flex gap-10 items-center '>
                 <div className="flex gap-3">
                   <div className="w-4 h-4 rounded-full bg-white/40" />
                   <div className="w-4 h-4 rounded-full bg-white/40" />
@@ -241,13 +238,13 @@ export default function IntelligenceDashboard() {
                     {React.createElement(getAlertIcon(activeAlert.category, activeAlert.priority), { className: "w-6 h-6" })}
                     <div className="text-white text-xl font-semibold">{activeAlert.category}</div>
                   </div>
-                  
+
                 </div>
               </div>
               <div></div>
             </div>
-            <div className="relative z-10 h-full flex flex-col">
-              <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-between">
+            <div className="relative w-full z-10 h-full flex flex-col">
+              <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-between w-full">
                 <div className="space-y-6 flex-1">
                   <h2 className="text-5xl font-sans font-bold text-white leading-tight">
                     {activeAlert.title}
@@ -258,17 +255,17 @@ export default function IntelligenceDashboard() {
                 </div>
               </div>
               <div className="space-y-3 pt-4">
-                    <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
-                    {activeAlert.activities.map((act, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-red-500/30 bg-red-950/20 group/item hover:border-red-500 hover:bg-red-950/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] transition-all">
-                        <div className="flex items-center gap-3">
-                          <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
-                          <span className="text-xl font-medium text-white">{act.text}</span>
-                        </div>
-                        <span className="text-lg font-mono text-slate-500">{act.time}</span>
-                      </div>
-                    ))}
+                <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
+                {activeAlert.activities.map((act, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-red-500/30 bg-red-950/20 group/item hover:border-red-500 hover:bg-red-950/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] transition-all">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
+                      <span className="text-xl font-medium text-white">{act.text}</span>
+                    </div>
+                    <span className="text-lg font-mono text-slate-500">{act.time}</span>
                   </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

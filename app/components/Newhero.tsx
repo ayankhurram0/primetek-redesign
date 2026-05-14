@@ -52,7 +52,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
   ) : (
     <>
       {/* Card 1: Audit Readiness (Line Chart) */}
-      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <TrendingUp size={14} className="text-white font-bold" />
@@ -85,7 +85,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
       </div>
 
       {/* Card 2: Compliance Protocol (Area Chart) */}
-      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <Activity size={14} className="text-white font-bold" />
@@ -123,7 +123,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
       </div>
 
       {/* Card 3: Reimbursement Reconciliation (Bar Chart) */}
-      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <BarChart3 size={14} className="text-white font-bold" />
@@ -159,7 +159,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
       </div>
 
       {/* Card 4: PBM Checklist (Pie Chart) */}
-      <div className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-lg rounded-3xl p-5 border border-[#2dd4bf]/30 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <PieChartIcon size={14} className="text-white font-bold" />
@@ -179,9 +179,6 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
                 paddingAngle={5}
                 dataKey="value"
               >
-                {pbmData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
               </Pie>
             </PieChart>
           </ResponsiveContainer>
@@ -213,32 +210,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#020617] flex flex-col items-center justify-center overflow-hidden font-sans">
-      {/* Decorative Elements - Top Right */}
-      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-          <path d="M500 0 C250 0, 250 250, 0 250" stroke="url(#newhero-gradient-tr)" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M500 80 C300 80, 300 300, 80 300" stroke="url(#newhero-gradient-tr)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
-          <path d="M500 160 C350 160, 350 350, 160 350" stroke="url(#newhero-gradient-tr)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
-          {[...Array(8)].map((_, i) => (<circle key={`tr-${i}`} cx={450 - i * 35} cy={30 + i * 25} r="3" fill="#2dd4bf" opacity={0.6 + i * 0.05} />))}
-          <defs><linearGradient id="newhero-gradient-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2dd4bf" stopOpacity="1" /><stop offset="50%" stopColor="#2dd4bf" stopOpacity="0.5" /><stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" /></linearGradient></defs>
-        </svg>
-      </div>
-
-      {/* Decorative Elements - Bottom Left */}
-      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] pointer-events-none z-0 opacity-80">
-        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none">
-          <path d="M0 500 C250 500, 250 250, 500 250" stroke="url(#newhero-gradient-bl)" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M0 420 C200 420, 200 200, 420 200" stroke="url(#newhero-gradient-bl)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
-          <path d="M0 340 C150 340, 150 150, 340 150" stroke="url(#newhero-gradient-bl)" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4" />
-          {[...Array(8)].map((_, i) => (<circle key={`bl-${i}`} cx={30 + i * 35} cy={470 - i * 25} r="3" fill="#2dd4bf" opacity={0.6 + i * 0.05} />))}
-          <defs><linearGradient id="newhero-gradient-bl" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#2dd4bf" stopOpacity="1" /><stop offset="50%" stopColor="#2dd4bf" stopOpacity="0.5" /><stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" /></linearGradient></defs>
-        </svg>
-      </div>
-
-      {/* Background Spotlight Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.1)_0%,transparent_80%)] pointer-events-none" />
-            {/* Background Cards Layer - 3D Infinite Autoplay */}
+    <div className="relative min-h-screen bg-transparent flex flex-col items-center justify-center overflow-hidden font-montserrat">
+      {/* Background Cards Layer - 3D Infinite Autoplay */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden [perspective:1200px] -translate-y-60!">
         <motion.div
           animate={{
@@ -281,15 +254,12 @@ export default function App() {
             className="h-full w-auto object-contain object-bottom drop-shadow-[-20px_20px_50px_rgba(0,0,0,0.2)]"
             priority
           />
-                  </motion.div>
+        </motion.div>
       </div>
 
       {/* Hero Content - Left Aligned Layout */}
       <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start pt-15 px-6 2xl:px-24 pointer-events-none">
-        <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-[#020617] via-[#020617]/90 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#020617] to-transparent pointer-events-none" />
-        
+
         <div className="relative flex flex-col items-center text-left 2xl:w-[58%] w-[55%] pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -337,20 +307,20 @@ export default function App() {
               borderColor="teal-400"
               rippleColor="#2b4c8c"
               bgColor="#2dd4bf"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all font-bold! duration-200 2xl:py-6 2xl:px-8 2xl:text-[22px]" />
+              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all font-bold! duration-200 2xl:py-6 2xl:px-8 2xl:text-lg" />
             <FancyButton
               label="See How We Protect Revenue"
               textColor="white"
               borderColor="[#2b4c8c]"
               rippleColor="#2dd4bf"
               bgColor="#2b4c8c"
-              extraClasses="backdrop-blur-md hover:border-teal-400 font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-[22px]"
+              extraClasses="backdrop-blur-md hover:border-teal-400 font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-lg"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             />
           </motion.div>
         </div>
       </div>
 
-          </div>
+    </div>
   );
 }

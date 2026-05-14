@@ -330,10 +330,10 @@ export const ServicesDetail = () => {
                           <span className="text-white/40 text-lg font-bold uppercase tracking-[0.3em]">{activeService.identity}</span>
                         </div>
                       </div>
-                      <h3 className="text-6xl md:text-6xl xl:text-6xl font-poppins font-bold text-white mb-10 tracking-tighter leading-none">
+                      <h3 className="text-6xl md:text-6xl xl:text-6xl font-montserrat font-bold text-white mb-10 tracking-tighter leading-none">
                         {activeService.headline}
                       </h3>
-                      <p className="text-slate-400 text-2xl font-poppins font-light leading-relaxed whitespace-pre-line">
+                      <p className="text-slate-400 text-2xl font-montserrat font-light leading-relaxed whitespace-pre-line">
                         {activeService.description}
                       </p>
                     </div>
@@ -387,7 +387,7 @@ export const ServicesDetail = () => {
                       </div>
                       <div className="relative z-10">
                         <h4 className="text-lg font-bold uppercase tracking-[0.5em] mb-6" style={{ color: colorMap[activeService.color] }}>ALERT SYSTEM</h4>
-                        <h5 className="text-2xl font-poppins font-bold text-white mb-6 tracking-tight">{activeService.alertSystem.headline}</h5>
+                        <h5 className="text-2xl font-montserrat font-bold text-white mb-6 tracking-tight">{activeService.alertSystem.headline}</h5>
                         <p className="text-slate-400 text-xl font-light max-w-2xl leading-relaxed">
                           {activeService.alertSystem.desc}
                         </p>

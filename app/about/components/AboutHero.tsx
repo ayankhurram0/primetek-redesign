@@ -72,9 +72,6 @@ export const AboutHero = () => {
 
   return (
     <section ref={containerRef} className="relative min-h-[90vh] flex flex-col justify-center px-26 pt-32 pb-20 overflow-hidden bg-transparent">
-      <div className="absolute inset-0 bg-[#020817] z-0" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.08)_0%,transparent_70%)] blur-[120px] -z-10" />
-
       <div className="relative z-10 text-center w-full max-w-7xl mx-auto hero-content">
         <h1 className="text-6xl md:text-8xl xl:text-8xl font-bold text-white tracking-tighter mb-10 leading-[0.9] uppercase">
           About

@@ -254,11 +254,11 @@ const LoadingScreen = () => {
         transition: "opacity 0.8s ease-out",
         opacity: isLoading ? 1 : 0,
         pointerEvents: isLoading ? "auto" : "none",
+        background: `radial-gradient(circle at top left, #005969 0%, transparent 60%), 
+                     radial-gradient(circle at center right, #005969 0%, transparent 40%), 
+                     radial-gradient(circle at bottom center, #06101a 15%, #02070d 60%)`,
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020817] via-[#0a1122] to-[#020817] opacity-100" />
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(113,198,164,0.08)_0%,transparent_50%)]" />
-      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_70%,rgba(59,130,246,0.08)_0%,transparent_50%)]" />
 
       <div
         style={{

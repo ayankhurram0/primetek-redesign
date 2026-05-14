@@ -20,10 +20,11 @@ html {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-poppins: var(--font-poppins);
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-poppins);
-  --font-display: var(--font-poppins);
+  --font-montserrat: var(--font-montserrat);
+  --font-merriweather: var(--font-merriweather);
+  --font-sans: var(--font-montserrat);
+  --font-mono: var(--font-montserrat);
+  --font-display: var(--font-merriweather);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,20 +35,22 @@ html {
 }
 
 body {
-  background: radial-gradient(circle at 50% -20%, #0a192f 0%, #020817 100%);
+  background: radial-gradient(circle at top left, #005969 0%, transparent 60%), radial-gradient(circle at center right, #005969 0%, transparent 40%), radial-gradient(circle at bottom center, #06101a 15%, #02070d 60%);
+  background-attachment: fixed;
   color: var(--foreground);
   min-height: 100vh;
-  font-family: var(--font-poppins) !important;
+  font-family: var(--font-montserrat) !important;
 }
 
-/* Global Section Gradient Utility */
-.section-gradient {
-  background: radial-gradient(circle at 50% 50%, rgba(113, 198, 164, 0.03) 0%, transparent 70%);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-merriweather) !important;
 }
 
-.bg-hero-gradient {
-  background: radial-gradient(circle at 50% -20%, rgba(45, 212, 191, 0.05) 0%, transparent 70%);
-}
 
 html.lenis,
 html.lenis body {
@@ -101,7 +104,9 @@ body::-webkit-scrollbar-corner,
 }
 
 /* Firefox scrollbar */
-html, body, * {
+html,
+body,
+* {
   scrollbar-width: thin;
   scrollbar-color: #14b8a6 rgba(0, 0, 0, 0.1) !important;
 }
@@ -139,4 +144,13 @@ html, body, * {
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color) rgba(0, 0, 0, 0.15) !important;
   }
+}
+
+@layer components {
+
+  /* Mesh gradient disabled in favor of user's static background */
+  .mesh-gradient {
+    display: none;
+  }
+
 }

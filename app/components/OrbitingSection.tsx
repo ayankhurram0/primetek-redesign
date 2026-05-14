@@ -80,99 +80,51 @@ export const OrbitingSection: React.FC = () => {
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    const ctx = gsap.context(() => {
-      // Initial states - check all refs exist
-      const elementsToAnimate = [
-        headingRef.current,
-        paragraphRef.current,
-        logoRef.current,
-        badgesRef.current,
-        orbitRingsRef.current
-      ].filter(Boolean);
-
-      if (elementsToAnimate.length > 0) {
-        gsap.set(elementsToAnimate, { opacity: 0, y: 50 });
-      }
-
-      if (logoRef.current && badgesRef.current) {
-        gsap.set([logoRef.current, badgesRef.current], { scale: 0.8 });
-      }
-
-      // ScrollTrigger timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=300%",
-          pin: true,
-          scrub: 0.5,
-          pinSpacing: true,
-          invalidateOnRefresh: true,
-        },
+    // Position badges statically around the circle
+    const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
+    badgeElements.forEach((badge, i) => {
+      const angle = (i / badgeElements.length) * (Math.PI * 2);
+      const radius = window.innerWidth > 1536 ? 320 : 250;
+      gsap.set(badge, {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius,
+        opacity: 1,
+        scale: 1
       });
+    });
 
-      // Animate elements only if they exist
-      if (headingRef.current) {
-        tl.to(headingRef.current, { opacity: 1, y: 0, duration: 1 });
-      }
-      if (paragraphRef.current) {
-        tl.to(paragraphRef.current, { opacity: 1, y: 0, duration: 1 }, "+=0.3");
-      }
-      if (logoRef.current && orbitRingsRef.current) {
-        tl.to([logoRef.current, orbitRingsRef.current], { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.3");
-      }
-      if (badgesRef.current) {
-        tl.to(badgesRef.current, { opacity: 1, y: 0, scale: 1, duration: 1 }, "+=0.3");
-      }
+    // Add continuous rotation animation
+    const rotationTl = gsap.to(badgesRef.current, {
+      rotation: 360,
+      duration: 60,
+      repeat: -1,
+      ease: "none"
+    });
 
-      // Continuous orbit animation for badges
-      const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
-      badgeElements.forEach((badge, i) => {
-        if (!badge) return;
-        const startAngle = (i / badgeElements.length) * (Math.PI * 2);
-        const radius = window.innerWidth > 1536 ? 320 : 250;
+    // Keep badges upright by counter-rotating them
+    const counterRotationTl = gsap.to(".orbiting-badge-item", {
+      rotation: -360,
+      duration: 60,
+      repeat: -1,
+      ease: "none"
+    });
 
-        gsap.set(badge, {
-          x: Math.cos(startAngle) * radius,
-          y: Math.sin(startAngle) * radius,
-        });
+    // Ensure other elements are visible
+    gsap.set([headingRef.current, paragraphRef.current, logoRef.current, orbitRingsRef.current, badgesRef.current], {
+      opacity: 1,
+      y: 0,
+      scale: 1
+    });
 
-        const orbitData = { angle: startAngle };
-
-        gsap.to(orbitData, {
-          angle: startAngle + Math.PI * 2,
-          duration: 40,
-          repeat: -1,
-          ease: "none",
-          onUpdate: () => {
-            if (badge) {
-              gsap.set(badge, {
-                x: Math.cos(orbitData.angle) * radius,
-                y: Math.sin(orbitData.angle) * radius
-              });
-            }
-          }
-        });
-      });
-
-      // Logo pulse animation
-      if (logoRef.current) {
-        gsap.to(logoRef.current, {
-          scale: 1.05,
-          duration: 4,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut"
-        });
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
+    return () => {
+      rotationTl.kill();
+      counterRotationTl.kill();
+    };
   }, []);
 
   return (
     <div id="orbit-section" ref={sectionRef} className="relative w-full overflow-hidden">
-      <div ref={triggerRef} className="h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6 relative pb-10">
+      <div ref={triggerRef} className="h-auto w-full flex flex-col items-center justify-center overflow-hidden px-6 relative py-30">
 
         <div className="relative z-10 w-[100%] mx-auto text-center mt-30 flex items-center justify-center">
           <div className="w-[35%] 2xl:pl-20 pl-10">
@@ -197,13 +149,12 @@ export const OrbitingSection: React.FC = () => {
           <div className="relative flex items-center justify-center h-[600px] w-[65%]">
             <div ref={orbitRingsRef} className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="absolute 2xl:w-[760px] 2xl:h-[760px] w-[580px] h-[580px] border border-white/5 rounded-full" />
-              <div className="absolute 2xl:w-[640px] 2xl:h-[640px] w-[500px] h-[500px] border border-teal-400/10 rounded-full" />
               <div className="absolute 2xl:w-[480px] 2xl:h-[480px] w-[360px] h-[360px] border border-blue-500/5 rounded-full" />
             </div>
 
             <div
               ref={logoRef}
-              className="relative z-10 2xl:w-72 2xl:h-72 w-52 h-52 bg-[#0a1122]/95 backdrop-blur-3xl rounded-full shadow-[0_0_80px_rgba(43,76,140,0.25)] flex items-center justify-center p-10 border border-white/10"
+              className="relative z-10 2xl:w-72 2xl:h-72 w-52 h-52 bg-white/5 backdrop-blur-3xl rounded-full shadow-[0_0_80px_rgba(43,76,140,0.15)] flex items-center justify-center p-10 border border-white/10"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-teal-400/30 rounded-full blur-3xl animate-pulse" />
@@ -221,7 +172,7 @@ export const OrbitingSection: React.FC = () => {
                   className="orbiting-badge-item absolute pointer-events-auto group"
                 >
                   <div className={`flex items-center gap-4 relative ${badge.labelPos === 'left' ? 'flex-row-reverse' : ''}`}>
-                    <div className={`w-20 h-20 2xl:w-28 2xl:h-28 bg-[#0a1122]/95 backdrop-blur-3xl rounded-full flex items-center justify-center p-4 shadow-2xl border-2 border-white/10 transition-all duration-500 hover:scale-110 ${badge.hoverGlow} cursor-pointer`}>
+                    <div className={`w-20 h-20 2xl:w-28 2xl:h-28 bg-white/5 backdrop-blur-3xl rounded-full flex items-center justify-center p-4 shadow-2xl border-2 border-white/10 transition-all duration-500 hover:scale-110 ${badge.hoverGlow} cursor-pointer`}>
                       <Image src={badge.src} alt={badge.title} className="w-full h-full object-contain rounded-full" />
                     </div>
 
