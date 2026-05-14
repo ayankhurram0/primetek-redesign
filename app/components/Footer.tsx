@@ -41,8 +41,6 @@ export default function Footer() {
             ))}
           </div>
 
-
-          {/* Col 3: Resources */}
           <div className="flex flex-col gap-4">
             <span className="text-teal-400 text-sm font-bold uppercase tracking-widest mb-2">Knowledge</span>
             {[
