@@ -6,11 +6,11 @@ import Image from "next/image";
 
 export default function Footer() {
   const navLinks = [
-    { name: "About", href: "/about" },
-    { name: "Awards", href: "/about#awards" },
-    { name: "Reviews", href: "/testimonials" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Case Studies", href: "/case-studies" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -22,19 +22,19 @@ export default function Footer() {
             <div className="w-40">
               <Image src={logocolor} alt="PrimeTek Logo" className="w-full h-auto" />
             </div>
-            <p className="text-white/60 text-xl leading-relaxed">
+            <p className="text-white/60 text-xs md:text-sm 2xl:text-base leading-relaxed">
               Empowering pharmacies through advanced audit readiness and revenue optimization solutions.
             </p>
           </div>
 
           {/* Col 2: Navigation (Shifted) */}
-          <div className="flex flex-col gap-4 pl-12">
-            <span className="text-teal-400 text-sm font-bold uppercase tracking-widest mb-2">Navigation</span>
+          <div className="flex flex-col gap-4 md:pl-12">
+            <span className="text-teal-400 text-xs font-bold uppercase tracking-widest mb-2">Navigation</span>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-white/60 text-base 2xl:text-xl font-medium tracking-wide hover:text-teal-400 hover:translate-x-1 transition-all duration-300"
+                className="text-white/60 text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-teal-400 hover:translate-x-1 transition-all duration-300"
               >
                 {link.name}
               </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <span className="text-teal-400 text-sm font-bold uppercase tracking-widest mb-2">Knowledge</span>
+            <span className="text-teal-400 text-xs font-bold uppercase tracking-widest mb-2">Knowledge</span>
             {[
               "Compliance Guide",
               "Case Studies",
@@ -53,7 +53,7 @@ export default function Footer() {
               <Link
                 key={resource}
                 href="/blog"
-                className="text-white/60 text-base 2xl:text-xl font-medium tracking-wide hover:text-teal-400 hover:translate-x-1 transition-all duration-300"
+                className="text-white/60 text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-teal-400 hover:translate-x-1 transition-all duration-300"
               >
                 {resource}
               </Link>
@@ -62,18 +62,18 @@ export default function Footer() {
 
           {/* Col 4: Contact Info */}
           <div className="flex flex-col gap-4 text-left">
-            <span className="text-teal-400 text-sm font-bold uppercase tracking-widest mb-2">Headquarters</span>
+            <span className="text-teal-400 text-xs font-bold uppercase tracking-widest mb-2">Headquarters</span>
             <div className="space-y-3">
-              <p className="text-white/80 text-base 2xl:text-xl leading-relaxed">
+              <p className="text-white/80 text-xs md:text-sm 2xl:text-base leading-relaxed">
                 3 Gateway Center, 100 Mulberry Street<br />
                 12th Floor, Suite 1243<br />
                 Newark, NJ 07102
               </p>
               <div className="pt-2 space-y-1">
-                <p className="text-white font-bold text-base 2xl:text-xl">
+                <p className="text-white font-bold text-xs md:text-sm 2xl:text-base">
                   +1 (908) 333-6252
                 </p>
-                <p className="text-teal-400 font-medium text-base 2xl:text-xl break-all">
+                <p className="text-teal-400 font-medium text-xs md:text-sm 2xl:text-base break-all">
                   info@primetekservices.com
                 </p>
               </div>
@@ -84,12 +84,12 @@ export default function Footer() {
         {/* Center: Social Icons */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-12 border-t border-white/10 gap-8">
           <div className="flex flex-col gap-2">
-            <p className="text-white/60 text-sm 2xl:text-base font-medium tracking-wide">
+            <p className="text-white/60 text-xs 2xl:text-sm font-medium tracking-wide">
               © 2026 PRIMETEK SERVICES. ALL RIGHTS RESERVED.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-white/40 text-sm 2xl:text-base hover:text-teal-400 transition-colors">PRIVACY POLICY</Link>
-              <Link href="#" className="text-white/40 text-sm 2xl:text-base hover:text-teal-400 transition-colors">TERMS OF SERVICE</Link>
+              <Link href="#" className="text-white/40 text-xs 2xl:text-sm hover:text-teal-400 transition-colors">PRIVACY POLICY</Link>
+              <Link href="#" className="text-white/40 text-xs 2xl:text-sm hover:text-teal-400 transition-colors">TERMS OF SERVICE</Link>
             </div>
           </div>
 

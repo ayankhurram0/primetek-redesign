@@ -40,29 +40,29 @@ export default function FancyButton({
 
     return (
         <button
-                onMouseEnter={() => setShow(true)}
-                onMouseLeave={() => setShow(false)}
-                onMouseMove={handleMove}
-                onClick={onClick}
-                className={`relative overflow-hidden px-6 py-3 rounded-full border font-medium text-${textColor} border-${borderColor} ${extraClasses}`}
-                style={{ backgroundColor: bgColor }}
-            >
-                {mounted && (
-                    <span
-                        className="pointer-events-none absolute w-[180%] aspect-square rounded-full transition-transform duration-300 ease-out"
-                        style={{
-                            left: `${pos.x}%`,
-                            top: `${pos.y}%`,
-                            backgroundColor: rippleColor,
-                            transform: `translate(-50%, -50%) scale(${show ? 1 : 0})`,
-                        }}
-                    />
-                )}
+            onMouseEnter={() => setShow(true)}
+            onMouseLeave={() => setShow(false)}
+            onMouseMove={handleMove}
+            onClick={onClick}
+            className={`relative overflow-hidden px-6 py-3 rounded-full border font-medium text-${textColor} border-${borderColor} ${extraClasses}`}
+            style={{ backgroundColor: bgColor }}
+        >
+            {mounted && (
+                <span
+                    className="pointer-events-none absolute w-[180%] aspect-square rounded-full transition-transform duration-300 ease-out"
+                    style={{
+                        left: `${pos.x}%`,
+                        top: `${pos.y}%`,
+                        background: rippleColor,
+                        transform: `translate(-50%, -50%) scale(${show ? 1 : 0})`,
+                    }}
+                />
+            )}
 
-                <span className="relative z-10 flex items-center gap-2">
-                    {label}
-                    {icon}
-                </span>
-            </button>
+            <span className="relative z-10 flex items-center gap-2">
+                {label}
+                {icon}
+            </span>
+        </button>
     );
 }

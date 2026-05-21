@@ -1,5 +1,5 @@
 "use client"
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -10,8 +10,42 @@ import {
   Search
 } from "lucide-react";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-gsap.registerPlugin(ScrollTrigger);
+const steps = [
+  {
+    id: "01",
+    title: "Profit Focus",
+    icon: <Target className="w-6 h-6 text-teal-400" />,
+    description: "Prioritize reimbursement, audit exposure, and efficiency—everything else is noise."
+  },
+  {
+    id: "02",
+    title: "Actionable Data",
+    icon: <BarChart3 className="w-6 h-6 text-teal-400" />,
+    description: "Turn payer data into clear, executable decisions."
+  },
+  {
+    id: "03",
+    title: "Embedded Systems",
+    icon: <Users className="w-6 h-6 text-teal-400" />,
+    description: "Operate inside your workflows—not as external support."
+  },
+  {
+    id: "04",
+    title: "Compliance Control",
+    icon: <ShieldCheck className="w-6 h-6 text-teal-400" />,
+    description: "Maintain audit readiness without disrupting clinical operations."
+  },
+  {
+    id: "05",
+    title: "Continuous Monitoring",
+    icon: <Search className="w-6 h-6 text-teal-400" />,
+    description: "Identify issues early before they become financial losses."
+  }
+];
 
 export const WhyPrimeTekSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -19,57 +53,105 @@ export const WhyPrimeTekSection: React.FC = () => {
   const subHeadingRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
-  const cardsContainerRef = useRef<HTMLDivElement>(null);
   const progressLineRef = useRef<HTMLDivElement>(null);
 
-  const steps = [
-    {
-      id: "01",
-      title: "Profit Focus",
-      icon: <Target className="w-8 h-8 text-teal-400" />,
-      description: "Prioritize reimbursement, audit exposure, and efficiency—everything else is noise."
-    },
-    {
-      id: "02",
-      title: "Actionable Data",
-      icon: <BarChart3 className="w-8 h-8 text-teal-400" />,
-      description: "Turn payer data into clear, executable decisions."
-    },
-    {
-      id: "03",
-      title: "Embedded Systems",
-      icon: <Users className="w-8 h-8 text-teal-400" />,
-      description: "Operate inside your workflows—not as external support."
-    },
-    {
-      id: "04",
-      title: "Compliance Control",
-      icon: <ShieldCheck className="w-8 h-8 text-teal-400" />,
-      description: "Maintain audit readiness without disrupting clinical operations."
-    },
-    {
-      id: "05",
-      title: "Continuous Monitoring",
-      icon: <Search className="w-8 h-8 text-teal-400" />,
-      description: "Identify issues early before they become financial losses."
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const section = sectionRef.current;
+    const trigger = triggerRef.current;
+    if (!section || !trigger) return;
+
+    // 1. Set initial hidden states
+    gsap.set([subHeadingRef.current, headingRef.current, textRef.current], {
+      opacity: 0,
+      y: 30,
+    });
+    gsap.set(section.querySelectorAll(".why-step-card"), {
+      opacity: 0,
+      y: 40,
+    });
+    gsap.set(section.querySelectorAll(".why-step-dot"), {
+      scale: 0,
+      backgroundColor: "#020817",
+      borderColor: "rgba(255,255,255,0.1)",
+    });
+    if (progressLineRef.current) {
+      gsap.set(progressLineRef.current, { scaleX: 0, transformOrigin: "left" });
     }
-  ];
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Set all elements to their final visible states
-      gsap.set([subHeadingRef.current, headingRef.current, textRef.current], { opacity: 1, y: 0 });
-      gsap.set(".why-step-card", { opacity: 1, y: 0 });
-      gsap.set(".why-step-dot", { scale: 1, backgroundColor: "teak-400", borderColor: "teak-400" });
-      gsap.set(progressLineRef.current, { scaleX: 1, transformOrigin: "left" });
-    }, sectionRef.current || undefined);
+    // 2. Refresh ScrollTrigger positions after DOM is settled
+    ScrollTrigger.refresh();
 
-    return () => ctx.revert();
+    // 3. Build the timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: trigger,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    // Header animations
+    tl.to(
+      [subHeadingRef.current, headingRef.current, textRef.current],
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+      }
+    );
+
+    // Progress line
+    tl.to(
+      progressLineRef.current,
+      {
+        scaleX: 1,
+        duration: 1.8,
+        ease: "power1.inOut",
+      },
+      "-=0.1"
+    );
+
+    // Cards stagger (in sync with line)
+    tl.to(
+      section.querySelectorAll(".why-step-card"),
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.3,
+        ease: "power2.out",
+      },
+      "<"
+    );
+
+    // Dots stagger (in sync with line)
+    tl.to(
+      section.querySelectorAll(".why-step-dot"),
+      {
+        scale: 1,
+        backgroundColor: "#2dd4bf",
+        borderColor: "#2dd4bf",
+        duration: 0.3,
+        stagger: 0.36,
+        ease: "back.out(2)",
+      },
+      "<"
+    );
+
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger === trigger) st.kill();
+      });
+    };
   }, []);
 
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden font-montserrat">
-
       <div ref={triggerRef} className="relative h-auto flex flex-col justify-center py-40">
         <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10 px-12">
           <div ref={subHeadingRef} className="flex items-center justify-center gap-4 mb-6">
@@ -91,7 +173,7 @@ export const WhyPrimeTekSection: React.FC = () => {
 
         <div className="max-w-[1700px] mx-auto relative px-12 w-full">
           {/* Step Cards Grid */}
-          <div ref={cardsContainerRef} className="grid grid-cols-1 md:grid-cols-5 gap-4 relative z-10 pb-14">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative z-10 pb-14">
             {steps.map((step, idx) => (
               <div
                 key={idx}
@@ -102,26 +184,29 @@ export const WhyPrimeTekSection: React.FC = () => {
                   <div className="h-[2px] w-6 bg-teal-400" />
                 </div>
 
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 mb-6 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-                  {React.cloneElement(step.icon as React.ReactElement<{ className?: string }>, { className: "w-6 h-6 text-teal-400" })}
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 mb-6">
+                  {step.icon}
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-4 transition-colors">{step.title}</h3>
-                <p className="text-white/40 text-xl leading-relaxed">
-                  {step.description}
-                </p>
+                <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
+                <p className="text-white/40 text-xl leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
 
           {/* Timeline Indicator at Bottom */}
-          <div className="absolute bottom-4 left-12 right-12 flex items-center pointer-events-none">
+          <div className="hidden md:flex absolute bottom-4 left-12 right-12 items-center pointer-events-none">
             <div className="h-[2px] w-full bg-white/10 relative flex items-center">
-              <div ref={progressLineRef} className="h-full w-full bg-teal-400 shadow-[0_0_15px_rgba(45,212,191,0.5)]" />
-
+              <div
+                ref={progressLineRef}
+                className="h-full w-full bg-teal-400 shadow-[0_0_15px_rgba(45,212,191,0.5)]"
+              />
               <div className="absolute inset-0 flex justify-between items-center px-[2px]">
                 {steps.map((_, i) => (
-                  <div key={i} className="why-step-dot w-4 h-4 rounded-full border-2 border-white/10 bg-[#020817] z-20" />
+                  <div
+                    key={i}
+                    className="why-step-dot w-4 h-4 rounded-full border-2 bg-[#020817] z-20"
+                  />
                 ))}
               </div>
             </div>

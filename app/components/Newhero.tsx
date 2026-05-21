@@ -212,7 +212,13 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-transparent flex flex-col items-center justify-center overflow-hidden font-montserrat">
       {/* Background Cards Layer - 3D Infinite Autoplay */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden [perspective:1200px] -translate-y-60!">
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden [perspective:1200px] -translate-y-60!"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to right, transparent 45%, black 65%)',
+          maskImage: 'linear-gradient(to right, transparent 45%, black 65%)',
+        }}
+      >
         <motion.div
           animate={{
             x: ["0%", "-25%"]
@@ -243,8 +249,8 @@ export default function App() {
       {/* Foreground Image (Pharmacist - Right Aligned) */}
       <div className="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
         <motion.div
-          initial={{ x: 200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          initial={{ x: 250, opacity: 0 }}
+          animate={{ x: 250, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
           className="relative 2xl:h-[90%] w-auto flex items-end"
         >

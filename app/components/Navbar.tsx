@@ -45,7 +45,7 @@ export default function Navbar() {
         <Link href="/services" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Services</Link>
 
         <Link href="/case-studies" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Case Studies</Link>
-                <Link href="/contact" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Contact</Link>
+        <Link href="/contact" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Contact</Link>
       </div>
 
       <div className="flex items-center justify-end w-[20%] space-x-4">
@@ -53,10 +53,10 @@ export default function Navbar() {
           <FancyButton
             label="Login"
             textColor="white"
-            borderColor={scrolled ? "white/20" : "#2b4c8c"}
-            rippleColor="#2dd4bf"
-            bgColor={scrolled ? "white/5" : "#2b4c8c"}
-            extraClasses={`backdrop-blur-md hover:text-[black] hover:border-[#2dd4bf] transition-all duration-200 2xl:py-5 2xl:px-10 2xl:text-xl ${scrolled ? 'hover:bg-white' : ''
+            borderColor="white"
+            rippleColor="linear-gradient(150deg, #005969 45%, #2dd4bf 80%)"
+            bgColor="linear-gradient(150deg, #2dd4bf 45%, #005969 80%)"
+            extraClasses={`backdrop-blur-md hover:border-transparent transition-all duration-200 2xl:py-5 2xl:px-10 2xl:text-xl ${scrolled ? 'hover:bg-white' : ''
               }`}
           />
         </Link>

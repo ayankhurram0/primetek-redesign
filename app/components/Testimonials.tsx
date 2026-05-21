@@ -43,6 +43,7 @@ const testimonials = [
 ];
 
 import AnimationWrapper from "./AnimationWrapper";
+import AnimatedNumber from "./AnimatedNumber";
 
 export default function Testimonials() {
   return (
@@ -75,6 +76,36 @@ export default function Testimonials() {
           </div>
         </AnimationWrapper>
 
+        {/* Stats Section Bar */}
+        <AnimationWrapper direction="up" distance={30} delay={0.1} className="w-full mb-20">
+          <div className="w-full bg-gradient-to-r from-[#003c47] via-[#005969] to-[#003c47] border-y border-white/10 py-10 px-6 md:px-12 flex flex-col md:flex-row justify-around items-center gap-8 rounded-2xl md:rounded-full shadow-lg shadow-black/10">
+            <div className="text-center flex-1">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+                <AnimatedNumber value={4.2} prefix="$" suffix="M+" decimals={1} />
+              </div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Revenue Recovered</div>
+            </div>
+            <div className="text-center flex-1">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+                <AnimatedNumber value={98} suffix="%" decimals={0} />
+              </div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Audit Readiness Score</div>
+            </div>
+            <div className="text-center flex-1">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+                <AnimatedNumber value={2} suffix="x" decimals={0} />
+              </div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Monthly Reporting Cycle</div>
+            </div>
+            <div className="text-center flex-1">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+                <AnimatedNumber value={100} suffix="+" decimals={0} />
+              </div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Pharmacies Supported</div>
+            </div>
+          </div>
+        </AnimationWrapper>
+
         <AnimationWrapper direction="up" distance={50} delay={0.2}>
           <Swiper
             modules={[Autoplay]}
@@ -95,21 +126,21 @@ export default function Testimonials() {
               <SwiperSlide key={index} className="!h-auto flex">
 
                 <div className="bg-[#04212a] border border-white/10 px-10 py-12 flex flex-col h-full hover:bg-[#04212a]/80 transition-all duration-500 rounded-3xl group relative">
-                  <div className="w-3 h-3 rounded-full bg-teal-400/20 border border-teal-400/40 mb-6" />
-                  <h4 className="text-white font-bold text-xl 2xl:text-3xl mb-6 leading-tight">
+                  <div className="w-3 h-3 rounded-full bg-teal-400/20 border border-teal-400/40 mb-4" />
+                  <h4 className="text-white font-bold text-lg 2xl:text-2xl mb-4 leading-tight">
                     “{item.quote}”
                   </h4>
-                  <p className="text-slate-300 text-base 2xl:text-xl leading-relaxed mb-10 flex-1">
+                  <p className="text-slate-300 text-sm 2xl:text-base leading-relaxed mb-6 flex-1">
                     {item.text}
                   </p>
 
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="w-18 h-18 rounded-full overflow-hidden shadow-md ring-2 ring-teal-400">
+                    <div className="w-12 h-12 rounded-full overflow-hidden shadow-md ring-2 ring-teal-400">
                       <Image src={item.image} alt={item.author} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <h5 className="text-white font-bold 2xl:text-lg">{item.author}</h5>
-                      <div className="flex text-teal-400 2xl:text-lg">
+                      <h5 className="text-white font-bold text-sm 2xl:text-base">{item.author}</h5>
+                      <div className="flex text-teal-400 text-sm 2xl:text-base">
                         {Array.from({ length: item.rating }).map((_, i) => (
                           <span key={i}>★</span>
                         ))}

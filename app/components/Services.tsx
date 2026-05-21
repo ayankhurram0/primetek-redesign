@@ -40,7 +40,7 @@ export const ServicesSection: React.FC = () => {
             icon: <TrendingUp className="w-6 h-6 text-red-500/90" />,
             glow: "from-red-500/10 to-transparent",
             hoverClass: "hover:bg-red-500/15 hover:border-red-500/60 hover:shadow-[0_20px_80px_rgba(113,198,164,0.25)]",
-            accentColor: "red-500/90"
+            accentColor: "#e42b36"
         },
         {
             title: "Claims & Reimbursement Optimization",
@@ -126,10 +126,10 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                className={`service-category-card group relative bg-[#04212a] border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-[#04212a] border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
-                                    
+
 
                                     <div className="flex justify-between items-start mb-6">
                                         <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
@@ -149,10 +149,16 @@ export const ServicesSection: React.FC = () => {
                                     <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
-                                                <div className="w-4 h-4 bg-white/20 rounded-full flex items-center justify-center">
-                                                    <Search className="w-2 h-2 text-white/40" />
+                                                <div 
+                                                    className="w-4 h-4 rounded-full flex items-center justify-center"
+                                                    style={{ backgroundColor: `${service.accentColor}25` }}
+                                                >
+                                                    <Search 
+                                                        className="w-2 h-2" 
+                                                        style={{ color: service.accentColor }}
+                                                    />
                                                 </div>
-                                                <span className="text-xl font-bold text-white">{service.stat}</span>
+                                                <span className="text-xl font-bold " style={{ color: service.accentColor }}>{service.stat}</span>
                                             </div>
                                             <p className="text-[12px] text-white/30 uppercase font-medium leading-tight max-w-[120px]">
                                                 {service.statLabel}
@@ -176,7 +182,7 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                className={`service-category-card group relative bg-[#04212a] border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-[#04212a] border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
@@ -199,10 +205,16 @@ export const ServicesSection: React.FC = () => {
                                     <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
-                                                <div className="w-4 h-4 bg-white/20 rounded-full flex items-center justify-center">
-                                                    <Activity className="w-2 h-2 text-white/40" />
+                                                <div 
+                                                    className="w-4 h-4 rounded-full flex items-center justify-center"
+                                                    style={{ backgroundColor: `${service.accentColor}25` }}
+                                                >
+                                                    <Activity 
+                                                        className="w-2 h-2" 
+                                                        style={{ color: service.accentColor }}
+                                                    />
                                                 </div>
-                                                <span className="text-xl font-bold text-white">{service.stat}</span>
+                                                <span className="text-xl font-bold " style={{ color: service.accentColor }}>{service.stat}</span>
                                             </div>
                                             <p className="text-[12px] text-white/30 uppercase font-medium leading-tight max-w-[150px]">
                                                 {service.statLabel}
