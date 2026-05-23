@@ -101,7 +101,40 @@ export const ServicesSection: React.FC = () => {
     ];
 
     useGSAP(() => {
-        // Elements are visible by default
+        const targets = [headingRef.current, textRef.current].filter(Boolean);
+        if (targets.length > 0) {
+            gsap.fromTo(targets, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }
+
+        gsap.fromTo(".service-category-card",
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 75%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
     }, { scope: sectionRef });
 
     return (
@@ -126,7 +159,7 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                    className={`service-category-card group relative bg-[#04212a] border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
@@ -149,12 +182,12 @@ export const ServicesSection: React.FC = () => {
                                     <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
-                                                <div 
+                                                <div
                                                     className="w-4 h-4 rounded-full flex items-center justify-center"
                                                     style={{ backgroundColor: `${service.accentColor}25` }}
                                                 >
-                                                    <Search 
-                                                        className="w-2 h-2" 
+                                                    <Search
+                                                        className="w-2 h-2"
                                                         style={{ color: service.accentColor }}
                                                     />
                                                 </div>
@@ -182,7 +215,7 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                    className={`service-category-card group relative bg-[#04212a] border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
@@ -205,12 +238,12 @@ export const ServicesSection: React.FC = () => {
                                     <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
-                                                <div 
+                                                <div
                                                     className="w-4 h-4 rounded-full flex items-center justify-center"
                                                     style={{ backgroundColor: `${service.accentColor}25` }}
                                                 >
-                                                    <Activity 
-                                                        className="w-2 h-2" 
+                                                    <Activity
+                                                        className="w-2 h-2"
                                                         style={{ color: service.accentColor }}
                                                     />
                                                 </div>

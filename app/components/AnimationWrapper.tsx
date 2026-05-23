@@ -3,6 +3,7 @@
 import { useEffect, useRef, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 /**
  * Register GSAP plugins
@@ -29,9 +30,36 @@ interface AnimationWrapperProps {
 export default function AnimationWrapper({
   children,
   className = "",
+  delay = 0,
+  direction = "up",
+  distance = 30,
+  duration = 0.8,
 }: AnimationWrapperProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+    
+    gsap.fromTo(ref.current, 
+      { opacity: 0, y: direction === "up" ? distance : direction === "down" ? -distance : 0, x: direction === "left" ? distance : direction === "right" ? -distance : 0 },
+      {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        duration: duration,
+        delay: delay,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+  }, { scope: ref });
+
   return (
-    <div className={className}>
+    <div ref={ref} className={className}>
       {children}
     </div>
   );

@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 import {
   Activity,
   AlertTriangle,
@@ -24,6 +29,12 @@ export interface AlertItem {
   activities: { text: string; time: string }[];
   accentColor: string;
   image: string | StaticImageData;
+  colorScheme?: {
+    bg: string;
+    border: string;
+    icon: string;
+    text: string;
+  };
 }
 
 export const ALERTS: AlertItem[] = [
@@ -34,6 +45,12 @@ export const ALERTS: AlertItem[] = [
     priority: 'High',
     description: 'Monitor and maintain compliance with OptumRx therapeutic class limits to prevent recoupments.',
     accentColor: 'text-red-500',
+    colorScheme: {
+      bg: 'from-red-500/20 to-red-600/15',
+      border: 'border-red-500/40',
+      icon: 'bg-red-500/30',
+      text: 'text-red-400'
+    },
     image: auditCard,
     activities: [
       { text: 'Therapeutic class limits approaching 22%', time: '2h ago' },
@@ -47,6 +64,12 @@ export const ALERTS: AlertItem[] = [
     priority: 'High',
     description: 'Proactive detection of MTF and MTP claim issues before they impact your backend revenue.',
     accentColor: 'text-brand-red',
+    colorScheme: {
+      bg: 'from-blue-500/20 to-blue-600/15',
+      border: 'border-blue-500/40',
+      icon: 'bg-blue-500/30',
+      text: 'text-blue-400'
+    },
     image: thresholdsCard,
     activities: [
       { text: 'MTF leakage detected in class B', time: '30m ago' },
@@ -60,6 +83,12 @@ export const ALERTS: AlertItem[] = [
     priority: 'High',
     description: 'Identify and flag reimbursement patterns that deviate from expected PBM contracts.',
     accentColor: 'text-red-500',
+    colorScheme: {
+      bg: 'from-purple-500/20 to-purple-600/15',
+      border: 'border-purple-500/40',
+      icon: 'bg-purple-500/30',
+      text: 'text-purple-400'
+    },
     image: gapsCard,
     activities: [
       { text: 'Irregularity flagged in 4 claims', time: '1h ago' },
@@ -73,6 +102,12 @@ export const ALERTS: AlertItem[] = [
     priority: 'High',
     description: 'Spotting the specific triggers that lead to PBM audits and financial exposure.',
     accentColor: 'text-brand-red',
+    colorScheme: {
+      bg: 'from-orange-500/20 to-orange-600/15',
+      border: 'border-orange-500/40',
+      icon: 'bg-orange-500/30',
+      text: 'text-orange-400'
+    },
     image: mtfCard,
     activities: [
       { text: 'New audit risk trigger identified', time: '2h ago' },
@@ -83,17 +118,25 @@ export const ALERTS: AlertItem[] = [
 
 // --- Sub-components ---
 
-function RadarAnimation() {
+const getColorTokens = (textClass: string = '') => {
+  if (textClass.includes('blue')) return { border: 'border-blue-500/50', bg: 'bg-blue-500/20', border2: 'border-blue-500', text: 'text-blue-500', dotBg: 'bg-blue-500', dotShadow: 'shadow-[0_0_15px_#3b82f6]' };
+  if (textClass.includes('purple')) return { border: 'border-purple-500/50', bg: 'bg-purple-500/20', border2: 'border-purple-500', text: 'text-purple-500', dotBg: 'bg-purple-500', dotShadow: 'shadow-[0_0_15px_#a855f7]' };
+  if (textClass.includes('orange')) return { border: 'border-orange-500/50', bg: 'bg-orange-500/20', border2: 'border-orange-500', text: 'text-orange-500', dotBg: 'bg-orange-500', dotShadow: 'shadow-[0_0_15px_#f97316]' };
+  return { border: 'border-red-500/50', bg: 'bg-red-500/20', border2: 'border-red-500', text: 'text-red-500', dotBg: 'bg-red-500', dotShadow: 'shadow-[0_0_15px_#ef4444]' };
+};
+
+function RadarAnimation({ icon: Icon, colorSchemeText }: { icon: any, colorSchemeText: string }) {
+  const tokens = getColorTokens(colorSchemeText);
   return (
-    <div className="relative w-48 h-48 flex items-center justify-center">
+    <div className="relative w-80 h-80 flex items-center justify-center">
       {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full border border-red-500/50"
-          initial={{ width: 40, height: 40, opacity: 0 }}
+          className={`absolute rounded-full border ${tokens.border}`}
+          initial={{ width: 120, height: 120, opacity: 0 }}
           animate={{
-            width: 40 + i * 40,
-            height: 40 + i * 40,
+            width: 120 + i * 60,
+            height: 120 + i * 60,
             opacity: [0, 0.4, 0]
           }}
           transition={{
@@ -104,15 +147,15 @@ function RadarAnimation() {
           }}
         />
       ))}
-      <div className="z-10 bg-red-500/20 p-4 rounded-full border-2 border-red-500">
-        <Activity className="w-8 h-8 text-red-500" />
+      <div className={`z-10 ${tokens.bg} p-6 rounded-full border-2 ${tokens.border2}`}>
+        <Icon className={`w-16 h-16 ${tokens.text}`} />
       </div>
       <motion.div
-        className="absolute w-2 h-2 bg-red-500 rounded-full shadow-[0_0_15px_#ef4444]"
+        className={`absolute w-3 h-3 ${tokens.dotBg} rounded-full ${tokens.dotShadow}`}
         animate={{
           rotate: 360,
-          x: [0, 60, 0, -60, 0],
-          y: [0, 0, 60, 0, -60],
+          x: [0, 120, 0, -120, 0],
+          y: [0, 0, 120, 0, -120],
         }}
         transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
         style={{ originX: '0.5', originY: '0.5' }}
@@ -137,6 +180,9 @@ const getAlertIcon = (category: string, priority: string) => {
 };
 
 export default function IntelligenceDashboard() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const dashboardRef = useRef<HTMLDivElement>(null);
   const [activeAlertId, setActiveAlertId] = useState(ALERTS[2].id);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
 
@@ -154,11 +200,37 @@ export default function IntelligenceDashboard() {
     return () => clearInterval(interval);
   }, [isAutoRotating]);
 
+  useGSAP(() => {
+    const targets = [headingRef.current, dashboardRef.current].filter(Boolean);
+    if (targets.length > 0) {
+      gsap.fromTo(targets,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+  }, { scope: sectionRef });
+
   return (
-    <div className="space-y-16 2xl:px-24 2xl:py-30 relative overflow-hidden h-auto">
+    <div ref={sectionRef} className="space-y-8 2xl:px-24 2xl:py-20 relative z-10 overflow-hidden h-auto">
+      {/* Ambient Red/Orange Background Glows */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] bg-red-600/40 rounded-full blur-[150px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[1000px] h-[1000px] bg-red-700/30 rounded-full blur-[180px]" />
+      </div>
 
       {/* Headings */}
-      <section className="space-y-4 text-center lg:text-left">
+      <section ref={headingRef} className="space-y-2 text-center lg:text-left">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-xl font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
           Real-Time Alerts for Critical Issues
         </div>
@@ -169,7 +241,7 @@ export default function IntelligenceDashboard() {
       </section>
 
       {/* Main Interaction Dashboard */}
-      <section id="intelligence" className="animate-in fade-in duration-700">
+      <section ref={dashboardRef} id="intelligence" className="animate-in fade-in duration-700">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 items-start">
 
           {/* Sidebar Controls */}
@@ -181,23 +253,23 @@ export default function IntelligenceDashboard() {
                   setActiveAlertId(alert.id);
                   setIsAutoRotating(false);
                 }}
-                className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 backdrop-blur-sm group ${activeAlertId === alert.id
-                  ? 'bg-red-950/40 border-red-500 shadow-[0_0_25px_rgba(239,68,68,0.3)]'
-                  : 'bg-red-950/20 border-red-500/40 hover:border-red-400 hover:bg-red-950/30'
+                className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 backdrop-blur-md group ${activeAlertId === alert.id
+                  ? `bg-gradient-to-r ${alert.colorScheme?.bg} ${alert.colorScheme?.border} shadow-[0_0_30px_rgba(255,255,255,0.1)]`
+                  : `bg-white/5 border-white/20 hover:border-white/30 hover:bg-white/10`
                   }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? 'bg-red-600/20 text-red-400' : 'bg-red-950/30 text-red-500/60'}`}>
+                  <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? alert.colorScheme?.icon + ' ' + alert.colorScheme?.text : 'bg-white/10 text-white/70'}`}>
                     {React.createElement(getAlertIcon(alert.category, alert.priority), { className: "w-8 h-8" })}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-base font-semibold uppercase tracking-wider text-red-400/80 mb-1">{alert.category}</div>
-                    <div className="text-lg font-medium truncate text-white group-hover:text-red-100 transition-colors">{alert.title}</div>
+                    <div className={`text-base font-semibold uppercase tracking-wider mb-1 ${activeAlertId === alert.id ? alert.colorScheme?.text : 'text-white/90'}`}>{alert.category}</div>
+                    <div className="text-lg font-medium truncate text-white group-hover:text-white transition-colors">{alert.title}</div>
                   </div>
                   {activeAlertId === alert.id && (
                     <motion.div
                       layoutId="active-dot"
-                      className="w-8 w-8 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444]"
+                      className={`w-8 w-8 rounded-full shadow-[0_0_8px_currentColor] ${alert.colorScheme?.text?.replace('text-', 'bg-') || 'bg-red-500'}`}
                     />
                   )}
                 </div>
@@ -224,47 +296,80 @@ export default function IntelligenceDashboard() {
           </div>
 
           {/* Detail Panel */}
-          <div className="lg:col-span-8 w-full backdrop-blur-xl rounded-2xl p-8 min-h-[500px] relative overflow-hidden group border-2 border-red-500/60 flex flex-col justify-end items-end">
-            <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-10 -z-10" />
-            <div className="flex-1 absolute top-0 w-full right-0 p-4 px-6 bg-red-700/40">
+          <div className={`lg:col-span-8 w-full backdrop-blur-xl rounded-2xl p-8 min-h-[500px] relative overflow-hidden group border-2 flex flex-col justify-end items-end bg-white/10 ${activeAlert.colorScheme?.border || 'border-white/30'}`}>
+            <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-15 -z-10" />
+            <div className="flex-1 absolute top-0 w-full right-0 p-4 px-6 backdrop-blur-md bg-white/10">
               <div className='flex gap-10 items-center '>
                 <div className="flex gap-3">
-                  <div className="w-4 h-4 rounded-full bg-white/40" />
-                  <div className="w-4 h-4 rounded-full bg-white/40" />
-                  <div className="w-4 h-4 rounded-full bg-white/40" />
+                  <div className="w-4 h-4 rounded-full bg-white/30" />
+                  <div className="w-4 h-4 rounded-full bg-white/30" />
+                  <div className="w-4 h-4 rounded-full bg-white/30" />
                 </div>
                 <div>
-                  <div className={`p-3 rounded-full flex gap-3 ${activeAlertId === activeAlert.id ? 'bg-orange-600/20 text-red-400' : 'bg-red-950/30 text-red-500/60'}`}>
-                    {React.createElement(getAlertIcon(activeAlert.category, activeAlert.priority), { className: "w-6 h-6" })}
-                    <div className="text-white text-xl font-semibold">{activeAlert.category}</div>
+                  <div className={`p-3 rounded-full flex gap-3 ${activeAlert.colorScheme?.icon || 'bg-white/20'} text-white backdrop-blur-sm relative`}>
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        opacity: [0.5, 0.8, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      style={{
+                        background: activeAlert.colorScheme?.text?.replace('text-', 'bg-')?.replace('400', '500') || 'bg-red-500',
+                        filter: 'blur(8px)'
+                      }}
+                    />
+                    {React.createElement(getAlertIcon(activeAlert.category, activeAlert.priority), { className: "w-6 h-6 relative z-10" })}
+                    <div className="text-white text-xl font-semibold relative z-10">{activeAlert.category}</div>
                   </div>
 
                 </div>
               </div>
               <div></div>
             </div>
-            <div className="relative w-full z-10 h-full flex flex-col">
+            <div className="relative w-full z-10 h-full flex flex-col pt-24">
               <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-between w-full">
-                <div className="space-y-6 flex-1">
-                  <h2 className="text-5xl font-sans font-bold text-white leading-tight">
-                    {activeAlert.title}
-                  </h2>
-                  <p className="text-slate-400 leading-relaxed text-2xl">
-                    {activeAlert.description}
-                  </p>
-                </div>
-              </div>
-              <div className="space-y-3 pt-4">
-                <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
-                {activeAlert.activities.map((act, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-red-500/30 bg-red-950/20 group/item hover:border-red-500 hover:bg-red-950/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] transition-all">
-                    <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
-                      <span className="text-xl font-medium text-white">{act.text}</span>
-                    </div>
-                    <span className="text-lg font-mono text-slate-500">{act.time}</span>
+                
+                {/* Left Column: Text & Updates */}
+                <div className="flex-1 flex flex-col space-y-12">
+                  <div className="space-y-6">
+                    <h2 className="text-5xl font-sans font-bold text-white leading-tight">
+                      {activeAlert.title}
+                    </h2>
+                    <p className="text-slate-400 leading-relaxed text-2xl">
+                      {activeAlert.description}
+                    </p>
                   </div>
-                ))}
+
+                  <div className="space-y-3">
+                    <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
+                    {activeAlert.activities.map((act, i) => {
+                      const tokens = getColorTokens(activeAlert.colorScheme?.text);
+                      return (
+                        <div key={i} className={`flex items-center justify-between p-3 rounded-lg border ${activeAlert.colorScheme?.border || 'border-red-500/30'} ${activeAlert.colorScheme?.bg || 'bg-red-950/20'} group/item hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all`}>
+                          <div className="flex items-center gap-3">
+                            <div className={`w-3 h-3 rounded-full ${tokens.dotBg} ${tokens.dotShadow}`} />
+                            <span className="text-xl font-medium text-white">{act.text}</span>
+                          </div>
+                          <span className="text-lg font-mono text-slate-500">{act.time}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Right Column: Radar Animation */}
+                <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
+                  <RadarAnimation 
+                    icon={getAlertIcon(activeAlert.category, activeAlert.priority)} 
+                    colorSchemeText={activeAlert.colorScheme?.text || ''} 
+                  />
+                </div>
+                
               </div>
             </div>
           </div>

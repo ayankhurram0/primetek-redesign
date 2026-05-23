@@ -88,7 +88,7 @@ export const WhyPrimeTekSection: React.FC = () => {
       scrollTrigger: {
         trigger: trigger,
         start: "top 80%",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       },
     });
 

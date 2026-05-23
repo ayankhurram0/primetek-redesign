@@ -43,7 +43,7 @@ export default function ConsultationCTA() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 85%",
-          toggleActions: "play none none none",
+          toggleActions: "play none none reverse",
         },
       });
 
@@ -109,11 +109,7 @@ export default function ConsultationCTA() {
               <Link href="/contact">
                 <FancyButton
                   label="Request a Strategy Call"
-                  textColor="white"
-                  borderColor="teal-400"
-                  rippleColor="#2b4c8c"
-                  bgColor="#2dd4bf"
-                  extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-300 py-6 px-12 text-lg shadow-lg border-2"
+                  extraClasses="py-6 px-12 text-lg"
                 />
               </Link>
             </div>

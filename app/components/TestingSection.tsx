@@ -158,7 +158,7 @@ export const TestingSection: React.FC = () => {
                             {services.slice(0, 3).map((service, idx) => (
                                 <div
                                     key={idx}
-                                    className={`service-category-card group relative bg-[#0a1122]/40 backdrop-blur-3xl border border-white/10 rounded-3xl p-8 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
@@ -206,7 +206,7 @@ export const TestingSection: React.FC = () => {
                             {services.slice(3, 5).map((service, idx) => (
                                 <div
                                     key={idx}
-                                    className={`service-category-card group relative bg-[#0a1122]/40 backdrop-blur-3xl border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
@@ -225,7 +225,7 @@ export const TestingSection: React.FC = () => {
                                         {service.description}
                                     </p>
 
-                                    <div className="bg-[#050a14] rounded-2xl p-4 border border-white/5 flex items-center justify-between">
+                                    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/5 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <div className="w-4 h-4 bg-white/5 rounded-full flex items-center justify-center">

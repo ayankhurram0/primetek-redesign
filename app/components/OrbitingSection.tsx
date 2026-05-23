@@ -110,11 +110,28 @@ export const OrbitingSection: React.FC = () => {
     });
 
     // Ensure other elements are visible
-    gsap.set([headingRef.current, paragraphRef.current, logoRef.current, orbitRingsRef.current, badgesRef.current], {
+    gsap.set([logoRef.current, orbitRingsRef.current, badgesRef.current], {
       opacity: 1,
       y: 0,
       scale: 1
     });
+
+    const fadeTargets = [headingRef.current, paragraphRef.current];
+    gsap.fromTo(fadeTargets, 
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
 
     return () => {
       rotationTl.kill();

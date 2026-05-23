@@ -5,9 +5,10 @@
 
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { FileSearch, Target, Zap, TrendingUp } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -54,30 +55,54 @@ export const OurFramework: React.FC = () => {
   const lineRef = useRef<HTMLDivElement>(null);
   const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Set all elements to their final visible states
-      gsap.set([".framework-heading", ".framework-subtitle", ".framework-description", subtitleRef.current], {
-        opacity: 1,
-        y: 0,
-        x: 0
-      });
+  useGSAP(() => {
+    const section = containerRef.current;
+    if (!section) return;
 
-      gsap.set(lineRef.current, { height: "90%" });
+    gsap.set([".framework-heading", ".framework-subtitle", ".framework-description", subtitleRef.current], {
+      opacity: 0,
+      y: 30,
+    });
+    gsap.set(lineRef.current, { height: 0 });
+    
+    const rows = rowsRef.current.filter(Boolean);
+    gsap.set(rows, { opacity: 0, y: 50 });
+    
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse"
+      }
+    });
 
-      const rows = rowsRef.current.filter(Boolean);
-      rows.forEach((row) => {
-        if (!row) return;
-        const rowIcon = row.querySelector(".row-icon");
-        const rowDot = row.querySelector(".row-dot");
-        gsap.set(row, { opacity: 1, scale: 1, y: 0 });
-        gsap.set(rowDot, { scale: 1, backgroundColor: "teak-400" });
-        gsap.set(rowIcon, { scale: 1, rotate: 0 });
-      });
-    }, containerRef);
+    tl.to([".framework-heading", ".framework-subtitle", ".framework-description"], {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power2.out"
+    })
+    .to(subtitleRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power2.out"
+    }, "-=0.4")
+    .to(lineRef.current, {
+      height: "90%",
+      duration: 1.5,
+      ease: "power2.inOut"
+    }, "-=0.2")
+    .to(rows, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.3,
+      ease: "power2.out"
+    }, "<");
 
-    return () => ctx.revert();
-  }, []);
+  }, { scope: containerRef });
 
   return (
     <section ref={containerRef} className="relative h-auto font-montserrat selection:bg-teal-400/30 overflow-x-hidden py-40">

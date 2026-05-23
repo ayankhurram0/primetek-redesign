@@ -24,7 +24,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 md:px-16 py-5 font-montserrat transition-all duration-300 ${scrolled ? 'bg-transparent backdrop-blur-sm border-b border-white/5' : 'bg-transparent'
+      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 md:px-16 py-5 font-montserrat transition-all duration-300 ${scrolled ? 'bg-white/4 backdrop-blur-lg' : 'bg-transparent'
         }`}
     >
       <Link href="/" className="flex items-center justify-start w-[20%]">
@@ -52,22 +52,15 @@ export default function Navbar() {
         <Link href="/login">
           <FancyButton
             label="Login"
-            textColor="white"
-            borderColor="white"
-            rippleColor="linear-gradient(150deg, #005969 45%, #2dd4bf 80%)"
-            bgColor="linear-gradient(150deg, #2dd4bf 45%, #005969 80%)"
-            extraClasses={`backdrop-blur-md hover:border-transparent transition-all duration-200 2xl:py-5 2xl:px-10 2xl:text-xl ${scrolled ? 'hover:bg-white' : ''
-              }`}
+            variant="secondary"
+            extraClasses="2xl:py-5 2xl:px-10 2xl:text-xl"
           />
         </Link>
         <Link href="/signup">
           <FancyButton
             label="Sign Up"
-            textColor="white"
-            borderColor="[#2dd4bf]"
-            rippleColor="#2b4c8c"
-            bgColor="#2dd4bf"
-            extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 2xl:text-xl" />
+            extraClasses="2xl:py-5 2xl:px-10 2xl:text-xl"
+          />
         </Link>
       </div>
     </motion.nav>

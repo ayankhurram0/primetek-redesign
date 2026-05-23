@@ -309,18 +309,12 @@ export default function App() {
           >
             <FancyButton
               label="Request a Strategy Call"
-              textColor="white"
-              borderColor="teal-400"
-              rippleColor="#2b4c8c"
-              bgColor="#2dd4bf"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all font-bold! duration-200 2xl:py-6 2xl:px-8 2xl:text-lg" />
+              extraClasses="2xl:py-6 2xl:px-8 2xl:text-lg" 
+            />
             <FancyButton
               label="See How We Protect Revenue"
-              textColor="white"
-              borderColor="[#2b4c8c]"
-              rippleColor="#2dd4bf"
-              bgColor="#2b4c8c"
-              extraClasses="backdrop-blur-md hover:border-teal-400 font-bold! transition-all duration-500 2xl:py-6 2xl:px-8 2xl:text-lg"
+              variant="secondary"
+              extraClasses="2xl:py-6 2xl:px-8 2xl:text-lg"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             />
           </motion.div>
