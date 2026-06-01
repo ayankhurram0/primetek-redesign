@@ -219,78 +219,79 @@ export default function IntelligenceDashboard() {
     <div ref={sectionRef} className="space-y-8 2xl:px-24 2xl:py-20 relative z-10 overflow-hidden h-auto">
       {/* Ambient Red/Orange Background Glows with natural top/bottom blend */}
       <div className="absolute inset-0 pointer-events-none z-0" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' }}>
-        <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] bg-red-600/40 rounded-full blur-[150px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[1000px] h-[1000px] bg-red-700/30 rounded-full blur-[180px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[2000px] h-[1500px] bg-red-600/40 rounded-[100%] blur-[350px]" />
       </div>
-
-      {/* Headings */}
-      <section ref={headingRef} className="space-y-2 text-center lg:text-left">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-xl font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
-          Real-Time Alerts for Critical Issues
-        </div>
-        <h2 className="text-6xl 2xl:text-6xl xl:text-8xl font-bold tracking-tight text-white leading-tight">
-          Proactive Risk <br />
-          <span className="text-red-600"> Alerts Included</span>
-        </h2>
-      </section>
 
       {/* Main Interaction Dashboard */}
       <section ref={dashboardRef} id="intelligence" className="animate-in fade-in duration-700">
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 items-start">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 items-center">
 
-          {/* Sidebar Controls */}
-          <div className="lg:col-span-4 w-full space-y-3">
-            {ALERTS.map((alert) => (
-              <button
-                key={alert.id}
-                onClick={() => {
-                  setActiveAlertId(alert.id);
-                  setIsAutoRotating(false);
-                }}
-                className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 backdrop-blur-md group ${activeAlertId === alert.id
-                  ? `bg-gradient-to-r ${alert.colorScheme?.bg} ${alert.colorScheme?.border} shadow-[0_0_30px_rgba(255,255,255,0.1)]`
-                  : `bg-white/5 border-white/20 hover:border-white/30 hover:bg-white/10`
-                  }`}
-              >
-                <div className="flex items-center gap-4">
-                  <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? alert.colorScheme?.icon + ' ' + alert.colorScheme?.text : 'bg-white/10 text-white/70'}`}>
-                    {React.createElement(getAlertIcon(alert.category, alert.priority), { className: "w-8 h-8" })}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className={`text-base font-semibold uppercase tracking-wider mb-1 ${activeAlertId === alert.id ? alert.colorScheme?.text : 'text-white/90'}`}>{alert.category}</div>
-                    <div className="text-lg font-medium truncate text-white group-hover:text-white transition-colors">{alert.title}</div>
-                  </div>
-                  {activeAlertId === alert.id && (
-                    <motion.div
-                      layoutId="active-dot"
-                      className={`w-8 w-8 rounded-full shadow-[0_0_8px_currentColor] ${alert.colorScheme?.text?.replace('text-', 'bg-') || 'bg-red-500'}`}
-                    />
-                  )}
-                </div>
-              </button>
-            ))}
-
-            <div className="pt-4 flex items-center justify-between px-2 text-xs text-red-400/60">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1">
-                  {[...Array(ALERTS.length)].map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-2 rounded-full transition-all duration-1000 ${isAutoRotating && ALERTS.indexOf(activeAlert) === i ? 'w-6 bg-red-500 shadow-[0_0_8px_#ef4444]' : 'w-2 bg-red-500/30'
-                        }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-red-300 text-xl">Auto-rotating</span>
+          {/* Left Column: Headings & Sidebar Controls */}
+          <div className="lg:col-span-4 w-full flex flex-col space-y-8">
+            {/* Headings */}
+            <section ref={headingRef} className="space-y-4 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-sm font-bold uppercase tracking-[0.1em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+                Real-Time Alerts
               </div>
-              {!isAutoRotating && (
-                <button onClick={() => setIsAutoRotating(true)} className="text-red-400 hover:text-red-300 hover:underline transition-colors font-semibold shadow-[0_0_10px_rgba(239,68,68,0.2)]">Resume</button>
-              )}
+              <h2 className="text-5xl lg:text-6xl 2xl:text-7xl font-bold tracking-tight text-white leading-tight">
+                Proactive Risk <br />
+                <span className="text-red-600"> Alerts Included</span>
+              </h2>
+            </section>
+
+            <div className="space-y-3 w-full">
+              {ALERTS.map((alert) => (
+                <button
+                  key={alert.id}
+                  onClick={() => {
+                    setActiveAlertId(alert.id);
+                    setIsAutoRotating(false);
+                  }}
+                  className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 backdrop-blur-md group ${activeAlertId === alert.id
+                    ? `bg-gradient-to-r ${alert.colorScheme?.bg} ${alert.colorScheme?.border} shadow-[0_0_30px_rgba(255,255,255,0.1)]`
+                    : `bg-white/5 border-white/20 hover:border-white/30 hover:bg-white/10`
+                    }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? alert.colorScheme?.icon + ' ' + alert.colorScheme?.text : 'bg-white/10 text-white/70'}`}>
+                      {React.createElement(getAlertIcon(alert.category, alert.priority), { className: "w-8 h-8" })}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className={`text-base font-semibold uppercase tracking-wider mb-1 ${activeAlertId === alert.id ? alert.colorScheme?.text : 'text-white/90'}`}>{alert.category}</div>
+                      <div className="text-lg font-medium truncate text-white group-hover:text-white transition-colors">{alert.title}</div>
+                    </div>
+                    {activeAlertId === alert.id && (
+                      <motion.div
+                        layoutId="active-dot"
+                        className={`w-8 w-8 rounded-full shadow-[0_0_8px_currentColor] ${alert.colorScheme?.text?.replace('text-', 'bg-') || 'bg-red-500'}`}
+                      />
+                    )}
+                  </div>
+                </button>
+              ))}
+
+              <div className="pt-4 flex items-center justify-between px-2 text-xs text-red-400/60">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    {[...Array(ALERTS.length)].map((_, i) => (
+                      <div
+                        key={i}
+                        className={`h-2 rounded-full transition-all duration-1000 ${isAutoRotating && ALERTS.indexOf(activeAlert) === i ? 'w-6 bg-red-500 shadow-[0_0_8px_#ef4444]' : 'w-2 bg-red-500/30'
+                          }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-red-300 text-xl">Auto-rotating</span>
+                </div>
+                {!isAutoRotating && (
+                  <button onClick={() => setIsAutoRotating(true)} className="text-red-400 hover:text-red-300 hover:underline transition-colors font-semibold shadow-[0_0_10px_rgba(239,68,68,0.2)]">Resume</button>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Detail Panel */}
-          <div className={`lg:col-span-8 w-full backdrop-blur-xl rounded-2xl h-[650px] relative overflow-hidden group border-2 transition-colors duration-500 bg-white/10 ${activeAlert.colorScheme?.border || 'border-white/30'}`}>
+          <div className={`lg:col-span-8 w-full backdrop-blur-xl rounded-2xl h-[545px] relative overflow-hidden group border-2 transition-colors duration-500 bg-white/10 mt-1 ${activeAlert.colorScheme?.border || 'border-white/30'}`}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeAlert.id}
@@ -340,11 +341,11 @@ export default function IntelligenceDashboard() {
 
                     {/* Left Column: Text & Updates */}
                     <div className="flex-1 flex flex-col h-full justify-between pb-4">
-                      <div className="space-y-6">
-                        <h2 className="text-5xl font-sans font-bold text-white leading-tight min-h-[120px]">
+                      <div className="space-y-4">
+                        <h2 className="text-4xl lg:text-5xl font-sans font-bold text-white leading-tight">
                           {activeAlert.title}
                         </h2>
-                        <p className="text-slate-400 leading-relaxed text-2xl min-h-[80px]">
+                        <p className="text-slate-400 leading-relaxed text-xl">
                           {activeAlert.description}
                         </p>
                       </div>

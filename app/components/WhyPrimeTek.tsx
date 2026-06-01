@@ -65,19 +65,17 @@ export const WhyPrimeTekSection: React.FC = () => {
     // 1. Set initial hidden states
     gsap.set([subHeadingRef.current, headingRef.current, textRef.current], {
       opacity: 0,
-      y: 30,
     });
     gsap.set(section.querySelectorAll(".why-step-card"), {
       opacity: 0,
-      y: 40,
     });
     gsap.set(section.querySelectorAll(".why-step-dot"), {
-      scale: 0,
+      opacity: 0,
       backgroundColor: "#020817",
       borderColor: "rgba(255,255,255,0.1)",
     });
     if (progressLineRef.current) {
-      gsap.set(progressLineRef.current, { scaleX: 0, transformOrigin: "left" });
+      gsap.set(progressLineRef.current, { opacity: 0 });
     }
 
     // 2. Refresh ScrollTrigger positions after DOM is settled
@@ -97,10 +95,9 @@ export const WhyPrimeTekSection: React.FC = () => {
       [subHeadingRef.current, headingRef.current, textRef.current],
       {
         opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "power3.out",
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power2.out",
       }
     );
 
@@ -108,19 +105,18 @@ export const WhyPrimeTekSection: React.FC = () => {
     tl.to(
       progressLineRef.current,
       {
-        scaleX: 1,
+        opacity: 1,
         duration: 0.8,
-        ease: "power1.inOut",
+        ease: "power2.inOut",
       },
-      "-=0.1"
+      "-=0.2"
     );
 
     tl.to(
       section.querySelectorAll(".why-step-card"),
       {
         opacity: 1,
-        y: 0,
-        duration: 0.4,
+        duration: 0.6,
         stagger: 0.15,
         ease: "power2.out",
       },
@@ -130,12 +126,12 @@ export const WhyPrimeTekSection: React.FC = () => {
     tl.to(
       section.querySelectorAll(".why-step-dot"),
       {
-        scale: 1,
+        opacity: 1,
         backgroundColor: "#2dd4bf",
         borderColor: "#2dd4bf",
-        duration: 0.2,
+        duration: 0.6,
         stagger: 0.15,
-        ease: "back.out(2)",
+        ease: "power2.out",
       },
       "<"
     );

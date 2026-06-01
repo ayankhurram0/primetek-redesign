@@ -88,15 +88,13 @@ export const OrbitingSection: React.FC = () => {
       gsap.set(badge, {
         x: Math.cos(angle) * radius,
         y: Math.sin(angle) * radius,
-        opacity: 0,
-        scale: 0
+        opacity: 0
       });
     });
 
-    // Start logo and rings hidden/scaled down
+    // Start logo and rings hidden
     gsap.set([logoRef.current, orbitRingsRef.current], {
-      opacity: 0,
-      scale: 0.6
+      opacity: 0
     });
 
     // Add continuous rotation animation
@@ -126,39 +124,38 @@ export const OrbitingSection: React.FC = () => {
 
     // 1. Text reveals
     tl.fromTo(headingRef.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8, ease: "power2.out" }
     );
 
     tl.fromTo(paragraphRef.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8, ease: "power2.out" },
       "-=0.5"
     );
 
-    // 2. Rings fade & expand
+    // 2. Rings fade
     tl.fromTo(orbitRingsRef.current,
-      { opacity: 0, scale: 0.6 },
-      { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" },
+      { opacity: 0 },
+      { opacity: 1, duration: 1.0, ease: "power2.out" },
       "-=0.6"
     );
 
-    // 3. Central logo pops with elastic bounce
+    // 3. Central logo fades in
     tl.fromTo(logoRef.current,
-      { opacity: 0, scale: 0.3 },
-      { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" },
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8, ease: "power2.out" },
       "-=0.8"
     );
 
-    // 4. Badges pop in one-by-one (staggered)
+    // 4. Badges fade in one-by-one (staggered)
     tl.fromTo(".orbiting-badge-item",
-      { opacity: 0, scale: 0 },
+      { opacity: 0 },
       {
         opacity: 1,
-        scale: 1,
         duration: 0.8,
         stagger: 0.2,
-        ease: "back.out(1.2)"
+        ease: "power2.out"
       },
       "-=0.4"
     );
