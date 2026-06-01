@@ -22,8 +22,9 @@ html {
   --color-foreground: var(--foreground);
   --font-montserrat: var(--font-montserrat);
   --font-merriweather: var(--font-merriweather);
-  --font-sans: var(--font-montserrat);
-  --font-mono: var(--font-montserrat);
+  --font-poppins: var(--font-poppins);
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-poppins);
   --font-display: var(--font-merriweather);
 }
 
@@ -39,7 +40,7 @@ body {
   background-attachment: fixed;
   color: var(--foreground);
   min-height: 100vh;
-  font-family: var(--font-montserrat) !important;
+  font-family: var(--font-poppins) !important;
 }
 
 h1,
@@ -153,4 +154,16 @@ body,
     display: none;
   }
 
+}
+
+/* Custom Autocomplete / Autofill overrides */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px #020617 !important;
+  border-radius: 1rem;
 }

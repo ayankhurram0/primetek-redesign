@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Merriweather } from "next/font/google";
+import { Montserrat, Merriweather, Poppins } from "next/font/google";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -14,6 +14,11 @@ const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
 })
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+})
 
 export const metadata: Metadata = {
   title: "PrimeTek Services",
@@ -32,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${merriweather.variable} antialiased`}
+      className={`${montserrat.variable} ${merriweather.variable} ${poppins.variable} antialiased`}
     >
       <body className="flex flex-col relative" suppressHydrationWarning={true}>
         

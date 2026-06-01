@@ -15,8 +15,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-transparent text-white font-montserrat relative overflow-hidden">
-      <div className="relative z-10 px-8 md:px-16 pt-10 pb-">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
+      <div className="relative z-10 px-8 md:px-16 pt-10 pb-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-8">
           {/* Col 1: Brand/Logo */}
           <div className="flex flex-col gap-6 lg:col-span-1">
             <div className="w-40">
@@ -82,7 +82,7 @@ export default function Footer() {
         </div>
 
         {/* Center: Social Icons */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-12 border-t border-white/10 gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-white/10 gap-8">
           <div className="flex flex-col gap-2">
             <p className="text-white/60 text-xs 2xl:text-sm font-medium tracking-wide">
               © 2026 PRIMETEK SERVICES. ALL RIGHTS RESERVED.
@@ -114,7 +114,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Large Background Logo - Behind everything */}
-      <div className=" pointer-events-none select-none z-0 md:px-14 pb-10 pt-10">
+      <div className=" pointer-events-none select-none z-0 md:px-14 pb-4 pt-2">
         <div className="text-[19vw] font-bold text-[#2b4c8c] tracking-lose leading-none text-left ">
           <Image src={primetek} alt="PrimeTek" className="w-full h-full" />
         </div>

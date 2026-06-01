@@ -98,8 +98,8 @@ export const WhyPrimeTekSection: React.FC = () => {
       {
         opacity: 1,
         y: 0,
-        duration: 0.7,
-        stagger: 0.15,
+        duration: 0.4,
+        stagger: 0.1,
         ease: "power3.out",
       }
     );
@@ -109,34 +109,32 @@ export const WhyPrimeTekSection: React.FC = () => {
       progressLineRef.current,
       {
         scaleX: 1,
-        duration: 1.8,
+        duration: 0.8,
         ease: "power1.inOut",
       },
       "-=0.1"
     );
 
-    // Cards stagger (in sync with line)
     tl.to(
       section.querySelectorAll(".why-step-card"),
       {
         opacity: 1,
         y: 0,
-        duration: 0.6,
-        stagger: 0.3,
+        duration: 0.4,
+        stagger: 0.15,
         ease: "power2.out",
       },
       "<"
     );
 
-    // Dots stagger (in sync with line)
     tl.to(
       section.querySelectorAll(".why-step-dot"),
       {
         scale: 1,
         backgroundColor: "#2dd4bf",
         borderColor: "#2dd4bf",
-        duration: 0.3,
-        stagger: 0.36,
+        duration: 0.2,
+        stagger: 0.15,
         ease: "back.out(2)",
       },
       "<"

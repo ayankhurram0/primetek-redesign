@@ -12,14 +12,14 @@ export const AuthInput: React.FC<AuthInputProps> = ({ label, icon, ...props }) =
   const [hasValue, setHasValue] = useState(false);
 
   return (
-    <div className="relative mb-6">
+    <div className="relative mb-8">
       <div 
         className={`relative flex items-center bg-white/5 rounded-2xl border transition-all duration-300 ${
           isFocused ? "border-[#2dd4bf] ring-1 ring-[#2dd4bf]/20 shadow-[0_0_20px_rgba(45,212,191,0.1)]" : "border-white/10"
         }`}
       >
         {icon && (
-          <div className={`pl-4 transition-colors duration-300 ${isFocused ? "text-[#2dd4bf]" : "text-white/40"}`}>
+          <div className={`pl-5 transition-colors duration-300 ${isFocused ? "text-[#2dd4bf]" : "text-white/40"}`}>
             {icon}
           </div>
         )}
@@ -39,15 +39,15 @@ export const AuthInput: React.FC<AuthInputProps> = ({ label, icon, ...props }) =
             setHasValue(!!e.target.value);
             props.onChange?.(e);
           }}
-          className="w-full bg-transparent border-none focus:ring-0 text-white px-4 py-4 placeholder-transparent text-sm"
+          className="w-full bg-transparent border-0 focus:ring-0 text-white px-5 py-5 placeholder-transparent text-base outline-none focus:outline-none focus:border-transparent"
           placeholder={label}
         />
 
         <label
-          className={`absolute left-4 transition-all duration-300 pointer-events-none ${
+          className={`absolute left-5 transition-all duration-300 pointer-events-none ${
             (isFocused || hasValue) 
-              ? "text-[10px] -top-2 left-3 px-2 bg-[#0a0a0a] rounded-md text-[#2dd4bf] font-bold uppercase tracking-widest" 
-              : `text-sm text-white/40 ${icon ? "ml-6" : ""}`
+              ? "text-xs -top-2.5 left-4 px-2 bg-[#020617] rounded-md text-[#2dd4bf] font-bold uppercase tracking-widest" 
+              : `text-base text-white/40 ${icon ? "ml-7" : ""}`
           }`}
         >
           {label}

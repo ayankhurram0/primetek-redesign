@@ -80,7 +80,7 @@ export const OrbitingSection: React.FC = () => {
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    // Position badges statically around the circle
+    // Position badges statically around the circle and start them hidden/scaled down
     const badgeElements = gsap.utils.toArray<HTMLElement>(".orbiting-badge-item");
     badgeElements.forEach((badge, i) => {
       const angle = (i / badgeElements.length) * (Math.PI * 2);
@@ -88,9 +88,15 @@ export const OrbitingSection: React.FC = () => {
       gsap.set(badge, {
         x: Math.cos(angle) * radius,
         y: Math.sin(angle) * radius,
-        opacity: 1,
-        scale: 1
+        opacity: 0,
+        scale: 0
       });
+    });
+
+    // Start logo and rings hidden/scaled down
+    gsap.set([logoRef.current, orbitRingsRef.current], {
+      opacity: 0,
+      scale: 0.6
     });
 
     // Add continuous rotation animation
@@ -109,33 +115,58 @@ export const OrbitingSection: React.FC = () => {
       ease: "none"
     });
 
-    // Ensure other elements are visible
-    gsap.set([logoRef.current, orbitRingsRef.current, badgesRef.current], {
-      opacity: 1,
-      y: 0,
-      scale: 1
+    // Orchestrated ScrollTrigger reveal sequence
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: triggerRef.current,
+        start: "top 75%",
+        toggleActions: "play none none reverse"
+      }
     });
 
-    const fadeTargets = [headingRef.current, paragraphRef.current];
-    gsap.fromTo(fadeTargets, 
-      { opacity: 0, y: 30 },
+    // 1. Text reveals
+    tl.fromTo(headingRef.current,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+    );
+
+    tl.fromTo(paragraphRef.current,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+      "-=0.5"
+    );
+
+    // 2. Rings fade & expand
+    tl.fromTo(orbitRingsRef.current,
+      { opacity: 0, scale: 0.6 },
+      { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" },
+      "-=0.6"
+    );
+
+    // 3. Central logo pops with elastic bounce
+    tl.fromTo(logoRef.current,
+      { opacity: 0, scale: 0.3 },
+      { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" },
+      "-=0.8"
+    );
+
+    // 4. Badges pop in one-by-one (staggered)
+    tl.fromTo(".orbiting-badge-item",
+      { opacity: 0, scale: 0 },
       {
         opacity: 1,
-        y: 0,
-        duration: 1,
+        scale: 1,
+        duration: 0.8,
         stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
-      }
+        ease: "back.out(1.2)"
+      },
+      "-=0.4"
     );
 
     return () => {
       rotationTl.kill();
       counterRotationTl.kill();
+      tl.kill();
     };
   }, []);
 

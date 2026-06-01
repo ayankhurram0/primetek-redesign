@@ -13,10 +13,10 @@ import {
   TrendingUp,
   DollarSign,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import auditCard from "@/src/assets/audit_card.png";
-import thresholdsCard from "@/src/assets/thresholds_card.png";
-import gapsCard from "@/src/assets/gaps_card.png";
+import thresholdsCard from "@/src/assets/thresholds_card.jpeg";
+import gapsCard from "@/src/assets/gaps_card.jpeg";
 import mtfCard from "@/src/assets/mtf_card.png";
 import type { StaticImageData } from 'next/image';
 
@@ -147,19 +147,13 @@ function RadarAnimation({ icon: Icon, colorSchemeText }: { icon: any, colorSchem
           }}
         />
       ))}
-      <div className={`z-10 ${tokens.bg} p-6 rounded-full border-2 ${tokens.border2}`}>
-        <Icon className={`w-16 h-16 ${tokens.text}`} />
-      </div>
       <motion.div
-        className={`absolute w-3 h-3 ${tokens.dotBg} rounded-full ${tokens.dotShadow}`}
-        animate={{
-          rotate: 360,
-          x: [0, 120, 0, -120, 0],
-          y: [0, 0, 120, 0, -120],
-        }}
-        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-        style={{ originX: '0.5', originY: '0.5' }}
-      />
+        className={`z-10 ${tokens.bg} p-6 rounded-full border-2 ${tokens.border2}`}
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Icon className={`w-16 h-16 ${tokens.text}`} />
+      </motion.div>
     </div>
   );
 }
@@ -223,8 +217,8 @@ export default function IntelligenceDashboard() {
 
   return (
     <div ref={sectionRef} className="space-y-8 2xl:px-24 2xl:py-20 relative z-10 overflow-hidden h-auto">
-      {/* Ambient Red/Orange Background Glows */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      {/* Ambient Red/Orange Background Glows with natural top/bottom blend */}
+      <div className="absolute inset-0 pointer-events-none z-0" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' }}>
         <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] bg-red-600/40 rounded-full blur-[150px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[1000px] h-[1000px] bg-red-700/30 rounded-full blur-[180px]" />
       </div>
@@ -296,82 +290,94 @@ export default function IntelligenceDashboard() {
           </div>
 
           {/* Detail Panel */}
-          <div className={`lg:col-span-8 w-full backdrop-blur-xl rounded-2xl p-8 min-h-[500px] relative overflow-hidden group border-2 flex flex-col justify-end items-end bg-white/10 ${activeAlert.colorScheme?.border || 'border-white/30'}`}>
-            <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-15 -z-10" />
-            <div className="flex-1 absolute top-0 w-full right-0 p-4 px-6 backdrop-blur-md bg-white/10">
-              <div className='flex gap-10 items-center '>
-                <div className="flex gap-3">
-                  <div className="w-4 h-4 rounded-full bg-white/30" />
-                  <div className="w-4 h-4 rounded-full bg-white/30" />
-                  <div className="w-4 h-4 rounded-full bg-white/30" />
-                </div>
-                <div>
-                  <div className={`p-3 rounded-full flex gap-3 ${activeAlert.colorScheme?.icon || 'bg-white/20'} text-white backdrop-blur-sm relative`}>
-                    <motion.div
-                      className="absolute inset-0 rounded-full"
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.5, 0.8, 0.5],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                      style={{
-                        background: activeAlert.colorScheme?.text?.replace('text-', 'bg-')?.replace('400', '500') || 'bg-red-500',
-                        filter: 'blur(8px)'
-                      }}
-                    />
-                    {React.createElement(getAlertIcon(activeAlert.category, activeAlert.priority), { className: "w-6 h-6 relative z-10" })}
-                    <div className="text-white text-xl font-semibold relative z-10">{activeAlert.category}</div>
-                  </div>
+          <div className={`lg:col-span-8 w-full backdrop-blur-xl rounded-2xl h-[650px] relative overflow-hidden group border-2 transition-colors duration-500 bg-white/10 ${activeAlert.colorScheme?.border || 'border-white/30'}`}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeAlert.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 w-full h-full flex flex-col p-8"
+              >
+                <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-15 -z-10" />
 
-                </div>
-              </div>
-              <div></div>
-            </div>
-            <div className="relative w-full z-10 h-full flex flex-col pt-24">
-              <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-between w-full">
-                
-                {/* Left Column: Text & Updates */}
-                <div className="flex-1 flex flex-col space-y-12">
-                  <div className="space-y-6">
-                    <h2 className="text-5xl font-sans font-bold text-white leading-tight">
-                      {activeAlert.title}
-                    </h2>
-                    <p className="text-slate-400 leading-relaxed text-2xl">
-                      {activeAlert.description}
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
-                    {activeAlert.activities.map((act, i) => {
-                      const tokens = getColorTokens(activeAlert.colorScheme?.text);
-                      return (
-                        <div key={i} className={`flex items-center justify-between p-3 rounded-lg border ${activeAlert.colorScheme?.border || 'border-red-500/30'} ${activeAlert.colorScheme?.bg || 'bg-red-950/20'} group/item hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all`}>
-                          <div className="flex items-center gap-3">
-                            <div className={`w-3 h-3 rounded-full ${tokens.dotBg} ${tokens.dotShadow}`} />
-                            <span className="text-xl font-medium text-white">{act.text}</span>
-                          </div>
-                          <span className="text-lg font-mono text-slate-500">{act.time}</span>
-                        </div>
-                      );
-                    })}
+                {/* Top Bar */}
+                <div className={`absolute top-0 w-full left-0 right-0 p-4 px-6 backdrop-blur-md z-20 border-b bg-gradient-to-r ${activeAlert.colorScheme?.bg} ${activeAlert.colorScheme?.border}`}>
+                  <div className='flex gap-10 items-center'>
+                    <div className="flex gap-3">
+                      <div className="w-4 h-4 rounded-full bg-white/30" />
+                      <div className="w-4 h-4 rounded-full bg-white/30" />
+                      <div className="w-4 h-4 rounded-full bg-white/30" />
+                    </div>
+                    <div>
+                      <div className={`p-3 rounded-full flex gap-3 ${activeAlert.colorScheme?.icon || 'bg-white/20'} text-white backdrop-blur-sm relative`}>
+                        <motion.div
+                          className="absolute inset-0 rounded-full"
+                          animate={{
+                            scale: [1, 1.1, 1],
+                            opacity: [0.5, 0.8, 0.5],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                          style={{
+                            background: activeAlert.colorScheme?.text?.replace('text-', 'bg-')?.replace('400', '500') || 'bg-red-500',
+                            filter: 'blur(8px)'
+                          }}
+                        />
+                        {React.createElement(getAlertIcon(activeAlert.category, activeAlert.priority), { className: "w-6 h-6 relative z-10" })}
+                        <div className="text-white text-xl font-semibold relative z-10">{activeAlert.category}</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Right Column: Radar Animation */}
-                <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
-                  <RadarAnimation 
-                    icon={getAlertIcon(activeAlert.category, activeAlert.priority)} 
-                    colorSchemeText={activeAlert.colorScheme?.text || ''} 
-                  />
+                <div className="relative w-full z-10 h-full flex flex-col pt-24">
+                  <div className="flex flex-col lg:flex-row gap-8 items-center justify-between w-full h-full">
+
+                    {/* Left Column: Text & Updates */}
+                    <div className="flex-1 flex flex-col h-full justify-between pb-4">
+                      <div className="space-y-6">
+                        <h2 className="text-5xl font-sans font-bold text-white leading-tight min-h-[120px]">
+                          {activeAlert.title}
+                        </h2>
+                        <p className="text-slate-400 leading-relaxed text-2xl min-h-[80px]">
+                          {activeAlert.description}
+                        </p>
+                      </div>
+
+                      <div className="space-y-3 mt-auto">
+                        <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
+                        {activeAlert.activities.map((act, i) => {
+                          const tokens = getColorTokens(activeAlert.colorScheme?.text);
+                          return (
+                            <div key={i} className={`flex items-center justify-between p-3 rounded-lg border ${activeAlert.colorScheme?.border || 'border-red-500/30'} ${activeAlert.colorScheme?.bg || 'bg-red-950/20'} group/item hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all`}>
+                              <div className="flex items-center gap-3">
+                                <div className={`w-3 h-3 rounded-full ${tokens.dotBg} ${tokens.dotShadow}`} />
+                                <span className="text-xl font-medium text-white">{act.text}</span>
+                              </div>
+                              <span className="text-lg font-mono text-slate-500">{act.time}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Right Column: Radar Animation */}
+                    <div className="hidden lg:flex w-96 flex-shrink-0 items-center justify-center h-full">
+                      <RadarAnimation
+                        icon={getAlertIcon(activeAlert.category, activeAlert.priority)}
+                        colorSchemeText={activeAlert.colorScheme?.text || ''}
+                      />
+                    </div>
+
+                  </div>
                 </div>
-                
-              </div>
-            </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>

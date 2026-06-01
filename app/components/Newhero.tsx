@@ -253,6 +253,10 @@ export default function App() {
           animate={{ x: 250, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
           className="relative 2xl:h-[90%] w-auto flex items-end"
+          style={{
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
         >
           <Image
             src={pharmacist}

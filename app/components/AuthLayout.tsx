@@ -29,20 +29,20 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#2dd4bf]/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#2b4c8c]/10 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-md">
+      <div className={`relative z-10 w-full ${type === "signup" ? "max-w-2xl" : "max-w-xl"}`}>
         {/* Logo */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-10"
         >
           <Link href="/">
             <Image
               src={logo}
               alt="PrimeTek Logo"
-              width={200}
-              height={50}
-              className="h-16 w-auto"
+              width={260}
+              height={65}
+              className="h-20 w-auto"
             />
           </Link>
         </motion.div>
@@ -52,32 +52,32 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl relative overflow-hidden"
+          className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden"
         >
           {/* Accent Border Glow */}
           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#2dd4bf]/50 to-transparent" />
           
-          <div className="text-center mb-10">
-            <h1 className="text-3xl font-bold text-white mb-3 tracking-tight">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
               {title}
             </h1>
-            <p className="text-white/60 text-sm">
+            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-md mx-auto">
               {subtitle}
             </p>
           </div>
 
           {children}
 
-          <div className="mt-8 pt-8 border-t border-white/5 text-center">
+          <div className="mt-10 pt-10 border-t border-white/5 text-center">
             {type === "login" ? (
-              <p className="text-white/40 text-sm">
+              <p className="text-white/40 text-base">
                 Don't have an account?{" "}
                 <Link href="/signup" className="text-[#2dd4bf] font-semibold hover:underline">
                   Sign up for free
                 </Link>
               </p>
             ) : (
-              <p className="text-white/40 text-sm">
+              <p className="text-white/40 text-base">
                 Already have an account?{" "}
                 <Link href="/login" className="text-[#2dd4bf] font-semibold hover:underline">
                   Sign in
@@ -92,10 +92,10 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center mt-8"
+          className="text-center mt-10"
         >
-          <Link href="/" className="text-white/40 hover:text-white text-sm transition-colors flex items-center justify-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <Link href="/" className="text-white/40 hover:text-white text-base transition-colors flex items-center justify-center gap-2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="m15 18-6-6 6-6"/>
             </svg>
             Back to homepage
