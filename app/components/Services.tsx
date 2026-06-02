@@ -61,7 +61,7 @@ const renderServiceIllustration = (idx: number, color: string) => {
                         <circle cx="240" cy="35" r="5" fill="white" stroke={color} strokeWidth="3" />
                     </svg>
                     {/* Floating Info Pill */}
-                    <motion.div 
+                    <motion.div
                         className="absolute right-4 top-4 bg-white/5 border border-white/10 rounded-lg py-1.5 px-3 text-[10px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10"
                         animate={{ y: [0, -6, 0] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -122,9 +122,9 @@ const renderServiceIllustration = (idx: number, color: string) => {
                 <div className="w-full h-full relative flex items-center justify-center px-6">
                     {/* Timeline line */}
                     <div className="absolute left-10 right-10 h-[2px] bg-white/10" />
-                    <motion.div 
-                        className="absolute left-10 w-[60%] h-[2px]" 
-                        style={{ backgroundColor: color }} 
+                    <motion.div
+                        className="absolute left-10 w-[60%] h-[2px]"
+                        style={{ backgroundColor: color }}
                         animate={{ opacity: [0.4, 1, 0.4] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     />
@@ -138,7 +138,7 @@ const renderServiceIllustration = (idx: number, color: string) => {
                             <span className="text-[9px] font-bold text-white/30 uppercase tracking-wider">Gap Scan</span>
                         </div>
                         {/* Milestone 2 */}
-                        <motion.div 
+                        <motion.div
                             className="flex flex-col items-center gap-2 relative z-10"
                             animate={{ y: [0, -5, 0] }}
                             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
@@ -166,7 +166,7 @@ const renderServiceIllustration = (idx: number, color: string) => {
         case 3: // Patient & Operational Support Systems (Blue/Scheduler details)
             return (
                 <div className="w-full h-full relative flex items-center justify-center px-6">
-                    <motion.div 
+                    <motion.div
                         className="w-full max-w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-3.5 flex flex-col gap-2.5 backdrop-blur-md relative overflow-hidden"
                         animate={{ y: [0, -6, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}

@@ -12,6 +12,7 @@ import ConsultationCTA from "./components/ConsultationCTA";
 import { OrbitingSection } from "./components/OrbitingSection";
 import { OurFramework } from "./components/OurFramework";
 import { ServicesSection } from "./components/Services";
+import TestingSection from "./components/TestingSection";
 import Newhero from "./components/Newhero";
 import SmoothScroll from "./components/SmoothScroll";
 import gsap from 'gsap';
@@ -27,16 +28,16 @@ export default function Home() {
       <main className="flex min-h-screen flex-col overflow-x-hidden relative">
 
         <>
-        <Navbar />
-        <Newhero />
-        <News />
-        <ServicesSection />
-        <OrbitingSection />
-        <WhyPrimeTekSection />
-        <OurFramework />
-        <Testimonials />
-        <ConsultationCTA />
-        <Footer />
+          <Navbar />
+          <Newhero />
+          <News />
+          <ServicesSection />
+          <OrbitingSection />
+          <WhyPrimeTekSection />
+          <OurFramework />
+          <Testimonials />
+          <ConsultationCTA />
+          <Footer />
         </>
       </main>
     </SmoothScroll>
