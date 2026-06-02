@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
     TrendingUp,
@@ -102,10 +102,10 @@ function RevenueIntelligenceCard() {
     return (
         <div
             id="revenue-intelligence-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#1C2C30] bg-[#111C1F] p-6 transition-all duration-300 hover:border-[#FF4A3A]/40 hover:shadow-2xl hover:shadow-[#FF4A3A]/5 min-h-[430px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A]/40 hover:shadow-2xl hover:shadow-[#FF4A3A]/5 min-h-[430px]"
         >
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[180px] w-full justify-between rounded-xl bg-[#090E11] p-4 border border-[#162225] overflow-hidden">
+            <div className="relative flex flex-col h-[180px] w-full justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Luminous Sweeping Line representing real-time telemetry scans */}
                 <motion.div
@@ -315,10 +315,11 @@ function ClaimsReimbursementCard() {
     return (
         <div
             id="claims-reimbursement-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#1C2C30] bg-[#111C1F] p-6 transition-all duration-300 hover:border-[#FF4A3A]/40 hover:shadow-2xl hover:shadow-[#FF4A3A]/5 min-h-[430px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A]/40 hover:shadow-2xl hover:shadow-[#FF4A3A]/5 hover:-translate-y-2 hover:scale-[1.02] min-h-[430px]"
         >
+
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[180px] w-full justify-between rounded-xl bg-[#090E11] p-4 border border-[#162225] overflow-hidden">
+            <div className="relative flex flex-col h-[180px] w-full justify-between rounded-xl p-4 border border-white/20 overflow-hidden">
 
                 {/* Category Pill on top left */}
                 <div className="flex items-center justify-between z-10 w-full">
@@ -524,10 +525,11 @@ function ComplianceAuditCard() {
     return (
         <div
             id="compliance-audit-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border-2 border-[#FF9F29] bg-[#111C1F] p-6 glow-amber-strong transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF9F29]/10 hover:translate-y-[-2px] min-h-[430px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border-2 border-white/20 p-6 glow-amber-strong transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF9F29]/10 hover:-translate-y-2 hover:scale-[1.02] min-h-[430px]"
         >
+
             {/* Visual Animation Area */}
-            <div className="relative flex h-[180px] w-full flex-col justify-between rounded-xl bg-[#090E11] p-4 border border-[#FF9F29]/20 overflow-hidden">
+            <div className="relative flex h-[180px] w-full flex-col justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Sweep background highlight */}
                 <motion.div
@@ -750,10 +752,11 @@ function PatientOperationalCard() {
     return (
         <div
             id="patient-operational-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#1C2C30] bg-[#111C1F] p-6 transition-all duration-300 hover:border-[#00E5A3]/40 hover:shadow-2xl hover:shadow-[#00E5A3]/5 min-h-[420px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#00E5A3]/40 hover:shadow-2xl hover:shadow-[#00E5A3]/5 hover:-translate-y-2 hover:scale-[1.02] min-h-[420px]"
         >
+
             {/* Visual Animation Area */}
-            <div className="relative flex h-[180px] w-full items-center justify-center rounded-xl bg-[#090E11] p-4 border border-[#162225] overflow-hidden">
+            <div className="relative flex h-[180px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Support Action Queue Mock Widget from Case 3 */}
                 <AnimatePresence mode="wait">
@@ -915,10 +918,11 @@ function PharmacyGrowthCard() {
     return (
         <div
             id="pharmacy-growth-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#1C2C30] bg-[#111C1F] p-6 transition-all duration-300 hover:border-[#00E5A3]/40 hover:shadow-2xl hover:shadow-[#00E5A3]/5 min-h-[420px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#00E5A3]/40 hover:shadow-2xl hover:shadow-[#00E5A3]/5 hover:-translate-y-2 hover:scale-[1.02] min-h-[420px]"
         >
+
             {/* Visual Animation Area */}
-            <div className="relative flex h-[180px] w-full items-center justify-between rounded-xl bg-[#090E11] p-4 border border-[#162225] overflow-hidden">
+            <div className="relative flex h-[180px] w-full items-center justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Category Pill */}
                 <div className="absolute top-3 left-3 z-10">
@@ -1067,21 +1071,41 @@ function PharmacyGrowthCard() {
 // MAIN UNIFIED SERVICES CARDS GRID COMPONENT
 // ==========================================
 
-export default function Services() {
-    return (
-        <div id="services-section" className="flex flex-col gap-6 w-full">
-            {/* Top row with 3 cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <RevenueIntelligenceCard />
-                <ClaimsReimbursementCard />
-                <ComplianceAuditCard />
-            </div>
+export default function TestingSection() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const textRef = useRef<HTMLParagraphElement>(null);
 
-            {/* Bottom row with 2 cards centered */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto w-full">
-                <PatientOperationalCard />
-                <PharmacyGrowthCard />
+    return (
+        <section ref={sectionRef} className="relative w-full overflow-hidden font-montserrat">
+            <div className="flex flex-col justify-center 2xl:py-30 px-12">
+                <div className="relative z-10 w-full mt-20">
+                    <div className="text-center mb-12 flex flex-col items-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                        <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
+                            Operational Systems That Protect  <br />
+                            <span className="text-teal-400">& Grow Pharmacy Revenue</span>
+                        </h2>
+                        <p ref={textRef} className="text-white/60 text-2xl max-w-4xl leading-relaxed">
+                            We identify revenue leakage, reduce audit exposure, and optimize operations across your pharmacy using structured, data-driven systems.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col gap-6">
+                        {/* Top row with 3 cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1800px] mx-auto w-full mb-6">
+                            <RevenueIntelligenceCard />
+                            <ClaimsReimbursementCard />
+                            <ComplianceAuditCard />
+                        </div>
+
+                        {/* Bottom row with 2 cards centered */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1300px] mx-auto w-full">
+                            <PatientOperationalCard />
+                            <PharmacyGrowthCard />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     );
 }

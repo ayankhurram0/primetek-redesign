@@ -113,6 +113,26 @@ export const ALERTS: AlertItem[] = [
       { text: 'New audit risk trigger identified', time: '2h ago' },
       { text: 'Documentation gap found', time: '1m ago' }
     ]
+  },
+  {
+    id: 'cvs-aberrant-product',
+    title: 'CVS Aberrant Product Alert',
+    category: 'Audit Exposure Watch',
+    priority: 'High',
+    description: 'Potential high-risk product activity detected. Review dispensing patterns before audit exposure increases.',
+    accentColor: 'text-red-500',
+    colorScheme: {
+      bg: 'from-red-500/20 to-red-600/15',
+      border: 'border-red-500/40',
+      icon: 'bg-red-500/30',
+      text: 'text-red-400'
+    },
+    image: gapsCard,
+    activities: [
+      { text: 'Flagged: 3 NDC codes under review', time: 'Just now' },
+      { text: 'CVS audit window: 14 days remaining', time: '2m ago' },
+      { text: 'Dispensing pattern anomaly detected', time: '8m ago' }
+    ]
   }
 ];
 
@@ -291,15 +311,15 @@ export default function IntelligenceDashboard() {
           </div>
 
           {/* Detail Panel */}
-          <div className={`lg:col-span-8 w-full backdrop-blur-xl rounded-2xl h-[545px] relative overflow-hidden group border-2 transition-colors duration-500 bg-white/10 mt-1 ${activeAlert.colorScheme?.border || 'border-white/30'}`}>
+          <div className="lg:col-span-8 w-full h-[635px] relative mt-1">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeAlert.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
                 transition={{ duration: 0.4 }}
-                className="absolute inset-0 w-full h-full flex flex-col p-8"
+                className={`absolute inset-0 w-full h-full backdrop-blur-xl rounded-2xl overflow-hidden group border-2 bg-white/10 ${activeAlert.colorScheme?.border || 'border-white/30'} flex flex-col p-8`}
               >
                 <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-15 -z-10" />
 
