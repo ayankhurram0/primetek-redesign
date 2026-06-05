@@ -102,10 +102,10 @@ function RevenueIntelligenceCard() {
     return (
         <div
             id="revenue-intelligence-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A]/40 hover:shadow-2xl hover:shadow-[#FF4A3A]/5 min-h-[430px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A] hover:shadow-[0_0_20px_5px_rgba(255,74,58,0.6)] min-h-[380px]"
         >
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[180px] w-full justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Luminous Sweeping Line representing real-time telemetry scans */}
                 <motion.div
@@ -113,44 +113,6 @@ function RevenueIntelligenceCard() {
                     animate={{ x: ["30px", "330px", "30px"] }}
                     transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
                 />
-
-                {/* Top bar logic & category pill */}
-                <div className="flex items-center justify-between z-10">
-                    <div className="flex gap-1 bg-[#10171A] p-0.5 rounded-lg border border-[#1C2C30]">
-                        <button
-                            onClick={() => setActiveSet("reimbursements")}
-                            className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${activeSet === "reimbursements"
-                                ? "bg-[#FF4A3A] text-white"
-                                : "text-gray-400 hover:text-white"
-                                }`}
-                        >
-                            Trends
-                        </button>
-                        <button
-                            onClick={() => setActiveSet("underpayments")}
-                            className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${activeSet === "underpayments"
-                                ? "bg-[#FF4A3A] text-white"
-                                : "text-gray-400 hover:text-white"
-                                }`}
-                        >
-                            Audits
-                        </button>
-                        <button
-                            onClick={() => setActiveSet("cashflow")}
-                            className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${activeSet === "cashflow"
-                                ? "bg-[#FF4A3A] text-white"
-                                : "text-gray-400 hover:text-white"
-                                }`}
-                        >
-                            Flow
-                        </button>
-                    </div>
-
-                    <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#1A1110] border border-[#FF4A3A]/30 text-[9px] font-mono text-[#FF4A3A] font-bold uppercase tracking-widest animate-pulse">
-                        <Activity className="h-2.5 w-2.5" />
-                        <span>Telemetry active</span>
-                    </span>
-                </div>
 
                 {/* Visual Graph with Gridlines */}
                 <div className="relative flex-1 mt-3 h-28 w-full flex items-center justify-center">
@@ -250,24 +212,25 @@ function RevenueIntelligenceCard() {
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-4 pt-4 border-t border-[#1C2C30] flex flex-col justify-between gap-3 bg-[#090E11]/40 rounded-xl p-3">
-                <div className="flex flex-col">
-                    <span className="text-xl font-mono font-extrabold text-[#FFFFFF] tracking-tight">
-                        $1.2M+
-                    </span>
-                    <span className="text-[10px] text-gray-400 font-mono mt-0.5 leading-snug">
-                        Average annual underpayments identified & recovered per store.
-                    </span>
-                </div>
-
+            <div className="mt-0 pt-0">
                 <a
                     href="#analyze"
-                    className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider font-bold text-[#FF4A3A] hover:text-[#FFFFFF] transition-colors duration-200 cursor-pointer pt-1"
+                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <span>Analyze Revenue</span>
-                    <span className="text-xs transition-transform duration-200 translate-x-0 group-hover:translate-x-1">
-                        →
-                    </span>
+                    <div className="flex-1 pr-2">
+                        <span className="text-[13px] text-gray-300 leading-snug block">
+                            $1.2M+ in average annual underpayments identified and recovered per store.
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-[10px] font-bold text-[#FF4A3A] uppercase tracking-widest leading-tight text-left">
+                            Analyze<br />Revenue
+                        </span>
+                        <span className="text-[#FF4A3A] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
+                            →
+                        </span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -287,7 +250,7 @@ function ClaimsReimbursementCard() {
     const endpoints = [
         { label: "PBM Auto-Match", status: "Success", color: "text-[#00E5A3]" },
         { label: "COB Validation", status: "Auto-Fixed", color: "text-[#FF9F29]" },
-        { label: "NPI Resolution", status: "Matched", color: "text-[#FF4A3A]" },
+        { label: "NPI Resolution", status: "Matched", color: "text-[#FF6B00]" },
     ];
 
     const handleTriggerRoute = (index: number) => {
@@ -315,11 +278,11 @@ function ClaimsReimbursementCard() {
     return (
         <div
             id="claims-reimbursement-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A]/40 hover:shadow-2xl hover:shadow-[#FF4A3A]/5 hover:-translate-y-2 hover:scale-[1.02] min-h-[430px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF6B00] hover:shadow-[0_0_20px_5px_rgba(255,107,0,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
 
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[180px] w-full justify-between rounded-xl p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl p-4 border border-white/20 overflow-hidden">
 
                 {/* Category Pill on top left */}
                 <div className="flex items-center justify-between z-10 w-full">
@@ -346,10 +309,10 @@ function ClaimsReimbursementCard() {
                                         ? "M50 50 L120 50 L215 50"
                                         : "M50 50 L120 50 Q162 65 215 80"
                             }
-                            stroke="#ff5c4d"
+                            stroke="#FF7A00"
                             strokeWidth="3.5"
                             strokeLinecap="round"
-                            className="drop-shadow-[0_0_6px_rgba(255,92,77,0.4)]"
+                            className="drop-shadow-[0_0_6px_rgba(255,122,0,0.4)]"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
                             key={activeRouteIndex}
@@ -360,7 +323,7 @@ function ClaimsReimbursementCard() {
                         {isRouting && (
                             <motion.circle
                                 r="4"
-                                fill="#ff5c4d"
+                                fill="#FF7A00"
                                 animate={{
                                     offsetDistance: ["0%", "100%"]
                                 }}
@@ -384,28 +347,28 @@ function ClaimsReimbursementCard() {
                                 cy="50"
                                 r="11"
                                 fill="transparent"
-                                stroke="#ff5c4d"
+                                stroke="#FF7A00"
                                 strokeWidth="1"
                                 animate={{ scale: [1, 1.4], opacity: [0.6, 0] }}
                                 transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut" }}
                             />
-                            <circle cx="50" cy="50" r="5" fill="#ff5c4d" />
+                            <circle cx="50" cy="50" r="5" fill="#FF7A00" />
                         </g>
 
                         {/* Hub Node (Middle) */}
                         <g>
-                            <circle cx="120" cy="50" r="18" fill="rgba(255,92,77,0.08)" stroke="#ff5c4d" strokeWidth="2" className="drop-shadow-[0_0_6px_rgba(255,92,77,0.3)]" />
+                            <circle cx="120" cy="50" r="18" fill="rgba(255,122,0,0.08)" stroke="#FF7A00" strokeWidth="2" className="drop-shadow-[0_0_6px_rgba(255,122,0,0.3)]" />
                             <motion.circle
                                 cx="120"
                                 cy="50"
                                 r="18"
                                 fill="transparent"
-                                stroke="#ff5c4d"
+                                stroke="#FF7A00"
                                 strokeWidth="1"
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                             />
-                            <circle cx="120" cy="50" r="8" fill="#ff5c4d" />
+                            <circle cx="120" cy="50" r="8" fill="#FF7A00" />
                         </g>
 
                         {/* Destinations Nodes (Right Side Interactive Targets) */}
@@ -418,8 +381,8 @@ function ClaimsReimbursementCard() {
                                         cx="215"
                                         cy={nodeY}
                                         r={isTarget ? "12" : "10"}
-                                        fill={isTarget ? "rgba(255,92,77,0.12)" : "rgba(255,255,255,0.04)"}
-                                        stroke={isTarget ? "#ff5c4d" : "rgba(255,255,255,0.15)"}
+                                        fill={isTarget ? "rgba(255,122,0,0.12)" : "rgba(255,255,255,0.04)"}
+                                        stroke={isTarget ? "#FF7A00" : "rgba(255,255,255,0.15)"}
                                         strokeWidth="1.5"
                                         className="transition-colors duration-200"
                                     />
@@ -427,7 +390,7 @@ function ClaimsReimbursementCard() {
                                         cx="215"
                                         cy={nodeY}
                                         r={isTarget ? "5.5" : "4"}
-                                        fill={isTarget ? "#ff5c4d" : "rgba(255,255,255,0.3)"}
+                                        fill={isTarget ? "#FF7A00" : "rgba(255,255,255,0.3)"}
                                         className="transition-colors duration-200"
                                     />
 
@@ -449,7 +412,7 @@ function ClaimsReimbursementCard() {
 
                     {/* Floating badge top right of visual frame */}
                     <div className="absolute right-2 top-0.5 bg-white/5 border border-white/10 rounded-lg py-1 px-2.5 text-[9px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#ff5c4d] animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF7A00] animate-pulse" />
                         <span>Optimized Routing</span>
                     </div>
 
@@ -458,7 +421,7 @@ function ClaimsReimbursementCard() {
                         <span className="text-[7.5px] font-mono text-gray-500 uppercase leading-none block">
                             Pipe Status:
                         </span>
-                        <span className="text-[9px] font-mono font-bold text-[#ff5c4d] uppercase mt-0.5 inline-block animate-pulse">
+                        <span className="text-[9px] font-mono font-bold text-[#FF7A00] uppercase mt-0.5 inline-block animate-pulse">
                             {isRouting ? "processing..." : routeStatus}
                         </span>
                     </div>
@@ -467,7 +430,7 @@ function ClaimsReimbursementCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
                     Claims & Reimbursement Optimization
                 </h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
@@ -476,24 +439,25 @@ function ClaimsReimbursementCard() {
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-4 pt-4 border-t border-[#1C2C30] flex flex-col justify-between gap-3 bg-[#090E11]/40 rounded-xl p-3">
-                <div className="flex flex-col">
-                    <span className="text-xl font-mono font-extrabold text-[#FFFFFF] tracking-tight">
-                        Up to 19%
-                    </span>
-                    <span className="text-[10px] text-gray-400 font-mono mt-0.5 leading-snug">
-                        Sustained increase in clean-claim recovery rates across locations.
-                    </span>
-                </div>
-
+            <div className="mt-0 pt-0">
                 <a
                     href="#claims"
-                    className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider font-bold text-[#FF4A3A] hover:text-[#FFFFFF] transition-colors duration-200 cursor-pointer pt-1"
+                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <span>Fix My Claims</span>
-                    <span className="text-xs transition-transform duration-200 translate-x-0 group-hover:translate-x-1">
-                        →
-                    </span>
+                    <div className="flex-1 pr-2">
+                        <span className="text-[13px] text-gray-300 leading-snug block">
+                            <span className="font-semibold text-white">Up to 19%</span> sustained increase in clean-claim recovery rates across locations.
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-[10px] font-bold text-[#FF6B00] uppercase tracking-widest leading-tight text-left">
+                            Fix My<br />Claims
+                        </span>
+                        <span className="text-[#FF6B00] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
+                            →
+                        </span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -525,11 +489,11 @@ function ComplianceAuditCard() {
     return (
         <div
             id="compliance-audit-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border-2 border-white/20 p-6 glow-amber-strong transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF9F29]/10 hover:-translate-y-2 hover:scale-[1.02] min-h-[430px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF9F29] hover:shadow-[0_0_20px_5px_rgba(255,159,41,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
 
             {/* Visual Animation Area */}
-            <div className="relative flex h-[180px] w-full flex-col justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Sweep background highlight */}
                 <motion.div
@@ -651,24 +615,25 @@ function ComplianceAuditCard() {
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-4 pt-4 border-t border-[#1C2C30] flex flex-col justify-between gap-3 bg-[#0A1412] rounded-xl p-3">
-                <div className="flex flex-col">
-                    <span className="text-xl font-mono font-extrabold text-[#FF9F29] tracking-tight">
-                        87%
-                    </span>
-                    <span className="text-[10px] text-gray-400 font-mono mt-0.5 leading-snug">
-                        Of active pharmacy users attain total compliance within 30 days of setup.
-                    </span>
-                </div>
-
+            <div className="mt-0 pt-0">
                 <a
                     href="#audits"
-                    className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider font-bold text-[#FF9F29] hover:text-[#FFFFFF] transition-colors duration-200 cursor-pointer pt-1"
+                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <span>Check Audit Risk</span>
-                    <span className="text-xs transition-transform duration-200 translate-x-0 group-hover:translate-x-1">
-                        →
-                    </span>
+                    <div className="flex-1 pr-2">
+                        <span className="text-[13px] text-gray-300 leading-snug block">
+                            <span className="font-semibold text-white">87%</span> of active pharmacy users attain total compliance within 30 days of setup.
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-[10px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left">
+                            Check Audit<br />Risk
+                        </span>
+                        <span className="text-[#FF9F29] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
+                            →
+                        </span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -752,11 +717,11 @@ function PatientOperationalCard() {
     return (
         <div
             id="patient-operational-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#00E5A3]/40 hover:shadow-2xl hover:shadow-[#00E5A3]/5 hover:-translate-y-2 hover:scale-[1.02] min-h-[420px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#3B82F6] hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
 
             {/* Visual Animation Area */}
-            <div className="relative flex h-[180px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex h-[140px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Support Action Queue Mock Widget from Case 3 */}
                 <AnimatePresence mode="wait">
@@ -852,7 +817,7 @@ function PatientOperationalCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#00E5A3]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
                     Patient & Operational Support Systems
                 </h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
@@ -861,24 +826,25 @@ function PatientOperationalCard() {
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-4 pt-4 border-t border-[#1C2C30] flex flex-col justify-between gap-3 bg-[#090E11]/40 rounded-xl p-3">
-                <div className="flex flex-col">
-                    <span className="text-xl font-mono font-extrabold text-[#00E5A3] tracking-tight">
-                        30%
-                    </span>
-                    <span className="text-[10px] text-gray-400 font-mono mt-0.5 leading-snug">
-                        Measured reduction in clinical file workflows bottlenecks.
-                    </span>
-                </div>
-
+            <div className="mt-0 pt-0">
                 <a
                     href="#operations"
-                    className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider font-bold text-[#00E5A3] hover:text-[#FFFFFF] transition-colors duration-200 cursor-pointer pt-1"
+                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <span>Improve Operations</span>
-                    <span className="text-xs transition-transform duration-200 translate-x-0 group-hover:translate-x-1">
-                        →
-                    </span>
+                    <div className="flex-1 pr-2">
+                        <span className="text-[13px] text-gray-300 leading-snug block">
+                            <span className="font-semibold text-white">30%</span> measured reduction in clinical file workflows bottlenecks.
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-widest leading-tight text-left">
+                            Improve<br />Operations
+                        </span>
+                        <span className="text-[#3B82F6] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
+                            →
+                        </span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -892,25 +858,19 @@ function PatientOperationalCard() {
 
 function PharmacyGrowthCard() {
     const [hoveredBar, setHoveredBar] = useState<number | null>(null);
-    const [targetMargin, setTargetMargin] = useState<number>(78);
+    const [targetMargin, setTargetMargin] = useState<number>(85);
 
-    const bars = [
-        { label: "Sourcing", height: 85, value: "$84K", color: "bg-[#00E5A3]", dialVal: 85 },
-        { label: "Pricing", height: 60, value: "$61K", color: "bg-[#00E0E5]", dialVal: 60 },
-        { label: "Margin", height: 78, value: "22%", color: "bg-[#AAFF00]", dialVal: 78 },
-        { label: "Contracts", height: 45, value: "11 store", color: "bg-[#FF9F29]", dialVal: 45 },
-    ];
-
-    // Auto-cycle highlighted segment over time if user is not actively placing their mouse layout
+    // Auto-cycle highlighted segment over time
     useEffect(() => {
         let index = 0;
+        const dialVals = [25, 45, 60, 75, 85];
         const interval = setInterval(() => {
             if (hoveredBar === null) {
                 setHoveredBar(index);
-                setTargetMargin(bars[index % bars.length].dialVal);
-                index = (index + 1) % 5; // supporting 5 virtual indices
+                setTargetMargin(dialVals[index]);
+                index = (index + 1) % 5;
             }
-        }, 3500);
+        }, 3000);
 
         return () => clearInterval(interval);
     }, [hoveredBar]);
@@ -918,57 +878,122 @@ function PharmacyGrowthCard() {
     return (
         <div
             id="pharmacy-growth-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#00E5A3]/40 hover:shadow-2xl hover:shadow-[#00E5A3]/5 hover:-translate-y-2 hover:scale-[1.02] min-h-[420px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#00E5A3] hover:shadow-[0_0_20px_5px_rgba(0,229,163,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
 
             {/* Visual Animation Area */}
-            <div className="relative flex h-[180px] w-full items-center justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex h-[140px] w-full items-center justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
 
                 {/* Category Pill */}
-                <div className="absolute top-3 left-3 z-10">
-                    <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#081C17] border border-[#00E5A3]/25 text-[9px] font-mono text-[#00E5A3] font-bold uppercase tracking-widest animate-pulse">
-                        <Percent className="h-2.5 w-2.5" />
+                <div className="absolute top-4 left-4 z-20">
+                    <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-transparent border border-[#00E5A3] text-[9px] font-mono text-[#00E5A3] font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(0,229,163,0.2)]">
+                        <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                            <polyline points="17 6 23 6 23 12" />
+                        </svg>
                         <span>analytics</span>
                     </span>
                 </div>
 
-                {/* Five Rising Growth Bars from Case 4 */}
-                <div className="w-[58%] flex items-end justify-between h-20 gap-2.5 max-w-[200px] select-none z-10 mt-6 pl-1">
-                    {[45, 60, 78, 65, 95].map((val, idx) => {
+                {/* Top Right Icon (Animated Bounce) */}
+                <motion.div 
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                    className="absolute right-4 top-4 w-8 h-8 rounded-full border-[1.5px] border-[#00E5A3]/50 bg-transparent flex items-center justify-center shadow-[0_0_15px_rgba(0,229,163,0.3)] text-[#00E5A3] z-20"
+                >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7" />
+                        <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                </motion.div>
+
+                {/* Background Sweeping Trend Line (Animated Path) */}
+                <div className="absolute inset-0 z-20 pointer-events-none">
+                    <svg className="w-full h-full overflow-visible" viewBox="0 0 300 140" fill="none">
+                        <motion.path 
+                            d="M 15 85 Q 90 60 145 35" 
+                            stroke="url(#glow-gradient)" 
+                            strokeWidth="2.5" 
+                            fill="none" 
+                            className="drop-shadow-[0_0_8px_rgba(0,229,163,0.8)]"
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", times: [0, 0.4, 0.8, 1] }}
+                        />
+                        <motion.g
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: [0, 1, 1, 0], scale: [0, 1, 1, 0] }}
+                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", times: [0, 0.4, 0.8, 1] }}
+                            style={{ transformOrigin: "145px 35px" }}
+                        >
+                            <polygon 
+                                points="145,35 135,41 138,35 135,29" 
+                                fill="#00E5A3" 
+                                className="drop-shadow-[0_0_8px_rgba(0,229,163,1)]"
+                                transform="rotate(-24 145 35)"
+                            />
+                        </motion.g>
+                        <defs>
+                            <linearGradient id="glow-gradient" x1="0" y1="1" x2="1" y2="0">
+                                <stop offset="0%" stopColor="#00E5A3" stopOpacity="0" />
+                                <stop offset="100%" stopColor="#00E5A3" stopOpacity="1" />
+                            </linearGradient>
+                        </defs>
+                        {/* Particles */}
+                        <motion.circle animate={{ opacity: [0.6, 1, 0.6] }} transition={{ repeat: Infinity, duration: 2 }} cx="51" cy="72" r="0.8" fill="#00E5A3" className="drop-shadow-[0_0_3px_#00E5A3]" />
+                        <motion.circle animate={{ opacity: [0.8, 0.3, 0.8] }} transition={{ repeat: Infinity, duration: 3 }} cx="85" cy="60" r="1.2" fill="#00E5A3" className="drop-shadow-[0_0_4px_#00E5A3]" />
+                        <motion.circle animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.5 }} cx="116" cy="47" r="0.8" fill="#00E5A3" className="drop-shadow-[0_0_3px_#00E5A3]" />
+                        <circle cx="132" cy="40" r="0.5" fill="#00E5A3" opacity="0.9" />
+                    </svg>
+                </div>
+
+                {/* Five Rising Growth Bars */}
+                <div className="w-[50%] flex items-end justify-between h-[75px] gap-2 select-none z-10 mt-10 pl-2">
+                    {[25, 45, 60, 75, 95].map((val, idx) => {
                         const isHovered = hoveredBar === idx;
                         const barLabels = ["M1", "M2", "M3", "M4", "M5"];
-                        const colors = ["#00E5A3", "#00E0E5", "#00E5A3", "#FF9F29", "#00E5A3"];
+                        const barColors = ["#FFFFFF", "#1D8A99", "#1B8A6B", "#A06A3A", "#00E5A3"];
+                        
+                        let glowClass = "";
+                        if (idx === 0) glowClass = "shadow-[0_0_12px_rgba(255,255,255,0.7)]";
+                        if (idx === 4) glowClass = "shadow-[0_0_20px_rgba(0,229,163,0.8)]";
+                        if (isHovered && idx !== 0 && idx !== 4) glowClass = "shadow-[0_0_10px_rgba(255,255,255,0.3)]";
 
                         return (
-                            <div
-                                key={idx}
-                                className="flex-1 flex flex-col items-center h-full justify-end cursor-pointer relative"
+                            <div 
+                                key={idx} 
+                                className="flex-1 flex flex-col items-center h-full justify-end relative cursor-pointer"
                                 onMouseEnter={() => {
                                     setHoveredBar(idx);
-                                    setTargetMargin(val);
+                                    setTargetMargin(val === 95 ? 85 : val);
                                 }}
                                 onMouseLeave={() => {
                                     setHoveredBar(null);
-                                    setTargetMargin(78);
+                                    setTargetMargin(85);
                                 }}
                             >
-                                {/* Visual pillar column */}
-                                <div className="w-full bg-white/5 rounded-t-sm relative overflow-hidden h-full">
-                                    <motion.div
-                                        className="absolute bottom-0 left-0 right-0 rounded-t-sm transition-all duration-500 shadow-[0_0_8px_rgba(0,229,163,0.15)]"
-                                        style={{
-                                            height: `${val}%`,
-                                            backgroundColor: isHovered ? "#FFFFFF" : idx === 4 ? "#00E5A3" : `${colors[idx % colors.length]}70`
-                                        }}
-                                        initial={{ scaleY: 0 }}
-                                        animate={{ scaleY: 1 }}
-                                        transition={{ delay: idx * 0.08, duration: 0.6 }}
-                                    />
-                                </div>
-
-                                {/* Sub-label indices M1...M5 matching Case 4 */}
-                                <span className={`text-[8px] font-bold mt-1.5 transition-colors duration-200 ${isHovered ? "text-white font-black" : idx === 4 ? "text-[#00E5A3]" : "text-white/20"
-                                    }`}>
+                                <motion.div
+                                    className={`w-full rounded-[4px] relative ${glowClass}`}
+                                    style={{
+                                        height: `${val}%`,
+                                        backgroundColor: barColors[idx],
+                                        transformOrigin: "bottom"
+                                    }}
+                                    initial={{ scaleY: 0 }}
+                                    animate={{ 
+                                        scaleY: [0, 1, 1, 0],
+                                        scaleX: isHovered ? 1.05 : 1,
+                                        filter: isHovered ? "brightness(1.2)" : "brightness(1)"
+                                    }}
+                                    transition={{ 
+                                        scaleY: { repeat: Infinity, duration: 6, ease: "easeInOut", times: [0, 0.4, 0.8, 1], delay: idx * 0.1 },
+                                        scaleX: { duration: 0.5 },
+                                        filter: { duration: 0.5 }
+                                    }}
+                                />
+                                <span className={`absolute -bottom-5 text-[8.5px] font-bold transition-colors duration-200 ${
+                                    isHovered ? "text-white" : idx === 4 ? "text-[#00E5A3]" : idx === 0 ? "text-[#FFFFFF]/80" : "text-white/30"
+                                }`}>
                                     {barLabels[idx]}
                                 </span>
                             </div>
@@ -976,58 +1001,49 @@ function PharmacyGrowthCard() {
                     })}
                 </div>
 
-                {/* Circular Target margin gauge (Right half) */}
-                <div className="flex flex-col items-center justify-center w-[35%] mt-6 relative z-10 pr-2">
-                    <svg className="w-14 h-14 transform -rotate-90">
+                {/* Circular Target margin gauge */}
+                <div className="flex flex-col items-center justify-center w-[40%] mt-8 relative z-10 pr-2">
+                    <svg className="w-[75px] h-[75px] transform -rotate-90 overflow-visible">
                         <circle
-                            cx="28"
-                            cy="28"
-                            r="22"
+                            cx="37.5"
+                            cy="37.5"
+                            r="30"
                             className="stroke-[#1D2E32]"
-                            strokeWidth="3.5"
+                            strokeWidth="5.5"
                             fill="transparent"
                         />
                         <motion.circle
-                            cx="28"
-                            cy="28"
-                            r="22"
-                            className="stroke-[#00E5A3]"
-                            strokeWidth="3.5"
+                            cx="37.5"
+                            cy="37.5"
+                            r="30"
+                            className="stroke-[#00E5A3] drop-shadow-[0_0_10px_rgba(0,229,163,0.8)]"
+                            strokeWidth="5.5"
                             fill="transparent"
-                            strokeDasharray={`${2 * Math.PI * 22}`}
+                            strokeLinecap="round"
+                            strokeDasharray={`${2 * Math.PI * 30}`}
                             animate={{
-                                strokeDashoffset: `${2 * Math.PI * 22 * (1 - targetMargin / 100)}`
+                                strokeDashoffset: `${2 * Math.PI * 30 * (1 - targetMargin / 100)}`
                             }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            transition={{ duration: 1.2, ease: "easeInOut" }}
                         />
                     </svg>
 
-                    {/* Central Percentage */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-1 shadow-md flex flex-col items-center">
+                    {/* Central Text */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pt-0.5">
                         <AnimatePresence mode="wait">
                             <motion.span
                                 key={targetMargin}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
-                                className="text-[10px] font-mono font-bold text-white leading-none"
+                                className="text-[17px] font-bold text-white leading-none tracking-tight"
                             >
                                 {targetMargin}%
                             </motion.span>
                         </AnimatePresence>
+                        <span className="text-[5px] font-bold text-[#8E9B9E] mt-1 uppercase tracking-widest">Performance</span>
                     </div>
                 </div>
-
-                {/* Floating Bouncing Lightning Bolt from Case 4 */}
-                <motion.div
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                    className="absolute right-4 top-3.5 w-7 h-7 rounded-full border border-[#00E5A3]/30 bg-[#0a0f1d] flex items-center justify-center shadow-[0_0_12px_rgba(0,229,163,0.25)] text-[#00E5A3]"
-                >
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                    </svg>
-                </motion.div>
 
             </div>
 
@@ -1042,24 +1058,25 @@ function PharmacyGrowthCard() {
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-4 pt-4 border-t border-[#1C2C30] flex flex-col justify-between gap-3 bg-[#090E11]/40 rounded-xl p-3">
-                <div className="flex flex-col">
-                    <span className="text-xl font-mono font-extrabold text-[#00E5A3] tracking-tight">
-                        +15-20%
-                    </span>
-                    <span className="text-[10px] text-gray-400 font-mono mt-0.5 leading-snug">
-                        Standard margin amplification recorded across pharmacy departments.
-                    </span>
-                </div>
-
+            <div className="mt-0 pt-0">
                 <a
                     href="#growth"
-                    className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider font-bold text-[#00E5A3] hover:text-[#FFFFFF] transition-colors duration-200 cursor-pointer pt-1"
+                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <span>Grow My Pharmacy</span>
-                    <span className="text-xs transition-transform duration-200 translate-x-0 group-hover:translate-x-1">
-                        →
-                    </span>
+                    <div className="flex-1 pr-2">
+                        <span className="text-[13px] text-gray-300 leading-snug block">
+                            <span className="font-semibold text-white">+15-20%</span> standard margin amplification recorded across pharmacy departments.
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-[10px] font-bold text-[#00E5A3] uppercase tracking-widest leading-tight text-left">
+                            Grow My<br />Pharmacy
+                        </span>
+                        <span className="text-[#00E5A3] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
+                            →
+                        </span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -1094,8 +1111,8 @@ export default function TestingSection() {
                         {/* Top row with 3 cards */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1800px] mx-auto w-full mb-6">
                             <RevenueIntelligenceCard />
-                            <ClaimsReimbursementCard />
                             <ComplianceAuditCard />
+                            <ClaimsReimbursementCard />
                         </div>
 
                         {/* Bottom row with 2 cards centered */}

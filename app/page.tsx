@@ -32,6 +32,7 @@ export default function Home() {
           <Newhero />
           <News />
           <TestingSection />
+          <ServicesSection />
           <OrbitingSection />
           <WhyPrimeTekSection />
           <OurFramework />
