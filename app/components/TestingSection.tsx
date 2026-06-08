@@ -721,98 +721,44 @@ function PatientOperationalCard() {
         >
 
             {/* Visual Animation Area */}
-            <div className="relative flex h-[140px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
-
-                {/* Support Action Queue Mock Widget from Case 3 */}
+            <div className="relative flex min-h-[150px] w-full items-center justify-center rounded-xl bg-transparent p-3 border border-white/20 overflow-hidden">
+                
+                {/* iOS Notification Single */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={queueIndex}
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -15 }}
-                        transition={{ duration: 0.4 }}
-                        className="w-full max-w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-3 flex flex-col gap-2.5 backdrop-blur-md relative overflow-hidden shadow-xl"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="w-full max-w-[280px] bg-black/40 backdrop-blur-xl border border-white/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg relative overflow-hidden group/notif hover:bg-black/60 transition-colors z-10"
                     >
-                        {/* Ambient blue background blur circle */}
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-xl pointer-events-none" />
-
-                        <div className="flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-                                {/* Calendar system icon */}
-                                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.5">
+                        {/* Top Header */}
+                        <div className="flex justify-between items-center px-0.5">
+                            <div className="flex items-center gap-1.5">
+                                <div className="w-4 h-4 rounded-md bg-blue-500/20 flex items-center justify-center shrink-0">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.5">
                                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                                         <line x1="16" y1="2" x2="16" y2="6" />
                                         <line x1="8" y1="2" x2="8" y2="6" />
                                         <line x1="3" y1="10" x2="21" y2="10" />
                                     </svg>
                                 </div>
-                                <div className="flex flex-col text-left min-w-0">
-                                    <span className="text-[10px] font-bold text-white truncate max-w-[130px]">{currentItem.name}</span>
-                                    <span className="text-[7.5px] text-white/40 uppercase tracking-wider font-mono">Daily Queue</span>
-                                </div>
+                                <span className="text-[9px] text-white/50 font-semibold tracking-wide uppercase">System • {currentItem.initials}</span>
                             </div>
-
-                            {/* Status dynamic pill */}
-                            <motion.span
-                                animate={profileState === "Scanning" ? { opacity: [1, 0.4, 1] } : {}}
-                                transition={{ repeat: Infinity, duration: 1 }}
-                                className={`px-2 py-0.5 rounded-full text-[7.5px] font-mono font-bold uppercase tracking-wider ${profileState === "Verified"
-                                    ? "bg-[#00E5A3]/15 text-[#00E5A3] border border-[#00E5A3]/25"
-                                    : profileState === "Scanning"
-                                        ? "bg-amber-400/15 text-amber-400 border border-amber-400/25 animate-pulse"
-                                        : "bg-blue-500/15 text-blue-400 border border-blue-500/25"
-                                    }`}
-                            >
-                                {profileState === "In Review" ? "Active" : profileState}
-                            </motion.span>
+                            <span className="text-[8.5px] text-white/40">now</span>
                         </div>
-
-                        {/* Description body */}
-                        <div className="h-[32px] overflow-hidden text-left pl-0.5">
-                            <p className="text-[8.5px] text-[#8E9B9E] leading-relaxed line-clamp-2">
-                                {currentItem.detail}
-                            </p>
-                        </div>
-
-                        {/* Horizontal line divider */}
-                        <div className="h-[1px] bg-white/5 my-0.5" />
-
-                        {/* Next scheduled Sync from Case 3 / Interactive Action Buttons */}
-                        <div className="flex justify-between items-center gap-2 pt-0.5">
-                            <div className="flex items-center gap-1.5 text-[8.5px] font-mono">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                <span className="text-white font-bold">Sync: Today, 6:00 PM</span>
-                            </div>
-                            <div className="flex gap-1">
-                                <button
-                                    onClick={() => handleAction("Verified")}
-                                    disabled={profileState === "Verified" || isVerifying}
-                                    className="px-2.5 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white text-[8px] font-mono font-bold uppercase tracking-wider transition-colors disabled:opacity-50 cursor-pointer"
-                                >
-                                    {isVerifying ? "Scanning" : "Verify"}
-                                </button>
-                                <button
-                                    onClick={() => handleAction("Snoozed")}
-                                    disabled={profileState === "Snoozed" || isVerifying}
-                                    className="px-2 py-1 rounded bg-[#1C2D31] hover:bg-[#253E43] text-gray-400 hover:text-white text-[8px] font-mono uppercase tracking-wider transition-all cursor-pointer"
-                                >
-                                    Hold
-                                </button>
-                            </div>
+                        
+                        {/* Body */}
+                        <div className="flex flex-col text-left px-0.5 mt-0.5">
+                            <span className="text-[11px] font-bold text-white/90 leading-tight">{currentItem.name}</span>
+                            <span className="text-[10px] text-white/60 line-clamp-2 leading-snug mt-0.5">{currentItem.detail}</span>
                         </div>
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Counter floating stat */}
-                <div className="absolute bottom-2.5 left-2.5 z-10">
-                    <span className="text-[7.5px] font-mono text-gray-500 block uppercase leading-none">
-                        Queue Resolved
-                    </span>
-                    <span className="text-[10px] font-mono font-bold text-white mt-0.5 block">
-                        {approvalCount} orders
-                    </span>
-                </div>
+                {/* Ambient Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
             </div>
 
             {/* Description and Metadata */}
