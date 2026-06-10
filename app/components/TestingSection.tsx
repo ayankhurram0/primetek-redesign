@@ -102,7 +102,7 @@ function RevenueIntelligenceCard() {
     return (
         <div
             id="revenue-intelligence-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A] hover:shadow-[0_0_20px_5px_rgba(255,74,58,0.6)] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A] hover:shadow-[0_0_20px_5px_rgba(255,74,58,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[360px]"
         >
             {/* Visual Animation Area */}
             <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
@@ -211,7 +211,7 @@ function RevenueIntelligenceCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
                     Revenue Intelligence & Reporting
                 </h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Real-time revenue tracking that flags underpayments and recovers lost income automatically.
                 </p>
             </div>
@@ -222,9 +222,9 @@ function RevenueIntelligenceCard() {
                     href="#analyze"
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <div className="flex-1">
-                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
-                            <span className="font-semibold text-white">$1.2M+</span> avg. underpayments recovered per store annually.
+                    <div className="flex-1 min-w-0">
+                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
+                            <span className="font-semibold text-white">$1.2M+</span> avg. underpayments recovered per store.
                         </span>
                     </div>
 
@@ -288,8 +288,8 @@ function ClaimsReimbursementCard() {
             {/* Visual Animation Area */}
             <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl p-4 border border-white/20 overflow-hidden">
                 {/* Badge — top right inside visual box */}
-                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF7A00]/40 bg-[#FF7A00]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF7A00] pointer-events-none">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF7A00]" />
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF6B00] pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00]" />
                     Auto-Route
                 </div>
 
@@ -311,10 +311,10 @@ function ClaimsReimbursementCard() {
                                         ? "M50 50 L120 50 L215 50"
                                         : "M50 50 L120 50 Q162 65 215 80"
                             }
-                            stroke="#FF7A00"
+                            stroke="#FF6B00"
                             strokeWidth="3.5"
                             strokeLinecap="round"
-                            className="drop-shadow-[0_0_6px_rgba(255,122,0,0.4)]"
+                            className="drop-shadow-[0_0_6px_rgba(255,107,0,0.5)]"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
                             key={activeRouteIndex}
@@ -325,7 +325,7 @@ function ClaimsReimbursementCard() {
                         {isRouting && (
                             <motion.circle
                                 r="4"
-                                fill="#FF7A00"
+                                fill="#FF6B00"
                                 animate={{
                                     offsetDistance: ["0%", "100%"]
                                 }}
@@ -349,28 +349,28 @@ function ClaimsReimbursementCard() {
                                 cy="50"
                                 r="11"
                                 fill="transparent"
-                                stroke="#FF7A00"
+                                stroke="#FF6B00"
                                 strokeWidth="1"
                                 animate={{ scale: [1, 1.4], opacity: [0.6, 0] }}
                                 transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut" }}
                             />
-                            <circle cx="50" cy="50" r="5" fill="#FF7A00" />
+                            <circle cx="50" cy="50" r="5" fill="#FF6B00" />
                         </g>
 
                         {/* Hub Node (Middle) */}
                         <g>
-                            <circle cx="120" cy="50" r="18" fill="rgba(255,122,0,0.08)" stroke="#FF7A00" strokeWidth="2" className="drop-shadow-[0_0_6px_rgba(255,122,0,0.3)]" />
+                            <circle cx="120" cy="50" r="18" fill="rgba(255,107,0,0.08)" stroke="#FF6B00" strokeWidth="2" className="drop-shadow-[0_0_6px_rgba(255,107,0,0.3)]" />
                             <motion.circle
                                 cx="120"
                                 cy="50"
                                 r="18"
                                 fill="transparent"
-                                stroke="#FF7A00"
+                                stroke="#FF6B00"
                                 strokeWidth="1"
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                             />
-                            <circle cx="120" cy="50" r="8" fill="#FF7A00" />
+                            <circle cx="120" cy="50" r="8" fill="#FF6B00" />
                         </g>
 
                         {/* Destinations Nodes (Right Side Interactive Targets) */}
@@ -383,8 +383,8 @@ function ClaimsReimbursementCard() {
                                         cx="215"
                                         cy={nodeY}
                                         r={isTarget ? "12" : "10"}
-                                        fill={isTarget ? "rgba(255,122,0,0.12)" : "rgba(255,255,255,0.04)"}
-                                        stroke={isTarget ? "#FF7A00" : "rgba(255,255,255,0.15)"}
+                                        fill={isTarget ? "rgba(255,107,0,0.12)" : "rgba(255,255,255,0.04)"}
+                                        stroke={isTarget ? "#FF6B00" : "rgba(255,255,255,0.15)"}
                                         strokeWidth="1.5"
                                         className="transition-colors duration-200"
                                     />
@@ -392,7 +392,7 @@ function ClaimsReimbursementCard() {
                                         cx="215"
                                         cy={nodeY}
                                         r={isTarget ? "5.5" : "4"}
-                                        fill={isTarget ? "#FF7A00" : "rgba(255,255,255,0.3)"}
+                                        fill={isTarget ? "#FF6B00" : "rgba(255,255,255,0.3)"}
                                         className="transition-colors duration-200"
                                     />
 
@@ -419,7 +419,7 @@ function ClaimsReimbursementCard() {
                         <span className="text-[7.5px] font-mono text-gray-500 uppercase leading-none block">
                             Pipe Status:
                         </span>
-                        <span className="text-[9px] font-mono font-bold text-[#FF7A00] uppercase mt-0.5 inline-block animate-pulse">
+                        <span className="text-[9px] font-mono font-bold text-[#FF6B00] uppercase mt-0.5 inline-block animate-pulse">
                             {isRouting ? "processing..." : routeStatus}
                         </span>
                     </div>
@@ -431,7 +431,7 @@ function ClaimsReimbursementCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
                     Claims & Reimbursement Optimization
                 </h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Automatically fix claim errors and maximize clean-claim reimbursement flow.
                 </p>
             </div>
@@ -471,9 +471,9 @@ function ComplianceAuditCard() {
     const [activeStage, setActiveStage] = useState<number>(1); // default to step 1 (middle): Risk Mitigated
 
     const stages = [
-        { id: 0, title: "Audit Deficit", desc: "Flagged risks identified", color: "#FF4A3A" },
-        { id: 1, title: "Risk Mitigated", desc: "AI safeguards active", color: "#FF9F29" },
-        { id: 2, title: "Protected", desc: "Audit safe status", color: "#00E5A3" },
+        { id: 0, title: "Audit Deficit", color: "#FF4A3A" },
+        { id: 1, title: "Risk Mitigated", color: "#FF9F29" },
+        { id: 2, title: "Protected", color: "#00E5A3" },
     ];
 
     // Auto-cycle stages to simulate active threat protection scans
@@ -535,8 +535,8 @@ function ComplianceAuditCard() {
                         >
                             <div
                                 className={`w-11 h-11 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-300 ${activeStage === 0
-                                        ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)] font-mono"
-                                        : "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c]"
+                                    ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)] font-mono"
+                                    : "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c]"
                                     }`}
                             >
                                 {activeStage > 0 ? (
@@ -560,10 +560,10 @@ function ComplianceAuditCard() {
                         >
                             <div
                                 className={`w-11 h-11 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-300 ${activeStage === 1
-                                        ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)]"
-                                        : activeStage > 1
-                                            ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c]"
-                                            : "bg-[#0a0f1d] border-white/10 text-white/30"
+                                    ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)]"
+                                    : activeStage > 1
+                                        ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c]"
+                                        : "bg-[#0a0f1d] border-white/10 text-white/30"
                                     }`}
                             >
                                 {activeStage > 1 ? (
@@ -606,13 +606,6 @@ function ComplianceAuditCard() {
                         </div>
                     </div>
 
-                    {/* Floating explanation label info */}
-                    <div className="absolute right-2 bottom-0 pointer-events-none">
-                        <span className="text-[7.5px] font-mono text-gray-500 uppercase tracking-widest leading-none">
-                            {stages[activeStage].desc} — (Click milestones to test system)
-                        </span>
-                    </div>
-
                 </div>
             </div>
 
@@ -621,7 +614,7 @@ function ComplianceAuditCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF9F29]">
                     Compliance & Audit Protection
                 </h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Stay permanently audit-ready by detecting compliance gaps before they become liabilities.
                 </p>
             </div>
@@ -630,15 +623,15 @@ function ComplianceAuditCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#audits"
-                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
+                    className="flex items-center justify-between gap-2 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <div className="flex-1">
-                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
+                    <div className="flex-1 min-w-0">
+                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
                             <span className="font-semibold text-white">87%</span> achieve full compliance within 30 days.
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
+                    <div className="flex items-center gap-2 shrink-0">
                         <span className="text-[10px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Check Audit Risk
                         </span>
@@ -767,7 +760,7 @@ function PatientOperationalCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
                     Patient & Operational Support Systems
                 </h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Streamline every pharmacy workflow from patient onboarding to team coordination.
                 </p>
             </div>
@@ -840,96 +833,56 @@ function PharmacyGrowthCard() {
                     {/* Horizontal axis line */}
                     <line x1="20" y1="110" x2="480" y2="110" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
 
-                    {/* Five neon green bars - Animated on mount and hover */}
-                    {/* M1 Bar: height 30 */}
+                    {/* Five neon green bars - Looping grow/collapse animation */}
+                    {/* M1 Bar: final height 30 */}
                     <motion.rect
                         x="35"
-                        initial={{ y: 110, height: 0 }}
-                        animate={{ y: 80, height: 30 }}
-                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
-                        style={{ transformOrigin: "62.5px 110px" }}
-                        transition={{
-                            y: { duration: 0.8, ease: "easeOut", delay: 0.1 },
-                            height: { duration: 0.8, ease: "easeOut", delay: 0.1 },
-                            scaleX: { duration: 0.2 },
-                            filter: { duration: 0.2 }
-                        }}
                         width="55"
                         rx="6"
                         fill="#00E5A3"
                         className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                        animate={{ y: [110, 110, 80, 80, 110], height: [0, 0, 30, 30, 0] }}
+                        transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.25, 0.75, 1], delay: 0 }}
                     />
-                    {/* M2 Bar: height 48 */}
+                    {/* M2 Bar: final height 48 */}
                     <motion.rect
                         x="130"
-                        initial={{ y: 110, height: 0 }}
-                        animate={{ y: 62, height: 48 }}
-                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
-                        style={{ transformOrigin: "157.5px 110px" }}
-                        transition={{
-                            y: { duration: 0.8, ease: "easeOut", delay: 0.2 },
-                            height: { duration: 0.8, ease: "easeOut", delay: 0.2 },
-                            scaleX: { duration: 0.2 },
-                            filter: { duration: 0.2 }
-                        }}
                         width="55"
                         rx="6"
                         fill="#00E5A3"
                         className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                        animate={{ y: [110, 110, 62, 62, 110], height: [0, 0, 48, 48, 0] }}
+                        transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.3, 0.75, 1], delay: 0.12 }}
                     />
-                    {/* M3 Bar: height 32 */}
+                    {/* M3 Bar: final height 32 */}
                     <motion.rect
                         x="225"
-                        initial={{ y: 110, height: 0 }}
-                        animate={{ y: 78, height: 32 }}
-                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
-                        style={{ transformOrigin: "252.5px 110px" }}
-                        transition={{
-                            y: { duration: 0.8, ease: "easeOut", delay: 0.3 },
-                            height: { duration: 0.8, ease: "easeOut", delay: 0.3 },
-                            scaleX: { duration: 0.2 },
-                            filter: { duration: 0.2 }
-                        }}
                         width="55"
                         rx="6"
                         fill="#00E5A3"
                         className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                        animate={{ y: [110, 110, 78, 78, 110], height: [0, 0, 32, 32, 0] }}
+                        transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.35, 0.75, 1], delay: 0.22 }}
                     />
-                    {/* M4 Bar: height 64 */}
+                    {/* M4 Bar: final height 64 */}
                     <motion.rect
                         x="320"
-                        initial={{ y: 110, height: 0 }}
-                        animate={{ y: 46, height: 64 }}
-                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
-                        style={{ transformOrigin: "347.5px 110px" }}
-                        transition={{
-                            y: { duration: 0.8, ease: "easeOut", delay: 0.4 },
-                            height: { duration: 0.8, ease: "easeOut", delay: 0.4 },
-                            scaleX: { duration: 0.2 },
-                            filter: { duration: 0.2 }
-                        }}
                         width="55"
                         rx="6"
                         fill="#00E5A3"
                         className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                        animate={{ y: [110, 110, 46, 46, 110], height: [0, 0, 64, 64, 0] }}
+                        transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.4, 0.75, 1], delay: 0.32 }}
                     />
-                    {/* M5 Bar: height 86 */}
+                    {/* M5 Bar: final height 86 */}
                     <motion.rect
                         x="415"
-                        initial={{ y: 110, height: 0 }}
-                        animate={{ y: 24, height: 86 }}
-                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
-                        style={{ transformOrigin: "442.5px 110px" }}
-                        transition={{
-                            y: { duration: 0.8, ease: "easeOut", delay: 0.5 },
-                            height: { duration: 0.8, ease: "easeOut", delay: 0.5 },
-                            scaleX: { duration: 0.2 },
-                            filter: { duration: 0.2 }
-                        }}
                         width="55"
                         rx="6"
                         fill="#00E5A3"
                         className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                        animate={{ y: [110, 110, 24, 24, 110], height: [0, 0, 86, 86, 0] }}
+                        transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.45, 0.75, 1], delay: 0.42 }}
                     />
 
                     {/* Labels below the axis */}
@@ -939,12 +892,12 @@ function PharmacyGrowthCard() {
                     <text x="347.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M4</text>
                     <text x="442.5" y="126" fill="#00E5A3" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M5</text>
 
-                    {/* Animated Line Graph */}
+                    {/* Animated Line Graph — continuous float + looping trace */}
                     <motion.g
                         animate={{ y: [0, -3, 0] }}
                         transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
                     >
-                        {/* Green line path - animates tracing path */}
+                        {/* Green line path — traces in then out on loop */}
                         <motion.path
                             d="M 62.5 70 L 157.5 45 L 252.5 58 L 347.5 28 L 442.5 12"
                             stroke="#00E5A3"
@@ -952,58 +905,46 @@ function PharmacyGrowthCard() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: 1 }}
-                            transition={{ duration: 1.0, ease: "easeInOut", delay: 0.6 }}
+                            animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+                            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.45, 0.75, 1] }}
                         />
 
-                        {/* Circular points appearing as path reaches them */}
+                        {/* Dot above M2 */}
                         <motion.circle
-                            cx="157.5"
-                            cy="45"
-                            r="4.5"
-                            fill="#00E5A3"
-                            stroke="#00E5A3"
-                            strokeWidth="1"
+                            cx="157.5" cy="45" r="4.5"
+                            fill="#00E5A3" stroke="#00E5A3" strokeWidth="1"
                             className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ type: "spring", stiffness: 200, delay: 0.85 }}
+                            animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
+                            style={{ transformOrigin: "157.5px 45px" }}
+                            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.28, 0.45, 0.75, 1] }}
                         />
+                        {/* Dot above M3 */}
                         <motion.circle
-                            cx="252.5"
-                            cy="58"
-                            r="4.5"
-                            fill="#00E5A3"
-                            stroke="#00E5A3"
-                            strokeWidth="1"
+                            cx="252.5" cy="58" r="4.5"
+                            fill="#00E5A3" stroke="#00E5A3" strokeWidth="1"
                             className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ type: "spring", stiffness: 200, delay: 1.1 }}
+                            animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
+                            style={{ transformOrigin: "252.5px 58px" }}
+                            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.34, 0.45, 0.75, 1] }}
                         />
+                        {/* Dot above M4 */}
                         <motion.circle
-                            cx="347.5"
-                            cy="28"
-                            r="4.5"
-                            fill="#00E5A3"
-                            stroke="#00E5A3"
-                            strokeWidth="1"
+                            cx="347.5" cy="28" r="4.5"
+                            fill="#00E5A3" stroke="#00E5A3" strokeWidth="1"
                             className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ type: "spring", stiffness: 200, delay: 1.35 }}
+                            animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
+                            style={{ transformOrigin: "347.5px 28px" }}
+                            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.39, 0.45, 0.75, 1] }}
                         />
 
-                        {/* Arrowhead pointing up-right popping up at the end of the line */}
+                        {/* Arrowhead at end of line */}
                         <motion.polygon
                             points="442.5,12 430,19 432,9"
                             fill="#00E5A3"
                             className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ type: "spring", stiffness: 200, delay: 1.6 }}
+                            animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
                             style={{ transformOrigin: "442.5px 12px" }}
+                            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.43, 0.5, 0.75, 1] }}
                         />
                     </motion.g>
                 </svg>
@@ -1014,7 +955,7 @@ function PharmacyGrowthCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#00E5A3]">
                     Pharmacy Growth & Performance Strategy
                 </h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Optimize procurement pricing and sourcing to grow your pharmacy's total margins.
                 </p>
             </div>
