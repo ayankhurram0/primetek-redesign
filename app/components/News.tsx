@@ -269,11 +269,11 @@ export default function IntelligenceDashboard() {
                   }}
                   className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 backdrop-blur-md group ${activeAlertId === alert.id
                     ? `bg-gradient-to-r ${alert.colorScheme?.bg} ${alert.colorScheme?.border} shadow-[0_0_30px_rgba(255,255,255,0.1)]`
-                    : `bg-white/5 border-white/20 hover:border-white/30 hover:bg-white/10`
+                    : `bg-[#090E11]/95 border-white/10 hover:border-white/20 hover:bg-[#0E161B]`
                     }`}
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? alert.colorScheme?.icon + ' ' + alert.colorScheme?.text : 'bg-white/10 text-white/70'}`}>
+                    <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? alert.colorScheme?.icon + ' ' + alert.colorScheme?.text : 'bg-[#131B1E] text-white/70'}`}>
                       {React.createElement(getAlertIcon(alert.category, alert.priority), { className: "w-8 h-8" })}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -319,7 +319,7 @@ export default function IntelligenceDashboard() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -30 }}
                 transition={{ duration: 0.4 }}
-                className={`absolute inset-0 w-full h-full backdrop-blur-xl rounded-2xl overflow-hidden group border-2 bg-white/10 ${activeAlert.colorScheme?.border || 'border-white/30'} flex flex-col p-8`}
+                className={`absolute inset-0 w-full h-full backdrop-blur-xl rounded-2xl overflow-hidden group border-2 bg-[#090E11] ${activeAlert.colorScheme?.border || 'border-white/30'} flex flex-col p-8`}
               >
                 <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-15 -z-10" />
 

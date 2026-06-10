@@ -106,6 +106,11 @@ function RevenueIntelligenceCard() {
         >
             {/* Visual Animation Area */}
             <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+                {/* Badge — top right inside visual box */}
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF4A3A]/40 bg-[#FF4A3A]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF4A3A] pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF4A3A]" />
+                    Live Tracking
+                </div>
 
                 {/* Luminous Sweeping Line representing real-time telemetry scans */}
                 <motion.div
@@ -218,7 +223,7 @@ function RevenueIntelligenceCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
                             <span className="font-semibold text-white">$1.2M+</span> avg. underpayments recovered per store annually.
                         </span>
                     </div>
@@ -280,15 +285,12 @@ function ClaimsReimbursementCard() {
             id="claims-reimbursement-card"
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF6B00] hover:shadow-[0_0_20px_5px_rgba(255,107,0,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
-
             {/* Visual Animation Area */}
             <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl p-4 border border-white/20 overflow-hidden">
-
-                {/* Category Pill on top left */}
-                <div className="flex items-center justify-between z-10 w-full">
-                    <span className="text-[10px] font-mono text-gray-400 font-bold uppercase tracking-wider">
-                        Claims Pipeline
-                    </span>
+                {/* Badge — top right inside visual box */}
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF7A00]/40 bg-[#FF7A00]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF7A00] pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF7A00]" />
+                    Auto-Route
                 </div>
 
                 {/* Dynamic Nodes Graphic SVG from user's case 1 */}
@@ -410,11 +412,7 @@ function ClaimsReimbursementCard() {
                         })}
                     </svg>
 
-                    {/* Floating badge top right of visual frame */}
-                    <div className="absolute right-2 top-0.5 bg-white/5 border border-white/10 rounded-lg py-1 px-2.5 text-[9px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF7A00] animate-pulse" />
-                        <span>Optimized Routing</span>
-                    </div>
+
 
                     {/* Live routing status readout */}
                     <div className="absolute left-2 bottom-1 max-w-[140px]">
@@ -445,7 +443,7 @@ function ClaimsReimbursementCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
                             <span className="font-semibold text-white">19%</span> increase in clean-claim recovery rates.
                         </span>
                     </div>
@@ -491,9 +489,13 @@ function ComplianceAuditCard() {
             id="compliance-audit-card"
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF9F29] hover:shadow-[0_0_20px_5px_rgba(255,159,41,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
-
             {/* Visual Animation Area */}
             <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+                {/* Badge — top right inside visual box */}
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF9F29]/40 bg-[#FF9F29]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF9F29] pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF9F29]" />
+                    Risk Control
+                </div>
 
                 {/* Sweep background highlight */}
                 <motion.div
@@ -512,18 +514,20 @@ function ComplianceAuditCard() {
                 {/* Dynamic Timeline Indicator block from Case 2 */}
                 <div className="relative flex-1 mt-4 w-full h-[90px] flex items-center justify-center">
 
-                    {/* Timeline connecting line behind buttons */}
-                    <div className="absolute left-10 right-10 h-[2.5px] bg-white/10" />
-                    <motion.div
-                        className="absolute left-10 h-[2.5px] bg-[#fb923c] origin-left"
-                        initial={false}
-                        animate={{
-                            width: activeStage === 0 ? "0%" : activeStage === 1 ? "50%" : "100%"
-                        }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                    />
-
                     <div className="relative w-full flex justify-between items-center px-4 z-10">
+                        {/* Track line — anchored from center of first to center of last circle */}
+                        {/* px-4 = 16px, w-11/2 = 22px → left/right offset = 38px */}
+                        <div className="absolute left-[38px] right-[38px] top-[22px] -translate-y-1/2 h-[2.5px] bg-white/10" />
+                        <motion.div
+                            className="absolute left-[38px] top-[22px] -translate-y-1/2 h-[2.5px] bg-[#fb923c] origin-left"
+                            style={{ right: "38px" }}
+                            initial={false}
+                            animate={{
+                                scaleX: activeStage === 0 ? 0 : activeStage === 1 ? 0.5 : 1
+                            }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                        />
+
                         {/* Milestone 1 (Gap Scan) */}
                         <div
                             onClick={() => setActiveStage(0)}
@@ -531,11 +535,17 @@ function ComplianceAuditCard() {
                         >
                             <div
                                 className={`w-11 h-11 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-300 ${activeStage === 0
-                                    ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)] font-mono"
-                                    : "bg-[#0a0f1d] border-white/25 text-white/50"
+                                        ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)] font-mono"
+                                        : "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c]"
                                     }`}
                             >
-                                01
+                                {activeStage > 0 ? (
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fb923c" strokeWidth="3">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                ) : (
+                                    <span className="font-mono">01</span>
+                                )}
                             </div>
                             <span className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${activeStage === 0 ? "text-[#fb923c]" : "text-white/30"
                                 }`}>
@@ -550,8 +560,10 @@ function ComplianceAuditCard() {
                         >
                             <div
                                 className={`w-11 h-11 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-300 ${activeStage === 1
-                                    ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)]"
-                                    : "bg-[#0a0f1d] border-white/10 text-white/30"
+                                        ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)]"
+                                        : activeStage > 1
+                                            ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c]"
+                                            : "bg-[#0a0f1d] border-white/10 text-white/30"
                                     }`}
                             >
                                 {activeStage > 1 ? (
@@ -621,7 +633,7 @@ function ComplianceAuditCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
                             <span className="font-semibold text-white">87%</span> achieve full compliance within 30 days.
                         </span>
                     </div>
@@ -693,6 +705,11 @@ function PatientOperationalCard() {
         >
             {/* Visual Animation Area */}
             <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-transparent p-3 border border-white/20 overflow-hidden">
+                {/* Badge — top right inside visual box */}
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#3B82F6]/40 bg-[#3B82F6]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#3B82F6] pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
+                    Ops Sync
+                </div>
 
                 {/* Notification Stack */}
                 <div className="relative w-full max-w-[280px] h-[120px]">
@@ -762,7 +779,7 @@ function PatientOperationalCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
                             <span className="font-semibold text-white">30%</span> reduction in bottlenecks.
                         </span>
                     </div>
@@ -810,171 +827,186 @@ function PharmacyGrowthCard() {
             id="pharmacy-growth-card"
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#00E5A3] hover:shadow-[0_0_20px_5px_rgba(0,229,163,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
-
             {/* Visual Animation Area */}
-            <div className="relative flex h-[140px] w-full items-center justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
-
-                {/* Category Pill */}
-                <div className="absolute top-4 left-4 z-20">
-                    <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-transparent border border-[#00E5A3] text-[9px] font-mono text-[#00E5A3] font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(0,229,163,0.2)]">
-                        <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                            <polyline points="17 6 23 6 23 12" />
-                        </svg>
-                        <span>analytics</span>
-                    </span>
+            <div className="relative flex h-[160px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+                {/* Badge — top right inside visual box */}
+                <div className="absolute top-3 right-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#00E5A3]/40 bg-[#00E5A3]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#00E5A3] pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00E5A3]" />
+                    Growth AI
                 </div>
 
-                {/* Top Right Icon (Animated Bounce) */}
-                <motion.div 
-                    animate={{ y: [0, -4, 0] }}
-                    transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                    className="absolute right-4 top-4 w-8 h-8 rounded-full border-[1.5px] border-[#00E5A3]/50 bg-transparent flex items-center justify-center shadow-[0_0_15px_rgba(0,229,163,0.3)] text-[#00E5A3] z-20"
-                >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7" />
-                        <polyline points="7 7 17 7 17 17" />
-                    </svg>
-                </motion.div>
+                {/* Pure SVG layout matching the mockup exactly with animations */}
+                <svg className="w-full h-[130px] mt-6 overflow-visible" viewBox="0 0 500 130" fill="none">
+                    {/* Horizontal axis line */}
+                    <line x1="20" y1="110" x2="480" y2="110" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
 
-                {/* Background Sweeping Trend Line (Animated Path) */}
-                <div className="absolute inset-0 z-20 pointer-events-none">
-                    <svg className="w-full h-full overflow-visible" viewBox="0 0 300 140" fill="none">
-                        <motion.path 
-                            d="M 15 85 Q 90 60 145 35" 
-                            stroke="url(#glow-gradient)" 
-                            strokeWidth="2.5" 
-                            fill="none" 
-                            className="drop-shadow-[0_0_8px_rgba(0,229,163,0.8)]"
-                            initial={{ pathLength: 0, opacity: 0 }}
-                            animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
-                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", times: [0, 0.4, 0.8, 1] }}
+                    {/* Five neon green bars - Animated on mount and hover */}
+                    {/* M1 Bar: height 30 */}
+                    <motion.rect
+                        x="35"
+                        initial={{ y: 110, height: 0 }}
+                        animate={{ y: 80, height: 30 }}
+                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
+                        style={{ transformOrigin: "62.5px 110px" }}
+                        transition={{
+                            y: { duration: 0.8, ease: "easeOut", delay: 0.1 },
+                            height: { duration: 0.8, ease: "easeOut", delay: 0.1 },
+                            scaleX: { duration: 0.2 },
+                            filter: { duration: 0.2 }
+                        }}
+                        width="55"
+                        rx="6"
+                        fill="#00E5A3"
+                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                    />
+                    {/* M2 Bar: height 48 */}
+                    <motion.rect
+                        x="130"
+                        initial={{ y: 110, height: 0 }}
+                        animate={{ y: 62, height: 48 }}
+                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
+                        style={{ transformOrigin: "157.5px 110px" }}
+                        transition={{
+                            y: { duration: 0.8, ease: "easeOut", delay: 0.2 },
+                            height: { duration: 0.8, ease: "easeOut", delay: 0.2 },
+                            scaleX: { duration: 0.2 },
+                            filter: { duration: 0.2 }
+                        }}
+                        width="55"
+                        rx="6"
+                        fill="#00E5A3"
+                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                    />
+                    {/* M3 Bar: height 32 */}
+                    <motion.rect
+                        x="225"
+                        initial={{ y: 110, height: 0 }}
+                        animate={{ y: 78, height: 32 }}
+                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
+                        style={{ transformOrigin: "252.5px 110px" }}
+                        transition={{
+                            y: { duration: 0.8, ease: "easeOut", delay: 0.3 },
+                            height: { duration: 0.8, ease: "easeOut", delay: 0.3 },
+                            scaleX: { duration: 0.2 },
+                            filter: { duration: 0.2 }
+                        }}
+                        width="55"
+                        rx="6"
+                        fill="#00E5A3"
+                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                    />
+                    {/* M4 Bar: height 64 */}
+                    <motion.rect
+                        x="320"
+                        initial={{ y: 110, height: 0 }}
+                        animate={{ y: 46, height: 64 }}
+                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
+                        style={{ transformOrigin: "347.5px 110px" }}
+                        transition={{
+                            y: { duration: 0.8, ease: "easeOut", delay: 0.4 },
+                            height: { duration: 0.8, ease: "easeOut", delay: 0.4 },
+                            scaleX: { duration: 0.2 },
+                            filter: { duration: 0.2 }
+                        }}
+                        width="55"
+                        rx="6"
+                        fill="#00E5A3"
+                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                    />
+                    {/* M5 Bar: height 86 */}
+                    <motion.rect
+                        x="415"
+                        initial={{ y: 110, height: 0 }}
+                        animate={{ y: 24, height: 86 }}
+                        whileHover={{ scaleX: 1.05, filter: "brightness(1.15)" }}
+                        style={{ transformOrigin: "442.5px 110px" }}
+                        transition={{
+                            y: { duration: 0.8, ease: "easeOut", delay: 0.5 },
+                            height: { duration: 0.8, ease: "easeOut", delay: 0.5 },
+                            scaleX: { duration: 0.2 },
+                            filter: { duration: 0.2 }
+                        }}
+                        width="55"
+                        rx="6"
+                        fill="#00E5A3"
+                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                    />
+
+                    {/* Labels below the axis */}
+                    <text x="62.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M1</text>
+                    <text x="157.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M2</text>
+                    <text x="252.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M3</text>
+                    <text x="347.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M4</text>
+                    <text x="442.5" y="126" fill="#00E5A3" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M5</text>
+
+                    {/* Animated Line Graph */}
+                    <motion.g
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+                    >
+                        {/* Green line path - animates tracing path */}
+                        <motion.path
+                            d="M 62.5 70 L 157.5 45 L 252.5 58 L 347.5 28 L 442.5 12"
+                            stroke="#00E5A3"
+                            strokeWidth="3.2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 1.0, ease: "easeInOut", delay: 0.6 }}
                         />
-                        <motion.g
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: [0, 1, 1, 0], scale: [0, 1, 1, 0] }}
-                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", times: [0, 0.4, 0.8, 1] }}
-                            style={{ transformOrigin: "145px 35px" }}
-                        >
-                            <polygon 
-                                points="145,35 135,41 138,35 135,29" 
-                                fill="#00E5A3" 
-                                className="drop-shadow-[0_0_8px_rgba(0,229,163,1)]"
-                                transform="rotate(-24 145 35)"
-                            />
-                        </motion.g>
-                        <defs>
-                            <linearGradient id="glow-gradient" x1="0" y1="1" x2="1" y2="0">
-                                <stop offset="0%" stopColor="#00E5A3" stopOpacity="0" />
-                                <stop offset="100%" stopColor="#00E5A3" stopOpacity="1" />
-                            </linearGradient>
-                        </defs>
-                        {/* Particles */}
-                        <motion.circle animate={{ opacity: [0.6, 1, 0.6] }} transition={{ repeat: Infinity, duration: 2 }} cx="51" cy="72" r="0.8" fill="#00E5A3" className="drop-shadow-[0_0_3px_#00E5A3]" />
-                        <motion.circle animate={{ opacity: [0.8, 0.3, 0.8] }} transition={{ repeat: Infinity, duration: 3 }} cx="85" cy="60" r="1.2" fill="#00E5A3" className="drop-shadow-[0_0_4px_#00E5A3]" />
-                        <motion.circle animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.5 }} cx="116" cy="47" r="0.8" fill="#00E5A3" className="drop-shadow-[0_0_3px_#00E5A3]" />
-                        <circle cx="132" cy="40" r="0.5" fill="#00E5A3" opacity="0.9" />
-                    </svg>
-                </div>
 
-                {/* Five Rising Growth Bars */}
-                <div className="w-[50%] flex items-end justify-between h-[75px] gap-2 select-none z-10 mt-10 pl-2">
-                    {[25, 45, 60, 75, 95].map((val, idx) => {
-                        const isHovered = hoveredBar === idx;
-                        const barLabels = ["M1", "M2", "M3", "M4", "M5"];
-                        const barColors = ["#00E5A3", "#00E5A3", "#00E5A3", "#00E5A3", "#00E5A3"];
-                        
-                        let glowClass = "";
-                        if (idx === 0) glowClass = "shadow-[0_0_12px_rgba(0,229,163,0.2)]";
-                        if (idx === 4) glowClass = "shadow-[0_0_20px_rgba(0,229,163,0.8)]";
-                        if (isHovered && idx !== 0 && idx !== 4) glowClass = "shadow-[0_0_10px_rgba(0,229,163,0.4)]";
-
-                        return (
-                            <div 
-                                key={idx} 
-                                className="flex-1 flex flex-col items-center h-full justify-end relative cursor-pointer"
-                                onMouseEnter={() => {
-                                    setHoveredBar(idx);
-                                    setTargetMargin(val === 95 ? 85 : val);
-                                }}
-                                onMouseLeave={() => {
-                                    setHoveredBar(null);
-                                    setTargetMargin(85);
-                                }}
-                            >
-                                <motion.div
-                                    className={`w-full rounded-[4px] relative ${glowClass}`}
-                                    style={{
-                                        height: `${val}%`,
-                                        backgroundColor: barColors[idx],
-                                        transformOrigin: "bottom"
-                                    }}
-                                    initial={{ scaleY: 0 }}
-                                    animate={{ 
-                                        scaleY: [0, 1, 1, 0],
-                                        scaleX: isHovered ? 1.05 : 1,
-                                        filter: isHovered ? "brightness(1.2)" : "brightness(1)"
-                                    }}
-                                    transition={{ 
-                                        scaleY: { repeat: Infinity, duration: 6, ease: "easeInOut", times: [0, 0.4, 0.8, 1], delay: idx * 0.1 },
-                                        scaleX: { duration: 0.5 },
-                                        filter: { duration: 0.5 }
-                                    }}
-                                />
-                                <span className={`absolute -bottom-5 text-[8.5px] font-bold transition-colors duration-200 ${
-                                    isHovered ? "text-white" : idx === 4 ? "text-[#00E5A3]" : idx === 0 ? "text-[#FFFFFF]/80" : "text-white/30"
-                                }`}>
-                                    {barLabels[idx]}
-                                </span>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Circular Target margin gauge */}
-                <div className="flex flex-col items-center justify-center w-[40%] mt-8 relative z-10 pr-2">
-                    <svg className="w-[75px] h-[75px] transform -rotate-90 overflow-visible">
-                        <circle
-                            cx="37.5"
-                            cy="37.5"
-                            r="30"
-                            className="stroke-[#1D2E32]"
-                            strokeWidth="5.5"
-                            fill="transparent"
+                        {/* Circular points appearing as path reaches them */}
+                        <motion.circle
+                            cx="157.5"
+                            cy="45"
+                            r="4.5"
+                            fill="#00E5A3"
+                            stroke="#00E5A3"
+                            strokeWidth="1"
+                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ type: "spring", stiffness: 200, delay: 0.85 }}
                         />
                         <motion.circle
-                            cx="37.5"
-                            cy="37.5"
-                            r="30"
-                            className="stroke-[#00E5A3] drop-shadow-[0_0_10px_rgba(0,229,163,0.8)]"
-                            strokeWidth="5.5"
-                            fill="transparent"
-                            strokeLinecap="round"
-                            strokeDasharray={`${2 * Math.PI * 30}`}
-                            animate={{
-                                strokeDashoffset: `${2 * Math.PI * 30 * (1 - targetMargin / 100)}`
-                            }}
-                            transition={{ duration: 1.2, ease: "easeInOut" }}
+                            cx="252.5"
+                            cy="58"
+                            r="4.5"
+                            fill="#00E5A3"
+                            stroke="#00E5A3"
+                            strokeWidth="1"
+                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ type: "spring", stiffness: 200, delay: 1.1 }}
                         />
-                    </svg>
+                        <motion.circle
+                            cx="347.5"
+                            cy="28"
+                            r="4.5"
+                            fill="#00E5A3"
+                            stroke="#00E5A3"
+                            strokeWidth="1"
+                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ type: "spring", stiffness: 200, delay: 1.35 }}
+                        />
 
-                    {/* Central Text */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pt-0.5">
-                        <AnimatePresence mode="wait">
-                            <motion.span
-                                key={targetMargin}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.8 }}
-                                className="text-[17px] font-bold text-white leading-none tracking-tight"
-                            >
-                                {targetMargin}%
-                            </motion.span>
-                        </AnimatePresence>
-                        <span className="text-[5px] font-bold text-[#8E9B9E] mt-1 uppercase tracking-widest">Performance</span>
-                    </div>
-                </div>
-
+                        {/* Arrowhead pointing up-right popping up at the end of the line */}
+                        <motion.polygon
+                            points="442.5,12 430,19 432,9"
+                            fill="#00E5A3"
+                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ type: "spring", stiffness: 200, delay: 1.6 }}
+                            style={{ transformOrigin: "442.5px 12px" }}
+                        />
+                    </motion.g>
+                </svg>
             </div>
 
             {/* Description and Metadata */}
@@ -994,7 +1026,7 @@ function PharmacyGrowthCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
                             <span className="font-semibold text-white">+15-20%</span> margin amplification across departments.
                         </span>
                     </div>
