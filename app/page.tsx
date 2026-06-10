@@ -26,13 +26,11 @@ export default function Home() {
   return (
     <SmoothScroll>
       <main className="flex min-h-screen flex-col overflow-x-hidden relative">
-
         <>
           <Navbar />
           <Newhero />
           <News />
           <TestingSection />
-          <ServicesSection />
           <OrbitingSection />
           <WhyPrimeTekSection />
           <OurFramework />

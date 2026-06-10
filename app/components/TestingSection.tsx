@@ -207,7 +207,7 @@ function RevenueIntelligenceCard() {
                     Revenue Intelligence & Reporting
                 </h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
-                    Track reimbursement trends, identify underpayments, and maximize your cash flow with real-time intelligence panels and AI-suggested recovery rules.
+                    Real-time revenue tracking that flags underpayments and recovers lost income automatically.
                 </p>
             </div>
 
@@ -217,15 +217,15 @@ function RevenueIntelligenceCard() {
                     href="#analyze"
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <div className="flex-1 pr-2">
-                        <span className="text-[13px] text-gray-300 leading-snug block">
-                            $1.2M+ in average annual underpayments identified and recovered per store.
+                    <div className="flex-1">
+                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-semibold text-white">$1.2M+</span> avg. underpayments recovered per store annually.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#FF4A3A] uppercase tracking-widest leading-tight text-left">
-                            Analyze<br />Revenue
+                        <span className="text-[10px] font-bold text-[#FF4A3A] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                            Analyze Revenue
                         </span>
                         <span className="text-[#FF4A3A] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
                             →
@@ -434,7 +434,7 @@ function ClaimsReimbursementCard() {
                     Claims & Reimbursement Optimization
                 </h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
-                    Reduce claim submission errors, automatically flag local rule violations, fix rejection trends, and maximize clean-claim reimbursement flow.
+                    Automatically fix claim errors and maximize clean-claim reimbursement flow.
                 </p>
             </div>
 
@@ -444,15 +444,15 @@ function ClaimsReimbursementCard() {
                     href="#claims"
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <div className="flex-1 pr-2">
-                        <span className="text-[13px] text-gray-300 leading-snug block">
-                            <span className="font-semibold text-white">Up to 19%</span> sustained increase in clean-claim recovery rates across locations.
+                    <div className="flex-1">
+                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-semibold text-white">19%</span> increase in clean-claim recovery rates.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#FF6B00] uppercase tracking-widest leading-tight text-left">
-                            Fix My<br />Claims
+                        <span className="text-[10px] font-bold text-[#FF6B00] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                            Fix My Claims
                         </span>
                         <span className="text-[#FF6B00] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
                             →
@@ -610,7 +610,7 @@ function ComplianceAuditCard() {
                     Compliance & Audit Protection
                 </h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
-                    Identify clinical and regulatory compliance gaps early, maintain persistent audit-ready histories, and reduce billing discrepancies automatically.
+                    Stay permanently audit-ready by detecting compliance gaps before they become liabilities.
                 </p>
             </div>
 
@@ -620,15 +620,15 @@ function ComplianceAuditCard() {
                     href="#audits"
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <div className="flex-1 pr-2">
-                        <span className="text-[13px] text-gray-300 leading-snug block">
-                            <span className="font-semibold text-white">87%</span> of active pharmacy users attain total compliance within 30 days of setup.
+                    <div className="flex-1">
+                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-semibold text-white">87%</span> achieve full compliance within 30 days.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left">
-                            Check Audit<br />Risk
+                        <span className="text-[10px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                            Check Audit Risk
                         </span>
                         <span className="text-[#FF9F29] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
                             →
@@ -674,88 +674,72 @@ const OPERATIONS_QUEUE: QueueItem[] = [
 ];
 
 function PatientOperationalCard() {
-    const [queueIndex, setQueueIndex] = useState<number>(0);
-    const [profileState, setProfileState] = useState<string>("In Review");
-    const [approvalCount, setApprovalCount] = useState<number>(142);
-    const [isVerifying, setIsVerifying] = useState<boolean>(false);
+    const [notifications, setNotifications] = useState<number[]>([0]);
 
-    const currentItem = OPERATIONS_QUEUE[queueIndex];
-
-    const handleAction = (status: string) => {
-        if (isVerifying) return;
-        setProfileState(status);
-        if (status === "Verified") {
-            setApprovalCount((prev) => prev + 1);
-        }
-    };
-
-    // Auto-cycle operational tasks with dynamic pipeline staging actions
     useEffect(() => {
         const interval = setInterval(() => {
-            // Trigger verification transition automatically to simulate an active AI scanner
-            setIsVerifying(true);
-            setProfileState("Scanning");
-
-            setTimeout(() => {
-                setIsVerifying(false);
-                setProfileState("Verified");
-                setApprovalCount((prev) => prev + 1);
-
-                // Wait 3 seconds on "Verified" state, then transition to the next queue item
-                setTimeout(() => {
-                    setQueueIndex((prevIndex) => (prevIndex + 1) % OPERATIONS_QUEUE.length);
-                    setProfileState("In Review");
-                }, 3000);
-
-            }, 1500);
-
-        }, 8000);
-
+            setNotifications(prev => {
+                const next = (prev[0] + 1) % OPERATIONS_QUEUE.length;
+                return [next, ...prev].slice(0, 3);
+            });
+        }, 2500);
         return () => clearInterval(interval);
-    }, [queueIndex]);
+    }, []);
 
     return (
         <div
             id="patient-operational-card"
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#3B82F6] hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
-
             {/* Visual Animation Area */}
-            <div className="relative flex min-h-[150px] w-full items-center justify-center rounded-xl bg-transparent p-3 border border-white/20 overflow-hidden">
-                
-                {/* iOS Notification Single */}
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={queueIndex}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="w-full max-w-[280px] bg-black/40 backdrop-blur-xl border border-white/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg relative overflow-hidden group/notif hover:bg-black/60 transition-colors z-10"
-                    >
-                        {/* Top Header */}
-                        <div className="flex justify-between items-center px-0.5">
-                            <div className="flex items-center gap-1.5">
-                                <div className="w-4 h-4 rounded-md bg-blue-500/20 flex items-center justify-center shrink-0">
-                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.5">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
-                                </div>
-                                <span className="text-[9px] text-white/50 font-semibold tracking-wide uppercase">System • {currentItem.initials}</span>
-                            </div>
-                            <span className="text-[8.5px] text-white/40">now</span>
-                        </div>
-                        
-                        {/* Body */}
-                        <div className="flex flex-col text-left px-0.5 mt-0.5">
-                            <span className="text-[11px] font-bold text-white/90 leading-tight">{currentItem.name}</span>
-                            <span className="text-[10px] text-white/60 line-clamp-2 leading-snug mt-0.5">{currentItem.detail}</span>
-                        </div>
-                    </motion.div>
-                </AnimatePresence>
+            <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-transparent p-3 border border-white/20 overflow-hidden">
+
+                {/* Notification Stack */}
+                <div className="relative w-full max-w-[280px] h-[120px]">
+                    <AnimatePresence>
+                        {notifications.map((itemIndex, stackPos) => {
+                            const item = OPERATIONS_QUEUE[itemIndex];
+                            const isTop = stackPos === 0;
+                            return (
+                                <motion.div
+                                    key={itemIndex}
+                                    initial={{ opacity: 0, y: -40, scale: 1 }}
+                                    animate={{
+                                        opacity: isTop ? 1 : stackPos === 1 ? 0.6 : 0.35,
+                                        y: stackPos * 10,
+                                        scale: 1 - stackPos * 0.04,
+                                    }}
+                                    exit={{ opacity: 0, y: 20 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                    style={{ zIndex: 10 - stackPos, position: "absolute", width: "100%" }}
+                                    className="bg-black/50 backdrop-blur-xl border border-white/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg"
+                                >
+                                    {/* Top Header */}
+                                    <div className="flex justify-between items-center px-0.5">
+                                        <div className="flex items-center gap-1.5">
+                                            <div className="w-4 h-4 rounded-md bg-blue-500/20 flex items-center justify-center shrink-0">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.5">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-[9px] text-white/50 font-semibold tracking-wide uppercase">System • {item.initials}</span>
+                                        </div>
+                                        <span className="text-[8.5px] text-white/40">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
+                                    </div>
+
+                                    {/* Body */}
+                                    <div className="flex flex-col text-left px-0.5 mt-0.5">
+                                        <span className="text-[11px] font-bold text-white/90 leading-tight">{item.name}</span>
+                                        <span className="text-[10px] text-white/60 line-clamp-2 leading-snug mt-0.5">{item.detail}</span>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                    </AnimatePresence>
+                </div>
 
                 {/* Ambient Glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -767,7 +751,7 @@ function PatientOperationalCard() {
                     Patient & Operational Support Systems
                 </h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
-                    Standardize pharmacy workflows, secure team collaboration grids, automate client coordination queues, and eliminate patient onboarding bottlenecks.
+                    Streamline every pharmacy workflow from patient onboarding to team coordination.
                 </p>
             </div>
 
@@ -777,15 +761,15 @@ function PatientOperationalCard() {
                     href="#operations"
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <div className="flex-1 pr-2">
-                        <span className="text-[13px] text-gray-300 leading-snug block">
-                            <span className="font-semibold text-white">30%</span> measured reduction in clinical file workflows bottlenecks.
+                    <div className="flex-1">
+                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-semibold text-white">30%</span> reduction in bottlenecks.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-widest leading-tight text-left">
-                            Improve<br />Operations
+                        <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                            Improve Operations
                         </span>
                         <span className="text-[#3B82F6] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
                             →
@@ -898,12 +882,12 @@ function PharmacyGrowthCard() {
                     {[25, 45, 60, 75, 95].map((val, idx) => {
                         const isHovered = hoveredBar === idx;
                         const barLabels = ["M1", "M2", "M3", "M4", "M5"];
-                        const barColors = ["#FFFFFF", "#1D8A99", "#1B8A6B", "#A06A3A", "#00E5A3"];
+                        const barColors = ["#00E5A3", "#00E5A3", "#00E5A3", "#00E5A3", "#00E5A3"];
                         
                         let glowClass = "";
-                        if (idx === 0) glowClass = "shadow-[0_0_12px_rgba(255,255,255,0.7)]";
+                        if (idx === 0) glowClass = "shadow-[0_0_12px_rgba(0,229,163,0.2)]";
                         if (idx === 4) glowClass = "shadow-[0_0_20px_rgba(0,229,163,0.8)]";
-                        if (isHovered && idx !== 0 && idx !== 4) glowClass = "shadow-[0_0_10px_rgba(255,255,255,0.3)]";
+                        if (isHovered && idx !== 0 && idx !== 4) glowClass = "shadow-[0_0_10px_rgba(0,229,163,0.4)]";
 
                         return (
                             <div 
@@ -999,7 +983,7 @@ function PharmacyGrowthCard() {
                     Pharmacy Growth & Performance Strategy
                 </h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
-                    Optimize drug procurement pricing, secure alternative sourcing networks, and execute pricing models to enhance total margins.
+                    Optimize procurement pricing and sourcing to grow your pharmacy's total margins.
                 </p>
             </div>
 
@@ -1009,15 +993,15 @@ function PharmacyGrowthCard() {
                     href="#growth"
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
-                    <div className="flex-1 pr-2">
-                        <span className="text-[13px] text-gray-300 leading-snug block">
-                            <span className="font-semibold text-white">+15-20%</span> standard margin amplification recorded across pharmacy departments.
+                    <div className="flex-1">
+                        <span className="text-[11px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-semibold text-white">+15-20%</span> margin amplification across departments.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#00E5A3] uppercase tracking-widest leading-tight text-left">
-                            Grow My<br />Pharmacy
+                        <span className="text-[10px] font-bold text-[#00E5A3] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                            Grow My Pharmacy
                         </span>
                         <span className="text-[#00E5A3] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
                             →
