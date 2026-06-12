@@ -62,7 +62,7 @@ const renderServiceIllustration = (idx: number, color: string) => {
                     </svg>
                     {/* Floating Info Pill */}
                     <motion.div
-                        className="absolute right-4 top-4 bg-white/5 border border-white/10 rounded-lg py-1.5 px-3 text-[10px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10"
+                        className="absolute right-4 top-4 bg-white/5 border border-white/10 rounded-lg py-1.5 px-3 text-[9px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10"
                         animate={{ y: [0, -6, 0] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     >
@@ -111,7 +111,7 @@ const renderServiceIllustration = (idx: number, color: string) => {
                         <circle cx="200" cy="80" r="5" fill="rgba(255,255,255,0.3)" />
                     </svg>
                     {/* Floating pill */}
-                    <div className="absolute right-4 top-4 bg-white/5 border border-white/10 rounded-lg py-1.5 px-3 text-[10px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md">
+                    <div className="absolute right-4 top-4 bg-white/5 border border-white/10 rounded-lg py-1.5 px-3 text-[9px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#ff5c4d]" />
                         <span>Optimized Routing</span>
                     </div>
@@ -135,7 +135,7 @@ const renderServiceIllustration = (idx: number, color: string) => {
                             <div className="w-10 h-10 rounded-full bg-[#0a0f1d] border-2 border-white/25 flex items-center justify-center text-xs font-bold text-white/50">
                                 01
                             </div>
-                            <span className="text-[9px] font-bold text-white/30 uppercase tracking-wider">Gap Scan</span>
+                            <span className="text-[8px] font-bold text-white/30 uppercase tracking-wider">Gap Scan</span>
                         </div>
                         {/* Milestone 2 */}
                         <motion.div
@@ -151,14 +151,14 @@ const renderServiceIllustration = (idx: number, color: string) => {
                                     <polyline points="20 6 9 17 4 12" />
                                 </svg>
                             </div>
-                            <span className="text-[9px] font-bold uppercase tracking-wider" style={{ color: color }}>Audit Ready</span>
+                            <span className="text-[8px] font-bold uppercase tracking-wider" style={{ color: color }}>Audit Ready</span>
                         </motion.div>
                         {/* Milestone 3 */}
                         <div className="flex flex-col items-center gap-2 relative z-10">
                             <div className="w-10 h-10 rounded-full bg-[#0a0f1d] border-2 border-white/10 flex items-center justify-center text-xs font-bold text-white/20">
                                 03
                             </div>
-                            <span className="text-[9px] font-bold text-white/20 uppercase tracking-wider">Safe</span>
+                            <span className="text-[8px] font-bold text-white/20 uppercase tracking-wider">Safe</span>
                         </div>
                     </div>
                 </div>
@@ -184,18 +184,18 @@ const renderServiceIllustration = (idx: number, color: string) => {
                                     </svg>
                                 </div>
                                 <div className="flex flex-col text-left">
-                                    <span className="text-[10px] font-bold text-white">Daily Queue</span>
-                                    <span className="text-[8px] text-white/40 uppercase tracking-wider">Operational Audit</span>
+                                    <span className="text-[9px] font-bold text-white">Daily Queue</span>
+                                    <span className="text-[7px] text-white/40 uppercase tracking-wider">Operational Audit</span>
                                 </div>
                             </div>
-                            <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                            <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
                                 Active
                             </span>
                         </div>
 
                         <div className="h-[1px] bg-white/5" />
 
-                        <div className="flex items-center justify-between text-[10px]">
+                        <div className="flex items-center justify-between text-[9px]">
                             <span className="text-white/50">Next scheduled Sync:</span>
                             <span className="font-bold text-white flex items-center gap-1">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -219,7 +219,7 @@ const renderServiceIllustration = (idx: number, color: string) => {
                                         transition={{ duration: 1.5 + idx * 0.2, repeat: Infinity, ease: "easeInOut" }}
                                     />
                                 </div>
-                                <span className={`text-[8px] font-bold ${idx === 4 ? 'text-emerald-400' : 'text-white/20'}`}>M{idx + 1}</span>
+                                <span className={`text-[7px] font-bold ${idx === 4 ? 'text-emerald-400' : 'text-white/20'}`}>M{idx + 1}</span>
                             </div>
                         ))}
                     </div>
@@ -396,7 +396,7 @@ export const ServicesSection: React.FC = () => {
                                         </div>
                                         <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10 shrink-0">
                                             <div className={`w-1.5 h-1.5 rounded-full ${service.dotColor}`} />
-                                            <span className={`text-[10px] font-bold tracking-widest ${service.tagColor}`}>{service.tag}</span>
+                                            <span className={`text-[9px] font-bold tracking-widest ${service.tagColor}`}>{service.tag}</span>
                                         </div>
                                     </div>
 
@@ -419,7 +419,7 @@ export const ServicesSection: React.FC = () => {
                                                 </div>
                                                 <span className="text-xl font-bold " style={{ color: service.accentColor }}>{service.stat}</span>
                                             </div>
-                                            <p className="text-[12px] text-white/30 uppercase font-medium leading-tight max-w-[120px]">
+                                            <p className="text-[10px] text-white/30 uppercase font-medium leading-tight max-w-[120px]">
                                                 {service.statLabel}
                                             </p>
                                         </div>
@@ -456,7 +456,7 @@ export const ServicesSection: React.FC = () => {
                                         </div>
                                         <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10 shrink-0">
                                             <div className={`w-1.5 h-1.5 rounded-full ${service.dotColor}`} />
-                                            <span className={`text-[10px] font-bold tracking-widest ${service.tagColor}`}>{service.tag}</span>
+                                            <span className={`text-[9px] font-bold tracking-widest ${service.tagColor}`}>{service.tag}</span>
                                         </div>
                                     </div>
 
@@ -479,7 +479,7 @@ export const ServicesSection: React.FC = () => {
                                                 </div>
                                                 <span className="text-xl font-bold " style={{ color: service.accentColor }}>{service.stat}</span>
                                             </div>
-                                            <p className="text-[12px] text-white/30 uppercase font-medium leading-tight max-w-[150px]">
+                                            <p className="text-[10px] text-white/30 uppercase font-medium leading-tight max-w-[150px]">
                                                 {service.statLabel}
                                             </p>
                                         </div>

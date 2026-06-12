@@ -286,7 +286,7 @@ export const ServicesDetail = () => {
 
             <div className="pt-12 hidden lg:block">
               <div className="p-8 border border-white/5 bg-white/[0.01]">
-                <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-600 mb-4">Current Identity</div>
+                <div className="text-[9px] font-bold uppercase tracking-[0.4em] text-slate-600 mb-4">Current Identity</div>
                 <div className="text-3xl font-display  text-white tracking-tight" style={{ color: colorMap[activeService.color] }}>{activeService.identity}</div>
               </div>
             </div>
@@ -346,7 +346,7 @@ export const ServicesDetail = () => {
                       }}
                     >
                       <div className="text-6xl font-bold font-outfit text-white mb-3 tracking-tighter">{activeService.stat}</div>
-                      <div className="text-[11px] font-bold uppercase tracking-[0.2em] leading-tight max-w-[140px] mx-auto" style={{ color: colorMap[activeService.color] }}>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] leading-tight max-w-[140px] mx-auto" style={{ color: colorMap[activeService.color] }}>
                         {activeService.statLabel}
                       </div>
                     </div>

@@ -3,12 +3,12 @@
 
 /* Global Responsive Scaling */
 html {
-  font-size: 100%;
+  font-size: 85%;
 }
 
 @media (min-width: 1280px) {
   html {
-    font-size: 90%;
+    font-size: 76.5%;
   }
 }
 

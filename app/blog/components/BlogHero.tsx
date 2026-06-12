@@ -13,7 +13,7 @@ export default function BlogHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <span className="text-brand-teal font-display font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block ">Resource Intelligence</span>
+          <span className="text-brand-teal font-display font-bold text-[9px] uppercase tracking-[0.4em] mb-4 block ">Resource Intelligence</span>
           <h1 className="text-6xl md:text-8xl font-display font-medium text-teal-400 mb-8 tracking-tighter uppercase  leading-[0.9]">
             The <span className="text-gradient font-light">Lead</span> <br /> Line.
           </h1>

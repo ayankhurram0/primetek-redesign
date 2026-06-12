@@ -224,7 +224,7 @@ export const OrbitingSection: React.FC = () => {
                     <div className={`text-left w-64 transition-all duration-300 ${badge.labelPos === 'left' ? 'text-right mr-4' : 'ml-4'}`}>
                       <div className={`font-bold text-xs uppercase tracking-[0.25em] mb-1 ${badge.textColor}`}>{badge.title}</div>
                       <div className="text-white font-bold text-xl mb-1.5 leading-none">{badge.sub}</div>
-                      <div className="text-white/50 text-[15px] leading-relaxed line-clamp-3 font-medium">{badge.desc}</div>
+                      <div className="text-white/50 text-[13px] leading-relaxed line-clamp-3 font-medium">{badge.desc}</div>
                     </div>
                   </div>
                 </div>

@@ -94,12 +94,12 @@ export const Hero: React.FC = () => {
           >
             <FancyButton
               label="Request a Strategy Call"
-              extraClasses="2xl:py-6 2xl:px-8 2xl:text-[18px]"
+              extraClasses="2xl:py-6 2xl:px-8 2xl:text-[15px]"
             />
             <FancyButton
               label="See How We Protect Revenue"
               variant="secondary"
-              extraClasses="2xl:py-6 2xl:px-8 2xl:text-[18px]"
+              extraClasses="2xl:py-6 2xl:px-8 2xl:text-[15px]"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             />
           </motion.div>
@@ -113,7 +113,7 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col gap-6 scale-90 2xl:scale-100">
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Verification Audit</span>
+                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Verification Audit</span>
                   <Activity size={12} className="text-white/40" />
                 </div>
                 <div className="h-28">
@@ -140,7 +140,7 @@ export const Hero: React.FC = () => {
 
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Readiness Score</span>
+                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Readiness Score</span>
                   <TrendingUp size={12} className="text-white/40" />
                 </div>
                 <div className="h-28">
@@ -152,7 +152,7 @@ export const Hero: React.FC = () => {
                 </div>
                 <div className="mt-2">
                   <div className="text-3xl font-bold text-white">90%</div>
-                  <div className="text-[8px] text-white/40">Ready for Review</div>
+                  <div className="text-[7px] text-white/40">Ready for Review</div>
                 </div>
               </div>
             </div>
@@ -179,12 +179,12 @@ export const Hero: React.FC = () => {
               {/* Card: Revenues Recovery */}
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Revenues Recovery</span>
+                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Revenues Recovery</span>
                   <BarChart3 size={12} className="text-white/40" />
                 </div>
                 <div className="text-center mb-2">
                   <div className="text-4xl font-bold text-white tracking-tighter">92%</div>
-                  <div className="text-[9px] text-teal-400 font-bold uppercase mt-1">Ready for Review</div>
+                  <div className="text-[8px] text-teal-400 font-bold uppercase mt-1">Ready for Review</div>
                 </div>
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">
@@ -197,12 +197,12 @@ export const Hero: React.FC = () => {
 
               <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-bold tracking-widest text-teal-400 uppercase">Revenue Identified</span>
+                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Revenue Identified</span>
                   <ChevronRight size={12} className="text-white/40" />
                 </div>
                 <div className="mb-2">
                   <div className="text-2xl font-bold text-white">$1.2M</div>
-                  <div className="text-[9px] text-teal-400 font-bold">vs last month ↑ 18%</div>
+                  <div className="text-[8px] text-teal-400 font-bold">vs last month ↑ 18%</div>
                 </div>
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">

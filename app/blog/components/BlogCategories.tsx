@@ -6,7 +6,7 @@ export default function BlogCategories() {
       {categories.map((cat, i) => (
         <button 
           key={i}
-          className={`px-6 py-2 rounded-full border text-[10px] font-bold uppercase tracking-widest transition-all ${i === 0 ? 'bg-brand-teal border-brand-teal text-brand-950' : 'bg-transparent border-white/10 text-slate-400 hover:border-brand-teal/50 hover:text-brand-teal'}`}
+          className={`px-6 py-2 rounded-full border text-[9px] font-bold uppercase tracking-widest transition-all ${i === 0 ? 'bg-brand-teal border-brand-teal text-brand-950' : 'bg-transparent border-white/10 text-slate-400 hover:border-brand-teal/50 hover:text-brand-teal'}`}
         >
           {cat}
         </button>

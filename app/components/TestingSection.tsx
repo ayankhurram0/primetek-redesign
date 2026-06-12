@@ -102,12 +102,12 @@ function RevenueIntelligenceCard() {
     return (
         <div
             id="revenue-intelligence-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF4A3A] hover:shadow-[0_0_20px_5px_rgba(255,74,58,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[360px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF4A3A]/50 p-6 transition-all duration-300 hover:border-[#FF4A3A] hover:shadow-[0_0_20px_5px_rgba(255,74,58,0.6),inset_0_0_60px_15px_rgba(255,74,58,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[360px]"
         >
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-transparent p-4 border border-[#FF4A3A]/20 transition-all duration-300 group-hover:border-[#FF4A3A]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
-                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF4A3A]/40 bg-[#FF4A3A]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF4A3A] pointer-events-none">
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF4A3A]/40 bg-[#FF4A3A]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF4A3A] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF4A3A]" />
                     Live Tracking
                 </div>
@@ -199,7 +199,7 @@ function RevenueIntelligenceCard() {
                     </svg>
 
                     {/* Floating Pill on bottom right */}
-                    <div className="absolute right-2 bottom-1 bg-white/5 border border-white/10 rounded-lg py-1 px-2.5 text-[9px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
+                    <div className="absolute right-2 bottom-1 bg-white/5 border border-white/10 rounded-lg py-1 px-2.5 text-[8px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                         <span>Live Leakage: $1.2M+</span>
                     </div>
@@ -211,7 +211,7 @@ function RevenueIntelligenceCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
                     Revenue Intelligence & Reporting
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Real-time revenue tracking that flags underpayments and recovers lost income automatically.
                 </p>
             </div>
@@ -223,13 +223,13 @@ function RevenueIntelligenceCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1 min-w-0">
-                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
-                            <span className="font-semibold text-white">$1.2M+</span> avg. underpayments recovered per store.
+                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
+                            <span className="font-bold text-[#FF4A3A] text-[18px]">$1.2M+</span> avg. underpayments recovered per store.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#FF4A3A] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                        <span className="text-[9px] font-bold text-[#FF4A3A] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Analyze Revenue
                         </span>
                         <span className="text-[#FF4A3A] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -253,7 +253,7 @@ function ClaimsReimbursementCard() {
     const [routeStatus, setRouteStatus] = useState<string>("Approved");
 
     const endpoints = [
-        { label: "PBM Auto-Match", status: "Success", color: "text-[#00E5A3]" },
+        { label: "PBM Auto-Match", status: "Success", color: "text-[#00C48C]" },
         { label: "COB Validation", status: "Auto-Fixed", color: "text-[#FF9F29]" },
         { label: "NPI Resolution", status: "Matched", color: "text-[#FF6B00]" },
     ];
@@ -283,12 +283,12 @@ function ClaimsReimbursementCard() {
     return (
         <div
             id="claims-reimbursement-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF6B00] hover:shadow-[0_0_20px_5px_rgba(255,107,0,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF6B00]/50 p-6 transition-all duration-300 hover:border-[#FF6B00] hover:shadow-[0_0_20px_5px_rgba(255,107,0,0.6),inset_0_0_60px_15px_rgba(255,107,0,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl p-4 border border-[#FF6B00]/20 transition-all duration-300 group-hover:border-[#FF6B00]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
-                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF6B00] pointer-events-none">
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF6B00] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00]" />
                     Auto-Route
                 </div>
@@ -419,7 +419,7 @@ function ClaimsReimbursementCard() {
                         <span className="text-[7.5px] font-mono text-gray-500 uppercase leading-none block">
                             Pipe Status:
                         </span>
-                        <span className="text-[9px] font-mono font-bold text-[#FF6B00] uppercase mt-0.5 inline-block animate-pulse">
+                        <span className="text-[8px] font-mono font-bold text-[#FF6B00] uppercase mt-0.5 inline-block animate-pulse">
                             {isRouting ? "processing..." : routeStatus}
                         </span>
                     </div>
@@ -431,7 +431,7 @@ function ClaimsReimbursementCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
                     Claims & Reimbursement Optimization
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Automatically fix claim errors and maximize clean-claim reimbursement flow.
                 </p>
             </div>
@@ -443,13 +443,13 @@ function ClaimsReimbursementCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
-                            <span className="font-semibold text-white">19%</span> increase in clean-claim recovery rates.
+                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-bold text-[#FF6B00] text-[18px]">19%</span> increase in clean-claim recovery rates.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#FF6B00] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                        <span className="text-[9px] font-bold text-[#FF6B00] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Fix My Claims
                         </span>
                         <span className="text-[#FF6B00] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -473,7 +473,7 @@ function ComplianceAuditCard() {
     const stages = [
         { id: 0, title: "Audit Deficit", color: "#FF4A3A" },
         { id: 1, title: "Risk Mitigated", color: "#FF9F29" },
-        { id: 2, title: "Protected", color: "#00E5A3" },
+        { id: 2, title: "Protected", color: "#00C48C" },
     ];
 
     // Auto-cycle stages to simulate active threat protection scans
@@ -487,12 +487,12 @@ function ComplianceAuditCard() {
     return (
         <div
             id="compliance-audit-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#FF9F29] hover:shadow-[0_0_20px_5px_rgba(255,159,41,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF9F29]/50 p-6 transition-all duration-300 hover:border-[#FF9F29] hover:shadow-[0_0_20px_5px_rgba(255,159,41,0.6),inset_0_0_60px_15px_rgba(255,159,41,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
             {/* Visual Animation Area */}
-            <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-transparent p-4 border border-[#FF9F29]/20 transition-all duration-300 group-hover:border-[#FF9F29]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
-                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF9F29]/40 bg-[#FF9F29]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#FF9F29] pointer-events-none">
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF9F29]/40 bg-[#FF9F29]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF9F29] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF9F29]" />
                     Risk Control
                 </div>
@@ -506,7 +506,7 @@ function ComplianceAuditCard() {
 
                 {/* Top items & category badge */}
                 <div className="flex items-center justify-between z-10 w-full">
-                    <span className="text-[10px] font-mono text-amber-500 font-bold uppercase tracking-wider">
+                    <span className="text-[9px] font-mono text-amber-500 font-bold uppercase tracking-wider">
                         Risk Scanner Active
                     </span>
                 </div>
@@ -614,7 +614,7 @@ function ComplianceAuditCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF9F29]">
                     Compliance & Audit Protection
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Stay permanently audit-ready by detecting compliance gaps before they become liabilities.
                 </p>
             </div>
@@ -626,13 +626,13 @@ function ComplianceAuditCard() {
                     className="flex items-center justify-between gap-2 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1 min-w-0">
-                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
-                            <span className="font-semibold text-white">87%</span> achieve full compliance within 30 days.
+                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
+                            <span className="font-bold text-[#FF9F29] text-[18px]">87%</span> achieve full compliance within 30 days.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-[10px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                        <span className="text-[9px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Check Audit Risk
                         </span>
                         <span className="text-[#FF9F29] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -694,14 +694,14 @@ function PatientOperationalCard() {
     return (
         <div
             id="patient-operational-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#3B82F6] hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#3B82F6]/50 p-6 transition-all duration-300 hover:border-[#3B82F6] hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.6),inset_0_0_60px_15px_rgba(59,130,246,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
             {/* Visual Animation Area */}
-            <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-transparent p-3 border border-white/20 overflow-hidden">
+            <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-transparent p-3 border border-[#3B82F6]/20 transition-all duration-300 group-hover:border-[#3B82F6]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
-                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#3B82F6]/40 bg-[#3B82F6]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#3B82F6] pointer-events-none">
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#3B82F6]/40 bg-[#3B82F6]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#3B82F6] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
-                    Ops Sync
+                    Sync
                 </div>
 
                 {/* Notification Stack */}
@@ -735,15 +735,15 @@ function PatientOperationalCard() {
                                                     <line x1="3" y1="10" x2="21" y2="10" />
                                                 </svg>
                                             </div>
-                                            <span className="text-[9px] text-white/50 font-semibold tracking-wide uppercase">System • {item.initials}</span>
+                                            <span className="text-[8px] text-white/50 font-semibold tracking-wide uppercase">System • {item.initials}</span>
                                         </div>
                                         <span className="text-[8.5px] text-white/40">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
                                     </div>
 
                                     {/* Body */}
                                     <div className="flex flex-col text-left px-0.5 mt-0.5">
-                                        <span className="text-[11px] font-bold text-white/90 leading-tight">{item.name}</span>
-                                        <span className="text-[10px] text-white/60 line-clamp-2 leading-snug mt-0.5">{item.detail}</span>
+                                        <span className="text-[9px] font-bold text-white/90 leading-tight">{item.name}</span>
+                                        <span className="text-[9px] text-white/60 line-clamp-2 leading-snug mt-0.5">{item.detail}</span>
                                     </div>
                                 </motion.div>
                             );
@@ -760,7 +760,7 @@ function PatientOperationalCard() {
                 <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
                     Patient & Operational Support Systems
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Streamline every pharmacy workflow from patient onboarding to team coordination.
                 </p>
             </div>
@@ -772,13 +772,13 @@ function PatientOperationalCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
-                            <span className="font-semibold text-white">30%</span> reduction in bottlenecks.
+                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-bold text-[#3B82F6] text-[18px]">30%</span> reduction in bottlenecks.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                        <span className="text-[9px] font-bold text-[#3B82F6] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Improve Operations
                         </span>
                         <span className="text-[#3B82F6] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -818,14 +818,14 @@ function PharmacyGrowthCard() {
     return (
         <div
             id="pharmacy-growth-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/20 p-6 transition-all duration-300 hover:border-[#00E5A3] hover:shadow-[0_0_20px_5px_rgba(0,229,163,0.6)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#00C48C]/50 p-6 transition-all duration-300 hover:border-[#00C48C] hover:shadow-[0_0_20px_5px_rgba(0,196,140,0.6),inset_0_0_60px_15px_rgba(0,196,140,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
             {/* Visual Animation Area */}
-            <div className="relative flex h-[160px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-white/20 overflow-hidden">
+            <div className="relative flex h-[160px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-[#00C48C]/20 transition-all duration-300 group-hover:border-[#00C48C]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
-                <div className="absolute top-3 right-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#00E5A3]/40 bg-[#00E5A3]/5 text-[9px] font-mono font-bold uppercase tracking-widest text-[#00E5A3] pointer-events-none">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00E5A3]" />
-                    Growth AI
+                <div className="absolute top-3 right-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#00C48C]/40 bg-[#00C48C]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#00C48C] pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00C48C]" />
+                    Growth Scale
                 </div>
 
                 {/* Pure SVG layout matching the mockup exactly with animations */}
@@ -839,49 +839,49 @@ function PharmacyGrowthCard() {
                         x="35"
                         width="55"
                         rx="6"
-                        fill="#00E5A3"
-                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
+                        fill="#00C48C"
+                        className="drop-shadow-[0_0_8px_rgba(0,196,140,0.3)] cursor-pointer"
                         animate={{ y: [110, 110, 80, 80, 110], height: [0, 0, 30, 30, 0] }}
                         transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.25, 0.75, 1], delay: 0 }}
                     />
-                    {/* M2 Bar: final height 48 */}
+                    {/* M2 Bar: final height 45 */}
                     <motion.rect
                         x="130"
                         width="55"
                         rx="6"
-                        fill="#00E5A3"
-                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
-                        animate={{ y: [110, 110, 62, 62, 110], height: [0, 0, 48, 48, 0] }}
+                        fill="#00C48C"
+                        className="drop-shadow-[0_0_8px_rgba(0,196,140,0.3)] cursor-pointer"
+                        animate={{ y: [110, 110, 65, 65, 110], height: [0, 0, 45, 45, 0] }}
                         transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.3, 0.75, 1], delay: 0.12 }}
                     />
-                    {/* M3 Bar: final height 32 */}
+                    {/* M3 Bar: final height 35 */}
                     <motion.rect
                         x="225"
                         width="55"
                         rx="6"
-                        fill="#00E5A3"
-                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
-                        animate={{ y: [110, 110, 78, 78, 110], height: [0, 0, 32, 32, 0] }}
+                        fill="#00C48C"
+                        className="drop-shadow-[0_0_8px_rgba(0,196,140,0.3)] cursor-pointer"
+                        animate={{ y: [110, 110, 75, 75, 110], height: [0, 0, 35, 35, 0] }}
                         transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.35, 0.75, 1], delay: 0.22 }}
                     />
-                    {/* M4 Bar: final height 64 */}
+                    {/* M4 Bar: final height 55 */}
                     <motion.rect
                         x="320"
                         width="55"
                         rx="6"
-                        fill="#00E5A3"
-                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
-                        animate={{ y: [110, 110, 46, 46, 110], height: [0, 0, 64, 64, 0] }}
+                        fill="#00C48C"
+                        className="drop-shadow-[0_0_8px_rgba(0,196,140,0.3)] cursor-pointer"
+                        animate={{ y: [110, 110, 55, 55, 110], height: [0, 0, 55, 55, 0] }}
                         transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.4, 0.75, 1], delay: 0.32 }}
                     />
-                    {/* M5 Bar: final height 86 */}
+                    {/* M5 Bar: final height 72 */}
                     <motion.rect
                         x="415"
                         width="55"
                         rx="6"
-                        fill="#00E5A3"
-                        className="drop-shadow-[0_0_8px_rgba(0,229,163,0.5)] cursor-pointer"
-                        animate={{ y: [110, 110, 24, 24, 110], height: [0, 0, 86, 86, 0] }}
+                        fill="#00C48C"
+                        className="drop-shadow-[0_0_8px_rgba(0,196,140,0.3)] cursor-pointer"
+                        animate={{ y: [110, 110, 38, 38, 110], height: [0, 0, 72, 72, 0] }}
                         transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.05, 0.45, 0.75, 1], delay: 0.42 }}
                     />
 
@@ -890,7 +890,7 @@ function PharmacyGrowthCard() {
                     <text x="157.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M2</text>
                     <text x="252.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M3</text>
                     <text x="347.5" y="126" fill="rgba(255,255,255,0.6)" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M4</text>
-                    <text x="442.5" y="126" fill="#00E5A3" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M5</text>
+                    <text x="442.5" y="126" fill="#00C48C" fontSize="10.5" fontWeight="bold" textAnchor="middle" fontFamily="Montserrat, sans-serif">M5</text>
 
                     {/* Animated Line Graph — continuous float + looping trace */}
                     <motion.g
@@ -899,52 +899,52 @@ function PharmacyGrowthCard() {
                     >
                         {/* Green line path — traces in then out on loop */}
                         <motion.path
-                            d="M 62.5 70 L 157.5 45 L 252.5 58 L 347.5 28 L 442.5 12"
-                            stroke="#00E5A3"
+                            d="M 62.5 70 L 157.5 52 L 252.5 62 L 347.5 42 L 442.5 26"
+                            stroke="#00C48C"
                             strokeWidth="3.2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            className="drop-shadow-[0_0_6px_rgba(0,196,140,0.4)]"
                             animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
                             transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.45, 0.75, 1] }}
                         />
 
                         {/* Dot above M2 */}
                         <motion.circle
-                            cx="157.5" cy="45" r="4.5"
-                            fill="#00E5A3" stroke="#00E5A3" strokeWidth="1"
-                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            cx="157.5" cy="52" r="4.5"
+                            fill="#00C48C" stroke="#00C48C" strokeWidth="1"
+                            className="drop-shadow-[0_0_6px_rgba(0,196,140,0.4)]"
                             animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-                            style={{ transformOrigin: "157.5px 45px" }}
+                            style={{ transformOrigin: "157.5px 52px" }}
                             transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.28, 0.45, 0.75, 1] }}
                         />
                         {/* Dot above M3 */}
                         <motion.circle
-                            cx="252.5" cy="58" r="4.5"
-                            fill="#00E5A3" stroke="#00E5A3" strokeWidth="1"
-                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            cx="252.5" cy="62" r="4.5"
+                            fill="#00C48C" stroke="#00C48C" strokeWidth="1"
+                            className="drop-shadow-[0_0_6px_rgba(0,196,140,0.4)]"
                             animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-                            style={{ transformOrigin: "252.5px 58px" }}
+                            style={{ transformOrigin: "252.5px 62px" }}
                             transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.34, 0.45, 0.75, 1] }}
                         />
                         {/* Dot above M4 */}
                         <motion.circle
-                            cx="347.5" cy="28" r="4.5"
-                            fill="#00E5A3" stroke="#00E5A3" strokeWidth="1"
-                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                            cx="347.5" cy="42" r="4.5"
+                            fill="#00C48C" stroke="#00C48C" strokeWidth="1"
+                            className="drop-shadow-[0_0_6px_rgba(0,196,140,0.4)]"
                             animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-                            style={{ transformOrigin: "347.5px 28px" }}
+                            style={{ transformOrigin: "347.5px 42px" }}
                             transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.39, 0.45, 0.75, 1] }}
                         />
 
-                        {/* Arrowhead at end of line */}
-                        <motion.polygon
-                            points="442.5,12 430,19 432,9"
-                            fill="#00E5A3"
-                            className="drop-shadow-[0_0_6px_rgba(0,229,163,0.8)]"
+                        {/* Dot above M5 */}
+                        <motion.circle
+                            cx="442.5" cy="26" r="4.5"
+                            fill="#00C48C" stroke="#00C48C" strokeWidth="1"
+                            className="drop-shadow-[0_0_6px_rgba(0,196,140,0.4)]"
                             animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-                            style={{ transformOrigin: "442.5px 12px" }}
-                            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.43, 0.5, 0.75, 1] }}
+                            style={{ transformOrigin: "442.5px 26px" }}
+                            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, times: [0, 0.44, 0.45, 0.75, 1] }}
                         />
                     </motion.g>
                 </svg>
@@ -952,10 +952,10 @@ function PharmacyGrowthCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#00E5A3]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#00C48C]">
                     Pharmacy Growth & Performance Strategy
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
                     Optimize procurement pricing and sourcing to grow your pharmacy's total margins.
                 </p>
             </div>
@@ -967,16 +967,16 @@ function PharmacyGrowthCard() {
                     className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
                 >
                     <div className="flex-1">
-                        <span className="text-[12px] text-gray-300 leading-snug block whitespace-nowrap">
-                            <span className="font-semibold text-white">+15-20%</span> margin amplification across departments.
+                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
+                            <span className="font-bold text-[#00C48C] text-[18px]">+18%</span> margin amplification across departments.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[10px] font-bold text-[#00E5A3] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                        <span className="text-[9px] font-bold text-[#00C48C] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Grow My Pharmacy
                         </span>
-                        <span className="text-[#00E5A3] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
+                        <span className="text-[#00C48C] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
                             →
                         </span>
                     </div>

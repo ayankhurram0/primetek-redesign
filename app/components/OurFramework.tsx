@@ -132,7 +132,7 @@ export const OurFramework: React.FC = () => {
             <div className="w-full text-center mb-8 z-30">
               <span
                 ref={subtitleRef}
-                className="inline-block text-white 2xl:text-[32px] font-bold"
+                className="inline-block text-white 2xl:text-[27px] font-bold"
               >
                 Our 4-Step Operational Framework
               </span>

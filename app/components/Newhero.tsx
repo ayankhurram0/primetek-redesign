@@ -56,7 +56,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <TrendingUp size={14} className="text-white font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-white font-bold">Audit Readiness</span>
+            <span className="text-[9px] uppercase tracking-widest text-white font-bold">Audit Readiness</span>
           </div>
           <Info size={14} className="text-white" />
         </div>
@@ -75,11 +75,11 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
           </ResponsiveContainer>
           <div className="mt-2">
             <h3 className="text-lg font-display font-bold leading-tight text-white">Readiness Score</h3>
-            <p className="text-[10px] text-white">90% increase in compliance readiness over Q1.</p>
+            <p className="text-[9px] text-white">90% increase in compliance readiness over Q1.</p>
           </div>
         </div>
         <div className="bg-teal-900/20 p-2 px-3 rounded-2xl flex items-center justify-between mt-1">
-          <span className="text-[10px] font-bold text-white">Ready for Review</span>
+          <span className="text-[9px] font-bold text-white">Ready for Review</span>
           <div className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
         </div>
       </div>
@@ -89,7 +89,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <Activity size={14} className="text-white font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-white font-bold">Compliance Protocol</span>
+            <span className="text-[9px] uppercase tracking-widest text-white font-bold">Compliance Protocol</span>
           </div>
           <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
         </div>
@@ -113,12 +113,12 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
           </ResponsiveContainer>
           <div className="mt-2">
             <h3 className="text-lg font-display font-bold leading-tight text-white">Protocol Adherence</h3>
-            <p className="text-[10px] text-white">Real-time monitoring of institutional requirements.</p>
+            <p className="text-[9px] text-white">Real-time monitoring of institutional requirements.</p>
           </div>
         </div>
         <div className="flex justify-between items-end mt-2 text-white">
           <div className="text-2xl font-bold">85%</div>
-          <div className="text-[10px] opacity-60 mb-1 font-bold">Weekly Avg</div>
+          <div className="text-[9px] opacity-60 mb-1 font-bold">Weekly Avg</div>
         </div>
       </div>
 
@@ -127,7 +127,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <BarChart3 size={14} className="text-white font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-white font-bold">Reconciliation</span>
+            <span className="text-[9px] uppercase tracking-widest text-white font-bold">Reconciliation</span>
           </div>
           <ChevronRight size={14} className="text-white" />
         </div>
@@ -143,17 +143,17 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
           </ResponsiveContainer>
           <div className="mt-2">
             <h3 className="text-lg font-display font-bold leading-tight text-white">Revenue Recovery</h3>
-            <p className="text-[10px] text-white">Discrepancy resolution and cycle efficiency.</p>
+            <p className="text-[9px] text-white">Discrepancy resolution and cycle efficiency.</p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 mt-2">
           <div className="bg-white/5 p-2 rounded-xl">
-            <div className="text-[8px] text-white uppercase font-bold">Recovered</div>
-            <div className="text-xs font-bold text-green">+$12.4k</div>
+            <div className="text-[7px] text-white uppercase font-bold">Recovered</div>
+            <div className="text-xs font-bold text-[#4ade80]">+$12.4k</div>
           </div>
           <div className="bg-teal-900/20 p-2 rounded-xl">
-            <div className="text-[8px] text-white uppercase font-bold">Pending</div>
-            <div className="text-xs font-bold text-yellow">$4.2k</div>
+            <div className="text-[7px] text-white uppercase font-bold">Pending</div>
+            <div className="text-xs font-bold text-[#fbbf24]">$4.2k</div>
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
             <PieChartIcon size={14} className="text-white font-bold" />
-            <span className="text-[10px] uppercase tracking-widest text-white font-bold">PBM Checklist</span>
+            <span className="text-[9px] uppercase tracking-widest text-white font-bold">PBM Checklist</span>
           </div>
           <Info size={14} className="text-white" />
         </div>
@@ -179,21 +179,24 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
                 paddingAngle={5}
                 dataKey="value"
               >
+                {pbmData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={index === 0 ? '#4ade80' : index === 1 ? '#facc15' : '#f472b6'} />
+                ))}
               </Pie>
             </PieChart>
           </ResponsiveContainer>
         </div>
         <div className="space-y-1 mt-2">
           <h3 className="text-lg font-display font-bold leading-tight text-white">Verification Audit</h3>
-          <div className="flex gap-2 text-[8px] text-white font-bold">
+          <div className="flex gap-2 text-[7px] text-white font-bold">
             <div className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#2dd4bf]" /> Verified
+              <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" /> Verified
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#5eead4]" /> Pending
+              <div className="w-1.5 h-1.5 rounded-full bg-[#facc15]" /> Pending
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#99f6e4]" /> Flagged
+              <div className="w-1.5 h-1.5 rounded-full bg-[#f472b6]" /> Flagged
             </div>
           </div>
         </div>

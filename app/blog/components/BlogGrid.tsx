@@ -37,9 +37,9 @@ export default function BlogGrid() {
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-bold text-brand-teal uppercase tracking-widest">{post.category}</span>
+                    <span className="text-[9px] font-bold text-brand-teal uppercase tracking-widest">{post.category}</span>
                     <span className="w-1 h-1 rounded-full bg-slate-800" />
-                    <span className="flex items-center gap-1 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                    <span className="flex items-center gap-1 text-[9px] text-slate-500 font-bold uppercase tracking-widest">
                       <Clock className="w-3 h-3" /> {post.date}
                     </span>
                   </div>
@@ -56,7 +56,7 @@ export default function BlogGrid() {
         </div>
 
         <div className="mt-24 text-center">
-          <button className="px-10 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all text-[10px] uppercase tracking-[0.3em]">
+          <button className="px-10 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all text-[9px] uppercase tracking-[0.3em]">
             Load More Investigations
           </button>
         </div>

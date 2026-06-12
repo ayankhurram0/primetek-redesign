@@ -26,11 +26,11 @@ export default function BlogNewsletter() {
                         placeholder="operator@pharmacy.com"
                         className="flex-1 glass bg-white/5 border-white/10 rounded-full py-5 px-8 text-sm text-white focus:outline-none focus:border-brand-teal/50 transition-all font-mono"
                      />
-                     <button className="px-10 py-5 bg-brand-teal text-brand-950 font-bold rounded-full hover:glow-teal active:scale-95 transition-all text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
+                     <button className="px-10 py-5 bg-brand-teal text-brand-950 font-bold rounded-full hover:glow-teal active:scale-95 transition-all text-[9px] uppercase tracking-widest flex items-center justify-center gap-2">
                         Subscribe <ArrowRight className="w-4 h-4" />
                      </button>
                   </form>
-                  <p className="text-[9px] text-slate-500 font-bold uppercase tracking-[0.2em] mt-6 text-center lg:text-left">
+                  <p className="text-[8px] text-slate-500 font-bold uppercase tracking-[0.2em] mt-6 text-center lg:text-left">
                      Privacy Guaranteed. Data secured via encryption standard 2.0.
                   </p>
                </div>

@@ -51,7 +51,7 @@ const StepItem = ({ step, i, totalSteps, scrollYProgress }: {
       <div className="flex h-full w-full relative">
         {/* Step Label (Always Visible) */}
         <div className="w-14 border-r border-white/10 flex flex-col items-center justify-between py-12 flex-shrink-0 bg-[#010810]/40 z-10">
-          <span className="rotate-[-90deg] whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.3em] text-white">
+          <span className="rotate-[-90deg] whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.3em] text-white">
             Step {step.id}
           </span>
           <div className="text-teal-400 group-hover:text-white transition-colors">

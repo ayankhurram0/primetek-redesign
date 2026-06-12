@@ -22,11 +22,11 @@ export default function BlogFeatured() {
                      />
                      <div className="absolute inset-0 bg-linear-to-r from-brand-950/80 to-transparent" />
                      <div className="absolute top-8 left-8">
-                        <span className="px-4 py-1 rounded-full bg-brand-teal text-brand-950 font-bold text-[10px] uppercase tracking-widest">White Paper</span>
+                        <span className="px-4 py-1 rounded-full bg-brand-teal text-brand-950 font-bold text-[9px] uppercase tracking-widest">White Paper</span>
                      </div>
                   </div>
                   <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center bg-brand-950/40 backdrop-blur-3xl">
-                     <div className="flex items-center gap-4 text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-6">
+                     <div className="flex items-center gap-4 text-slate-500 text-[9px] font-bold uppercase tracking-widest mb-6">
                         <span className="text-brand-teal">By Operational Lead</span>
                         <span className="w-1 h-1 rounded-full bg-slate-800" />
                         <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> 12 MIN READ</span>

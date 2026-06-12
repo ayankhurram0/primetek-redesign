@@ -113,7 +113,7 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
           className="max-w-5xl relative z-10"
         >
           <div>
-            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-teal-400">
+            <span className="inline-block px-4 py-1.5 mb-8 text-[9px] font-bold uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-teal-400">
               {service.title}
             </span>
           </div>

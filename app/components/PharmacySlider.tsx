@@ -244,7 +244,7 @@ export const PharmacySlider: React.FC = () => {
           >
             <div className="w-[1.5px] h-3.5 bg-teal-400 rounded-full shadow-[0_0_10px_rgba(113,198,164,0.3)]" />
           </motion.div>
-          <span className="text-[10px] font-mono font-bold uppercase tracking-[10px] text-[#2b4c8c]/30 pl-4">Scroll to explore</span>
+          <span className="text-[9px] font-mono font-bold uppercase tracking-[10px] text-[#2b4c8c]/30 pl-4">Scroll to explore</span>
         </div>
 
       </div>

@@ -17,7 +17,7 @@ export default function NetworkPulse() {
           <div className="lg:col-span-12 mb-12">
             <div className="flex items-center gap-3 mb-8">
               <span className="w-12 h-px bg-brand-teal" />
-              <span className="text-teal-400 font-mono text-[10px] font-bold uppercase tracking-[0.5em] ">Live_Network_Telemetry</span>
+              <span className="text-teal-400 font-mono text-[9px] font-bold uppercase tracking-[0.5em] ">Live_Network_Telemetry</span>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -33,11 +33,11 @@ export default function NetworkPulse() {
                 <div className="grid grid-cols-2 gap-8 mb-10">
                   <div>
                     <div className="text-teal-400 font-display font-bold text-3xl  tracking-tighter">4,812</div>
-                    <div className="text-[9px] text-slate-500 font-mono font-bold uppercase tracking-widest mt-1">ACTIVE_NODES</div>
+                    <div className="text-[8px] text-slate-500 font-mono font-bold uppercase tracking-widest mt-1">ACTIVE_NODES</div>
                   </div>
                   <div>
                     <div className="text-brand-teal font-display font-bold text-3xl  tracking-tighter">128ms</div>
-                    <div className="text-[9px] text-slate-500 font-mono font-bold uppercase tracking-widest mt-1">AVG_LATENCY</div>
+                    <div className="text-[8px] text-slate-500 font-mono font-bold uppercase tracking-widest mt-1">AVG_LATENCY</div>
                   </div>
                 </div>
               </div>
@@ -81,11 +81,11 @@ export default function NetworkPulse() {
                 <div className="absolute top-6 right-6 flex flex-col items-end">
                   <div className="flex items-center gap-2 px-3 py-1 rounded-sm border border-brand-teal/30 bg-brand-teal/5">
                     <Radio className="w-3 h-3 text-brand-teal animate-pulse" />
-                    <span className="text-[9px] font-mono text-brand-teal font-bold uppercase tracking-widest">TRANSMISSION_ACTIVE</span>
+                    <span className="text-[8px] font-mono text-brand-teal font-bold uppercase tracking-widest">TRANSMISSION_ACTIVE</span>
                   </div>
                 </div>
 
-                <div className="absolute bottom-6 left-6 text-[8px] font-mono text-slate-500 font-bold uppercase tracking-[0.2em]">
+                <div className="absolute bottom-6 left-6 text-[7px] font-mono text-slate-500 font-bold uppercase tracking-[0.2em]">
                   SECURE_LINK_ENCRYPTION_PROTOCOL_v4.2.0
                 </div>
               </div>
