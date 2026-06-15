@@ -65,14 +65,10 @@ export default function Footer() {
             <span className="text-teal-400 text-xs font-bold uppercase tracking-widest mb-2">Headquarters</span>
             <div className="space-y-3">
               <p className="text-white/80 text-xs md:text-sm 2xl:text-base leading-relaxed">
-                3 Gateway Center, 100 Mulberry Street<br />
-                12th Floor, Suite 1243<br />
+                3 Gateway Center, 100 Mulberry Street,<br />
                 Newark, NJ 07102
               </p>
               <div className="pt-2 space-y-1">
-                <p className="text-white font-bold text-xs md:text-sm 2xl:text-base">
-                  +1 (908) 333-6252
-                </p>
                 <p className="text-teal-400 font-medium text-xs md:text-sm 2xl:text-base break-all">
                   info@primetekservices.com
                 </p>

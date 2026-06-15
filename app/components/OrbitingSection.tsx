@@ -169,10 +169,9 @@ export const OrbitingSection: React.FC = () => {
 
   return (
     <div id="orbit-section" ref={sectionRef} className="relative w-full overflow-hidden">
-      <div ref={triggerRef} className="h-auto w-full flex flex-col items-center justify-center overflow-hidden px-6 relative py-30">
-
+      <div ref={triggerRef} className="h-auto flex flex-col items-center justify-center overflow-hidden w-[85%] mx-auto relative py-30">
         <div className="relative z-10 w-[100%] mx-auto text-center mt-30 flex items-center justify-center">
-          <div className="w-[35%] 2xl:pl-20 pl-10">
+          <div className="w-[35%]">
             <h2
               ref={headingRef}
               className="text-4xl 2xl:text-6xl font-bold mb-8 tracking-tight text-left capitalize"

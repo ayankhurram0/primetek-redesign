@@ -998,7 +998,7 @@ export default function TestingSection() {
 
     return (
         <section ref={sectionRef} className="relative w-full overflow-hidden font-montserrat">
-            <div className="flex flex-col justify-center 2xl:py-30 px-12">
+            <div className="flex flex-col justify-center 2xl:py-30 w-[85%] mx-auto">
                 <div className="relative z-10 w-full mt-20">
                     <div className="text-center mb-12 flex flex-col items-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
                         <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
@@ -1019,7 +1019,7 @@ export default function TestingSection() {
                         </div>
 
                         {/* Bottom row with 2 cards centered */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1300px] mx-auto w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1000px] mx-auto w-full">
                             <PatientOperationalCard />
                             <PharmacyGrowthCard />
                         </div>

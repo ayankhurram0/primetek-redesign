@@ -1,6 +1,7 @@
 import Navbar from "@/app/components/Navbar";
 import { AboutHero } from "./components/AboutHero";
-import { OurStory } from "./components/OurStory";
+import { OurJourney } from "./components/OurJourney";
+
 import { MissionVision } from "./components/MissionVision";
 import { CorePhilosophy } from "./components/CorePhilosophy";
 import { Evolution } from "./components/Evolution";
@@ -13,11 +14,8 @@ export default function AboutPage() {
     <main className="flex min-h-screen flex-col overflow-x-hidden">
       <Navbar />
       <AboutHero />
-      <OurStory />
-      <MissionVision />
-      <CorePhilosophy />
+      <OurJourney />
       <Evolution />
-      <TheCollective />
       <ConsultationCTA />
       <Footer />
     </main>

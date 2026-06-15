@@ -145,9 +145,9 @@ export const WhyPrimeTekSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden font-montserrat">
+    <section ref={sectionRef} className="relative w-[85%] mx-auto overflow-hidden font-montserrat">
       <div ref={triggerRef} className="relative h-auto flex flex-col justify-center py-40">
-        <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10 px-12">
+        <div className="max-w-[1700px] mx-auto text-center mb-16 relative z-10">
           <div ref={subHeadingRef} className="flex items-center justify-center gap-4 mb-6">
             <div className="h-[1px] w-12 bg-teal-400/40" />
             <span className="text-teal-400 font-bold text-xs tracking-widest uppercase">WHY PRIMETEK</span>
@@ -165,7 +165,7 @@ export const WhyPrimeTekSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="max-w-[1700px] mx-auto relative px-12 w-full">
+        <div className="max-w-[1700px] mx-auto relative w-full">
           {/* Step Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative z-10 pb-14">
             {steps.map((step, idx) => (

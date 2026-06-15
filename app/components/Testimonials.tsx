@@ -49,7 +49,7 @@ export default function Testimonials() {
   return (
     <section className="py-30 z-10 overflow-hidden relative">
 
-      <div className="w-[95%] max-w-[1800px] mx-auto px-6 md:px-12">
+      <div className="w-[85%] mx-auto">
 
         {/* Header Section */}
         <AnimationWrapper direction="up" distance={30} className="flex flex-col md:flex-row justify-between items-start md:items-center mb-20 gap-8">

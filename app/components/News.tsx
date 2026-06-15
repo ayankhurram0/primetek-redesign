@@ -236,14 +236,14 @@ export default function IntelligenceDashboard() {
   }, { scope: sectionRef });
 
   return (
-    <div ref={sectionRef} className="space-y-8 2xl:px-24 2xl:py-20 relative z-10 overflow-hidden h-auto">
+    <div ref={sectionRef} className="space-y-8 2xl:py-20 relative z-10 overflow-hidden h-auto">
       {/* Ambient Red/Orange Background Glows with natural top/bottom blend */}
       <div className="absolute inset-0 pointer-events-none z-0" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[2000px] h-[1500px] bg-red-600/40 rounded-[100%] blur-[350px]" />
       </div>
 
       {/* Main Interaction Dashboard */}
-      <section ref={dashboardRef} id="intelligence" className="animate-in fade-in duration-700">
+      <section ref={dashboardRef} id="intelligence" className="animate-in fade-in duration-700 w-[85%] mx-auto">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 items-center">
 
           {/* Left Column: Headings & Sidebar Controls */}

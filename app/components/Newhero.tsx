@@ -248,86 +248,86 @@ export default function App() {
           </div>
         </motion.div>
       </div>
-
-      {/* Foreground Image (Pharmacist - Right Aligned) */}
-      <div className="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
-        <motion.div
-          initial={{ x: 250, opacity: 0 }}
-          animate={{ x: 250, opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-          className="relative 2xl:h-[90%] w-auto flex items-end"
-          style={{
-            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-          }}
-        >
-          <Image
-            src={pharmacist}
-            alt="Professional female pharmacist"
-            className="h-full w-auto object-contain object-bottom drop-shadow-[-20px_20px_50px_rgba(0,0,0,0.2)]"
-            priority
-          />
-        </motion.div>
-      </div>
-
-      {/* Hero Content - Left Aligned Layout */}
-      <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start pt-15 px-6 2xl:px-24 pointer-events-none">
-
-        <div className="relative flex flex-col items-center text-left 2xl:w-[58%] w-[55%] pointer-events-auto">
+      <div className="w-[85%] mx-auto">
+        {/* Foreground Image (Pharmacist - Right Aligned) */}
+        <div className="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className=""
+            initial={{ x: 200, y: -70, opacity: 0 }}
+            animate={{ x: 200, y: -70, opacity: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+            className="relative 2xl:h-[80%] w-auto flex items-end"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            }}
           >
-            <div className="py-12 rounded-full">
-              <span className="text-md 2xl:text-4xl font-bold tracking-wider uppercase text-[#2dd4bf]">
-                OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT & MULTI-LOCATION PHARMACIES
-              </span>
-            </div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight text-white"
-          >
-            Is your pharmacy losing revenue due to hidden <span className="text-[#2dd4bf]">compliance gaps?</span>
-          </motion.h1>
-        </div>
-
-        {/* Bottom Section: Description + Buttons */}
-        <div className="flex flex-col items-start text-left max-w-3xl pointer-events-auto mt-8">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-lg 2xl:text-3xl text-white/60 mb-14 font-medium z-10"
-          >
-            Built to support pharmacies navigating PBM pressure, audit risk, and operational complexity.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-6"
-          >
-            <FancyButton
-              label="Request a Strategy Call"
-              extraClasses="2xl:py-6 2xl:px-8 2xl:text-lg" 
-            />
-            <FancyButton
-              label="See How We Protect Revenue"
-              variant="secondary"
-              extraClasses="2xl:py-6 2xl:px-8 2xl:text-lg"
-              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+            <Image
+              src={pharmacist}
+              alt="Professional female pharmacist"
+              className="h-full w-auto object-contain object-bottom drop-shadow-[-20px_20px_50px_rgba(0,0,0,0.2)]"
+              priority
             />
           </motion.div>
         </div>
-      </div>
 
+        {/* Hero Content - Left Aligned Layout */}
+        <div className="relative z-10 w-full h-screen flex flex-col justify-center items-start pointer-events-none">
+
+          <div className="relative flex flex-col items-center text-left 2xl:w-[52%] w-[55%] pointer-events-auto">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className=""
+            >
+              <div className="py-12 rounded-full">
+                <span className="text-md 2xl:text-4xl font-bold tracking-wider uppercase text-[#2dd4bf]">
+                  OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT & MULTI-LOCATION PHARMACIES
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-5xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight text-white"
+            >
+              Is your pharmacy losing revenue due to hidden <span className="text-[#2dd4bf]">compliance gaps?</span>
+            </motion.h1>
+          </div>
+
+          {/* Bottom Section: Description + Buttons */}
+          <div className="flex flex-col items-start text-left max-w-3xl pointer-events-auto mt-8">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="text-lg 2xl:text-3xl text-white/60 mb-14 font-medium z-10"
+            >
+              Built to support pharmacies navigating PBM pressure, audit risk, and operational complexity.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-6"
+            >
+              <FancyButton
+                label="Request a Strategy Call"
+                extraClasses="2xl:py-6 2xl:px-8 2xl:text-lg"
+              />
+              <FancyButton
+                label="See How We Protect Revenue"
+                variant="secondary"
+                extraClasses="2xl:py-6 2xl:px-8 2xl:text-lg"
+                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

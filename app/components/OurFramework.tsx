@@ -64,10 +64,10 @@ export const OurFramework: React.FC = () => {
       y: 30,
     });
     gsap.set(lineRef.current, { height: 0 });
-    
+
     const rows = rowsRef.current.filter(Boolean);
     gsap.set(rows, { opacity: 0, y: 50 });
-    
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -83,24 +83,24 @@ export const OurFramework: React.FC = () => {
       stagger: 0.15,
       ease: "power2.out"
     })
-    .to(subtitleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out"
-    }, "-=0.4")
-    .to(lineRef.current, {
-      height: "90%",
-      duration: 1.5,
-      ease: "power2.inOut"
-    }, "-=0.2")
-    .to(rows, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      stagger: 0.3,
-      ease: "power2.out"
-    }, "<");
+      .to(subtitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out"
+      }, "-=0.4")
+      .to(lineRef.current, {
+        height: "90%",
+        duration: 1.5,
+        ease: "power2.inOut"
+      }, "-=0.2")
+      .to(rows, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.3,
+        ease: "power2.out"
+      }, "<");
 
   }, { scope: containerRef });
 
@@ -109,7 +109,7 @@ export const OurFramework: React.FC = () => {
 
       <div ref={triggerRef} className="relative w-full flex items-center ">
 
-        <div className="container w-[95%] mx-auto h-full flex flex-col lg:flex-row items-center lg:gap-12">
+        <div className="w-[85%] mx-auto h-full flex flex-col lg:flex-row items-center lg:gap-12">
 
           <div
             ref={leftContentRef}

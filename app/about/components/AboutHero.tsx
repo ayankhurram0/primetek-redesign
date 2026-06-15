@@ -2,24 +2,11 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, BarChart3, ShieldCheck, Users, Calendar } from "lucide-react";
-
+import Image from "next/image";
+import aboutImg1 from "@/src/assets/aboutimg1.png";
+import aboutImg2 from "@/src/assets/aboutimg2.png";
 
 gsap.registerPlugin(ScrollTrigger);
-
-interface Stat {
-  label: string;
-  value: string;
-  icon: any;
-  color: string;
-}
-
-const stats: Stat[] = [
-  { label: "Revenue Recovered", value: "$4.2M+", icon: BarChart3, color: "text-emerald-400" },
-  { label: "Audit Readiness", value: "98%", icon: ShieldCheck, color: "text-blue-400" },
-  { label: "Pharmacies", value: "100+", icon: Users, color: "text-brand-teal" },
-  { label: "Experience", value: "8 Yrs", icon: Calendar, color: "text-amber-400" },
-];
 
 export const AboutHero = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -28,28 +15,43 @@ export const AboutHero = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Intro animations
-      gsap.from(".hero-top", {
+      gsap.from(".hero-subtitle", {
         opacity: 0,
-        y: -20,
+        y: -15,
         duration: 0.8,
         ease: "power2.out"
       });
 
-      gsap.from(".hero-content > *", {
+      gsap.from(".hero-title", {
         opacity: 0,
-        x: -30,
+        y: 30,
         duration: 1,
-        stagger: 0.1,
-        ease: "power3.out"
+        ease: "power3.out",
+        delay: 0.1
       });
 
-      gsap.from(".stat-card", {
+      gsap.from(".hero-description", {
         opacity: 0,
         y: 20,
         duration: 0.8,
-        stagger: 0.1,
-        delay: 0.5,
-        ease: "power2.out"
+        ease: "power2.out",
+        delay: 0.3
+      });
+
+      gsap.from(".about-img-left", {
+        opacity: 0,
+        x: -80,
+        duration: 1.4,
+        ease: "power4.out",
+        delay: 0.2
+      });
+
+      gsap.from(".about-img-right", {
+        opacity: 0,
+        x: 80,
+        duration: 1.4,
+        ease: "power4.out",
+        delay: 0.2
       });
 
       // Scroll animations
@@ -71,15 +73,60 @@ export const AboutHero = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-[90vh] flex flex-col justify-center px-26 pt-32 pb-20 overflow-hidden bg-transparent">
-      <div className="relative z-10 text-center w-full max-w-7xl mx-auto hero-content">
-        <h1 className="text-6xl md:text-8xl xl:text-8xl font-bold text-white tracking-tighter mb-10 leading-[0.9] uppercase">
-          About
-          <span className="text-teal-400"> Us.</span>
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-16 pt-32 pb-20 overflow-hidden bg-transparent"
+    >
+      {/* Background Masked Images */}
+
+      {/* Left Image: Female Pharmacist */}
+      <div
+        className="absolute left-40 top-20 w-[45%] lg:w-[32%] xl:w-[25%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-left"
+        style={{
+          maskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
+          WebkitMaskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
+        }}
+      >
+        <Image
+          src={aboutImg1}
+          alt="Pharmacist on front lines"
+          className="w-full h-full object-contain object-left-bottom opacity-30 lg:opacity-75 mix-blend-lighten"
+          priority
+        />
+      </div>
+
+      {/* Right Image: Patient/Man */}
+      <div
+        className="absolute right-40 top-20 w-[45%] lg:w-[32%] xl:w-[28%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-right"
+        style={{
+          maskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
+          WebkitMaskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
+        }}
+      >
+        <Image
+          src={aboutImg2}
+          alt="Independent pharmacy customer"
+          className="w-full h-full object-contain object-right-bottom opacity-30 lg:opacity-75 mix-blend-lighten"
+          priority
+        />
+      </div>
+
+      {/* Central Hero Content */}
+      <div className="relative z-10 w-[85%] mx-auto max-w-4xl text-center flex flex-col items-center justify-center">
+
+        <span className="text-teal-400 font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-6 block hero-subtitle">
+          About Us
+        </span>
+
+        <h1 className="text-5xl xl:text-7xl font-bold text-white tracking-tight leading-[1.05] uppercase mb-8 hero-title max-w-3xl font-display">
+          Our Story Is <br />
+          <span className="text-teal-400">Their Survival</span>
         </h1>
-        <p className="text-2xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-4xl mx-auto mb-12">
-          PrimeTek is not a consultancy. We are the Operating System for independent pharmacy survival in a predatory PBM landscape.
+
+        <p className="text-lg md:text-xl lg:text-2xl text-slate-300/80 font-light leading-relaxed max-w-2xl mx-auto hero-description font-sans">
+          We built PrimeTek on the front lines of independent pharmacy. We saw the pressure. We felt the urgency. And we chose to build something about it.
         </p>
+
       </div>
     </section>
   );
