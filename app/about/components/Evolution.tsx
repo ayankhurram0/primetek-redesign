@@ -115,19 +115,53 @@ export const Evolution = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const [activeYear, setActiveYear] = useState<string>("2020");
+  const [maxRevealedIdx, setMaxRevealedIdx] = useState<number>(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  const [isInView, setIsInView] = useState(false);
+
+  /* ── Intersection Observer to start autoplay when in view ── */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.4 } // Trigger when 40% of the section is visible
+    );
+    
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+
+  /* ── Update max revealed index ── */
+  useEffect(() => {
+    const idx = milestones.findIndex((m) => m.year === activeYear);
+    if (idx > maxRevealedIdx) {
+      setMaxRevealedIdx(idx);
+    }
+  }, [activeYear, maxRevealedIdx]);
 
   /* ── Autoplay ── */
   useEffect(() => {
-    if (isHovered) return;
-    const id = setInterval(() => {
-      setActiveYear((prev) => {
-        const idx = milestones.findIndex((m) => m.year === prev);
-        return milestones[(idx + 1) % milestones.length].year;
-      });
-    }, 2800);
-    return () => clearInterval(id);
-  }, [isHovered]);
+    // Only run if the section has been seen and is not hovered
+    if (!isInView || isHovered) return;
+
+    const currentIdx = milestones.findIndex((m) => m.year === activeYear);
+    
+    // Stop at the last dot
+    if (currentIdx === milestones.length - 1) return;
+
+    const id = setTimeout(() => {
+      setActiveYear(milestones[currentIdx + 1].year);
+    }, 3000);
+
+    return () => clearTimeout(id);
+  }, [isInView, isHovered, activeYear]);
 
   /* ── GSAP entry animations ── */
   useEffect(() => {
@@ -140,11 +174,6 @@ export const Evolution = () => {
       gsap.from(".orbit-ring", {
         scale: 0.7, opacity: 0, duration: 1.4, stagger: 0.15,
         ease: "power2.out",
-        scrollTrigger: { trigger: orbitRef.current, start: "top 75%" },
-      });
-      gsap.from(".orbit-node", {
-        scale: 0, opacity: 0, duration: 0.6, stagger: 0.08,
-        ease: "back.out(2)",
         scrollTrigger: { trigger: orbitRef.current, start: "top 75%" },
       });
       gsap.from(".stat-box", {
@@ -209,19 +238,20 @@ export const Evolution = () => {
 
             {/* Milestone list — acts as a stepper nav */}
             <div className="space-y-1">
-              {milestones.map((m) => {
+              {milestones.map((m, idx) => {
                 const MIcon = m.icon;
                 const isAct = m.year === activeYear;
+                const isRevealed = idx <= maxRevealedIdx;
                 return (
                   <button
                     key={m.year}
                     onClick={() => { setActiveYear(m.year); setIsHovered(true); }}
                     onMouseLeave={() => setIsHovered(false)}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-300 group ${
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-500 group ${
                       isAct
                         ? "bg-teal-500/10 border border-teal-500/30"
                         : "hover:bg-white/5 border border-transparent"
-                    }`}
+                    } ${isRevealed ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}
                   >
                     <div className={`w-7 h-7 rounded-lg flex items-center justify-center border shrink-0 transition-all duration-300 ${
                       isAct ? m.iconBg : "bg-white/5 border-white/10 text-slate-500"
@@ -280,13 +310,16 @@ export const Evolution = () => {
             </div>
 
             {/* Orbit nodes — positioned by polar coords */}
-            {milestones.map((m) => {
+            {milestones.map((m, idx) => {
               const coords = polarToPercent(m.angle, ORBIT_RADIUS);
               const isAct = m.year === activeYear;
+              const isRevealed = idx <= maxRevealedIdx;
               return (
                 <div
                   key={m.year}
-                  className="orbit-node absolute z-20 flex flex-col items-center cursor-pointer group"
+                  className={`orbit-node absolute z-20 flex flex-col items-center cursor-pointer group transition-all duration-700 ${
+                    isRevealed ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-50 pointer-events-none"
+                  }`}
                   style={{
                     left: `${coords.x}%`,
                     top: `${coords.y}%`,
