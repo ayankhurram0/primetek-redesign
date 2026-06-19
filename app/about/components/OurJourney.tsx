@@ -4,9 +4,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import vandm1 from "@/src/assets/vandm1.png";
-import vandm2 from "@/src/assets/vandm2.png";
-import vandm3 from "@/src/assets/vandm3.png";
-import vandm4 from "@/src/assets/vandm4.png";
 import vandm5 from "@/src/assets/vandm5.png";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
   {
     number: "01",
-    title: "Lorem Ipsum Dolor",
+    title: "Vision",
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.",
     img: vandm1,
     imgAlt: "Pharmacist in store aisle",
@@ -22,35 +19,11 @@ const steps = [
   },
   {
     number: "02",
-    title: "Consectetur Adipiscing",
-    body: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa.",
-    img: vandm2,
-    imgAlt: "Pharmacist consulting with client",
-    flip: true,
-  },
-  {
-    number: "03",
-    title: "Sed Do Eiusmod",
-    body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.",
-    img: vandm3,
-    imgAlt: "Pharmacist building strategic plan",
-    flip: false,
-  },
-  {
-    number: "04",
-    title: "Incididunt Ut Labore",
-    body: "Sed perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi.",
-    img: vandm4,
-    imgAlt: "Team working together in pharmacy",
-    flip: true,
-  },
-  {
-    number: "05",
-    title: "Dolore Magna\nAliqua Enim",
+    title: "Mission",
     body: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
     img: vandm5,
     imgAlt: "Pharmacist with family in store",
-    flip: false,
+    flip: true,
     isLast: true,
   },
 ];

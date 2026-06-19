@@ -245,18 +245,15 @@ export const ServicesDetail = () => {
 
   return (
     <section className="relative py-32 px-26 overflow-hidden">
-      <div className="relative z-10">
-        <div className="grid lg:grid-cols-[400px_1fr] gap-20 items-start">
+      <div className="relative z-10 space-y-12">
 
-          {/* Sidebar Selector */}
-          <div className="space-y-4 lg:sticky lg:top-32">
-            <h2 className="text-xl font-bold uppercase text-teal-400 mb-8">Select a Service</h2>
-            <div className="space-y-1">
+          {/* Top Service Selector */}
+          <div className="flex flex-wrap justify-center gap-2">
               {services.map((service) => (
                 <button
                   key={service.id}
                   onClick={() => setActiveId(service.id)}
-                  className={`w-full text-left p-6 border-l-2 transition-all duration-500 group flex items-center justify-between ${activeId === service.id
+                  className={`shrink-0 px-8 py-6 border-b-[3px] transition-all duration-500 group flex items-center justify-center gap-6 ${activeId === service.id
                     ? "text-white"
                     : "bg-white/[0.02] border-transparent text-slate-500 hover:bg-white/[0.04]"
                     }`}
@@ -265,31 +262,21 @@ export const ServicesDetail = () => {
                     backgroundColor: activeId === service.id ? `${colorMap[service.color]}15` : ''
                   }}
                 >
-                  <div className="flex items-center gap-6">
-                    <span
-                      className="text-lg font-bold tracking-widest transition-colors duration-500"
-                      style={{ color: activeId === service.id ? colorMap[service.color] : '#334155' }}
-                    >
-                      {service.id}
-                    </span>
-                    <span className="text-xl font-bold tracking-tight uppercase group-hover:translate-x-1 transition-transform">
-                      {service.title.split(' ').slice(0, 2).join(' ')}
-                    </span>
-                  </div>
+                  <span
+                    className="text-xl font-bold tracking-widest transition-colors duration-500"
+                    style={{ color: activeId === service.id ? colorMap[service.color] : '#334155' }}
+                  >
+                    {service.id}
+                  </span>
+                  <span className="text-base sm:text-lg lg:text-xl font-bold tracking-tight uppercase whitespace-nowrap group-hover:translate-y-[-1px] transition-transform">
+                    {service.title}
+                  </span>
                   <service.icon
-                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-500"
+                    className="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform duration-500"
                     style={{ color: activeId === service.id ? colorMap[service.color] : '#334155' }}
                   />
                 </button>
               ))}
-            </div>
-
-            <div className="pt-12 hidden lg:block">
-              <div className="p-8 border border-white/5 bg-white/[0.01]">
-                <div className="text-[9px] font-bold uppercase tracking-[0.4em] text-slate-600 mb-4">Current Identity</div>
-                <div className="text-3xl font-display  text-white tracking-tight" style={{ color: colorMap[activeService.color] }}>{activeService.identity}</div>
-              </div>
-            </div>
           </div>
 
           {/* Content Area */}
@@ -434,7 +421,6 @@ export const ServicesDetail = () => {
             </AnimatePresence>
           </div>
 
-        </div>
       </div>
     </section>
   );

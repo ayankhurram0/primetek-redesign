@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export const ServicesHero = () => {
   return (
-    <section className="relative pt-44 pb-20 px-26 overflow-hidden">
+    <section className="relative pt-80 pb-20 px-26 overflow-hidden">
       <div className="relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
