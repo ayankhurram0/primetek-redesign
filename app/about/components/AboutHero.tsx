@@ -81,32 +81,32 @@ export const AboutHero = () => {
 
       {/* Left Image: Female Pharmacist */}
       <div
-        className="absolute left-40 top-20 w-[45%] lg:w-[32%] xl:w-[25%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-left"
+        className="absolute left-10 top-20 w-[45%] lg:w-[32%] xl:w-[25%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-left"
         style={{
-          maskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
-          WebkitMaskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
+          maskImage: "linear-gradient(135deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(135deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
         }}
       >
         <Image
           src={aboutImg1}
           alt="Pharmacist on front lines"
-          className="w-full h-full object-contain object-left-bottom opacity-30 lg:opacity-75 mix-blend-lighten"
+          className="w-full h-full object-contain object-left-bottom opacity-70 lg:opacity-85"
           priority
         />
       </div>
 
       {/* Right Image: Patient/Man */}
       <div
-        className="absolute right-40 top-20 w-[45%] lg:w-[32%] xl:w-[28%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-right"
+        className="absolute right-10 top-20 w-[45%] lg:w-[32%] xl:w-[28%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-right"
         style={{
-          maskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
-          WebkitMaskImage: "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.8) 25%, black 40%)",
+          maskImage: "linear-gradient(225deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(225deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
         }}
       >
         <Image
           src={aboutImg2}
           alt="Independent pharmacy customer"
-          className="w-full h-full object-contain object-right-bottom opacity-30 lg:opacity-75 mix-blend-lighten"
+          className="w-full h-full object-contain object-right-bottom opacity-70 lg:opacity-85"
           priority
         />
       </div>

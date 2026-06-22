@@ -33,12 +33,12 @@ export const ContactFormSection = () => {
 
   return (
     <section ref={containerRef} className="py-24 px-26 relative overflow-hidden bg-transparent">
-      <div className="grid lg:grid-cols-12 gap-12 relative z-10">
+      <div className="grid lg:grid-cols-12 gap-12 relative z-10 items-stretch">
 
         {/* Left Column: Info & Details */}
-        <div className="lg:col-span-4 space-y-12">
+        <div className="lg:col-span-4 flex flex-col gap-6 h-full">
           {/* What to Expect */}
-          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl">
+          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl flex-1 flex flex-col justify-center">
             <h3 className="text-3xl font-bold text-teal-400 mb-6 uppercase tracking-tight">What <span className="text-white">to Expect</span></h3>
             <ul className="space-y-4">
               {[
@@ -59,7 +59,7 @@ export const ContactFormSection = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl">
+          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl flex-1 flex flex-col justify-center">
             <h3 className="text-3xl font-bold text-teal-400 mb-6 uppercase tracking-tight">Contact <span className="text-white">Information</span></h3>
             <div className="space-y-4">
               {[
@@ -69,7 +69,7 @@ export const ContactFormSection = () => {
                 { icon: MapPin, label: "Location", value: "New Jersey, USA" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4">
-                  <div className="w-8 h-8 bg-brand-teal/10 rounded-xl flex items-center justify-center text-teal-400">
+                  <div className="w-8 h-8 bg-brand-teal/10 rounded-xl flex items-center justify-center text-teal-400 flex-shrink-0">
                     <item.icon className="w-4 h-4" />
                   </div>
                   <div>
@@ -82,7 +82,7 @@ export const ContactFormSection = () => {
           </div>
 
           {/* Office Hours */}
-          <div className="reveal-form bg-teal-400/5 p-8 border border-teal-400/10 rounded-3xl">
+          <div className="reveal-form bg-teal-400/5 p-8 border border-teal-400/10 rounded-3xl flex-1 flex flex-col justify-center">
             <div className="flex items-center gap-3 text-white mb-6">
               <Clock className="w-6 h-6 text-brand-teal" />
               <h3 className="text-3xl font-bold text-teal-400 uppercase tracking-tight">Office <span className="text-white">Hours</span></h3>
@@ -105,8 +105,8 @@ export const ContactFormSection = () => {
         </div>
 
         {/* Right Column: Form */}
-        <div className="lg:col-span-8">
-          <div className="reveal-form bg-white/[0.02] border border-white/5 p-12 md:p-20 shadow-2xl rounded-3xl">
+        <div className="lg:col-span-8 h-full">
+          <div className="reveal-form bg-white/[0.02] border border-white/5 p-12 md:p-20 shadow-2xl rounded-3xl h-full flex flex-col justify-center">
             {isSubmitted ? (
               <div className="text-center py-20">
                 <div className="w-24 h-24 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-10">

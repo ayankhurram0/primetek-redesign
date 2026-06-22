@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Lottie from "lottie-react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -239,12 +240,280 @@ const colorMap: Record<string, string> = {
   "brand-teal": "#2dd4bf"
 };
 
+const lottieUrls: Record<string, string> = {
+  "01": "https://lottie.host/7db875b4-cfdb-4b5c-897c-9b88939c3e1e/b87l1w8u2X.json", // Revenue Intelligence (Analytics/Data representation)
+  "02": "https://lottie.host/8cd7b2f6-eb21-4d37-bc60-d7b32ef8a176/R3Q9RkGlaT.json", // Claims Optimization (Trend / Growth)
+  "03": "https://lottie.host/cf6f14b9-1d0b-4bd4-9a8c-9b2f3479a32c/dGskP4v5d4.json", // Compliance / Shield / Security
+  "04": "https://lottie.host/fb04cbe3-61b8-466d-9be2-4467c6be725c/eXk9j2Jb3B.json", // Patient Support / Headset / Communication
+  "05": "https://lottie.host/cd12fcae-8df8-450e-8fb8-db4cb7a3b379/c1uVfE2N3X.json", // Growth Strategy (Rocket/Speed)
+};
+
+const RevenueIntelligenceGraphic = () => {
+  const curve = "M 30,110 C 55,110 55,55 80,55 C 105,55 105,75 130,75 C 155,75 155,40 180,40 C 205,40 205,85 230,85 C 255,85 255,45 280,45 C 305,45 305,35 330,35";
+  return (
+    <div className="w-full h-full min-h-[160px] flex items-center justify-center relative overflow-hidden bg-black/30 border border-white/5 rounded-2xl p-6">
+      <motion.div
+        className="absolute top-0 bottom-0 w-[1.5px] bg-gradient-to-b from-transparent via-rose-500/60 to-transparent z-10 pointer-events-none"
+        animate={{ x: ["30px", "330px", "30px"] }}
+        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+      />
+      <div className="relative flex-1 h-28 w-full flex items-center justify-center">
+        <div className="absolute inset-0 opacity-5 flex flex-col justify-between py-6 px-4 pointer-events-none">
+          <div className="border-b border-dashed border-white w-full" />
+          <div className="border-b border-dashed border-white w-full" />
+          <div className="border-b border-dashed border-white w-full" />
+        </div>
+        <svg className="w-full h-24 overflow-visible" viewBox="0 0 350 110" fill="none">
+          <defs>
+            <linearGradient id="redCurveGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#f43f5e" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            d={`${curve} L 330,110 L 30,110 Z`}
+            fill="url(#redCurveGrad)"
+          />
+          <motion.path
+            d={curve}
+            fill="none"
+            stroke="#f43f5e"
+            strokeWidth="4"
+            strokeLinecap="round"
+            className="drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]"
+          />
+          <g>
+            <motion.circle
+              cx="330" cy="35" r="9"
+              fill="#f43f5e" className="opacity-75"
+              animate={{ scale: [1, 2], opacity: [0.6, 0] }}
+              transition={{ repeat: Infinity, duration: 1.2, ease: "easeOut" }}
+            />
+            <circle cx="330" cy="35" r="5" fill="white" stroke="#f43f5e" strokeWidth="3.5" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+const ClaimsOptimizationGraphic = () => {
+  const [activeRouteIndex, setActiveRouteIndex] = useState(0);
+  const [isRouting, setIsRouting] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsRouting(true);
+      setTimeout(() => {
+        setIsRouting(false);
+        setActiveRouteIndex((prev) => (prev + 1) % 3);
+      }, 1200);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="w-full h-full min-h-[160px] flex items-center justify-center relative overflow-hidden bg-black/30 border border-white/5 rounded-2xl p-6">
+      <svg className="w-full h-24 overflow-visible" viewBox="0 0 320 100" fill="none">
+        <path d="M50 50 L120 50" stroke="rgba(255,255,255,0.08)" strokeWidth="2" strokeDasharray="4 4" />
+        <path d="M120 50 L215 20" stroke="rgba(255,255,255,0.08)" strokeWidth="2" strokeDasharray="4 4" />
+        <path d="M120 50 L215 50" stroke="rgba(255,255,255,0.08)" strokeWidth="2" strokeDasharray="4 4" />
+        <path d="M120 50 L215 80" stroke="rgba(255,255,255,0.08)" strokeWidth="2" strokeDasharray="4 4" />
+        <motion.path
+          d={
+            activeRouteIndex === 0
+              ? "M50 50 L120 50 Q162 35 215 20"
+              : activeRouteIndex === 1
+                ? "M50 50 L120 50 L215 50"
+                : "M50 50 L120 50 Q162 65 215 80"
+          }
+          stroke="#d946ef"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          className="drop-shadow-[0_0_6px_rgba(217,70,239,0.5)]"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          key={activeRouteIndex}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        />
+        {isRouting && (
+          <motion.circle
+            r="4"
+            fill="#d946ef"
+            animate={{ offsetDistance: ["0%", "100%"] }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            style={{
+              motionPath: `path('${activeRouteIndex === 0
+                ? "M50 50 L120 50 Q162 35 215 20"
+                : activeRouteIndex === 1
+                  ? "M50 50 L120 50 L215 50"
+                  : "M50 50 L120 50 Q162 65 215 80"
+                }')`
+            }}
+          />
+        )}
+        <circle cx="50" cy="50" r="5" fill="#d946ef" />
+        <circle cx="120" cy="50" r="8" fill="#d946ef" />
+        {[20, 50, 80].map((y, idx) => (
+          <circle key={y} cx="215" cy={y} r={idx === activeRouteIndex ? 5.5 : 4} fill={idx === activeRouteIndex ? "#d946ef" : "rgba(255,255,255,0.3)"} />
+        ))}
+      </svg>
+    </div>
+  );
+};
+
+const ComplianceAuditGraphic = () => {
+  const [activeStage, setActiveStage] = useState(1);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStage((prev) => (prev + 1) % 3);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-full min-h-[160px] flex items-center justify-center relative overflow-hidden bg-black/30 border border-white/5 rounded-2xl p-6">
+      <div className="relative w-full flex justify-between items-center px-4 z-10">
+        <div className="absolute left-[38px] right-[38px] top-[22px] -translate-y-1/2 h-[2.5px] bg-white/10" />
+        <motion.div
+          className="absolute left-[38px] top-[22px] -translate-y-1/2 h-[2.5px] bg-[#f97316] origin-left"
+          style={{ right: "38px" }}
+          initial={false}
+          animate={{ scaleX: activeStage === 0 ? 0 : activeStage === 1 ? 0.5 : 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        />
+        {[0, 1, 2].map((idx) => (
+          <div key={idx} className="flex flex-col items-center gap-2">
+            <div
+              className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                activeStage === idx
+                  ? "bg-[#0a0f1d] border-[#f97316] text-[#f97316] scale-110 shadow-[0_0_15px_rgba(249,115,22,0.3)]"
+                  : activeStage > idx
+                    ? "bg-[#0a0f1d] border-[#f97316] text-[#f97316]"
+                    : "bg-[#0a0f1d] border-white/10 text-white/30"
+              }`}
+            >
+              {activeStage > idx ? (
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              ) : (
+                <span className="font-mono">0{idx + 1}</span>
+              )}
+            </div>
+            <span className={`text-[8px] font-bold uppercase tracking-wider ${activeStage === idx ? "text-[#f97316]" : "text-white/20"}`}>
+              {idx === 0 ? "Gap Scan" : idx === 1 ? "Audit Ready" : "Protected"}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const PatientOperationalGraphic = () => {
+  const [activeItem, setActiveItem] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveItem((prev) => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const queue = [
+    { name: "Sarah Jenkins, PharmD", detail: "Prior auth audit completed." },
+    { name: "David Miller, RPh", detail: "Inventory reconciliation done." },
+    { name: "Elena Rostova, CPht", detail: "Compliance checks complete." }
+  ];
+
+  return (
+    <div className="w-full h-full min-h-[160px] flex items-center justify-center relative overflow-hidden bg-black/30 border border-white/5 rounded-2xl p-6">
+      <div className="relative w-full max-w-[280px] h-[100px]">
+        <AnimatePresence mode="popLayout">
+          {queue.map((item, idx) => {
+            if (idx !== activeItem) return null;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 bg-black/50 border border-[#38bdf8]/20 rounded-xl p-3 flex flex-col justify-center gap-1 shadow-lg"
+              >
+                <span className="text-[9px] text-[#38bdf8] font-bold uppercase tracking-widest">Active Queue Sync</span>
+                <span className="text-[10px] font-bold text-white mt-1">{item.name}</span>
+                <span className="text-[10px] text-slate-400 leading-snug">{item.detail}</span>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+const PharmacyGrowthGraphic = () => {
+  return (
+    <div className="w-full h-full min-h-[160px] flex items-center justify-center relative overflow-hidden bg-black/30 border border-white/5 rounded-2xl p-6">
+      <svg className="w-full h-24 overflow-visible" viewBox="0 0 350 90" fill="none">
+        <line x1="20" y1="80" x2="330" y2="80" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+        {[0, 1, 2, 3, 4].map((i) => {
+          const heights = [20, 35, 25, 45, 60];
+          const x = 35 + i * 65;
+          const h = heights[i];
+          const y = 80 - h;
+          return (
+            <motion.rect
+              key={i}
+              x={x}
+              y={80}
+              width="30"
+              rx="4"
+              fill="#34d399"
+              className="drop-shadow-[0_0_6px_rgba(52,211,153,0.3)]"
+              animate={{ y: [80, y, y, 80], height: [0, h, h, 0] }}
+              transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, delay: i * 0.15 }}
+            />
+          );
+        })}
+        <motion.path
+          d="M 50 60 L 115 45 L 180 55 L 245 35 L 310 20"
+          stroke="#34d399"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="drop-shadow-[0_0_5px_rgba(52,211,153,0.4)]"
+          animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+          transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+        />
+      </svg>
+    </div>
+  );
+};
+
 export const ServicesDetail = () => {
   const [activeId, setActiveId] = useState("01");
   const activeService = services.find(s => s.id === activeId)!;
 
   return (
-    <section className="relative py-32 px-26 overflow-hidden">
+    <section className="relative w-[85%] mx-auto py-32 overflow-hidden">
+      {/* Background Grid - Matching Homepage style */}
+      <div 
+        className="absolute inset-0 opacity-[0.06] pointer-events-none transition-all duration-500"
+        style={{ 
+          backgroundImage: `radial-gradient(circle, ${colorMap[activeService.color]} 1.5px, transparent 1.5px)`, 
+          backgroundSize: '40px 40px' 
+        }} 
+      />
+      {/* Glowing background blob */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none opacity-20 transition-all duration-700"
+        style={{
+          background: `radial-gradient(circle, ${colorMap[activeService.color]} 0%, transparent 70%)`
+        }}
+      />
+
       <div className="relative z-10 space-y-12">
 
           {/* Top Service Selector */}
@@ -291,17 +560,15 @@ export const ServicesDetail = () => {
                 className="w-full"
               >
                 <div
-                  className="glass-card p-12 md:p-16 relative overflow-x-hidden h-[800px] overflow-y-auto overscroll-contain custom-scrollbar"
-                  data-lenis-prevent="true"
-                  onWheel={(e) => e.stopPropagation()}
+                  className="glass-card p-12 md:p-16 relative overflow-x-hidden h-auto animate-glow"
                   style={{ 
                     background: `linear-gradient(135deg, ${colorMap[activeService.color]}20 0%, #1e40af15 100%)`,
                     '--scrollbar-color': colorMap[activeService.color],
                   } as React.CSSProperties}
                 >
 
-                  <div className="flex flex-col md:flex-row justify-between gap-12 mb-24">
-                    <div className="max-w-xl">
+                  <div className="flex flex-col lg:flex-row justify-between items-center gap-12 mb-24">
+                    <div className="max-w-5xl w-full">
                       <div className="flex items-center gap-4 mb-8">
                         <div
                           className="w-14 h-14 border flex items-center justify-center transition-colors duration-500"
@@ -325,8 +592,17 @@ export const ServicesDetail = () => {
                       </p>
                     </div>
 
+                    {/* Central Graphic Area matching homepage style */}
+                    <div className="flex-1 w-full min-h-[220px] max-w-[450px] aspect-video relative flex items-center justify-center">
+                      {activeId === "01" && <RevenueIntelligenceGraphic />}
+                      {activeId === "02" && <ClaimsOptimizationGraphic />}
+                      {activeId === "03" && <ComplianceAuditGraphic />}
+                      {activeId === "04" && <PatientOperationalGraphic />}
+                      {activeId === "05" && <PharmacyGrowthGraphic />}
+                    </div>
+
                     <div
-                      className="p-12 text-center flex flex-col justify-center min-w-[240px] h-fit sticky top-0 border transition-colors duration-500"
+                      className="p-12 text-center flex flex-col justify-center min-w-[240px] h-fit border transition-colors duration-500"
                       style={{
                         backgroundColor: `${colorMap[activeService.color]}10`,
                         borderColor: `${colorMap[activeService.color]}20`

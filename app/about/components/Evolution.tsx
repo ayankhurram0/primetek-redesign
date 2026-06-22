@@ -7,14 +7,14 @@ import { ArrowRight } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const VIEW_W = 1000;
-const VIEW_H = 420;
-const LABEL_Y = 228;
+const VIEW_H = 650;
+const LABEL_Y = 520;
 
 const WAVE_PATH =
-  "M 24 108 C 88 48, 148 168, 212 108 C 276 52, 336 172, 400 108 C 464 46, 524 166, 588 104 C 652 50, 712 158, 776 98 C 828 58, 872 76, 940 74";
+  "M 24 150 C 80 10, 140 80, 200 240 C 260 400, 320 420, 380 200 C 440 20, 500 50, 560 300 C 620 480, 680 500, 740 220 C 800 10, 860 30, 940 180";
 
 const FUTURE_X = 940;
-const FUTURE_Y = 74;
+const FUTURE_Y = 180;
 
 const MILESTONE_FRACTIONS = [0.06, 0.25, 0.44, 0.63, 0.82];
 
@@ -73,7 +73,6 @@ export const Evolution = () => {
   const [dotPositions, setDotPositions] = useState<PathPoint[]>([]);
   const [futurePos, setFuturePos] = useState<PathPoint>({ x: FUTURE_X, y: FUTURE_Y });
   const [activeIdx, setActiveIdx] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
 
   const measurePath = () => {
@@ -101,12 +100,12 @@ export const Evolution = () => {
   }, []);
 
   useEffect(() => {
-    if (!isInView || isHovered) return;
+    if (!isInView) return;
     const id = setTimeout(() => {
       setActiveIdx((prev) => (prev >= STEPS.length - 1 ? 0 : prev + 1));
-    }, 3200);
+    }, 3000);
     return () => clearTimeout(id);
-  }, [isInView, isHovered, activeIdx]);
+  }, [isInView, activeIdx]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -133,7 +132,6 @@ export const Evolution = () => {
 
   const selectStep = (idx: number) => {
     setActiveIdx(idx);
-    setIsHovered(true);
   };
 
   return (
@@ -166,7 +164,6 @@ export const Evolution = () => {
 
           <div
             className="evo-timeline w-full hidden lg:block"
-            onMouseLeave={() => setIsHovered(false)}
           >
             <svg
               viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
@@ -320,9 +317,9 @@ export const Evolution = () => {
 
                 <foreignObject
                   x={futurePos.x - 80}
-                  y={futurePos.y - 52}
+                  y={futurePos.y + 50}
                   width={160}
-                  height={120}
+                  height={150}
                   className="overflow-visible pointer-events-none"
                 >
                   <div
