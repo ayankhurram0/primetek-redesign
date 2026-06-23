@@ -96,11 +96,11 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
              </Link>
            </div>
 
-           <div className="mb-10 text-center lg:text-left">
+           <div className="mb-10 text-center">
              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
                {title}
              </h1>
-             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-md">
+             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-md mx-auto">
                {subtitle}
              </p>
            </div>

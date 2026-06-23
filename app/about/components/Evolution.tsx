@@ -315,9 +315,19 @@ export const Evolution = () => {
                   />
                 )}
 
+                <line
+                  x1={futurePos.x}
+                  y1={futurePos.y + 64}
+                  x2={futurePos.x}
+                  y2={LABEL_Y - 4}
+                  stroke="#14b8a6"
+                  strokeWidth="1"
+                  strokeOpacity="0.35"
+                />
+
                 <foreignObject
                   x={futurePos.x - 80}
-                  y={futurePos.y + 50}
+                  y={LABEL_Y}
                   width={160}
                   height={150}
                   className="overflow-visible pointer-events-none"

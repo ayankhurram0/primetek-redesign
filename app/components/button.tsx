@@ -11,6 +11,7 @@ interface FancyButtonProps {
     onClick?: () => void;
     icon?: React.ReactNode;
     variant?: "primary" | "secondary" | "outline" | "custom";
+    type?: "button" | "submit" | "reset";
 }
 
 export default function FancyButton({
@@ -23,6 +24,7 @@ export default function FancyButton({
     onClick,
     icon,
     variant = "primary",
+    type = "button",
 }: FancyButtonProps) {
     const [pos, setPos] = useState({ x: 50, y: 50 });
     const [show, setShow] = useState(false);
@@ -55,6 +57,7 @@ export default function FancyButton({
 
     return (
         <button
+            type={type}
             onMouseEnter={() => setShow(true)}
             onMouseLeave={() => setShow(false)}
             onMouseMove={handleMove}
@@ -74,7 +77,7 @@ export default function FancyButton({
                 />
             )}
 
-            <span className="relative z-10 flex items-center gap-2">
+            <span className="relative z-10 flex items-center justify-center gap-2">
                 {label}
                 {icon}
             </span>
