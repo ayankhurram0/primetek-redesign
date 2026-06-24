@@ -81,34 +81,64 @@ export const AboutHero = () => {
 
       {/* Left Image: Female Pharmacist */}
       <div
-        className="absolute left-10 top-20 w-[45%] lg:w-[32%] xl:w-[25%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-left"
-        style={{
-          maskImage: "linear-gradient(135deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(135deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
-        }}
+        className="absolute left-0 top-[20%] w-[55%] lg:w-[45%] xl:w-[32%] h-[70%] pointer-events-none z-0 overflow-hidden about-img-left"
       >
-        <Image
-          src={aboutImg1}
-          alt="Pharmacist on front lines"
-          className="w-full h-full object-contain object-left-bottom opacity-70 lg:opacity-85"
-          priority
-        />
+        {/* Horizontal Blend */}
+        <div
+          className="w-full h-full"
+          style={{
+            maskImage: "linear-gradient(to right, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%)",
+            WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%)",
+          }}
+        >
+          {/* Vertical Blend */}
+          <div
+            className="w-full h-full relative"
+            style={{
+              maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
+            }}
+          >
+            <Image
+              src={aboutImg1}
+              alt="Pharmacist on front lines"
+              fill
+              className="object-cover object-top opacity-70 lg:opacity-85"
+              priority
+            />
+          </div>
+        </div>
       </div>
 
       {/* Right Image: Patient/Man */}
       <div
-        className="absolute right-10 top-20 w-[45%] lg:w-[32%] xl:w-[28%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-right"
-        style={{
-          maskImage: "linear-gradient(225deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(225deg, black 25%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%)",
-        }}
+        className="absolute right-0 top-[20%] w-[55%] lg:w-[45%] xl:w-[32%] h-[70%] pointer-events-none z-0 overflow-hidden about-img-right"
       >
-        <Image
-          src={aboutImg2}
-          alt="Independent pharmacy customer"
-          className="w-full h-full object-contain object-right-bottom opacity-70 lg:opacity-85"
-          priority
-        />
+        {/* Horizontal Blend */}
+        <div
+          className="w-full h-full"
+          style={{
+            maskImage: "linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%)",
+            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%)",
+          }}
+        >
+          {/* Vertical Blend */}
+          <div
+            className="w-full h-full relative"
+            style={{
+              maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
+            }}
+          >
+            <Image
+              src={aboutImg2}
+              alt="Independent pharmacy customer"
+              fill
+              className="object-cover object-top opacity-70 lg:opacity-85"
+              priority
+            />
+          </div>
+        </div>
       </div>
 
       {/* Central Hero Content */}

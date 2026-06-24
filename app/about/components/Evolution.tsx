@@ -65,15 +65,14 @@ const milestones = [
   },
 ];
 
-/** Serpentine path — snakes left ↔ right through all milestone nodes */
-const NODE_POSITIONS = [
-  { x: 200, y: 90 },
-  { x: 800, y: 270 },
-  { x: 200, y: 450 },
-  { x: 800, y: 630 },
-  { x: 200, y: 810 },
-  { x: 800, y: 990 },
-];
+/** Centered serpentine path — nodes on the middle axis, curves bulge left/right */
+const CENTER_X = 500;
+const CURVE_BULGE = 130;
+
+const NODE_POSITIONS = milestones.map((_, i) => ({
+  x: CENTER_X,
+  y: 90 + i * 180,
+}));
 
 const TIMELINE_PATH = (() => {
   const pts = NODE_POSITIONS;
@@ -82,7 +81,8 @@ const TIMELINE_PATH = (() => {
     const prev = pts[i - 1];
     const curr = pts[i];
     const midY = (prev.y + curr.y) / 2;
-    d += ` C ${prev.x} ${midY}, ${curr.x} ${midY}, ${curr.x} ${curr.y}`;
+    const bulge = i % 2 === 1 ? CURVE_BULGE : -CURVE_BULGE;
+    d += ` C ${prev.x + bulge} ${midY}, ${curr.x + bulge} ${midY}, ${curr.x} ${curr.y}`;
   }
   return d;
 })();
@@ -91,17 +91,21 @@ function MapPinMarker({
   icon: Icon,
   active,
   reached,
+  alignToLine = false,
 }: {
   icon: ElementType;
   active: boolean;
   reached: boolean;
+  alignToLine?: boolean;
 }) {
   const lit = active || reached;
 
   return (
     <motion.div
       className="relative flex flex-col items-center"
-      animate={{ y: lit ? [0, -6, 0] : [0, -3, 0] }}
+      animate={
+        alignToLine ? undefined : { y: lit ? [0, -6, 0] : [0, -3, 0] }
+      }
       transition={{ duration: lit ? 3 : 4, repeat: Infinity, ease: "easeInOut" }}
     >
       {/* Ripple rings */}
@@ -178,9 +182,8 @@ function MilestoneCard({
 
   return (
     <motion.div
-      className={`group relative flex w-full max-w-[540px] min-h-[190px] md:min-h-[210px] rounded-[28px] border backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 ${
-        active ? "opacity-100" : "opacity-55"
-      }`}
+      className={`group relative flex w-full max-w-[540px] min-h-[190px] md:min-h-[210px] rounded-[28px] border backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 ${active ? "opacity-100" : "opacity-55"
+        }`}
       style={{
         background: "linear-gradient(145deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.03) 100%)",
         borderColor: active ? `${ACCENT}40` : `${ACCENT}15`,
@@ -285,10 +288,10 @@ export const Evolution = () => {
       });
 
       gsap.utils.toArray<HTMLElement>(".evo-row").forEach((row, i) => {
-        const markerLeft = i % 2 === 0;
+        const cardOnLeft = i % 2 === 0;
         gsap.from(row, {
           opacity: 0,
-          x: markerLeft ? -60 : 60,
+          x: cardOnLeft ? -60 : 60,
           duration: 0.9,
           ease: "power3.out",
           scrollTrigger: { trigger: row, start: "top 85%" },
@@ -332,6 +335,35 @@ export const Evolution = () => {
 
         {/* Serpentine timeline */}
         <div className="evo-timeline relative">
+          {/* Map pins anchored to path nodes (desktop) */}
+          <div className="absolute inset-0 pointer-events-none hidden lg:block z-10">
+            {milestones.map((milestone, idx) => {
+              const PinIcon = milestone.pinIcon;
+              const isActive = activeNode === idx;
+              const isReached = idx <= activeNode;
+              const node = NODE_POSITIONS[idx];
+
+              return (
+                <div
+                  key={`pin-${milestone.year}`}
+                  className="absolute pointer-events-auto"
+                  style={{
+                    left: `${(node.x / 1000) * 100}%`,
+                    top: `${(node.y / 1080) * 100}%`,
+                    transform: "translate(-50%, calc(-100% + 6px))",
+                  }}
+                >
+                  <MapPinMarker
+                    icon={PinIcon}
+                    active={isActive}
+                    reached={isReached && !isActive}
+                    alignToLine
+                  />
+                </div>
+              );
+            })}
+          </div>
+
           {/* Full-width SVG path */}
           <div className="absolute inset-0 pointer-events-none hidden lg:block">
             <svg
@@ -392,41 +424,29 @@ export const Evolution = () => {
 
           <div className="space-y-28 md:space-y-32 lg:space-y-36">
             {milestones.map((milestone, idx) => {
-              const markerOnLeft = idx % 2 === 0;
+              const cardOnLeft = idx % 2 === 0;
               const PinIcon = milestone.pinIcon;
               const isActive = activeNode === idx;
               const isReached = idx <= activeNode;
 
               return (
                 <div key={milestone.year} className="evo-row relative min-h-[200px] md:min-h-[220px]">
-                  {/* Desktop serpentine */}
-                  <div className="hidden lg:grid grid-cols-12 items-center gap-6">
-                    {markerOnLeft ? (
+                  {/* Desktop — cards on outer edges, line + pins in center */}
+                  <div className="hidden lg:grid grid-cols-[1fr_100px_1fr] xl:grid-cols-[1fr_120px_1fr] items-center gap-x-8 xl:gap-x-12">
+                    {cardOnLeft ? (
                       <>
-                        <div className="col-span-4 flex justify-end pr-4">
-                          <MapPinMarker
-                            icon={PinIcon}
-                            active={isActive}
-                            reached={isReached && !isActive}
-                          />
-                        </div>
-                        <div className="col-span-1" />
-                        <div className="col-span-7 flex justify-start pl-4">
+                        <div className="flex justify-start min-w-0 pr-2 xl:pr-4">
                           <MilestoneCard milestone={milestone} active={isReached} />
                         </div>
+                        <div aria-hidden />
+                        <div aria-hidden />
                       </>
                     ) : (
                       <>
-                        <div className="col-span-7 flex justify-end pr-4">
+                        <div aria-hidden />
+                        <div aria-hidden />
+                        <div className="flex justify-end min-w-0 pl-2 xl:pl-4">
                           <MilestoneCard milestone={milestone} active={isReached} />
-                        </div>
-                        <div className="col-span-1" />
-                        <div className="col-span-4 flex justify-start pl-4">
-                          <MapPinMarker
-                            icon={PinIcon}
-                            active={isActive}
-                            reached={isReached && !isActive}
-                          />
                         </div>
                       </>
                     )}

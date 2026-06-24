@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import vandm1 from "@/src/assets/vandm1-1.png";
+import vandm1 from "@/src/assets/vandm1.png";
 import vandm5 from "@/src/assets/vandm5.png";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -66,7 +66,7 @@ export const OurJourney = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-transparent py-12">
+    <section ref={sectionRef} className="relative overflow-hidden bg-transparent py-12 flex flex-col gap-20">
       {steps.map((step, i) => (
         <div
           key={step.number}
@@ -74,7 +74,7 @@ export const OurJourney = () => {
             } items-stretch min-h-[340px]`}
         >
           {/* ── TEXT COLUMN ── */}
-          <div className="jrow-text flex flex-row items-center w-full lg:w-1/2 px-8 md:px-14 xl:px-20 py-16 relative z-10">
+          <div className="jrow-text flex flex-row items-center w-full lg:w-1/2 px-8 md:px-14 xl:px-20 py-16 relative z-10 ">
             {/* Text content */}
             <div className="jrow-content flex-1 flex flex-col justify-center">
               {/* Title */}
@@ -99,74 +99,50 @@ export const OurJourney = () => {
           </div>
 
           {/* ── IMAGE COLUMN ── */}
-          <div
-            className="jrow-img-container relative w-full lg:w-1/2 min-h-[550px] overflow-hidden"
-            style={{
-              maskImage: step.flip
-                ? `
-        linear-gradient(
-          to right,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 55%,
-          rgba(0,0,0,.9) 70%,
-          rgba(0,0,0,.5) 85%,
-          transparent 100%
-        )
-      `
-                : `
-        linear-gradient(
-          to left,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 55%,
-          rgba(0,0,0,.9) 70%,
-          rgba(0,0,0,.5) 85%,
-          transparent 100%
-        )
-      `,
-              WebkitMaskImage: step.flip
-                ? `
-        linear-gradient(
-          to right,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 55%,
-          rgba(0,0,0,.9) 70%,
-          rgba(0,0,0,.5) 85%,
-          transparent 100%
-        )
-      `
-                : `
-        linear-gradient(
-          to left,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 55%,
-          rgba(0,0,0,.9) 70%,
-          rgba(0,0,0,.5) 85%,
-          transparent 100%
-        )
-      `,
-            }}
-          >
-            <Image
-              src={step.img}
-              alt={step.imgAlt}
-              fill
-              priority
-              className="
-      object-cover
-      scale-105
-      opacity-85
-      transition-all
-      duration-700
-    "
-            />
-
-            {/* Soft teal atmospheric glow */}
+          <div className="jrow-img-container relative w-full lg:w-1/2 min-h-[550px] overflow-hidden">
+            {/* Outer div: Horizontal Fade */}
             <div
-              className={`absolute inset-0 ${step.flip
-                ? "bg-[radial-gradient(circle_at_75%_50%,rgba(0,89,105,0.15),transparent_55%)]"
-                : "bg-[radial-gradient(circle_at_25%_50%,rgba(0,89,105,0.15),transparent_55%)]"
-                } blur-[100px]`}
-            />
+              className="absolute inset-0 w-full h-full"
+              style={{
+                maskImage: step.flip
+                  ? "linear-gradient(to right, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)"
+                  : "linear-gradient(to left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)",
+                WebkitMaskImage: step.flip
+                  ? "linear-gradient(to right, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)"
+                  : "linear-gradient(to left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)",
+              }}
+            >
+              {/* Inner div: Vertical Fade */}
+              <div
+                className="w-full h-full relative"
+                style={{
+                  maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
+                }}
+              >
+                <Image
+                  src={step.img}
+                  alt={step.imgAlt}
+                  fill
+                  priority
+                  className="
+                    object-cover
+                    scale-105
+                    opacity-85
+                    transition-all
+                    duration-700
+                  "
+                />
+
+                {/* Soft teal atmospheric glow */}
+                <div
+                  className={`absolute inset-0 ${step.flip
+                    ? "bg-[radial-gradient(circle_at_75%_50%,rgba(0,89,105,0.15),transparent_55%)]"
+                    : "bg-[radial-gradient(circle_at_25%_50%,rgba(0,89,105,0.15),transparent_55%)]"
+                    } blur-[100px]`}
+                />
+              </div>
+            </div>
           </div>
         </div>
       ))}
