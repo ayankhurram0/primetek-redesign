@@ -67,7 +67,7 @@ export const SignupForm: React.FC = () => {
         type="submit"
         label="Create Your Account"
         variant="primary"
-        extraClasses="w-full py-5 text-base uppercase tracking-widest"
+        extraClasses="w-full py-3.5 text-base uppercase tracking-widest"
       />
     </form>
   );

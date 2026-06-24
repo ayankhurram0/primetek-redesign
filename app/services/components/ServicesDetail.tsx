@@ -380,7 +380,7 @@ export const ServicesDetail = () => {
   const accent = colorMap[activeService.color];
 
   return (
-    <section className="relative w-[98%] max-w-[1800px] mx-auto py-16 md:py-24 overflow-hidden">
+    <section className="relative w-[85%] mx-auto py-16 md:py-24 overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.07] pointer-events-none transition-all duration-500"
         style={{
@@ -394,9 +394,9 @@ export const ServicesDetail = () => {
       />
 
       <div className="relative z-10 space-y-8">
-        {/* Service selector — horizontal scroll */}
-        <div className="overflow-x-auto pb-2 -mx-2 px-2 no-scrollbar">
-          <div className="flex gap-2 min-w-max mx-auto justify-center">
+        {/* Service selector */}
+        <div className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 w-full">
             {services.map((service) => {
               const isActive = activeId === service.id;
               const color = colorMap[service.color];
@@ -405,7 +405,7 @@ export const ServicesDetail = () => {
                   key={service.id}
                   type="button"
                   onClick={() => setActiveId(service.id)}
-                  className={`flex items-center gap-3 px-5 py-3.5 rounded-xl border transition-all duration-300 ${
+                  className={`w-full flex flex-col items-center justify-center gap-3 px-3 py-4 rounded-xl border transition-all duration-300 min-h-[88px] ${
                     isActive
                       ? "border-white/20 bg-white/[0.08]"
                       : "border-transparent bg-white/[0.02] hover:bg-white/[0.05]"
@@ -415,22 +415,24 @@ export const ServicesDetail = () => {
                     boxShadow: isActive ? `0 4px 24px ${color}20` : undefined,
                   }}
                 >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="text-sm font-bold font-mono tabular-nums shrink-0"
+                      style={{ color: isActive ? color : "#64748b" }}
+                    >
+                      {service.id}
+                    </span>
+                    <service.icon
+                      className="w-5 h-5 shrink-0"
+                      style={{ color: isActive ? color : "#64748b" }}
+                    />
+                  </div>
                   <span
-                    className="text-sm font-bold font-mono tabular-nums"
-                    style={{ color: isActive ? color : "#64748b" }}
-                  >
-                    {service.id}
-                  </span>
-                  <service.icon
-                    className="w-4 h-4 shrink-0"
-                    style={{ color: isActive ? color : "#64748b" }}
-                  />
-                  <span
-                    className={`text-xs sm:text-sm font-bold uppercase tracking-wide whitespace-nowrap ${
+                    className={`text-sm sm:text-base font-bold uppercase tracking-wide text-center leading-snug whitespace-normal ${
                       isActive ? "text-white" : "text-slate-500"
                     }`}
                   >
-                    {service.identity}
+                    {service.title}
                   </span>
                 </button>
               );

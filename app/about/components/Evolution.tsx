@@ -1,380 +1,466 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+import { useEffect, useLayoutEffect, useRef, useState, type ElementType } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
+import {
+  Rocket,
+  Users,
+  BarChart3,
+  Globe2,
+  Trophy,
+  Sparkles,
+  Building2,
+  TrendingUp,
+  Lightbulb,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VIEW_W = 1000;
-const VIEW_H = 650;
-const LABEL_Y = 520;
-
-const WAVE_PATH =
-  "M 24 150 C 80 10, 140 80, 200 240 C 260 400, 320 420, 380 200 C 440 20, 500 50, 560 300 C 620 480, 680 500, 740 220 C 800 10, 860 30, 940 180";
-
-const FUTURE_X = 940;
-const FUTURE_Y = 180;
-
-const MILESTONE_FRACTIONS = [0.06, 0.25, 0.44, 0.63, 0.82];
+const ACCENT = "#39ff14";
 
 const milestones = [
   {
     year: "2020",
     title: "The Beginning",
-    body: "PrimeTek was founded with a bold vision to transform pharmacy operations.",
+    body: "PrimeTek was founded with a bold vision to transform pharmacy operations and protect independent pharmacy revenue.",
+    icon: Rocket,
+    pinIcon: Building2,
   },
   {
     year: "2021",
     title: "First Milestone",
-    body: "Launched our platform and onboarded our first pharmacy partners.",
+    body: "Launched our platform and onboarded our first pharmacy partners across multiple states.",
+    icon: Users,
+    pinIcon: Users,
   },
   {
     year: "2022",
     title: "Expanding Impact",
-    body: "Grew to new states and strengthened our presence nationwide.",
+    body: "Grew nationwide and strengthened our presence with deeper PBM intelligence capabilities.",
+    icon: TrendingUp,
+    pinIcon: BarChart3,
   },
   {
     year: "2023",
     title: "Product Innovation",
-    body: "Introduced advanced analytics and reimbursement intelligence tools.",
+    body: "Introduced advanced analytics, reimbursement intelligence, and proactive compliance monitoring.",
+    icon: Lightbulb,
+    pinIcon: Globe2,
   },
   {
     year: "2024",
     title: "Scaling Excellence",
-    body: "Expanded our team, partnerships, and capabilities to drive greater value.",
+    body: "Expanded our team, partnerships, and capabilities to drive greater value for pharmacies.",
+    icon: Globe2,
+    pinIcon: Trophy,
+  },
+  {
+    year: "2025+",
+    title: "The Future Ahead",
+    body: "Continuing to innovate and create lasting impact together with the pharmacies we serve.",
+    icon: Sparkles,
+    pinIcon: Sparkles,
   },
 ];
 
-const future = {
-  year: "2025+",
-  title: "The Future Ahead",
-  body: "Continuing to innovate and create lasting impact together.",
-};
+/** Serpentine path — snakes left ↔ right through all milestone nodes */
+const NODE_POSITIONS = [
+  { x: 200, y: 90 },
+  { x: 800, y: 270 },
+  { x: 200, y: 450 },
+  { x: 800, y: 630 },
+  { x: 200, y: 810 },
+  { x: 800, y: 990 },
+];
 
-const STEPS = [...milestones, future];
+const TIMELINE_PATH = (() => {
+  const pts = NODE_POSITIONS;
+  let d = `M ${pts[0].x} ${pts[0].y}`;
+  for (let i = 1; i < pts.length; i++) {
+    const prev = pts[i - 1];
+    const curr = pts[i];
+    const midY = (prev.y + curr.y) / 2;
+    d += ` C ${prev.x} ${midY}, ${curr.x} ${midY}, ${curr.x} ${curr.y}`;
+  }
+  return d;
+})();
 
-type PathPoint = { x: number; y: number };
+function MapPinMarker({
+  icon: Icon,
+  active,
+  reached,
+}: {
+  icon: ElementType;
+  active: boolean;
+  reached: boolean;
+}) {
+  const lit = active || reached;
 
-function samplePath(path: SVGPathElement) {
-  const length = path.getTotalLength();
-  const dots = MILESTONE_FRACTIONS.map((f) => {
-    const pt = path.getPointAtLength(length * f);
-    return { x: pt.x, y: pt.y };
-  });
-  const end = path.getPointAtLength(length);
-  return { length, dots, futurePt: { x: end.x, y: end.y } };
+  return (
+    <motion.div
+      className="relative flex flex-col items-center"
+      animate={{ y: lit ? [0, -6, 0] : [0, -3, 0] }}
+      transition={{ duration: lit ? 3 : 4, repeat: Infinity, ease: "easeInOut" }}
+    >
+      {/* Ripple rings */}
+      {lit && (
+        <>
+          <motion.div
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border pointer-events-none"
+            style={{ borderColor: `${ACCENT}40` }}
+            animate={{ scale: [1, 2.2], opacity: [0.5, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
+          />
+          <motion.div
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border pointer-events-none"
+            style={{ borderColor: `${ACCENT}30` }}
+            animate={{ scale: [1, 2.8], opacity: [0.35, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 0.8 }}
+          />
+        </>
+      )}
+
+      <div
+        className="relative w-[88px] h-[110px] md:w-[100px] md:h-[120px] flex items-center justify-center transition-all duration-500"
+        style={{
+          filter: lit ? `drop-shadow(0 0 24px ${ACCENT})` : `drop-shadow(0 0 6px ${ACCENT}30)`,
+          opacity: lit ? 1 : 0.5,
+          transform: active ? "scale(1.06)" : "scale(1)",
+        }}
+      >
+        <svg viewBox="0 0 100 120" className="w-full h-full" fill="none">
+          <path
+            d="M50 4 C30 4 16 20 16 40 C16 64 50 112 50 112 C50 112 84 64 84 40 C84 20 70 4 50 4 Z"
+            fill={lit ? `${ACCENT}20` : `${ACCENT}08`}
+            stroke={ACCENT}
+            strokeWidth="2"
+            strokeOpacity={lit ? 1 : 0.45}
+          />
+          <circle
+            cx="50"
+            cy="42"
+            r="22"
+            fill="rgba(0,0,0,0.4)"
+            stroke={`${ACCENT}60`}
+            strokeWidth="1.5"
+            strokeOpacity={lit ? 1 : 0.35}
+          />
+        </svg>
+        <Icon
+          className="absolute top-[26px] md:top-[28px] w-7 h-7 md:w-8 md:h-8 transition-colors duration-500"
+          style={{ color: lit ? ACCENT : `${ACCENT}70` }}
+          strokeWidth={1.6}
+        />
+      </div>
+
+      <div
+        className="w-3 h-3 rounded-full -mt-1 z-10 transition-all duration-500"
+        style={{
+          backgroundColor: lit ? ACCENT : "transparent",
+          border: `2px solid ${lit ? ACCENT : `${ACCENT}35`}`,
+          boxShadow: lit ? `0 0 16px ${ACCENT}, 0 0 40px ${ACCENT}80` : "none",
+        }}
+      />
+    </motion.div>
+  );
+}
+
+function MilestoneCard({
+  milestone,
+  active,
+}: {
+  milestone: (typeof milestones)[0];
+  active: boolean;
+}) {
+  const Icon = milestone.icon;
+
+  return (
+    <motion.div
+      className={`group relative flex w-full max-w-[540px] min-h-[190px] md:min-h-[210px] rounded-[28px] border backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 ${
+        active ? "opacity-100" : "opacity-55"
+      }`}
+      style={{
+        background: "linear-gradient(145deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.03) 100%)",
+        borderColor: active ? `${ACCENT}40` : `${ACCENT}15`,
+        boxShadow: active
+          ? `0 12px 48px rgba(0,0,0,0.35), 0 0 40px ${ACCENT}12, inset 0 1px 0 rgba(255,255,255,0.08)`
+          : "0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)",
+      }}
+      whileHover={{
+        borderColor: `${ACCENT}55`,
+        boxShadow: `0 16px 56px rgba(0,0,0,0.4), 0 0 56px ${ACCENT}18`,
+      }}
+    >
+      {/* Text */}
+      <div className="flex-1 p-7 md:p-8 flex flex-col justify-center min-w-0">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-xl md:text-2xl font-bold" style={{ color: ACCENT }}>
+            {milestone.year}
+          </span>
+          <span className="h-px flex-1 max-w-[72px]" style={{ backgroundColor: `${ACCENT}55` }} />
+        </div>
+        <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
+          {milestone.title}
+        </h3>
+        <p className="text-slate-300 text-base md:text-lg font-light leading-relaxed">
+          {milestone.body}
+        </p>
+      </div>
+
+      {/* Divider + icon */}
+      <div
+        className="hidden sm:flex flex-col items-center justify-center w-[88px] md:w-[100px] shrink-0 border-l"
+        style={{ borderColor: `${ACCENT}20` }}
+      >
+        <div
+          className="w-[60px] h-[60px] md:w-[68px] md:h-[68px] rounded-full border flex items-center justify-center transition-all duration-500 group-hover:scale-105"
+          style={{
+            borderColor: `${ACCENT}45`,
+            backgroundColor: "rgba(0,0,0,0.35)",
+            boxShadow: `0 0 28px ${ACCENT}20, inset 0 0 20px ${ACCENT}08`,
+          }}
+        >
+          <Icon className="w-7 h-7 md:w-8 md:h-8" style={{ color: ACCENT }} strokeWidth={1.5} />
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 export const Evolution = () => {
-  const containerRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const [pathLength, setPathLength] = useState(0);
-  const [dotPositions, setDotPositions] = useState<PathPoint[]>([]);
-  const [futurePos, setFuturePos] = useState<PathPoint>({ x: FUTURE_X, y: FUTURE_Y });
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeNode, setActiveNode] = useState(0);
   const [isInView, setIsInView] = useState(false);
+  const [tipPos, setTipPos] = useState(NODE_POSITIONS[0]);
 
-  const measurePath = () => {
-    const path = pathRef.current;
-    if (!path) return;
-    const { length, dots, futurePt } = samplePath(path);
-    setPathLength(length);
-    setDotPositions(dots);
-    setFuturePos(futurePt);
-  };
+  const lineProgress = activeNode / (milestones.length - 1);
+  const dashOffset = pathLength > 0 ? pathLength * (1 - lineProgress) : 0;
 
   useLayoutEffect(() => {
-    measurePath();
-    window.addEventListener("resize", measurePath);
-    return () => window.removeEventListener("resize", measurePath);
-  }, []);
+    const path = pathRef.current;
+    if (!path) return;
+    const len = path.getTotalLength();
+    setPathLength(len);
+    const pt = path.getPointAtLength(len * lineProgress);
+    setTipPos({ x: pt.x, y: pt.y });
+  }, [lineProgress]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsInView(true); },
-      { threshold: 0.25 }
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.15 }
     );
-    if (containerRef.current) observer.observe(containerRef.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     if (!isInView) return;
-    const id = setTimeout(() => {
-      setActiveIdx((prev) => (prev >= STEPS.length - 1 ? 0 : prev + 1));
-    }, 3000);
-    return () => clearTimeout(id);
-  }, [isInView, activeIdx]);
+    const timer = setTimeout(() => {
+      setActiveNode((prev) => (prev >= milestones.length - 1 ? 0 : prev + 1));
+    }, 2800);
+    return () => clearTimeout(timer);
+  }, [isInView, activeNode]);
+
+  useEffect(() => {
+    const path = pathRef.current;
+    if (!path || pathLength === 0) return;
+    const pt = path.getPointAtLength(pathLength * lineProgress);
+    setTipPos({ x: pt.x, y: pt.y });
+  }, [lineProgress, pathLength]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".evo-header", {
+      gsap.from(".evo-header > *", {
         opacity: 0,
-        y: 30,
+        y: 32,
         duration: 1,
+        stagger: 0.14,
         ease: "power3.out",
-        scrollTrigger: { trigger: containerRef.current, start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 82%" },
       });
-      gsap.from(".evo-timeline", {
-        opacity: 0,
-        y: 40,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
+
+      gsap.utils.toArray<HTMLElement>(".evo-row").forEach((row, i) => {
+        const markerLeft = i % 2 === 0;
+        gsap.from(row, {
+          opacity: 0,
+          x: markerLeft ? -60 : 60,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: row, start: "top 85%" },
+        });
       });
-    }, containerRef);
+    }, sectionRef);
+
     return () => ctx.revert();
   }, []);
 
-  const lineProgress = pathLength > 0 ? activeIdx / (STEPS.length - 1) : 0;
-  const dashOffset = pathLength * (1 - lineProgress);
-
-  const selectStep = (idx: number) => {
-    setActiveIdx(idx);
-  };
-
   return (
-    <section
-      ref={containerRef}
-      className="py-24 md:py-36 px-4 md:px-10 lg:px-16 relative overflow-hidden bg-transparent"
-    >
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 right-0 w-[600px] h-[400px] bg-teal-500/5 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,340px)_1fr] gap-10 lg:gap-14 items-start">
-
-          <div className="evo-header">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-teal-400 font-mono text-sm font-bold tracking-widest">03</span>
-              <span className="h-px w-10 bg-teal-500/40" />
-            </div>
-            <p className="text-teal-400 text-[11px] font-bold uppercase tracking-[0.35em] mb-4">
-              Our Path Forward
+    <section ref={sectionRef} className="relative py-24 md:py-36 lg:py-40 overflow-hidden bg-transparent">
+      <div className="w-[90%] max-w-[1600px] mx-auto relative z-10">
+        {/* Header */}
+        <header className="evo-header text-center mb-20 md:mb-28">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <span className="h-px w-12 md:w-20" style={{ backgroundColor: `${ACCENT}50` }} />
+            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ACCENT }} />
+            <p
+              className="text-xs md:text-sm font-bold uppercase tracking-[0.4em]"
+              style={{ color: ACCENT }}
+            >
+              Our Journey
             </p>
-            <h2 className="text-4xl md:text-5xl xl:text-[3.25rem] font-display font-bold text-white leading-[1.08] tracking-tight mb-5">
-              Milestones That Define Our Impact
-            </h2>
-            <p className="text-slate-400 text-sm md:text-base font-light leading-relaxed max-w-sm">
-              Each step forward reflects our commitment to excellence and the pharmacies we serve.
-            </p>
+            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ACCENT }} />
+            <span className="h-px w-12 md:w-20" style={{ backgroundColor: `${ACCENT}50` }} />
           </div>
 
-          <div
-            className="evo-timeline w-full hidden lg:block"
-          >
+          <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-[1.05]">
+            <span className="text-white">Company </span>
+            <span
+              className="bg-gradient-to-r from-white via-[#a3ff6e] to-[#39ff14] bg-clip-text text-transparent"
+            >
+              Timeline
+            </span>
+          </h2>
+          <p className="text-slate-400 text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed">
+            Milestones that shaped our growth and success
+          </p>
+        </header>
+
+        {/* Serpentine timeline */}
+        <div className="evo-timeline relative">
+          {/* Full-width SVG path */}
+          <div className="absolute inset-0 pointer-events-none hidden lg:block">
             <svg
-              viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
-              className="w-full h-auto overflow-visible"
-              role="img"
-              aria-label="Company milestones timeline"
+              viewBox="0 0 1000 1080"
+              preserveAspectRatio="none"
+              className="w-full h-full overflow-visible"
+              aria-hidden
             >
               <defs>
-                <filter id="evo-glow" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+                <filter id="evo-glow" x="-60%" y="-5%" width="220%" height="110%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
                   <feMerge>
                     <feMergeNode in="blur" />
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
-                <linearGradient id="evo-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#2dd4bf" stopOpacity="1" />
+                <linearGradient id="evo-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={ACCENT} stopOpacity="0.6" />
+                  <stop offset="50%" stopColor={ACCENT} stopOpacity="1" />
+                  <stop offset="100%" stopColor={ACCENT} stopOpacity="0.75" />
                 </linearGradient>
               </defs>
 
-              {/* Track */}
               <path
-                d={WAVE_PATH}
+                d={TIMELINE_PATH}
                 fill="none"
-                stroke="#14b8a6"
-                strokeWidth="1.5"
-                strokeOpacity="0.12"
+                stroke={`${ACCENT}10`}
+                strokeWidth="4"
                 strokeLinecap="round"
+                strokeLinejoin="round"
               />
 
-              {/* Animated line */}
               <path
                 ref={pathRef}
-                d={WAVE_PATH}
+                d={TIMELINE_PATH}
                 fill="none"
-                stroke="url(#evo-line-grad)"
-                strokeWidth="3"
+                stroke="url(#evo-grad)"
+                strokeWidth="4"
                 strokeLinecap="round"
+                strokeLinejoin="round"
                 filter="url(#evo-glow)"
                 strokeDasharray={pathLength || undefined}
                 strokeDashoffset={dashOffset}
-                style={{ transition: "stroke-dashoffset 2.8s cubic-bezier(0.4, 0, 0.2, 1)" }}
+                style={{ transition: "stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1)" }}
               />
 
-              {/* Connectors + labels */}
-              {dotPositions.map((pt, idx) => {
-                const m = milestones[idx];
-                const isActive = activeIdx === idx;
-                const isVisible = idx <= activeIdx;
-                if (!m) return null;
-
-                return (
-                  <g key={m.year}>
-                    <line
-                      x1={pt.x}
-                      y1={pt.y + 9}
-                      x2={pt.x}
-                      y2={LABEL_Y - 4}
-                      stroke="#14b8a6"
-                      strokeWidth="1"
-                      strokeOpacity={isVisible ? 0.35 : 0.12}
-                    />
-
-                    <g
-                      className="cursor-pointer"
-                      onClick={() => selectStep(idx)}
-                      onMouseEnter={() => selectStep(idx)}
-                    >
-                      {isActive && (
-                        <circle cx={pt.x} cy={pt.y} r="16" fill="#14b8a6" fillOpacity="0.18" />
-                      )}
-                      <circle
-                        cx={pt.x}
-                        cy={pt.y}
-                        r={isActive ? 8 : 6}
-                        fill={isActive ? "#2dd4bf" : "#0f766e"}
-                        stroke="#5eead4"
-                        strokeWidth="1.8"
-                        opacity={isVisible ? 1 : 0.45}
-                      />
-                      {isActive && <circle cx={pt.x} cy={pt.y} r="2.5" fill="white" />}
-                    </g>
-
-                    <foreignObject
-                      x={pt.x - 72}
-                      y={LABEL_Y}
-                      width={144}
-                      height={150}
-                      className="overflow-visible pointer-events-none"
-                    >
-                      <div
-                        xmlns="http://www.w3.org/1999/xhtml"
-                        className={`text-center transition-opacity duration-500 pointer-events-auto cursor-pointer ${isVisible ? "opacity-100" : "opacity-35"}`}
-                        onClick={() => selectStep(idx)}
-                        onMouseEnter={() => selectStep(idx)}
-                      >
-                        <p className={`text-[11px] font-mono font-bold mb-1 ${isActive ? "text-teal-400" : "text-teal-500/70"}`}>
-                          {m.year}
-                        </p>
-                        <p className={`text-[11px] font-bold uppercase tracking-tight leading-tight mb-1.5 ${isActive ? "text-white" : "text-slate-300"}`}>
-                          {m.title}
-                        </p>
-                        <p className="text-[10px] text-slate-500 leading-relaxed">
-                          {m.body}
-                        </p>
-                      </div>
-                    </foreignObject>
-                  </g>
-                );
-              })}
-
-              {/* Future hub */}
-              <g
-                className="cursor-pointer"
-                onClick={() => selectStep(STEPS.length - 1)}
-                onMouseEnter={() => selectStep(STEPS.length - 1)}
-              >
-                {[62, 50, 38].map((r, i) => (
-                  <circle
-                    key={r}
-                    cx={futurePos.x}
-                    cy={futurePos.y}
-                    r={r}
-                    fill="none"
-                    stroke="#14b8a6"
-                    strokeWidth="1"
-                    strokeOpacity={0.1 + i * 0.07}
-                  />
-                ))}
-                <circle
-                  cx={futurePos.x}
-                  cy={futurePos.y}
-                  r={activeIdx === STEPS.length - 1 ? 30 : 24}
-                  fill="#020817"
-                  stroke="#14b8a6"
-                  strokeWidth="1.5"
-                  strokeOpacity={activeIdx === STEPS.length - 1 ? 0.75 : 0.35}
+              {pathLength > 0 && (
+                <motion.circle
+                  r="6"
+                  fill={ACCENT}
+                  animate={{ cx: tipPos.x, cy: tipPos.y }}
+                  transition={{ duration: 1.4, ease: [0.4, 0, 0.2, 1] }}
+                  style={{ filter: `drop-shadow(0 0 12px ${ACCENT})` }}
                 />
-                {activeIdx === STEPS.length - 1 && (
-                  <circle
-                    cx={futurePos.x}
-                    cy={futurePos.y}
-                    r="36"
-                    fill="none"
-                    stroke="#2dd4bf"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.45"
-                  />
-                )}
-
-                <line
-                  x1={futurePos.x}
-                  y1={futurePos.y + 64}
-                  x2={futurePos.x}
-                  y2={LABEL_Y - 4}
-                  stroke="#14b8a6"
-                  strokeWidth="1"
-                  strokeOpacity="0.35"
-                />
-
-                <foreignObject
-                  x={futurePos.x - 80}
-                  y={LABEL_Y}
-                  width={160}
-                  height={150}
-                  className="overflow-visible pointer-events-none"
-                >
-                  <div
-                    xmlns="http://www.w3.org/1999/xhtml"
-                    className={`text-center pointer-events-auto transition-opacity duration-500 ${activeIdx >= milestones.length ? "opacity-100" : "opacity-50"}`}
-                    onClick={() => selectStep(STEPS.length - 1)}
-                    onMouseEnter={() => selectStep(STEPS.length - 1)}
-                  >
-                    <p className="text-teal-400 text-[11px] font-mono font-bold mb-1">{future.year}</p>
-                    <p className="text-white text-[11px] font-bold uppercase tracking-tight mb-1 leading-tight">
-                      {future.title}
-                    </p>
-                    <p className="text-[9px] text-slate-400 leading-relaxed px-1 mb-2">
-                      {future.body}
-                    </p>
-                    <div className="flex justify-center">
-                      <div className="w-7 h-7 rounded-full border border-teal-500/30 flex items-center justify-center text-teal-400 mx-auto">
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </div>
-                  </div>
-                </foreignObject>
-              </g>
+              )}
             </svg>
           </div>
-        </div>
 
-        {/* Mobile */}
-        <div className="lg:hidden mt-10 space-y-4 border-t border-white/5 pt-8">
-          {[...milestones, future].map((m, idx) => (
-            <button
-              key={m.year}
-              type="button"
-              onClick={() => setActiveIdx(idx)}
-              className={`w-full text-left p-4 rounded-xl border transition-all duration-300 ${
-                activeIdx === idx
-                  ? "border-teal-500/40 bg-teal-500/5"
-                  : "border-white/8 bg-white/[0.02]"
-              }`}
-            >
-              <p className="text-teal-400 text-xs font-mono font-bold mb-1">{m.year}</p>
-              <h4 className="text-white font-bold text-sm uppercase tracking-tight mb-1">{m.title}</h4>
-              <p className="text-slate-400 text-xs leading-relaxed">{m.body}</p>
-            </button>
-          ))}
+          <div className="space-y-28 md:space-y-32 lg:space-y-36">
+            {milestones.map((milestone, idx) => {
+              const markerOnLeft = idx % 2 === 0;
+              const PinIcon = milestone.pinIcon;
+              const isActive = activeNode === idx;
+              const isReached = idx <= activeNode;
+
+              return (
+                <div key={milestone.year} className="evo-row relative min-h-[200px] md:min-h-[220px]">
+                  {/* Desktop serpentine */}
+                  <div className="hidden lg:grid grid-cols-12 items-center gap-6">
+                    {markerOnLeft ? (
+                      <>
+                        <div className="col-span-4 flex justify-end pr-4">
+                          <MapPinMarker
+                            icon={PinIcon}
+                            active={isActive}
+                            reached={isReached && !isActive}
+                          />
+                        </div>
+                        <div className="col-span-1" />
+                        <div className="col-span-7 flex justify-start pl-4">
+                          <MilestoneCard milestone={milestone} active={isReached} />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="col-span-7 flex justify-end pr-4">
+                          <MilestoneCard milestone={milestone} active={isReached} />
+                        </div>
+                        <div className="col-span-1" />
+                        <div className="col-span-4 flex justify-start pl-4">
+                          <MapPinMarker
+                            icon={PinIcon}
+                            active={isActive}
+                            reached={isReached && !isActive}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Tablet — slightly narrower cards */}
+                  <div className="hidden md:grid lg:hidden grid-cols-1 gap-8 items-center">
+                    <div className="flex justify-center">
+                      <MapPinMarker
+                        icon={PinIcon}
+                        active={isActive}
+                        reached={isReached && !isActive}
+                      />
+                    </div>
+                    <div className="flex justify-center px-4">
+                      <MilestoneCard milestone={milestone} active={isReached} />
+                    </div>
+                  </div>
+
+                  {/* Mobile */}
+                  <div className="md:hidden flex flex-col items-center gap-8">
+                    <MapPinMarker
+                      icon={PinIcon}
+                      active={isActive}
+                      reached={isReached && !isActive}
+                    />
+                    <div className="w-full px-2">
+                      <MilestoneCard milestone={milestone} active={isReached} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
