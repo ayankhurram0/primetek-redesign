@@ -405,7 +405,7 @@ export const ServicesDetail = () => {
                   key={service.id}
                   type="button"
                   onClick={() => setActiveId(service.id)}
-                  className={`w-full flex flex-col items-center justify-center gap-3 px-3 py-4 rounded-xl border transition-all duration-300 min-h-[88px] ${
+                  className={`w-full flex flex-col items-center justify-center gap-4 px-3 py-5 rounded-xl border transition-all duration-300 min-h-[100px] ${
                     isActive
                       ? "border-white/20 bg-white/[0.08]"
                       : "border-transparent bg-white/[0.02] hover:bg-white/[0.05]"
@@ -415,15 +415,15 @@ export const ServicesDetail = () => {
                     boxShadow: isActive ? `0 4px 24px ${color}20` : undefined,
                   }}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <span
-                      className="text-sm font-bold font-mono tabular-nums shrink-0"
+                      className="text-xl sm:text-2xl font-bold font-mono tabular-nums shrink-0"
                       style={{ color: isActive ? color : "#64748b" }}
                     >
                       {service.id}
                     </span>
                     <service.icon
-                      className="w-5 h-5 shrink-0"
+                      className="w-8 h-8 sm:w-9 sm:h-9 shrink-0"
                       style={{ color: isActive ? color : "#64748b" }}
                     />
                   </div>

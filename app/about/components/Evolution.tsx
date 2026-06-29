@@ -18,7 +18,8 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ACCENT = "#39ff14";
+const ACCENT = "#2dd4bf";
+const ACCENT_DIM = "#14b8a6";
 
 const milestones = [
   {
@@ -323,7 +324,7 @@ export const Evolution = () => {
           <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-[1.05]">
             <span className="text-white">Company </span>
             <span
-              className="bg-gradient-to-r from-white via-[#a3ff6e] to-[#39ff14] bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-white via-[#5eead4] to-[#2dd4bf] bg-clip-text text-transparent"
             >
               Timeline
             </span>
@@ -381,7 +382,7 @@ export const Evolution = () => {
                   </feMerge>
                 </filter>
                 <linearGradient id="evo-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={ACCENT} stopOpacity="0.6" />
+                  <stop offset="0%" stopColor={ACCENT_DIM} stopOpacity="0.6" />
                   <stop offset="50%" stopColor={ACCENT} stopOpacity="1" />
                   <stop offset="100%" stopColor={ACCENT} stopOpacity="0.75" />
                 </linearGradient>
