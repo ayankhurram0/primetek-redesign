@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { CheckCircle2, Quote, MapPin, Calendar, Hash } from 'lucide-react';
+import { Quote, MapPin, Calendar, Hash } from 'lucide-react';
 
 export interface CaseStudyData {
    category: string;
@@ -26,25 +26,29 @@ const themeStyles = {
       border: 'border-teal-400/20',
       text: 'text-teal-400',
       bg: 'bg-teal-400/5',
-      accent: 'bg-teal-400'
+      accent: 'bg-teal-400',
+      accentHex: '#2dd4bf',
    },
    purple: {
       border: 'border-purple-500/20',
       text: 'text-purple-400',
       bg: 'bg-purple-500/5',
-      accent: 'bg-purple-500'
+      accent: 'bg-purple-500',
+      accentHex: '#a855f7',
    },
    blue: {
       border: 'border-blue-500/20',
       text: 'text-blue-400',
       bg: 'bg-blue-500/5',
-      accent: 'bg-blue-500'
+      accent: 'bg-blue-500',
+      accentHex: '#3b82f6',
    },
    red: {
       border: 'border-red-500/20',
       text: 'text-red-400',
       bg: 'bg-red-500/5',
-      accent: 'bg-red-500'
+      accent: 'bg-red-500',
+      accentHex: '#ef4444',
    }
 };
 
@@ -56,21 +60,37 @@ interface CaseStudyCardProps {
 
 export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
    const styles = themeStyles[study.theme];
+   const accent = styles.accentHex;
 
    return (
       <motion.div
          initial={{ opacity: 0, y: 40 }}
          whileInView={{ opacity: 1, y: 0 }}
          viewport={{ once: true, margin: "-100px" }}
-         className="bg-[#010810]/40 backdrop-blur-3xl border border-white/5 mb-24 relative overflow-hidden group font-montserrat"
+         className="mb-24 py-6 md:py-8 font-montserrat"
       >
+         <div
+            className="relative p-[2px]"
+            style={{
+               background: `linear-gradient(135deg, ${accent}99 0%, ${accent}35 25%, ${accent}25 50%, ${accent}35 75%, ${accent}99 100%)`,
+               boxShadow: `
+                  0 0 36px ${accent}55,
+                  0 0 72px ${accent}28,
+                  -16px 0 48px ${accent}40,
+                  16px 0 48px ${accent}40,
+                  0 -12px 40px ${accent}35,
+                  0 12px 40px ${accent}35
+               `,
+            }}
+         >
+            <div className="bg-transparent border border-white/[0.08] relative overflow-hidden group">
          {/* Background ID Watermark */}
          <div className="absolute top-0 right-0 p-8 select-none pointer-events-none opacity-[0.02]">
             <span className="text-9xl font-display font-bold  tracking-tighter">NODE_0{idx + 1}</span>
          </div>
 
          {/* Header Technical Bar */}
-         <div className={`px-10 py-4 border-b border-white/5 flex items-center justify-between ${styles.bg}`}>
+         <div className={`px-10 py-4 border-b border-white/5 flex items-center justify-between bg-transparent`}>
             <div className="flex items-center gap-6">
                <span className={`flex items-center gap-2 text-xl font-montserrat font-bold uppercase tracking-[0.3em] ${styles.text}`}>
                   <Hash className="w-4 h-4" /> STUDY LOG 0{idx + 1}
@@ -115,9 +135,15 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
                {/* Diagnostic Stat Panel */}
                <div className="lg:w-80 shrink-0">
                   <div className="sticky top-10">
-                     <div className={`p-10 border border-white/10 ${styles.bg} relative overflow-hidden`}>
+                     <div
+                        className={`p-10 border relative overflow-hidden bg-transparent ${styles.border}`}
+                        style={{
+                           borderColor: `${accent}40`,
+                           boxShadow: `0 0 28px ${accent}30`,
+                        }}
+                     >
                         <div className="absolute top-0 right-0 w-16 h-16 bg-white/5 -translate-y-1/2 translate-x-1/2 rotate-45" />
-                        <div className={`text-6xl font-display font-bold mb-2 tracking-tighter ${styles.text}`}>{study.statValue}</div>
+                        <div className={`text-6xl font-display font-bold mb-2 tracking-tighter ${styles.text}`} style={{ textShadow: `0 0 32px ${accent}55` }}>{study.statValue}</div>
                         <div className="text-xl text-white font-montserrat font-bold uppercase mb-4">{study.statLabel}</div>
                         <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
                            <motion.div
@@ -144,7 +170,13 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
             </div>
 
             {/* Quote Terminal */}
-            <div className="bg-white/[0.02] border border-white/5 p-12 relative overflow-hidden">
+            <div
+               className="border p-12 relative overflow-hidden bg-transparent"
+               style={{
+                  borderColor: `${accent}35`,
+                  boxShadow: `0 0 32px ${accent}22`,
+               }}
+            >
                <Quote className={`absolute top-10 right-10 w-20 h-20 opacity-5 ${styles.text}`} />
                <p className={`text-2xl md:text-3xl font-display font-bold mb-10 relative z-10 leading-[1.1] tracking-tight ${styles.text}`}>
                   "{study.quote}"
@@ -156,6 +188,8 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
                   </div>
                </div>
             </div>
+            </div>
+         </div>
          </div>
       </motion.div>
    );

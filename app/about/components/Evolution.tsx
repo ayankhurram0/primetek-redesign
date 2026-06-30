@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type ElementType } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ElementType } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { motion } from "motion/react";
 import {
   Rocket,
@@ -16,10 +17,12 @@ import {
   Lightbulb,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const ACCENT = "#2dd4bf";
 const ACCENT_DIM = "#14b8a6";
+const TOUR_STEP_MS = 3200;
+const TOUR_SCROLL_DURATION = 1.35;
 
 const milestones = [
   {
@@ -236,13 +239,76 @@ function MilestoneCard({
 export const Evolution = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const tourRunningRef = useRef(false);
+  const tourPlayedRef = useRef(false);
+  const tourAbortRef = useRef(false);
+  const ignoreInputRef = useRef(false);
   const [pathLength, setPathLength] = useState(0);
   const [activeNode, setActiveNode] = useState(0);
-  const [isInView, setIsInView] = useState(false);
+  const [tourActive, setTourActive] = useState(false);
   const [tipPos, setTipPos] = useState(NODE_POSITIONS[0]);
 
   const lineProgress = activeNode / (milestones.length - 1);
   const dashOffset = pathLength > 0 ? pathLength * (1 - lineProgress) : 0;
+
+  const scrollToMilestone = useCallback((index: number) => {
+    const row = rowRefs.current[index];
+    if (!row) return Promise.resolve();
+
+    const target =
+      window.scrollY + row.getBoundingClientRect().top - window.innerHeight * 0.32;
+
+    ignoreInputRef.current = true;
+
+    return new Promise<void>((resolve) => {
+      gsap.to(window, {
+        scrollTo: { y: Math.max(0, target), autoKill: true },
+        duration: TOUR_SCROLL_DURATION,
+        ease: "power2.inOut",
+        onComplete: () => {
+          window.setTimeout(() => {
+            ignoreInputRef.current = false;
+          }, 250);
+          resolve();
+        },
+        onInterrupt: () => {
+          ignoreInputRef.current = false;
+          resolve();
+        },
+      });
+    });
+  }, []);
+
+  const runTimelineTour = useCallback(async () => {
+    if (tourRunningRef.current || tourPlayedRef.current) return;
+
+    tourRunningRef.current = true;
+    tourAbortRef.current = false;
+    setTourActive(true);
+
+    await new Promise((r) => setTimeout(r, 500));
+
+    for (let i = 0; i < milestones.length; i++) {
+      if (tourAbortRef.current) break;
+      setActiveNode(i);
+      await scrollToMilestone(i);
+      if (tourAbortRef.current) break;
+      await new Promise((r) => setTimeout(r, TOUR_STEP_MS));
+    }
+
+    tourPlayedRef.current = true;
+    tourRunningRef.current = false;
+    setTourActive(false);
+  }, [scrollToMilestone]);
+
+  const cancelTour = useCallback(() => {
+    if (!tourRunningRef.current) return;
+    tourAbortRef.current = true;
+    gsap.killTweensOf(window);
+    tourRunningRef.current = false;
+    setTourActive(false);
+  }, []);
 
   useLayoutEffect(() => {
     const path = pathRef.current;
@@ -254,21 +320,40 @@ export const Evolution = () => {
   }, [lineProgress]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
-      { threshold: 0.15 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+    const section = sectionRef.current;
+    if (!section) return;
 
-  useEffect(() => {
-    if (!isInView) return;
-    const timer = setTimeout(() => {
-      setActiveNode((prev) => (prev >= milestones.length - 1 ? 0 : prev + 1));
-    }, 2800);
-    return () => clearTimeout(timer);
-  }, [isInView, activeNode]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.28 && !tourPlayedRef.current) {
+          runTimelineTour();
+        }
+      },
+      { threshold: [0.28, 0.45] }
+    );
+
+    observer.observe(section);
+
+    const onUserScroll = () => {
+      if (ignoreInputRef.current) return;
+      cancelTour();
+    };
+    window.addEventListener("wheel", onUserScroll, { passive: true });
+    window.addEventListener("touchmove", onUserScroll, { passive: true });
+    window.addEventListener("keydown", (e) => {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", " ", "Home", "End"].includes(e.key)) {
+        cancelTour();
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("wheel", onUserScroll);
+      window.removeEventListener("touchmove", onUserScroll);
+      tourAbortRef.current = true;
+      gsap.killTweensOf(window);
+    };
+  }, [runTimelineTour, cancelTour]);
 
   useEffect(() => {
     const path = pathRef.current;
@@ -332,6 +417,14 @@ export const Evolution = () => {
           <p className="text-slate-400 text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed">
             Milestones that shaped our growth and success
           </p>
+          {tourActive && (
+            <p
+              className="mt-4 text-xs font-bold uppercase tracking-[0.35em] animate-pulse"
+              style={{ color: `${ACCENT}90` }}
+            >
+              Guided timeline in progress — scroll to take control
+            </p>
+          )}
         </header>
 
         {/* Serpentine timeline */}
@@ -431,7 +524,13 @@ export const Evolution = () => {
               const isReached = idx <= activeNode;
 
               return (
-                <div key={milestone.year} className="evo-row relative min-h-[200px] md:min-h-[220px]">
+                <div
+                  key={milestone.year}
+                  ref={(el) => {
+                    rowRefs.current[idx] = el;
+                  }}
+                  className="evo-row relative min-h-[200px] md:min-h-[220px] scroll-mt-28"
+                >
                   {/* Desktop — cards on outer edges, line + pins in center */}
                   <div className="hidden lg:grid grid-cols-[1fr_100px_1fr] xl:grid-cols-[1fr_120px_1fr] items-center gap-x-8 xl:gap-x-12">
                     {cardOnLeft ? (

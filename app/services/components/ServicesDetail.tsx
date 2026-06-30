@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -8,6 +8,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import FancyButton from "@/app/components/button";
+import { ServiceIllustration } from "@/app/components/ServiceIllustration";
 
 const services = [
   {
@@ -241,148 +242,15 @@ const colorMap: Record<string, string> = {
   "brand-teal": "#2dd4bf"
 };
 
-const ARC_PATH = "M 52 62 Q 160 8 268 62";
-
-const STAGE_POSITIONS = [
-  { x: 52, y: 62 },
-  { x: 160, y: 22 },
-  { x: 268, y: 62 },
-];
-
-/** 3-stage service flow — same meaning as a process timeline, different visual (arc + diamonds) */
-const ServiceProcessFlow = ({
-  stages,
-  color,
-}: {
-  stages: [string, string, string];
-  color: string;
-}) => {
-  const [activeStage, setActiveStage] = useState(1);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStage((prev) => (prev + 1) % 3);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const pathProgress = activeStage === 0 ? 0 : activeStage === 1 ? 0.5 : 1;
-
-  return (
-    <div className="w-full min-h-[200px] flex items-center justify-center relative overflow-hidden rounded-2xl border border-white/10 bg-[#061018]/75 p-6">
-      <div
-        className="absolute inset-0 opacity-[0.28] pointer-events-none rounded-2xl"
-        style={{
-          backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.14) 1px, transparent 1px)`,
-          backgroundSize: "16px 16px",
-        }}
-      />
-      <div
-        className="absolute left-5 top-[42%] w-1.5 h-1.5 rounded-full bg-white pointer-events-none"
-        style={{ boxShadow: "0 0 18px 5px rgba(255,255,255,0.45)" }}
-      />
-
-      <svg
-        className="w-full max-w-[340px] h-[118px] overflow-visible relative z-10"
-        viewBox="0 0 320 118"
-        fill="none"
-      >
-        <path
-          d={ARC_PATH}
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <motion.path
-          d={ARC_PATH}
-          stroke={color}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          initial={false}
-          animate={{ pathLength: pathProgress }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          style={{ filter: `drop-shadow(0 0 6px ${color}80)` }}
-        />
-
-        {stages.map((label, idx) => {
-          const { x, y } = STAGE_POSITIONS[idx];
-          const isActive = activeStage === idx;
-          const isPast = idx < activeStage;
-          const size = isActive ? 20 : 16;
-
-          return (
-            <g key={label}>
-              <motion.rect
-                x={x - size / 2}
-                y={y - size / 2}
-                width={size}
-                height={size}
-                rx={2}
-                transform={`rotate(45 ${x} ${y})`}
-                fill="#0a0f1d"
-                stroke={isActive || isPast ? color : "rgba(255,255,255,0.15)"}
-                strokeWidth={isActive ? 2.5 : 1.5}
-                animate={
-                  isActive
-                    ? {
-                        scale: [1, 1.08, 1],
-                        filter: [
-                          `drop-shadow(0 0 4px ${color}60)`,
-                          `drop-shadow(0 0 14px ${color})`,
-                          `drop-shadow(0 0 4px ${color}60)`,
-                        ],
-                      }
-                    : {}
-                }
-                transition={{ duration: 2, repeat: isActive ? Infinity : 0, ease: "easeInOut" }}
-                style={{ transformOrigin: `${x}px ${y}px` }}
-              />
-
-              {isPast && !isActive ? (
-                <path
-                  d={`M ${x - 4} ${y} L ${x - 1} ${y + 3.5} L ${x + 5} ${y - 3.5}`}
-                  stroke={color}
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              ) : (
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={isActive ? 3.5 : 2.5}
-                  fill={isActive || isPast ? color : "rgba(255,255,255,0.2)"}
-                />
-              )}
-
-              <text
-                x={x}
-                y={98}
-                textAnchor="middle"
-                fill={isActive ? color : "rgba(255,255,255,0.22)"}
-                fontSize="8"
-                fontWeight="700"
-                letterSpacing="0.12em"
-              >
-                {label.toUpperCase()}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
-    </div>
-  );
-};
-
 export const ServicesDetail = () => {
   const [activeId, setActiveId] = useState("01");
   const activeService = services.find((s) => s.id === activeId)!;
   const accent = colorMap[activeService.color];
 
   return (
-    <section className="relative w-[85%] mx-auto py-16 md:py-24 overflow-hidden">
+    <section className="relative w-[85%] mx-auto py-16 md:py-24">
       <div
-        className="absolute inset-0 opacity-[0.07] pointer-events-none transition-all duration-500"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none transition-all duration-500"
         style={{
           backgroundImage: `radial-gradient(circle, ${accent} 1px, transparent 1px)`,
           backgroundSize: "32px 32px",
@@ -440,6 +308,7 @@ export const ServicesDetail = () => {
           </div>
         </div>
 
+        <div className="px-5 py-6 md:px-8 md:py-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeId}
@@ -447,11 +316,20 @@ export const ServicesDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.4, ease: "circOut" }}
+            className="relative rounded-3xl p-[2px]"
+            style={{
+              background: `linear-gradient(135deg, ${accent}99 0%, ${accent}35 25%, ${accent}25 50%, ${accent}35 75%, ${accent}99 100%)`,
+              boxShadow: `
+                0 0 36px ${accent}55,
+                0 0 72px ${accent}28,
+                -16px 0 48px ${accent}40,
+                16px 0 48px ${accent}40,
+                0 -12px 40px ${accent}35,
+                0 12px 40px ${accent}35
+              `,
+            }}
           >
-            <div
-              className="rounded-3xl border border-white/10 bg-[#04212a]/85 backdrop-blur-xl overflow-hidden"
-              style={{ boxShadow: `0 20px 60px ${accent}12` }}
-            >
+            <div className="rounded-[23px] border border-white/[0.08] bg-[#04212a]/40 backdrop-blur-2xl backdrop-saturate-150 overflow-hidden">
               <div
                 className="h-1 w-full"
                 style={{ background: `linear-gradient(90deg, ${accent}, transparent 80%)` }}
@@ -494,16 +372,14 @@ export const ServicesDetail = () => {
 
                   {/* Sidebar: flow graphic + stat */}
                   <div className="flex flex-col gap-4">
-                    <ServiceProcessFlow
-                      stages={activeService.stages as [string, string, string]}
-                      color={accent}
-                    />
+                    <div className="w-full h-44 border border-white/10 rounded-2xl relative overflow-hidden flex items-center justify-center shrink-0 p-3 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150">
+                      <ServiceIllustration
+                        index={parseInt(activeService.id, 10) - 1}
+                        color={accent}
+                      />
+                    </div>
                     <div
-                      className="rounded-2xl p-6 text-center border"
-                      style={{
-                        borderColor: `${accent}30`,
-                        backgroundColor: `${accent}0a`,
-                      }}
+                      className="rounded-2xl p-6 text-center border border-white/10 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150"
                     >
                       <div
                         className="text-4xl font-bold font-outfit tracking-tight mb-2"
@@ -531,7 +407,7 @@ export const ServicesDetail = () => {
                   {activeService.whatWeDo.map((item, i) => (
                     <div
                       key={i}
-                      className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 hover:bg-white/[0.04] transition-colors"
+                      className="rounded-xl border border-white/[0.1] bg-white/[0.05] backdrop-blur-lg backdrop-saturate-150 p-5 transition-colors hover:bg-white/[0.08]"
                       style={{ borderLeftWidth: "2px", borderLeftColor: accent }}
                     >
                       <h4 className="text-white text-sm font-bold mb-2 leading-snug">
@@ -607,6 +483,7 @@ export const ServicesDetail = () => {
             </div>
           </motion.div>
         </AnimatePresence>
+        </div>
       </div>
     </section>
   );
