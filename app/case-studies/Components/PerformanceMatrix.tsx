@@ -8,24 +8,23 @@ import {
   BarChart3,
   FlaskConical,
   ArrowUpRight,
-  Users,
 } from "lucide-react";
 import { RollingRecovery, RollingPercent } from "@/app/components/RollingNumber";
 
 const CARD_THEMES = [
   {
-    accent: "#22E8E8",
-    accentRgb: "34, 232, 232",
+    accent: "#0df5c4",
+    accentRgb: "13, 245, 196",
     chartPoints: [22, 26, 24, 32, 30, 38, 42, 48],
   },
   {
-    accent: "#2DA8FF",
-    accentRgb: "45, 168, 255",
+    accent: "#2b66ff",
+    accentRgb: "43, 102, 255",
     chartPoints: [28, 32, 38, 36, 46, 52, 58, 66],
   },
   {
-    accent: "#8B5CFF",
-    accentRgb: "139, 92, 255",
+    accent: "#a238ff",
+    accentRgb: "162, 56, 255",
     chartPoints: [18, 20, 26, 34, 48, 62, 78, 94],
   },
 ] as const;
@@ -96,8 +95,16 @@ function MiniSparkline({
     y: padY + (1 - (p - min) / range) * (height - padY * 2),
   }));
 
+  const flatCoords = points.map((p, i) => ({
+    x: padX + (i / (points.length - 1)) * (width - padX * 2),
+    y: height - padY,
+  }));
+
   const linePath = smoothLinePath(coords);
+  const flatLinePath = smoothLinePath(flatCoords);
+
   const areaPath = `${linePath} L ${coords[coords.length - 1].x} ${height} L ${coords[0].x} ${height} Z`;
+  const flatAreaPath = `${flatLinePath} L ${flatCoords[flatCoords.length - 1].x} ${height} L ${flatCoords[0].x} ${height} Z`;
   const dotIndices = [1, 3, 5, 7];
 
   return (
@@ -134,35 +141,34 @@ function MiniSparkline({
         </defs>
 
         <motion.path
-          d={areaPath}
+          d={flatAreaPath}
           fill={`url(#${gradId})`}
-          initial={{ opacity: 0 }}
-          animate={play ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.9, delay: 0.35 }}
+          initial={{ d: flatAreaPath, opacity: 0 }}
+          animate={play ? { d: areaPath, opacity: 1 } : { d: flatAreaPath, opacity: 0 }}
+          transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
         />
 
         <motion.path
-          d={linePath}
+          d={flatLinePath}
           fill="none"
           stroke={color}
           strokeWidth="2"
           strokeLinecap="round"
           filter={`url(#${gradId}-glow)`}
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-          transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ d: flatLinePath, opacity: 0 }}
+          animate={play ? { d: linePath, opacity: 1 } : { d: flatLinePath, opacity: 0 }}
+          transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
         />
 
         {dotIndices.map((i) => (
           <motion.circle
             key={i}
             cx={coords[i].x}
-            cy={coords[i].y}
             r="3.5"
             fill={color}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={play ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-            transition={{ duration: 0.35, delay: 0.6 + i * 0.08 }}
+            initial={{ cy: height - padY, opacity: 0, scale: 0 }}
+            animate={play ? { cy: coords[i].y, opacity: 1, scale: 1 } : { cy: height - padY, opacity: 0, scale: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.8 + i * 0.05 }}
             style={{ filter: `drop-shadow(0 0 6px ${color})` }}
           />
         ))}
@@ -350,41 +356,7 @@ export default function PerformanceMatrix() {
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.45 }}
-          className="mt-16 md:mt-20 rounded-full overflow-hidden bg-transparent"
-          style={{
-            border: "1px solid rgba(34, 232, 232, 0.15)",
-            boxShadow: "0 0 32px rgba(34,232,232,0.06)",
-          }}
-        >
-          <div className="px-6 md:px-10 py-4 md:py-5 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0">
-            <div className="flex items-center gap-3 shrink-0 sm:pr-8">
-              <div
-                className="flex items-center justify-center w-9 h-9 rounded-full shrink-0"
-                style={{
-                  background: "rgba(34, 232, 232, 0.08)",
-                  border: "1px solid rgba(34, 232, 232, 0.25)",
-                  boxShadow: "0 0 12px rgba(34, 232, 232, 0.15)",
-                }}
-              >
-                <Users className="w-4 h-4 text-[#22E8E8]" />
-              </div>
-              <span className="text-[11px] md:text-xs font-bold uppercase tracking-[0.22em] text-[#22E8E8] whitespace-nowrap">
-                Powered by Real-World Data
-              </span>
-            </div>
 
-            <div className="hidden sm:block w-px h-7 bg-white/10 shrink-0" />
-
-            <p className="text-sm text-slate-500 leading-relaxed sm:pl-8">
-              Insights you can trust. Results you can measure. Performance you can scale.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

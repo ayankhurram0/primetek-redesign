@@ -48,7 +48,7 @@ export const OurJourney = () => {
         tl.from(row.querySelector(".jrow-content"), {
           opacity: 0,
           x: isFlipped ? 30 : -30,
-          duration: 0.7,
+          duration: 0.45,
           ease: "power3.out"
         });
 
@@ -56,9 +56,9 @@ export const OurJourney = () => {
         tl.from(row.querySelector(".jrow-img-container"), {
           opacity: 0,
           scale: 0.95,
-          duration: 0.8,
+          duration: 0.5,
           ease: "power2.out"
-        }, "-=0.4");
+        }, "-=0.3");
       });
     }, sectionRef);
 
@@ -105,11 +105,11 @@ export const OurJourney = () => {
               className="absolute inset-0 w-full h-full"
               style={{
                 maskImage: step.flip
-                  ? "linear-gradient(to right, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)"
-                  : "linear-gradient(to left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)",
+                  ? "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)"
+                  : "linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
                 WebkitMaskImage: step.flip
-                  ? "linear-gradient(to right, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)"
-                  : "linear-gradient(to left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)",
+                  ? "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)"
+                  : "linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
               }}
             >
               {/* Inner div: Vertical Fade */}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Search, ShieldAlert, Cpu, CheckCircle2, Shield } from "lucide-react";
+import { Search, ShieldAlert, Cpu, CheckCircle2 } from "lucide-react";
 
 const ACCENT = "#17E8D4";
 const ACCENT_GLOW = "rgba(23, 232, 212, 0.18)";
@@ -304,43 +304,7 @@ export default function CaseMethodology() {
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.45 }}
-          className="mt-16 md:mt-20 rounded-full bg-transparent"
-          style={{
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: `0 0 24px ${ACCENT_GLOW}`,
-          }}
-        >
-          <div className="px-6 md:px-10 py-4 md:py-5 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0">
-            <div className="flex items-center gap-3 shrink-0 sm:pr-8">
-              <div
-                className="flex items-center justify-center w-9 h-9 rounded-full shrink-0"
-                style={{
-                  border: "1px solid rgba(23,232,212,0.25)",
-                  background: "rgba(255,255,255,0.03)",
-                }}
-              >
-                <Shield className="w-4 h-4" style={{ color: ACCENT }} strokeWidth={1.5} />
-              </div>
-              <span
-                className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] whitespace-nowrap"
-                style={{ color: ACCENT }}
-              >
-                Secure by Design. Trusted by Data.
-              </span>
-            </div>
 
-            <div className="hidden sm:block w-px h-7 bg-white/[0.08] shrink-0" />
-
-            <p className="text-sm leading-relaxed sm:pl-8 font-light" style={{ color: TEXT_SECONDARY }}>
-              Every layer. Every node. Every time.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
