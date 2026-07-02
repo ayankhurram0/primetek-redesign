@@ -12,7 +12,7 @@ import { blogs } from "./blogData";
 
 export default function BlogPage() {
   return (
-    <main className="flex min-h-screen flex-col overflow-x-hidden bg-[#020817]">
+    <main className="flex min-h-screen flex-col overflow-x-hidden bg-transparent">
       <Navbar />
       <BlogHero />
       <BlogCategories />

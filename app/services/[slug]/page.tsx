@@ -113,23 +113,23 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
           className="max-w-5xl relative z-10"
         >
           <div>
-            <span className="inline-block px-4 py-1.5 mb-8 text-[9px] font-bold uppercase tracking-[0.3em] bg-white/5 border border-white/10 rounded-full text-teal-400">
+            <span className="inline-block px-4 py-1.5 mb-8 text-[9px] font-bold uppercase tracking-[0.3em] bg-white/65 border border-ink/10 rounded-full text-accent">
               {service.title}
             </span>
           </div>
 
           <RevealText className="mb-8">
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter text-white">
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter text-ink">
               Maximize Your Pharmacy <span className="text-gradient">Revenue Potential</span>
             </h1>
           </RevealText>
 
           <p
-            className="text-xl md:text-2xl text-slate-400 max-w-3xl leading-relaxed mb-12 font-light"
+            className="text-xl md:text-2xl text-ink-muted max-w-3xl leading-relaxed mb-12 font-light"
           >
             {service.fullDesc}
             <br className="hidden md:block" />
-            <span className="mt-4 block text-slate-300">Transform raw operational data into actionable insights that drive profitability and ensure regulatory alignment.</span>
+            <span className="mt-4 block text-ink">Transform raw operational data into actionable insights that drive profitability and ensure regulatory alignment.</span>
           </p>
 
           <div
@@ -141,9 +141,9 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
               borderColor="teal-400"
               rippleColor="white"
               bgColor="teak-400"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200"
+              extraClasses="hover:border-[#2b4c8c] hover:text-ink transition-all duration-200"
             />
-            <div className="flex items-center gap-4 px-8 py-5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-slate-400 bg-white/5 backdrop-blur-md">
+            <div className="flex items-center gap-4 px-8 py-5 border border-ink/10 rounded-full text-xs font-bold uppercase tracking-widest text-ink-muted bg-white/65 backdrop-blur-md">
               <span className="w-2 h-2 bg-teal-400 rounded-full shadow-[0_0_10px_rgba(113,198,164,0.5)]" />
               Monthly Reports Delivered
             </div>
@@ -160,14 +160,14 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
       </section>
 
       {/* Features Section */}
-      <section className="py-32 px-6 md:px-12 lg:px-24 bg-[#020817] relative z-20">
+      <section className="py-32 px-6 md:px-12 lg:px-24 bg-white/70 relative z-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <RevealText>
-              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase  leading-none">Key <span className="text-gradient font-light">Features</span></h2>
+              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-accent uppercase  leading-none">Key <span className="text-gradient font-light">Features</span></h2>
             </RevealText>
             <p
-              className="text-slate-400 text-xl max-w-3xl mx-auto font-light"
+              className="text-ink-muted text-xl max-w-3xl mx-auto font-light"
             >
               Comprehensive tools and insights designed specifically for pharmacy revenue optimization and compliance management.
             </p>
@@ -177,17 +177,17 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
             {features.map((feature, index) => (
               <div
                 key={feature.id}
-                className="group glass p-10 border border-white/5 rounded-[32px] hover:border-teal-400/30 transition-all duration-500 cursor-pointer"
+                className="group glass p-10 border border-ink/10 rounded-[32px] hover:border-teal-400/30 transition-all duration-500 cursor-pointer"
               >
                 <div className="flex items-center gap-6 mb-8">
                   <div className="w-16 h-16 rounded-2xl bg-teal-400 flex items-center justify-center text-brand-950 shadow-[0_0_20px_rgba(113,198,164,0.2)]">
                     {feature.icon}
                   </div>
-                  <h3 className="font-display text-2xl font-medium text-teal-400 uppercase  leading-tight group-hover:text-teal-300 transition-colors duration-300">
+                  <h3 className="font-display text-2xl font-medium text-accent uppercase  leading-tight group-hover:text-teal-300 transition-colors duration-300">
                     {feature.title}
                   </h3>
                 </div>
-                <p className="text-slate-400 leading-relaxed font-light text-lg">
+                <p className="text-ink-muted leading-relaxed font-light text-lg">
                   {feature.description}
                 </p>
               </div>
@@ -197,14 +197,14 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
       </section>
 
       {/* Process Section */}
-      <section className="py-32 px-6 md:px-12 lg:px-24 bg-transparent relative overflow-hidden border-y border-white/5">
+      <section className="py-32 px-6 md:px-12 lg:px-24 bg-transparent relative overflow-hidden border-y border-ink/10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <RevealText>
-              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-teal-400 uppercase  leading-none">How It <span className="text-gradient font-light">Works</span></h2>
+              <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-accent uppercase  leading-none">How It <span className="text-gradient font-light">Works</span></h2>
             </RevealText>
             <p
-              className="text-slate-400 text-xl max-w-3xl mx-auto font-light"
+              className="text-ink-muted text-xl max-w-3xl mx-auto font-light"
             >
               Our systematic approach ensures comprehensive coverage of your pharmacy&apos;s revenue and compliance landscape.
             </p>
@@ -216,14 +216,14 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
                 key={step.id}
                 className="relative group"
               >
-                <div className="glass p-10 rounded-[32px] border border-white/5 hover:border-teal-400/20 transition-all duration-500 h-full">
+                <div className="glass p-10 rounded-[32px] border border-ink/10 hover:border-teal-400/20 transition-all duration-500 h-full">
                   <div className="w-10 h-10 bg-teal-400 text-brand-950 rounded-full flex items-center justify-center font-bold text-sm mb-8">
                     {step.step}
                   </div>
-                  <h3 className="font-display text-xl font-medium text-teal-400 uppercase  mb-4 leading-tight">
+                  <h3 className="font-display text-xl font-medium text-accent uppercase  mb-4 leading-tight">
                     {step.title}
                   </h3>
-                  <p className="text-slate-400 leading-relaxed font-light">
+                  <p className="text-ink-muted leading-relaxed font-light">
                     {step.description}
                   </p>
                 </div>
@@ -234,17 +234,17 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
       </section>
 
       {/* Benefits Section */}
-      <section className="py-32 px-6 md:px-12 lg:px-24 bg-[#020817] relative overflow-hidden">
+      <section className="py-32 px-6 md:px-12 lg:px-24 bg-white/70 relative overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div>
               <RevealText>
-                <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter mb-10 leading-[0.9] text-teal-400 uppercase ">
+                <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter mb-10 leading-[0.9] text-accent uppercase ">
                   Transform Your <span className="text-gradient font-light">Pharmacy Operations</span>
                 </h2>
               </RevealText>
               <p
-                className="text-slate-400 text-xl mb-12 max-w-md font-light leading-relaxed"
+                className="text-ink-muted text-xl mb-12 max-w-md font-light leading-relaxed"
               >
                 Our revenue intelligence service provides the foundation for sustainable growth and compliance excellence.
               </p>
@@ -261,15 +261,15 @@ export default function ServiceInnerPage({ params }: { params: Promise<{ slug: s
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-8 glass border border-white/5 rounded-[32px] group transition-all duration-500 cursor-pointer"
+                  className="flex items-center justify-between p-8 glass border border-ink/10 rounded-[32px] group transition-all duration-500 cursor-pointer"
                 >
                   <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-teal-400 group-hover:bg-teal-400 group-hover:text-brand-950 transition-all duration-500">
+                    <div className="w-14 h-14 rounded-full bg-white/65 flex items-center justify-center text-accent group-hover:bg-teal-400 group-hover:text-brand-950 transition-all duration-500">
                       <CheckCircle2 className="w-7 h-7" />
                     </div>
-                    <span className="font-bold text-xl text-white group-hover:translate-x-2 transition-transform duration-500 ease-out">{benefit}</span>
+                    <span className="font-bold text-xl text-ink group-hover:translate-x-2 transition-transform duration-500 ease-out">{benefit}</span>
                   </div>
-                  <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-teal-400 group-hover:translate-x-1 transition-all duration-500" />
+                  <ChevronRight className="w-6 h-6 text-ink-subtle group-hover:text-accent group-hover:translate-x-1 transition-all duration-500" />
                 </div>
               ))}
             </div>

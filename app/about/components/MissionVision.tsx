@@ -51,12 +51,12 @@ export const MissionVision = () => {
           {missionVision.map((item, i) => (
             <div
               key={item.title}
-              className={`reveal-mission p-16 rounded-[48px] relative overflow-hidden group bg-white/[0.02] border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-700 backdrop-blur-xl
+              className={`reveal-mission p-16 rounded-[48px] relative overflow-hidden group bg-white/[0.02] border border-ink/10 shadow-xl hover:shadow-2xl transition-all duration-700 backdrop-blur-xl
               `}
             >
-              <item.icon className="w-16 h-16 text-teal-400 mb-16 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
-              <h3 className="text-6xl font-bold text-white mb-8 tracking-tighter uppercase">{item.title}</h3>
-              <p className="text-2xl text-slate-400 font-medium leading-relaxed">
+              <item.icon className="w-16 h-16 text-accent mb-16 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              <h3 className="text-6xl font-bold text-ink mb-8 tracking-tighter uppercase">{item.title}</h3>
+              <p className="text-2xl text-ink-muted font-medium leading-relaxed">
                 {item.description}
               </p>
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-teal opacity-0 group-hover:opacity-5 blur-[100px] transition-opacity" />

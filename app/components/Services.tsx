@@ -144,11 +144,11 @@ export const ServicesSection: React.FC = () => {
             <div className="flex flex-col justify-center 2xl:py-30 px-12">
                 <div className="relative z-10 w-full mt-20">
                     <div className="text-center mb-12 flex flex-col items-center">
-                        <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
+                        <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-ink mb-8 tracking-tight">
                             Operational Systems That Protect  <br />
-                            <span className="text-teal-400">& Grow Pharmacy Revenue</span>
+                            <span className="text-accent">& Grow Pharmacy Revenue</span>
                         </h2>
-                        <p ref={textRef} className="text-white/60 text-2xl max-w-4xl leading-relaxed">
+                        <p ref={textRef} className="text-ink-muted text-2xl max-w-4xl leading-relaxed">
                             We identify revenue leakage, reduce audit exposure, and optimize operations across your pharmacy using structured, data-driven systems.
                         </p>
                     </div>
@@ -160,31 +160,31 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-ink/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
                                     {/* Stylized Service Illustration Graphic */}
-                                    <div className="w-full h-44 bg-white/[0.01] border border-white/5 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
+                                    <div className="w-full h-44 bg-white/[0.01] border border-ink/10 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
                                         <ServiceIllustration index={idx} color={service.accentColor} />
                                     </div>
 
                                     <div className="flex justify-between items-start mb-6">
-                                        <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+                                        <div className="w-12 h-12 rounded-2xl bg-white/65 flex items-center justify-center border border-ink/10 group-hover:bg-white/10 transition-colors">
                                             {service.icon}
                                         </div>
-                                        <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10 shrink-0">
+                                        <div className="flex items-center gap-2 px-3 py-1 bg-white/65 rounded-full border border-ink/10 shrink-0">
                                             <div className={`w-1.5 h-1.5 rounded-full ${service.dotColor}`} />
                                             <span className={`text-[9px] font-bold tracking-widest ${service.tagColor}`}>{service.tag}</span>
                                         </div>
                                     </div>
 
-                                    <h3 className="text-3xl font-bold text-white mb-2 group-hover:opacity-100 transition-colors">{service.title}</h3>
-                                    <p className="text-white/40 text-xl leading-relaxed mb-6 h-10 line-clamp-2">
+                                    <h3 className="text-3xl font-bold text-ink mb-2 group-hover:opacity-100 transition-colors">{service.title}</h3>
+                                    <p className="text-ink-subtle text-xl leading-relaxed mb-6 h-10 line-clamp-2">
                                         {service.description}
                                     </p>
 
-                                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between">
+                                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-ink/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <div
@@ -198,7 +198,7 @@ export const ServicesSection: React.FC = () => {
                                                 </div>
                                                 <span className="text-xl font-bold " style={{ color: service.accentColor }}>{service.stat}</span>
                                             </div>
-                                            <p className="text-[10px] text-white/30 uppercase font-medium leading-tight max-w-[120px]">
+                                            <p className="text-[10px] text-ink-subtle uppercase font-medium leading-tight max-w-[120px]">
                                                 {service.statLabel}
                                             </p>
                                         </div>
@@ -220,31 +220,31 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-ink/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
                                     {/* Stylized Service Illustration Graphic */}
-                                    <div className="w-full h-44 bg-white/[0.01] border border-white/5 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
+                                    <div className="w-full h-44 bg-white/[0.01] border border-ink/10 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
                                         <ServiceIllustration index={idx + 3} color={service.accentColor} />
                                     </div>
 
                                     <div className="flex justify-between items-start mb-6">
-                                        <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+                                        <div className="w-12 h-12 rounded-2xl bg-white/65 flex items-center justify-center border border-ink/10 group-hover:bg-white/10 transition-colors">
                                             {service.icon}
                                         </div>
-                                        <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10 shrink-0">
+                                        <div className="flex items-center gap-2 px-3 py-1 bg-white/65 rounded-full border border-ink/10 shrink-0">
                                             <div className={`w-1.5 h-1.5 rounded-full ${service.dotColor}`} />
                                             <span className={`text-[9px] font-bold tracking-widest ${service.tagColor}`}>{service.tag}</span>
                                         </div>
                                     </div>
 
-                                    <h3 className="text-3xl font-bold text-white mb-2 group-hover:opacity-100 transition-colors h-12 flex items-center">{service.title}</h3>
-                                    <p className="text-white/40 text-xl leading-relaxed mb-6 h-10 line-clamp-2">
+                                    <h3 className="text-3xl font-bold text-ink mb-2 group-hover:opacity-100 transition-colors h-12 flex items-center">{service.title}</h3>
+                                    <p className="text-ink-subtle text-xl leading-relaxed mb-6 h-10 line-clamp-2">
                                         {service.description}
                                     </p>
 
-                                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between">
+                                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-ink/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <div
@@ -258,7 +258,7 @@ export const ServicesSection: React.FC = () => {
                                                 </div>
                                                 <span className="text-xl font-bold " style={{ color: service.accentColor }}>{service.stat}</span>
                                             </div>
-                                            <p className="text-[10px] text-white/30 uppercase font-medium leading-tight max-w-[150px]">
+                                            <p className="text-[10px] text-ink-subtle uppercase font-medium leading-tight max-w-[150px]">
                                                 {service.statLabel}
                                             </p>
                                         </div>

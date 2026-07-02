@@ -38,8 +38,8 @@ export const ContactFormSection = () => {
         {/* Left Column: Info & Details */}
         <div className="lg:col-span-4 flex flex-col gap-6 h-full">
           {/* What to Expect */}
-          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl flex-1 flex flex-col justify-center">
-            <h3 className="text-3xl font-bold text-teal-400 mb-6 uppercase tracking-tight">What <span className="text-white">to Expect</span></h3>
+          <div className="reveal-form bg-white/[0.03] p-8 border border-ink/10 rounded-3xl flex-1 flex flex-col justify-center">
+            <h3 className="text-3xl font-bold text-accent mb-6 uppercase tracking-tight">What <span className="text-ink">to Expect</span></h3>
             <ul className="space-y-4">
               {[
                 "30-minute focused strategy call",
@@ -50,17 +50,17 @@ export const ContactFormSection = () => {
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4">
                   <div className="w-8 h-8 rounded-full border border-teal-400 flex items-center justify-center flex-shrink-0 mt-1">
-                    <Check className="w-6 h-6 text-teal-400" />
+                    <Check className="w-6 h-6 text-accent" />
                   </div>
-                  <span className="text-slate-400 text-lg font-medium leading-tight">{item}</span>
+                  <span className="text-ink-muted text-lg font-medium leading-tight">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Contact Information */}
-          <div className="reveal-form bg-white/[0.03] p-8 border border-white/10 rounded-3xl flex-1 flex flex-col justify-center">
-            <h3 className="text-3xl font-bold text-teal-400 mb-6 uppercase tracking-tight">Contact <span className="text-white">Information</span></h3>
+          <div className="reveal-form bg-white/[0.03] p-8 border border-ink/10 rounded-3xl flex-1 flex flex-col justify-center">
+            <h3 className="text-3xl font-bold text-accent mb-6 uppercase tracking-tight">Contact <span className="text-ink">Information</span></h3>
             <div className="space-y-4">
               {[
                 { icon: Phone, label: "Phone", value: "(908) 521-4440" },
@@ -69,12 +69,12 @@ export const ContactFormSection = () => {
                 { icon: MapPin, label: "Location", value: "New Jersey, USA" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4">
-                  <div className="w-8 h-8 bg-brand-teal/10 rounded-xl flex items-center justify-center text-teal-400 flex-shrink-0">
+                  <div className="w-8 h-8 bg-brand-teal/10 rounded-xl flex items-center justify-center text-accent flex-shrink-0">
                     <item.icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold uppercase tracking-widest text-slate-500 mb-0.5">{item.label}</div>
-                    <div className="text-base font-bold text-white">{item.value}</div>
+                    <div className="text-lg font-bold uppercase tracking-widest text-ink-subtle mb-0.5">{item.label}</div>
+                    <div className="text-base font-bold text-ink">{item.value}</div>
                   </div>
                 </div>
               ))}
@@ -83,22 +83,22 @@ export const ContactFormSection = () => {
 
           {/* Office Hours */}
           <div className="reveal-form bg-teal-400/5 p-8 border border-teal-400/10 rounded-3xl flex-1 flex flex-col justify-center">
-            <div className="flex items-center gap-3 text-white mb-6">
-              <Clock className="w-6 h-6 text-brand-teal" />
-              <h3 className="text-3xl font-bold text-teal-400 uppercase tracking-tight">Office <span className="text-white">Hours</span></h3>
+            <div className="flex items-center gap-3 text-ink mb-6">
+              <Clock className="w-6 h-6 text-accent" />
+              <h3 className="text-3xl font-bold text-accent uppercase tracking-tight">Office <span className="text-ink">Hours</span></h3>
             </div>
-            <div className="space-y-4 text-slate-400 font-bold uppercase tracking-widest text-lg">
+            <div className="space-y-4 text-ink-muted font-bold uppercase tracking-widest text-lg">
               <div className="flex justify-between">
                 <span>Monday – Friday</span>
-                <span className="text-white">9:00 AM – 6:00 PM ET</span>
+                <span className="text-ink">9:00 AM – 6:00 PM ET</span>
               </div>
               <div className="flex justify-between">
                 <span>Saturday</span>
-                <span className="text-white">By Appointment</span>
+                <span className="text-ink">By Appointment</span>
               </div>
               <div className="flex justify-between">
                 <span>Sunday</span>
-                <span className="text-slate-600">Closed</span>
+                <span className="text-ink-subtle">Closed</span>
               </div>
             </div>
           </div>
@@ -106,19 +106,19 @@ export const ContactFormSection = () => {
 
         {/* Right Column: Form */}
         <div className="lg:col-span-8 h-full">
-          <div className="reveal-form bg-white/[0.02] border border-white/5 p-12 md:p-20 shadow-2xl rounded-3xl h-full flex flex-col justify-center">
+          <div className="reveal-form bg-white/[0.02] border border-ink/10 p-12 md:p-20 shadow-2xl rounded-3xl h-full flex flex-col justify-center">
             {isSubmitted ? (
               <div className="text-center py-20">
                 <div className="w-24 h-24 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-10">
-                  <CheckCircle2 className="w-12 h-12 text-white" />
+                  <CheckCircle2 className="w-12 h-12 text-ink" />
                 </div>
-                <h4 className="text-4xl font-bold text-white uppercase mb-6">Strategy Call Requested</h4>
-                <p className="text-slate-400 text-xl font-light mb-12">
+                <h4 className="text-4xl font-bold text-ink uppercase mb-6">Strategy Call Requested</h4>
+                <p className="text-ink-muted text-xl font-light mb-12">
                   A PrimeTek specialist will reach out within one business day.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="text-brand-teal font-bold uppercase tracking-widest border-b-2 border-brand-teal"
+                  className="text-accent font-bold uppercase tracking-widest border-b-2 border-accent"
                 >
                   Send Another Request
                 </button>
@@ -126,33 +126,33 @@ export const ContactFormSection = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="mb-12">
-                  <h2 className="text-5xl font-bold text-teal-400 uppercase mb-4 leading-none">Schedule Your <span className="text-white">Strategy Call</span></h2>
-                  <p className="text-slate-400 text-xl">Tell us about your pharmacy and we'll tailor the conversation to your needs.</p>
+                  <h2 className="text-5xl font-bold text-accent uppercase mb-4 leading-none">Schedule Your <span className="text-ink">Strategy Call</span></h2>
+                  <p className="text-ink-muted text-xl">Tell us about your pharmacy and we'll tailor the conversation to your needs.</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-10">
                   <div className="space-y-3">
-                    <label className="text-lg font-bold uppercase tracking-widest text-slate-300">Full Name <span className="text-rose-500">*</span></label>
-                    <input required type="text" placeholder="Jane Smith" className="w-full bg-white/[0.03] border border-white/10 px-6 py-6 rounded-lg text-white focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <label className="text-lg font-bold uppercase tracking-widest text-ink">Full Name <span className="text-rose-500">*</span></label>
+                    <input required type="text" placeholder="Jane Smith" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-lg font-bold uppercase tracking-widest text-slate-300">Email Address <span className="text-rose-500">*</span></label>
-                    <input required type="email" placeholder="jane@pharmacy.com" className="w-full bg-white/[0.03] border border-white/10 px-6 py-6 rounded-lg text-white focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <label className="text-lg font-bold uppercase tracking-widest text-ink">Email Address <span className="text-rose-500">*</span></label>
+                    <input required type="email" placeholder="jane@pharmacy.com" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-lg font-bold uppercase tracking-widest text-slate-300">Phone Number</label>
-                    <input type="tel" placeholder="(555) 000-0000" className="w-full bg-white/[0.03] border border-white/10 px-6 py-6 rounded-lg text-white focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <label className="text-lg font-bold uppercase tracking-widest text-ink">Phone Number</label>
+                    <input type="tel" placeholder="(555) 000-0000" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-lg font-bold uppercase tracking-widest text-slate-300">Pharmacy Name <span className="text-rose-500">*</span></label>
-                    <input required type="text" placeholder="Main Street Pharmacy" className="w-full bg-white/[0.03] border border-white/10 px-6 py-6 rounded-lg text-white focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <label className="text-lg font-bold uppercase tracking-widest text-ink">Pharmacy Name <span className="text-rose-500">*</span></label>
+                    <input required type="text" placeholder="Main Street Pharmacy" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-10">
                   <div className="space-y-3">
-                    <label className="text-lg font-bold uppercase tracking-widest text-slate-300">Number of Locations</label>
-                    <select className="w-full bg-white/[0.03] border border-white/10 px-6 py-6 rounded-lg text-white focus:outline-none focus:border-brand-teal transition-all appearance-none">
+                    <label className="text-lg font-bold uppercase tracking-widest text-ink">Number of Locations</label>
+                    <select className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent transition-all appearance-none">
                       <option className="bg-brand-dark">Select...</option>
                       <option className="bg-brand-dark">1-2 Locations</option>
                       <option className="bg-brand-dark">3-5 Locations</option>
@@ -161,8 +161,8 @@ export const ContactFormSection = () => {
                     </select>
                   </div>
                   <div className="space-y-3">
-                    <label className="text-lg font-bold uppercase tracking-widest text-slate-300">Primary Interest</label>
-                    <select className="w-full bg-white/[0.03] border border-white/10 px-6 py-6 rounded-lg text-white focus:outline-none focus:border-brand-teal transition-all appearance-none">
+                    <label className="text-lg font-bold uppercase tracking-widest text-ink">Primary Interest</label>
+                    <select className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent transition-all appearance-none">
                       <option className="bg-brand-dark">Select a service...</option>
                       <option className="bg-brand-dark">Audit Protection</option>
                       <option className="bg-brand-dark">Revenue Intelligence</option>
@@ -173,15 +173,15 @@ export const ContactFormSection = () => {
                 </div>
 
                 <div className="space-y-3">
-                  <label className="text-lg font-bold uppercase tracking-widest text-slate-300">Tell Us About Your Situation</label>
-                  <textarea rows={5} placeholder="Describe your current challenges, goals, or any specific concerns you'd like to discuss on the call..." className="w-full bg-white/[0.03] border border-white/10 px-6 py-6 rounded-lg text-white focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all resize-none"></textarea>
+                  <label className="text-lg font-bold uppercase tracking-widest text-ink">Tell Us About Your Situation</label>
+                  <textarea rows={5} placeholder="Describe your current challenges, goals, or any specific concerns you'd like to discuss on the call..." className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all resize-none"></textarea>
                 </div>
 
                 <button type="submit" className="w-full bg-brand-teal text-brand-dark text-xl py-6 rounded-lg font-bold uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-white transition-all shadow-xl shadow-brand-dark/10 group">
                   Request My Strategy Call <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
 
-                <p className="text-center text-slate-500 text-base font-medium">We respond within 1 business day. No obligation.</p>
+                <p className="text-center text-ink-subtle text-base font-medium">We respond within 1 business day. No obligation.</p>
               </form>
             )}
           </div>

@@ -105,11 +105,11 @@ export default function ConsultationCTA() {
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 ref={headingRef} className="text-white text-4xl 2xl:text-6xl font-bold mb-8 drop-shadow-sm flex flex-wrap justify-center leading-[1.2]">
-              Operational Support for <br /> <span className="text-teal-400">Modern Healthcare</span>
+            <h2 ref={headingRef} className="text-ink text-4xl 2xl:text-6xl font-bold mb-8 drop-shadow-sm flex flex-wrap justify-center leading-[1.2]">
+              Operational Support for <br /> <span className="text-accent">Modern Healthcare</span>
             </h2>
 
-            <p ref={textRef} className="text-slate-400 text-md 2xl:text-2xl font-medium leading-relaxed mb-12 max-w-3xl mx-auto px-4">
+            <p ref={textRef} className="text-ink-muted text-md 2xl:text-2xl font-medium leading-relaxed mb-12 max-w-3xl mx-auto px-4">
               Primetek Services delivers compliance-aware, non-clinical solutions that help healthcare organizations streamline operations, improve communication, and optimize performance—without crossing clinical boundaries.
             </p>
 

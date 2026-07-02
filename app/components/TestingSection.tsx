@@ -199,7 +199,7 @@ function RevenueIntelligenceCard() {
                     </svg>
 
                     {/* Floating Pill on bottom right */}
-                    <div className="absolute right-2 bottom-1 bg-white/5 border border-white/10 rounded-lg py-1 px-2.5 text-[8px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
+                    <div className="absolute right-2 bottom-1 bg-white/65 border border-ink/10 rounded-lg py-1 px-2.5 text-[8px] font-bold text-ink flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                         <span>Live Leakage: $1.2M+</span>
                     </div>
@@ -220,7 +220,7 @@ function RevenueIntelligenceCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#analyze"
-                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
+                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
                 >
                     <div className="flex-1 min-w-0">
                         <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
@@ -440,7 +440,7 @@ function ClaimsReimbursementCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#claims"
-                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
+                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
                 >
                     <div className="flex-1">
                         <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
@@ -547,7 +547,7 @@ function ComplianceAuditCard() {
                                     <span className="font-mono">01</span>
                                 )}
                             </div>
-                            <span className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${activeStage === 0 ? "text-[#fb923c]" : "text-white/30"
+                            <span className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${activeStage === 0 ? "text-[#fb923c]" : "text-ink-subtle"
                                 }`}>
                                 Gap Scan
                             </span>
@@ -563,7 +563,7 @@ function ComplianceAuditCard() {
                                     ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)]"
                                     : activeStage > 1
                                         ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c]"
-                                        : "bg-[#0a0f1d] border-white/10 text-white/30"
+                                        : "bg-[#0a0f1d] border-ink/10 text-ink-subtle"
                                     }`}
                             >
                                 {activeStage > 1 ? (
@@ -574,7 +574,7 @@ function ComplianceAuditCard() {
                                     <span className="font-mono">02</span>
                                 )}
                             </div>
-                            <span className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${activeStage === 1 ? "text-[#fb923c]" : "text-white/30"
+                            <span className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${activeStage === 1 ? "text-[#fb923c]" : "text-ink-subtle"
                                 }`}>
                                 Audit Ready
                             </span>
@@ -588,7 +588,7 @@ function ComplianceAuditCard() {
                             <div
                                 className={`w-11 h-11 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-300 ${activeStage === 2
                                     ? "bg-[#0a0f1d] border-[#fb923c] text-[#fb923c] scale-110 shadow-[0_0_15px_rgba(251,146,60,0.3)]"
-                                    : "bg-[#0a0f1d] border-white/10 text-white/20"
+                                    : "bg-[#0a0f1d] border-ink/10 text-ink-subtle"
                                     }`}
                             >
                                 {activeStage === 2 ? (
@@ -599,7 +599,7 @@ function ComplianceAuditCard() {
                                     <span className="font-mono">03</span>
                                 )}
                             </div>
-                            <span className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${activeStage === 2 ? "text-[#fb923c]" : "text-white/20"
+                            <span className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${activeStage === 2 ? "text-[#fb923c]" : "text-ink-subtle"
                                 }`}>
                                 Safe
                             </span>
@@ -623,7 +623,7 @@ function ComplianceAuditCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#audits"
-                    className="flex items-center justify-between gap-2 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
+                    className="flex items-center justify-between gap-2 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
                 >
                     <div className="flex-1 min-w-0">
                         <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
@@ -722,7 +722,7 @@ function PatientOperationalCard() {
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     style={{ zIndex: 10 - stackPos, position: "absolute", width: "100%" }}
-                                    className="bg-black/50 backdrop-blur-xl border border-white/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg"
+                                    className="bg-black/50 backdrop-blur-xl border border-ink/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg"
                                 >
                                     {/* Top Header */}
                                     <div className="flex justify-between items-center px-0.5">
@@ -735,15 +735,15 @@ function PatientOperationalCard() {
                                                     <line x1="3" y1="10" x2="21" y2="10" />
                                                 </svg>
                                             </div>
-                                            <span className="text-[8px] text-white/50 font-semibold tracking-wide uppercase">System • {item.initials}</span>
+                                            <span className="text-[8px] text-ink-subtle font-semibold tracking-wide uppercase">System • {item.initials}</span>
                                         </div>
-                                        <span className="text-[8.5px] text-white/40">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
+                                        <span className="text-[8.5px] text-ink-subtle">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
                                     </div>
 
                                     {/* Body */}
                                     <div className="flex flex-col text-left px-0.5 mt-0.5">
-                                        <span className="text-[9px] font-bold text-white/90 leading-tight">{item.name}</span>
-                                        <span className="text-[9px] text-white/60 line-clamp-2 leading-snug mt-0.5">{item.detail}</span>
+                                        <span className="text-[9px] font-bold text-ink/90 leading-tight">{item.name}</span>
+                                        <span className="text-[9px] text-ink-muted line-clamp-2 leading-snug mt-0.5">{item.detail}</span>
                                     </div>
                                 </motion.div>
                             );
@@ -769,7 +769,7 @@ function PatientOperationalCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#operations"
-                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
+                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
                 >
                     <div className="flex-1">
                         <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
@@ -964,7 +964,7 @@ function PharmacyGrowthCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#growth"
-                    className="flex items-center justify-between gap-4 bg-[#0F171A] rounded-xl p-4 group/btn transition-colors hover:bg-[#152024]"
+                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
                 >
                     <div className="flex-1">
                         <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
@@ -1001,11 +1001,11 @@ export default function TestingSection() {
             <div className="flex flex-col justify-center 2xl:py-30 w-[85%] mx-auto">
                 <div className="relative z-10 w-full mt-20">
                     <div className="text-center mb-12 flex flex-col items-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                        <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
+                        <h2 ref={headingRef} className="text-5xl lg:text-6xl font-bold text-ink mb-8 tracking-tight">
                             Operational Systems That Protect  <br />
-                            <span className="text-teal-400">& Grow Pharmacy Revenue</span>
+                            <span className="text-accent">& Grow Pharmacy Revenue</span>
                         </h2>
-                        <p ref={textRef} className="text-white/60 text-2xl max-w-4xl leading-relaxed">
+                        <p ref={textRef} className="text-ink-muted text-2xl max-w-4xl leading-relaxed">
                             We identify revenue leakage, reduce audit exposure, and optimize operations across your pharmacy using structured, data-driven systems.
                         </p>
                     </div>

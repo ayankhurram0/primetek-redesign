@@ -36,12 +36,12 @@ export const ContactStats = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 px-26 border-t border-white/5 bg-transparent pb-40">
+    <section ref={containerRef} className="py-20 px-26 border-t border-ink/10 bg-transparent pb-40">
       <div className="flex flex-col md:flex-row justify-between items-center gap-12 text-center">
         {stats.map((stat, i) => (
           <div key={i} className="reveal-stat flex-1">
-            <div className="text-5xl font-bold text-teal-400 mb-4 tracking-tighter">{stat.value}</div>
-            <div className="text-lg font-bold uppercase tracking-[0.4em] text-white">{stat.label}</div>
+            <div className="text-5xl font-bold text-accent mb-4 tracking-tighter">{stat.value}</div>
+            <div className="text-lg font-bold uppercase tracking-[0.4em] text-ink">{stat.label}</div>
           </div>
         ))}
       </div>

@@ -53,12 +53,12 @@ export default function Testimonials() {
 
         {/* Header Section */}
         <AnimationWrapper direction="up" distance={30} className="flex flex-col md:flex-row justify-between items-start md:items-center mb-20 gap-8">
-          <h2 className="text-4xl 2xl:text-5xl font-bold max-w-2xl leading-tight text-white">
+          <h2 className="text-4xl 2xl:text-5xl font-bold max-w-2xl leading-tight text-ink">
             <span className="text-[#64c4ad]">A Trusted</span> <br />
             <span>Operational Partner</span>
           </h2>
 
-          <div className="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-teal-400/60 shadow-sm backdrop-blur-md">
+          <div className="flex items-center gap-4 bg-white/65 p-4 rounded-3xl border border-teal-400/60 shadow-sm backdrop-blur-md">
             <div className="flex -space-x-4">
               {[prof1, prof2, prof3].map((img, i) => (
                 <div key={i} className="w-12 h-12 rounded-full border-4 border-teal-400/40 overflow-hidden shadow-sm">
@@ -67,10 +67,10 @@ export default function Testimonials() {
               ))}
             </div>
             <div>
-              <p className="text-white font-bold text-sm">Happy Customer</p>
+              <p className="text-ink font-bold text-sm">Happy Customer</p>
               <div className="flex items-center gap-1">
-                <span className="text-teal-400 text-xs">★</span>
-                <span className="text-white/60 text-[9px] font-bold">4.8 (15K Review)</span>
+                <span className="text-accent text-xs">★</span>
+                <span className="text-ink-muted text-[9px] font-bold">4.8 (15K Review)</span>
               </div>
             </div>
           </div>
@@ -78,30 +78,30 @@ export default function Testimonials() {
 
         {/* Stats Section Bar */}
         <AnimationWrapper direction="up" distance={30} delay={0.1} className="w-full mb-20">
-          <div className="w-full bg-gradient-to-r from-[#003c47] via-[#005969] to-[#003c47] border-y border-white/10 py-10 px-6 md:px-12 flex flex-col md:flex-row justify-around items-center gap-8 rounded-2xl md:rounded-full shadow-lg shadow-black/10">
+          <div className="w-full bg-white/75 backdrop-blur-xl border border-ink/10 py-10 px-6 md:px-12 flex flex-col md:flex-row justify-around items-center gap-8 rounded-2xl md:rounded-full shadow-lg shadow-ink/5">
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
                 <AnimatedNumber value={4.2} prefix="$" suffix="M+" decimals={1} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Revenue Recovered</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Revenue Recovered</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
                 <AnimatedNumber value={98} suffix="%" decimals={0} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Audit Readiness Score</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Audit Readiness Score</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
                 <AnimatedNumber value={2} suffix="x" decimals={0} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Monthly Reporting Cycle</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Monthly Reporting Cycle</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-white mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
                 <AnimatedNumber value={100} suffix="+" decimals={0} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-white/80 uppercase">Pharmacies Supported</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Pharmacies Supported</div>
             </div>
           </div>
         </AnimationWrapper>
@@ -125,12 +125,12 @@ export default function Testimonials() {
             {testimonials.map((item, index) => (
               <SwiperSlide key={index} className="!h-auto flex">
 
-                <div className="bg-[#04212a] border border-white/10 px-10 py-12 flex flex-col h-full hover:bg-[#04212a]/80 transition-all duration-500 rounded-3xl group relative">
+                <div className="bg-white/75 border border-ink/10 px-10 py-12 flex flex-col h-full hover:bg-white/75/80 transition-all duration-500 rounded-3xl group relative">
                   <div className="w-3 h-3 rounded-full bg-teal-400/20 border border-teal-400/40 mb-4" />
-                  <h4 className="text-white font-bold text-lg 2xl:text-2xl mb-4 leading-tight">
+                  <h4 className="text-ink font-bold text-lg 2xl:text-2xl mb-4 leading-tight">
                     “{item.quote}”
                   </h4>
-                  <p className="text-slate-300 text-sm 2xl:text-base leading-relaxed mb-6 flex-1">
+                  <p className="text-ink text-sm 2xl:text-base leading-relaxed mb-6 flex-1">
                     {item.text}
                   </p>
 
@@ -139,8 +139,8 @@ export default function Testimonials() {
                       <Image src={item.image} alt={item.author} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <h5 className="text-white font-bold text-sm 2xl:text-base">{item.author}</h5>
-                      <div className="flex text-teal-400 text-sm 2xl:text-base">
+                      <h5 className="text-ink font-bold text-sm 2xl:text-base">{item.author}</h5>
+                      <div className="flex text-accent text-sm 2xl:text-base">
                         {Array.from({ length: item.rating }).map((_, i) => (
                           <span key={i}>★</span>
                         ))}

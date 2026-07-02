@@ -21,10 +21,10 @@ const faqs = [
 
 export default function ResourcesFAQ() {
   return (
-    <section className="py-32 px-26 relative overflow-hidden bg-transparent border-t border-white/5">
+    <section className="py-32 px-26 relative overflow-hidden bg-transparent border-t border-ink/10">
       <div className="relative z-10 max-w-3xl mx-auto text-center mb-20">
-        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 uppercase leading-tight tracking-tighter">
-          Common <span className="text-teal-400">Questions.</span>
+        <h2 className="text-4xl md:text-6xl font-bold text-ink mb-6 uppercase leading-tight tracking-tighter">
+          Common <span className="text-accent">Questions.</span>
         </h2>
       </div>
 
@@ -34,14 +34,14 @@ export default function ResourcesFAQ() {
             key={i}
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden group hover:border-teal-400/30 transition-colors"
+            className="bg-white/65 backdrop-blur-md rounded-3xl border border-ink/10 overflow-hidden group hover:border-teal-400/30 transition-colors"
           >
             <details className="w-full">
               <summary className="flex items-center justify-between p-8 cursor-pointer list-none">
-                <h3 className="text-2xl font-bold text-white uppercase tracking-tight">{faq.q}</h3>
-                <ChevronDown className="text-teal-400 w-10 h-10 group-open:rotate-180 transition-transform" />
+                <h3 className="text-2xl font-bold text-ink uppercase tracking-tight">{faq.q}</h3>
+                <ChevronDown className="text-accent w-10 h-10 group-open:rotate-180 transition-transform" />
               </summary>
-              <div className="px-8 pb-8 text-slate-400 text-2xl leading-relaxed border-t border-white/5 pt-6">
+              <div className="px-8 pb-8 text-ink-muted text-2xl leading-relaxed border-t border-ink/10 pt-6">
                 {faq.a}
               </div>
             </details>

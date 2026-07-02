@@ -275,7 +275,7 @@ export const ServicesDetail = () => {
                   onClick={() => setActiveId(service.id)}
                   className={`w-full flex flex-col items-center justify-center gap-4 px-3 py-5 rounded-xl border transition-all duration-300 min-h-[100px] ${
                     isActive
-                      ? "border-white/20 bg-white/[0.08]"
+                      ? "border-ink/15 bg-white/[0.08]"
                       : "border-transparent bg-white/[0.02] hover:bg-white/[0.05]"
                   }`}
                   style={{
@@ -297,7 +297,7 @@ export const ServicesDetail = () => {
                   </div>
                   <span
                     className={`text-sm sm:text-base font-bold uppercase tracking-wide text-center leading-snug whitespace-normal ${
-                      isActive ? "text-white" : "text-slate-500"
+                      isActive ? "text-ink" : "text-ink-subtle"
                     }`}
                   >
                     {service.title}
@@ -329,7 +329,7 @@ export const ServicesDetail = () => {
               `,
             }}
           >
-            <div className="rounded-[23px] border border-white/[0.08] bg-[#04212a]/40 backdrop-blur-2xl backdrop-saturate-150 overflow-hidden">
+            <div className="rounded-[23px] border border-white/[0.08] bg-white/75/40 backdrop-blur-2xl backdrop-saturate-150 overflow-hidden">
               <div
                 className="h-1 w-full"
                 style={{ background: `linear-gradient(90deg, ${accent}, transparent 80%)` }}
@@ -350,7 +350,7 @@ export const ServicesDetail = () => {
                         <activeService.icon className="w-5 h-5" style={{ color: accent }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-ink-subtle">
                           Service {activeService.id} · {activeService.identity}
                         </p>
                         <p
@@ -362,24 +362,24 @@ export const ServicesDetail = () => {
                       </div>
                     </div>
 
-                    <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-montserrat font-bold text-white tracking-tight leading-[1.1] mb-6">
+                    <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-montserrat font-bold text-ink tracking-tight leading-[1.1] mb-6">
                       {activeService.headline}
                     </h2>
-                    <p className="text-slate-300 text-base md:text-lg font-light leading-relaxed whitespace-pre-line max-w-4xl">
+                    <p className="text-ink text-base md:text-lg font-light leading-relaxed whitespace-pre-line max-w-4xl">
                       {activeService.description}
                     </p>
                   </div>
 
                   {/* Sidebar: flow graphic + stat */}
                   <div className="flex flex-col gap-4">
-                    <div className="w-full h-44 border border-white/10 rounded-2xl relative overflow-hidden flex items-center justify-center shrink-0 p-3 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150">
+                    <div className="w-full h-44 border border-ink/10 rounded-2xl relative overflow-hidden flex items-center justify-center shrink-0 p-3 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150">
                       <ServiceIllustration
                         index={parseInt(activeService.id, 10) - 1}
                         color={accent}
                       />
                     </div>
                     <div
-                      className="rounded-2xl p-6 text-center border border-white/10 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150"
+                      className="rounded-2xl p-6 text-center border border-ink/10 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150"
                     >
                       <div
                         className="text-4xl font-bold font-outfit tracking-tight mb-2"
@@ -387,7 +387,7 @@ export const ServicesDetail = () => {
                       >
                         {activeService.stat}
                       </div>
-                      <p className="text-[10px] text-slate-400 uppercase tracking-wider leading-relaxed font-medium">
+                      <p className="text-[10px] text-ink-muted uppercase tracking-wider leading-relaxed font-medium">
                         {activeService.statLabel}
                       </p>
                     </div>
@@ -410,10 +410,10 @@ export const ServicesDetail = () => {
                       className="rounded-xl border border-white/[0.1] bg-white/[0.05] backdrop-blur-lg backdrop-saturate-150 p-5 transition-colors hover:bg-white/[0.08]"
                       style={{ borderLeftWidth: "2px", borderLeftColor: accent }}
                     >
-                      <h4 className="text-white text-sm font-bold mb-2 leading-snug">
+                      <h4 className="text-ink text-sm font-bold mb-2 leading-snug">
                         {item.title}
                       </h4>
-                      <p className="text-slate-400 text-sm font-light leading-relaxed">
+                      <p className="text-ink-muted text-sm font-light leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -430,10 +430,10 @@ export const ServicesDetail = () => {
                   >
                     Alert System
                   </h3>
-                  <h4 className="text-xl font-bold text-white mb-4 leading-snug">
+                  <h4 className="text-xl font-bold text-ink mb-4 leading-snug">
                     {activeService.alertSystem.headline}
                   </h4>
-                  <p className="text-slate-400 text-sm font-light leading-relaxed">
+                  <p className="text-ink-muted text-sm font-light leading-relaxed">
                     {activeService.alertSystem.desc}
                   </p>
                 </div>
@@ -477,7 +477,7 @@ export const ServicesDetail = () => {
                   borderColor="white/20"
                   rippleColor="white"
                   bgColor="transparent"
-                  extraClasses="text-sm font-bold uppercase tracking-[0.2em] px-10 py-5 border border-white/20 hover:bg-white/5"
+                  extraClasses="text-sm font-bold uppercase tracking-[0.2em] px-10 py-5 border border-ink/15 hover:bg-white/65"
                 />
               </div>
             </div>

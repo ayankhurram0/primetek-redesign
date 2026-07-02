@@ -155,7 +155,7 @@ function PhaseCard({
           Phase {step.id}
         </span>
 
-        <h3 className="text-base md:text-lg font-semibold text-white uppercase tracking-wide mb-3 leading-snug font-montserrat">
+        <h3 className="text-base md:text-lg font-semibold text-ink uppercase tracking-wide mb-3 leading-snug font-montserrat">
           {step.title}
         </h3>
 
@@ -256,7 +256,7 @@ export default function CaseMethodology() {
             <h2 className="text-4xl md:text-5xl xl:text-[3.25rem] font-bold leading-[1.02] tracking-tight uppercase mb-6 font-display">
               <span style={{ color: ACCENT }}>How We Secure</span>
               <br />
-              <span className="text-white">The Node.</span>
+              <span className="text-ink">The Node.</span>
             </h2>
 
             <p

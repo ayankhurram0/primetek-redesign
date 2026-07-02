@@ -24,8 +24,11 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 md:px-16 py-5 font-montserrat transition-all duration-300 ${scrolled ? 'bg-white/4 backdrop-blur-lg' : 'bg-transparent'
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 md:px-16 py-5 font-montserrat transition-[background-color,backdrop-filter] duration-500 ${
+        scrolled
+          ? "bg-white/25 backdrop-blur-md"
+          : "bg-transparent backdrop-blur-none"
+      }`}
     >
       <Link href="/" className="flex items-center justify-start w-[20%]">
         <Image
@@ -38,14 +41,13 @@ export default function Navbar() {
         />
       </Link>
 
-      <div className={`hidden lg:flex items-center justify-center space-x-10 text-md 2xl:text-xl font-bold tracking-wide uppercase w-[60%] transition-colors duration-300 ${scrolled ? 'text-white' : 'text-white'
-        }`}>
-        <Link href="/" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Home</Link>
-        <Link href="/about" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">About Us</Link>
-        <Link href="/services" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Services</Link>
+      <div className="hidden lg:flex items-center justify-center space-x-10 text-md 2xl:text-xl font-bold tracking-wide uppercase w-[60%] text-ink transition-colors duration-300">
+        <Link href="/" className="cursor-pointer hover:text-accent transition-colors">Home</Link>
+        <Link href="/about" className="cursor-pointer hover:text-accent transition-colors">About Us</Link>
+        <Link href="/services" className="cursor-pointer hover:text-accent transition-colors">Services</Link>
 
-        <Link href="/case-studies" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Case Studies</Link>
-        <Link href="/contact" className="cursor-pointer hover:text-[#2dd4bf] transition-colors">Contact</Link>
+        <Link href="/case-studies" className="cursor-pointer hover:text-accent transition-colors">Case Studies</Link>
+        <Link href="/contact" className="cursor-pointer hover:text-accent transition-colors">Contact</Link>
       </div>
 
       <div className="flex items-center justify-end w-[20%] space-x-4">

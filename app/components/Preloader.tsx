@@ -254,9 +254,7 @@ const LoadingScreen = () => {
         transition: "opacity 0.8s ease-out",
         opacity: isLoading ? 1 : 0,
         pointerEvents: isLoading ? "auto" : "none",
-        background: `radial-gradient(circle at top left, #005969 0%, transparent 60%), 
-                     radial-gradient(circle at center right, #005969 0%, transparent 40%), 
-                     radial-gradient(circle at bottom center, #06101a 15%, #02070d 60%)`,
+        background: "transparent",
       }}
     >
 

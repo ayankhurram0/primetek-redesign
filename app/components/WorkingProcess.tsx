@@ -46,15 +46,15 @@ const StepItem = ({ step, i, totalSteps, scrollYProgress }: {
   return (
     <motion.div
       style={{ flex: flexValue }}
-      className={`relative flex flex-col border-white/10 ${i !== totalSteps - 1 ? 'md:border-r' : ''} border-b md:border-b-0 group overflow-hidden bg-transparent backdrop-blur-sm font-montserrat`}
+      className={`relative flex flex-col border-ink/10 ${i !== totalSteps - 1 ? 'md:border-r' : ''} border-b md:border-b-0 group overflow-hidden bg-transparent backdrop-blur-sm font-montserrat`}
     >
       <div className="flex h-full w-full relative">
         {/* Step Label (Always Visible) */}
-        <div className="w-14 border-r border-white/10 flex flex-col items-center justify-between py-12 flex-shrink-0 bg-[#010810]/40 z-10">
-          <span className="rotate-[-90deg] whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.3em] text-white">
+        <div className="w-14 border-r border-ink/10 flex flex-col items-center justify-between py-12 flex-shrink-0 bg-white/60 z-10">
+          <span className="rotate-[-90deg] whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.3em] text-ink">
             Step {step.id}
           </span>
-          <div className="text-teal-400 group-hover:text-white transition-colors">
+          <div className="text-accent group-hover:text-ink transition-colors">
             {step.icon}
           </div>
         </div>
@@ -171,25 +171,25 @@ const WorkingProcess = () => {
   }, []);
 
   return (
-    <section id="process" ref={containerRef} className="relative h-[500vh] bg-transparent text-white border-t border-white/10 font-montserrat">
+    <section id="process" ref={containerRef} className="relative h-[500vh] bg-transparent text-ink border-t border-ink/10 font-montserrat">
       <div className="sticky top-0 h-screen flex flex-col overflow-hidden ">
         <div ref={headerRef} className="max-w-[80%] mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-30">
           <div>
-            <span className="framework-label inline-block text-slate-400  text-xs uppercase tracking-[0.3em]">PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.</span>
-            <h3 className="framework-title-left text-3xl text-white md:text-5xl font-bold mt-10">Our 4-Step Operational Framework</h3>
+            <span className="framework-label inline-block text-ink-muted  text-xs uppercase tracking-[0.3em]">PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.</span>
+            <h3 className="framework-title-left text-3xl text-ink md:text-5xl font-bold mt-10">Our 4-Step Operational Framework</h3>
           </div>
           <div>
-            <h2 className="framework-title-right text-3xl text-white md:text-5xl font-bold max-w-3xl leading-tight uppercase">
+            <h2 className="framework-title-right text-3xl text-ink md:text-5xl font-bold max-w-3xl leading-tight uppercase">
               Our Framework
             </h2>
-            <h4 className="framework-subtitle text-3xl text-slate-400 md:text-lg font-medium max-w-3xl leading-tight uppercase mt-10">
+            <h4 className="framework-subtitle text-3xl text-ink-muted md:text-lg font-medium max-w-3xl leading-tight uppercase mt-10">
               A disciplined approach to managing performance, reducing risk, and maintaining operational control.
             </h4>
           </div>
 
         </div>
 
-        <div className="h-[50vh] flex flex-col md:flex-row border-t border-white/10 relative">
+        <div className="h-[50vh] flex flex-col md:flex-row border-t border-ink/10 relative">
           {steps.map((step, i) => (
             <StepItem 
               key={i} 
@@ -202,7 +202,7 @@ const WorkingProcess = () => {
         </div>
 
         {/* Progress Bar */}
-        <div className="h-1 w-full bg-white/5 relative">
+        <div className="h-1 w-full bg-white/65 relative">
           <motion.div
             style={{ scaleX: scrollYProgress }}
             className="absolute top-0 left-0 h-full w-full bg-teal-400 origin-left shadow-[0_0_15px_rgba(45,212,191,0.5)]"

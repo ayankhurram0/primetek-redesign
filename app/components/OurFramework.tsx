@@ -115,14 +115,14 @@ export const OurFramework: React.FC = () => {
             ref={leftContentRef}
             className="w-full lg:w-[45%] flex flex-col justify-center space-y-8 text-center lg:text-left z-20 pt-12 lg:pt-0"
           >
-            <h2 className="framework-heading text-white 2xl:text-5xl font-bold flex gap-2">
-              <span className="text-teal-400">Our</span> Framework
+            <h2 className="framework-heading text-ink 2xl:text-5xl font-bold flex gap-2">
+              <span className="text-accent">Our</span> Framework
             </h2>
             <div className="space-y-6">
-              <p className="framework-subtitle text-slate-300 text-xs 2xl:text-2xl font-semibold">
+              <p className="framework-subtitle text-ink text-xs 2xl:text-2xl font-semibold">
                 A DISCIPLINED APPROACH TO MANAGING PERFORMANCE, REDUCING RISK, AND MAINTAINING OPERATIONAL CONTROL.
               </p>
-              <p className="framework-description text-slate-400 text-lg 2xl:text-2xl font-medium">
+              <p className="framework-description text-ink-muted text-lg 2xl:text-2xl font-medium">
                 PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
               </p>
             </div>
@@ -132,7 +132,7 @@ export const OurFramework: React.FC = () => {
             <div className="w-full text-center mb-8 z-30">
               <span
                 ref={subtitleRef}
-                className="inline-block text-white 2xl:text-[27px] font-bold"
+                className="inline-block text-ink 2xl:text-[27px] font-bold"
               >
                 Our 4-Step Operational Framework
               </span>
@@ -159,14 +159,14 @@ export const OurFramework: React.FC = () => {
                       <div className="md:pr-10">
                         {isTextOnLeft ? (
                           <div className="row-text flex flex-col space-y-1 md:items-end text-center md:text-right">
-                            <h4 className="text-white text-2xl lg:text-3xl font-bold mb-1">{step.title}</h4>
-                            <p className="text-slate-400 text-sm lg:text-base leading-snug font-medium max-w-[280px]">
+                            <h4 className="text-ink text-2xl lg:text-3xl font-bold mb-1">{step.title}</h4>
+                            <p className="text-ink-muted text-sm lg:text-base leading-snug font-medium max-w-[280px]">
                               {step.desc}
                             </p>
                           </div>
                         ) : (
                           <div className="row-icon flex justify-end items-center">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-white shadow-lg group">
+                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-ink shadow-lg group">
                               <Icon className="w-8 h-8 lg:w-12 lg:h-12" strokeWidth={1} />
                             </div>
                           </div>
@@ -174,7 +174,7 @@ export const OurFramework: React.FC = () => {
                       </div>
 
                       <div className="hidden md:flex justify-center relative z-20">
-                        <div className="row-dot w-12 h-12 rounded-full border-2 border-[#010810] shadow-md flex items-center justify-center text-white text-md font-bold bg-teal-400 backdrop-blur-md">
+                        <div className="row-dot w-12 h-12 rounded-full border-2 border-[#010810] shadow-md flex items-center justify-center text-ink text-md font-bold bg-teal-400 backdrop-blur-md">
                           {step.id}
                         </div>
                       </div>
@@ -182,14 +182,14 @@ export const OurFramework: React.FC = () => {
                       <div className="md:pl-10">
                         {isTextOnLeft ? (
                           <div className="row-icon flex justify-start items-center">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-white shadow-lg group">
+                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-ink shadow-lg group">
                               <Icon className="w-8 h-8 lg:w-12 lg:h-12" strokeWidth={1} />
                             </div>
                           </div>
                         ) : (
                           <div className="row-text flex flex-col space-y-1 items-start text-center text-left">
-                            <h4 className="text-white text-2xl lg:text-3xl font-bold mb-1">{step.title}</h4>
-                            <p className="text-slate-400 text-sm 2xl:text-base leading-snug font-medium max-w-[280px]">
+                            <h4 className="text-ink text-2xl lg:text-3xl font-bold mb-1">{step.title}</h4>
+                            <p className="text-ink-muted text-sm 2xl:text-base leading-snug font-medium max-w-[280px]">
                               {step.desc}
                             </p>
                           </div>

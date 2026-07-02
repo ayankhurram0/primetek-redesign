@@ -41,7 +41,7 @@ export default function Operations() {
               <h2
                 className="text-4xl md:text-5xl font-bold leading-tight mb-4"
               >
-                <span className="text-teal-400">Designed for</span>{" "}
+                <span className="text-accent">Designed for</span>{" "}
                 <span className="text-[#2b4c8c]">Pharmacies Operating Under Pressure</span>
               </h2>
 

@@ -33,7 +33,7 @@ const badgeData = [
     desc: "Proactive monitoring to identify issues before they become problems.",
     accent: "#2dd4bf",
     hoverGlow: "hover:shadow-[0_0_50px_rgba(45,212,191,0.3)] hover:border-teal-400",
-    textColor: "text-teal-400",
+    textColor: "text-accent",
     labelPos: "right"
   },
   {
@@ -171,18 +171,18 @@ export const OrbitingSection: React.FC = () => {
     <div id="orbit-section" ref={sectionRef} className="relative w-full overflow-hidden">
       <div ref={triggerRef} className="h-auto flex flex-col items-center justify-center overflow-hidden w-[85%] mx-auto relative py-30">
         <div className="relative z-10 w-[100%] mx-auto text-center mt-30 flex items-center justify-center">
-          <div className="w-[35%]">
+          <div className="relative z-20 w-[35%]">
             <h2
               ref={headingRef}
               className="text-4xl 2xl:text-6xl font-bold mb-8 tracking-tight text-left capitalize"
             >
-              <span className="text-teal-400">Designed for</span>{" "}
-              <span className="text-white">Pharmacies Operating Under Pressure</span>
+              <span className="text-accent">Designed for</span>{" "}
+              <span className="text-ink">Pharmacies Operating Under Pressure</span>
             </h2>
 
             <p
               ref={paragraphRef}
-              className="text-slate-400 2xl:text-2xl text-md leading-relaxed mb-12 text-left"
+              className="text-ink-muted 2xl:text-2xl text-md leading-relaxed mb-12 text-left"
             >
               Pharmacies today operate under constant pressure from reimbursement variability, payer requirements, and
               operational complexity. PrimeTek delivers structured, non-clinical support within fully compliant, HIPAA-aligned
@@ -192,13 +192,13 @@ export const OrbitingSection: React.FC = () => {
 
           <div className="relative flex items-center justify-center h-[600px] w-[65%]">
             <div ref={orbitRingsRef} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="absolute 2xl:w-[760px] 2xl:h-[760px] w-[580px] h-[580px] border border-white/5 rounded-full" />
+              <div className="absolute 2xl:w-[760px] 2xl:h-[760px] w-[580px] h-[580px] border border-ink/10 rounded-full" />
               <div className="absolute 2xl:w-[480px] 2xl:h-[480px] w-[360px] h-[360px] border border-blue-500/5 rounded-full" />
             </div>
 
             <div
               ref={logoRef}
-              className="relative z-10 2xl:w-72 2xl:h-72 w-52 h-52 bg-white/5 backdrop-blur-3xl rounded-full shadow-[0_0_80px_rgba(43,76,140,0.15)] flex items-center justify-center p-10 border border-white/10"
+              className="relative z-10 2xl:w-72 2xl:h-72 w-52 h-52 bg-white/65 backdrop-blur-3xl rounded-full shadow-[0_0_80px_rgba(43,76,140,0.15)] flex items-center justify-center p-10 border border-ink/10"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-teal-400/30 rounded-full blur-3xl animate-pulse" />
@@ -216,14 +216,14 @@ export const OrbitingSection: React.FC = () => {
                   className="orbiting-badge-item absolute pointer-events-auto group"
                 >
                   <div className={`flex items-center gap-4 relative ${badge.labelPos === 'left' ? 'flex-row-reverse' : ''}`}>
-                    <div className={`w-20 h-20 2xl:w-28 2xl:h-28 bg-white/5 backdrop-blur-3xl rounded-full flex items-center justify-center p-4 shadow-2xl border-2 border-white/10 transition-all duration-500 hover:scale-110 ${badge.hoverGlow} cursor-pointer`}>
+                    <div className={`w-20 h-20 2xl:w-28 2xl:h-28 bg-white/65 backdrop-blur-3xl rounded-full flex items-center justify-center p-4 shadow-2xl border-2 border-ink/10 transition-all duration-500 hover:scale-110 ${badge.hoverGlow} cursor-pointer`}>
                       <Image src={badge.src} alt={badge.title} className="w-full h-full object-contain rounded-full" />
                     </div>
 
                     <div className={`text-left w-64 transition-all duration-300 ${badge.labelPos === 'left' ? 'text-right mr-4' : 'ml-4'}`}>
                       <div className={`font-bold text-xs uppercase tracking-[0.25em] mb-1 ${badge.textColor}`}>{badge.title}</div>
-                      <div className="text-white font-bold text-xl mb-1.5 leading-none">{badge.sub}</div>
-                      <div className="text-white/50 text-[13px] leading-relaxed line-clamp-3 font-medium">{badge.desc}</div>
+                      <div className="text-ink font-bold text-xl mb-1.5 leading-none">{badge.sub}</div>
+                      <div className="text-ink-subtle text-[13px] leading-relaxed line-clamp-3 font-medium">{badge.desc}</div>
                     </div>
                   </div>
                 </div>

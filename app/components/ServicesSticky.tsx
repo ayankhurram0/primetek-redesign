@@ -28,7 +28,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
   return (
     <motion.section
       style={{ zIndex }}
-      className="sticky top-0 h-screen w-full flex flex-col justify-center bg-transparent backdrop-blur-sm border-t border-white/5 py-12 2xl:px-30 px-10 font-montserrat"
+      className="sticky top-0 h-screen w-full flex flex-col justify-center bg-transparent backdrop-blur-sm border-t border-ink/10 py-12 2xl:px-30 px-10 font-montserrat"
     >
       <div className="max-w-[1400px] mx-auto w-full">
         {/* Section Header */}
@@ -39,7 +39,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
             </h2>
           </div>
           <div className="flex items-center gap-6">
-            <span className="2xl:text-4xl text-3xl font-light text-teal-400">{number}</span>
+            <span className="2xl:text-4xl text-3xl font-light text-accent">{number}</span>
             <div className="w-[1px] h-12 bg-[#2b4c8c]/20" />
             <div className="flex gap-2">
               {[...Array(8)].map((_, i) => (
@@ -63,7 +63,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
               borderColor="teal-400"
               bgColor="teak-400"
               rippleColor="#2b4c8c"
-              extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+              extraClasses="hover:border-[#2b4c8c] hover:text-ink transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
             />
           </div>
 
@@ -140,7 +140,7 @@ export default function ServicesSticky() {
   return (
     <section id="services" ref={containerRef} className="relative min-h-screen flex flex-col md:flex-row w-full bg-transparent font-montserrat">
       {/* Hero Section - Fixed Left Sidebar */}
-      <div className="relative md:sticky md:top-0 h-fit md:h-screen flex flex-col justify-center bg-transparent z-20 2xl:pl-30 pl-10 md:w-[38%] w-full border-r border-white/5 self-start py-20">
+      <div className="relative md:sticky md:top-0 h-fit md:h-screen flex flex-col justify-center bg-transparent z-20 2xl:pl-30 pl-10 md:w-[38%] w-full border-r border-ink/10 self-start py-20">
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-[-1] opacity-[0.03]">
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#2b4c8c 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -165,7 +165,7 @@ export default function ServicesSticky() {
               {titleWords.map((word, i) => (
                 <span
                   key={i}
-                  className={`inline-block ${word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-teal-400"}`}
+                  className={`inline-block ${word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-accent"}`}
                 >
                   {word}
                 </span>
@@ -185,7 +185,7 @@ export default function ServicesSticky() {
                 borderColor="teal-400"
                 bgColor="teak-400"
                 rippleColor="#2b4c8c"
-                extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+                extraClasses="hover:border-[#2b4c8c] hover:text-ink transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
               />
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function ServicesSticky() {
         {services.map((service, index) => (
           <div
             key={service.number}
-            className="service-card relative bg-white/2 backdrop-blur-md shadow-[-20px_0_40px_rgba(0,0,0,0.2)] border-l border-white/5 min-h-screen"
+            className="service-card relative bg-white/2 backdrop-blur-md shadow-[-20px_0_40px_rgba(0,0,0,0.2)] border-l border-ink/10 min-h-screen"
             style={{ zIndex: index + 10 }}
           >
             <ServiceSection

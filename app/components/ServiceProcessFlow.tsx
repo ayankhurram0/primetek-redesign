@@ -66,7 +66,7 @@ export function ServiceProcessFlow({
 
   return (
     <div
-      className={`w-full min-h-[200px] flex items-center justify-center relative overflow-hidden rounded-2xl border border-white/10 bg-[#061018]/75 p-6 transition-opacity duration-500 ${
+      className={`w-full min-h-[200px] flex items-center justify-center relative overflow-hidden rounded-2xl border border-ink/10 bg-white/75 p-6 transition-opacity duration-500 ${
         dimmed ? "opacity-45" : "opacity-100"
       } ${className}`}
     >

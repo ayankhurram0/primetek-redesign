@@ -35,7 +35,7 @@ export const OurStory = () => {
             data-dir="left"
             className="reveal-story relative"
           >
-            <div className="aspect-[4/3] rounded-[48px] overflow-hidden relative group border border-white/10 shadow-2xl backdrop-blur-3xl bg-white/5">
+            <div className="aspect-[4/3] rounded-[48px] overflow-hidden relative group border border-ink/10 shadow-2xl backdrop-blur-3xl bg-white/65">
               <img
                 src="/pharmacy_team_about_story.png"
                 alt="Pharmacy Team"
@@ -43,9 +43,9 @@ export const OurStory = () => {
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-brand-dark/20 mix-blend-overlay" />
-              <div className="absolute bottom-10 right-[-20px] bg-brand-dark/80 backdrop-blur-xl p-10 rounded-[40px] shadow-2xl flex flex-col items-center border border-white/10">
-                <span className="text-6xl font-bold text-teal-400">8+</span>
-                <span className="text-xl font-bold text-white capitalize text-center mt-3 opacity-70">Years Serving<br />Pharmacies</span>
+              <div className="absolute bottom-10 right-[-20px] bg-brand-dark/80 backdrop-blur-xl p-10 rounded-[40px] shadow-2xl flex flex-col items-center border border-ink/10">
+                <span className="text-6xl font-bold text-accent">8+</span>
+                <span className="text-xl font-bold text-ink capitalize text-center mt-3 opacity-70">Years Serving<br />Pharmacies</span>
               </div>
             </div>
           </div>
@@ -54,9 +54,9 @@ export const OurStory = () => {
             data-dir="right"
             className="reveal-story"
           >
-            <h3 className="text-6xl font-bold text-teal-400 mb-10 leading-[0.95] tracking-tighter uppercase">Why We <br /><span className="text-white uppercase"> Started PrimeTek.</span></h3>
+            <h3 className="text-6xl font-bold text-accent mb-10 leading-[0.95] tracking-tighter uppercase">Why We <br /><span className="text-ink uppercase"> Started PrimeTek.</span></h3>
 
-            <div className="space-y-8 text-slate-400 text-2xl font-light leading-relaxed mb-12">
+            <div className="space-y-8 text-ink-muted text-2xl font-light leading-relaxed mb-12">
               <p>
                 Independent pharmacies are the backbone of community healthcare — yet they're constantly squeezed by PBM pressure, audit risk, and shrinking reimbursements. Most don't have the internal resources to fight back with data.
               </p>
@@ -73,10 +73,10 @@ export const OurStory = () => {
                 "Structured, recurring support — not one-time engagements"
               ].map((text, i) => (
                 <div key={i} className="flex items-center gap-5 group">
-                  <div className="w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-teal transition-all duration-500">
-                    <CheckCircle2 className="w-8 h-8 text-teal-400 group-hover:text-white transition-colors" />
+                  <div className="w-12 h-12 rounded-lg bg-white/65 border border-ink/10 flex items-center justify-center group-hover:bg-brand-teal transition-all duration-500">
+                    <CheckCircle2 className="w-8 h-8 text-accent group-hover:text-ink transition-colors" />
                   </div>
-                  <span className="text-slate-400 font-bold text-lg uppercase tracking-widest group-hover:text-white transition-colors">{text}</span>
+                  <span className="text-ink-muted font-bold text-lg uppercase tracking-widest group-hover:text-ink transition-colors">{text}</span>
                 </div>
               ))}
             </div>

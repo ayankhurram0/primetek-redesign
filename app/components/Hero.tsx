@@ -46,7 +46,7 @@ const COLORS = ['#3b82f6', '#10b981', '#f59e0b'];
 
 export const Hero: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-transparent flex flex-col items-center justify-center overflow-hidden font-sans border-b border-white/5">
+    <div className="relative min-h-screen bg-transparent flex flex-col items-center justify-center overflow-hidden font-sans border-b border-ink/10">
       {/* Background Grid & Gloom */}
       <div className="absolute inset-0 opacity-10 pointer-events-none"
         style={{ backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="mb-6"
           >
-            <span className="2xl:text-4xl font-bold tracking-widest uppercase text-teal-400">
+            <span className="2xl:text-4xl font-bold tracking-widest uppercase text-accent">
               OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT PHARMACIES
             </span>
           </motion.div>
@@ -72,16 +72,16 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl 2xl:text-6xl font-bold leading-[1.1] tracking-tight text-white mb-8"
+            className="text-5xl 2xl:text-6xl font-bold leading-[1.1] tracking-tight text-ink mb-8"
           >
-            Is your pharmacy losing revenue due to hidden <span className="text-teal-400">compliance gaps?</span>
+            Is your pharmacy losing revenue due to hidden <span className="text-accent">compliance gaps?</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-lg 2xl:text-2xl text-white/60 mb-10 leading-relaxed"
+            className="text-lg 2xl:text-2xl text-ink-muted mb-10 leading-relaxed"
           >
             Built to support pharmacies navigating PBM pressure, audit risk, and operational complexity.
           </motion.p>
@@ -111,10 +111,10 @@ export const Hero: React.FC = () => {
           <div className="flex gap-4 2xl:gap-8 items-center h-full">
             {/* Charts Col 1 */}
             <div className="flex flex-col gap-6 scale-90 2xl:scale-100">
-              <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
+              <div className="w-56 bg-white/65 backdrop-blur-xl rounded-2xl p-5 border border-ink/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Verification Audit</span>
-                  <Activity size={12} className="text-white/40" />
+                  <span className="text-[9px] font-bold tracking-widest text-accent uppercase">Verification Audit</span>
+                  <Activity size={12} className="text-ink-subtle" />
                 </div>
                 <div className="h-28">
                   <ResponsiveContainer width="100%" height="100%">
@@ -134,14 +134,14 @@ export const Hero: React.FC = () => {
                   </ResponsiveContainer>
                 </div>
                 <div className="text-center mt-2">
-                  <div className="text-2xl font-bold text-white">75%</div>
+                  <div className="text-2xl font-bold text-ink">75%</div>
                 </div>
               </div>
 
-              <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
+              <div className="w-56 bg-white/65 backdrop-blur-xl rounded-2xl p-5 border border-ink/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Readiness Score</span>
-                  <TrendingUp size={12} className="text-white/40" />
+                  <span className="text-[9px] font-bold tracking-widest text-accent uppercase">Readiness Score</span>
+                  <TrendingUp size={12} className="text-ink-subtle" />
                 </div>
                 <div className="h-28">
                   <ResponsiveContainer width="100%" height="100%">
@@ -151,8 +151,8 @@ export const Hero: React.FC = () => {
                   </ResponsiveContainer>
                 </div>
                 <div className="mt-2">
-                  <div className="text-3xl font-bold text-white">90%</div>
-                  <div className="text-[7px] text-white/40">Ready for Review</div>
+                  <div className="text-3xl font-bold text-ink">90%</div>
+                  <div className="text-[7px] text-ink-subtle">Ready for Review</div>
                 </div>
               </div>
             </div>
@@ -165,11 +165,11 @@ export const Hero: React.FC = () => {
                 transition={{ duration: 1 }}
                 className="h-full w-full relative"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020817] via-transparent to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent z-10" />
                 <Image
                   src={pharmacistImg}
                   alt="Pharmacist"
-                  className="h-full w-full object-cover rounded-t-[100px] border-x-4 border-t-4 border-white/5"
+                  className="h-full w-full object-cover rounded-t-[100px] border-x-4 border-t-4 border-ink/10"
                   priority />
               </motion.div>
             </div>
@@ -177,14 +177,14 @@ export const Hero: React.FC = () => {
             {/* Charts Col 2 */}
             <div className="flex flex-col gap-6 scale-90 2xl:scale-100">
               {/* Card: Revenues Recovery */}
-              <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
+              <div className="w-56 bg-white/65 backdrop-blur-xl rounded-2xl p-5 border border-ink/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Revenues Recovery</span>
-                  <BarChart3 size={12} className="text-white/40" />
+                  <span className="text-[9px] font-bold tracking-widest text-accent uppercase">Revenues Recovery</span>
+                  <BarChart3 size={12} className="text-ink-subtle" />
                 </div>
                 <div className="text-center mb-2">
-                  <div className="text-4xl font-bold text-white tracking-tighter">92%</div>
-                  <div className="text-[8px] text-teal-400 font-bold uppercase mt-1">Ready for Review</div>
+                  <div className="text-4xl font-bold text-ink tracking-tighter">92%</div>
+                  <div className="text-[8px] text-accent font-bold uppercase mt-1">Ready for Review</div>
                 </div>
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">
@@ -195,14 +195,14 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
 
-              <div className="w-56 bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl">
+              <div className="w-56 bg-white/65 backdrop-blur-xl rounded-2xl p-5 border border-ink/10 shadow-2xl">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[9px] font-bold tracking-widest text-teal-400 uppercase">Revenue Identified</span>
-                  <ChevronRight size={12} className="text-white/40" />
+                  <span className="text-[9px] font-bold tracking-widest text-accent uppercase">Revenue Identified</span>
+                  <ChevronRight size={12} className="text-ink-subtle" />
                 </div>
                 <div className="mb-2">
-                  <div className="text-2xl font-bold text-white">$1.2M</div>
-                  <div className="text-[8px] text-teal-400 font-bold">vs last month ↑ 18%</div>
+                  <div className="text-2xl font-bold text-ink">$1.2M</div>
+                  <div className="text-[8px] text-accent font-bold">vs last month ↑ 18%</div>
                 </div>
                 <div className="h-20">
                   <ResponsiveContainer width="100%" height="100%">

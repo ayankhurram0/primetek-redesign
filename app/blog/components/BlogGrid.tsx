@@ -22,7 +22,7 @@ export default function BlogGrid() {
               className="group"
             >
               <Link href={`/blog/${post.slug}`} className="block">
-                <div className="aspect-[16/10] rounded-[32px] overflow-hidden mb-8 border border-white/5 bg-brand-900 group-hover:border-brand-teal/30 transition-all duration-500 relative">
+                <div className="aspect-[16/10] rounded-[32px] overflow-hidden mb-8 border border-ink/10 bg-white/60 group-hover:border-accent/30 transition-all duration-500 relative">
                   <Image
                     src={post.image}
                     alt={post.title}
@@ -37,16 +37,16 @@ export default function BlogGrid() {
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <span className="text-[9px] font-bold text-brand-teal uppercase tracking-widest">{post.category}</span>
+                    <span className="text-[9px] font-bold text-accent uppercase tracking-widest">{post.category}</span>
                     <span className="w-1 h-1 rounded-full bg-slate-800" />
-                    <span className="flex items-center gap-1 text-[9px] text-slate-500 font-bold uppercase tracking-widest">
+                    <span className="flex items-center gap-1 text-[9px] text-ink-subtle font-bold uppercase tracking-widest">
                       <Clock className="w-3 h-3" /> {post.date}
                     </span>
                   </div>
-                  <h3 className="text-xl font-display font-medium text-teal-400 uppercase  leading-tight group-hover:text-brand-teal transition-colors">
+                  <h3 className="text-xl font-display font-medium text-accent uppercase  leading-tight group-hover:text-accent transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-slate-400 font-light text-sm leading-relaxed line-clamp-2">
+                  <p className="text-ink-muted font-light text-sm leading-relaxed line-clamp-2">
                     {post.description}
                   </p>
                 </div>
@@ -56,7 +56,7 @@ export default function BlogGrid() {
         </div>
 
         <div className="mt-24 text-center">
-          <button className="px-10 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all text-[9px] uppercase tracking-[0.3em]">
+          <button className="px-10 py-4 glass text-ink font-bold rounded-full hover:bg-white/10 transition-all text-[9px] uppercase tracking-[0.3em]">
             Load More Investigations
           </button>
         </div>

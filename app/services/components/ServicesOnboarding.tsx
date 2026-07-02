@@ -99,7 +99,7 @@ function WorkflowStep({
           style={{ background: ACCENT, opacity: isHovered ? 0.7 : 0.35 }}
         />
 
-        <h4 className="text-xl md:text-2xl font-display font-bold text-white mb-4 leading-snug px-1">
+        <h4 className="text-xl md:text-2xl font-display font-bold text-ink mb-4 leading-snug px-1">
           {step.title}
         </h4>
 
@@ -194,9 +194,9 @@ export const ServicesOnboarding = () => {
             transition={{ duration: 0.55, delay: 0.12 }}
             className="text-4xl md:text-5xl xl:text-[3.5rem] font-display font-bold leading-[1.08] tracking-tight mb-6"
           >
-            <span className="text-white">From </span>
+            <span className="text-ink">From </span>
             <span style={{ color: ACCENT }}>Onboarding</span>
-            <span className="text-white"> to </span>
+            <span className="text-ink"> to </span>
             <span style={{ color: ACCENT }}>Intelligence.</span>
           </motion.h3>
 

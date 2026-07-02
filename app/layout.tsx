@@ -39,11 +39,12 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.variable} ${merriweather.variable} ${poppins.variable} antialiased`}
     >
-      <body className="flex flex-col relative" suppressHydrationWarning={true}>
-        
-        <CustomCursor />
-        <Preloader />
-        <SmoothScroll>{children}</SmoothScroll>
+      <body className="flex flex-col bg-transparent" suppressHydrationWarning={true}>
+        <div id="site-content" className="relative z-[1] flex flex-col flex-1 min-h-screen isolate">
+          <CustomCursor />
+          <Preloader />
+          <SmoothScroll>{children}</SmoothScroll>
+        </div>
       </body>
     </html>
   );

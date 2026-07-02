@@ -25,7 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   return (
     <SmoothScroll>
-      <main className="flex min-h-screen flex-col overflow-x-hidden relative">
+      <main className="relative z-[1] flex min-h-screen flex-col overflow-x-hidden">
         <>
           <Navbar />
           <Newhero />

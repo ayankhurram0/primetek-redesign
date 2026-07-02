@@ -2,8 +2,35 @@
 @plugin "@tailwindcss/typography";
 
 /* Global Responsive Scaling */
+:root {
+  --background: #ffffff;
+  --foreground: #062b34;
+  --ink: #062b34;
+  --ink-muted: #5a7a85;
+  --ink-subtle: #6b8a94;
+  --accent: #0d9488;
+  --accent-light: #18e7d5;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-border: rgba(6, 43, 52, 0.1);
+  --site-background-image: url("/images/website-background.png");
+}
+
 html {
   font-size: 85%;
+  position: relative;
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #ffffff;
+  background-image: url("/images/website-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
 
 @media (min-width: 1280px) {
@@ -12,14 +39,15 @@ html {
   }
 }
 
-:root {
-  --background: #020817;
-  --foreground: #ededed;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ink: #062b34;
+  --color-ink-muted: #5a7a85;
+  --color-ink-subtle: #6b8a94;
+  --color-accent: #0d9488;
+  --color-accent-light: #18e7d5;
+  --color-surface: rgba(255, 255, 255, 0.72);
   --font-montserrat: var(--font-montserrat);
   --font-merriweather: var(--font-merriweather);
   --font-poppins: var(--font-poppins);
@@ -30,14 +58,15 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020817;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #062b34;
   }
 }
 
 body {
-  background: radial-gradient(circle at top left, #005969 0%, transparent 60%), radial-gradient(circle at center right, #005969 0%, transparent 40%), radial-gradient(circle at bottom center, #06101a 15%, #02070d 60%);
-  background-attachment: fixed;
+  position: relative;
+  z-index: 0;
+  background: transparent;
   color: var(--foreground);
   min-height: 100vh;
   font-family: var(--font-poppins) !important;
@@ -50,6 +79,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-merriweather) !important;
+  color: var(--ink);
 }
 
 
@@ -162,9 +192,9 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-background-clip: text !important;
-  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-fill-color: #062b34 !important;
   transition: background-color 5000s ease-in-out 0s;
-  box-shadow: inset 0 0 20px 20px #020617 !important;
+  box-shadow: inset 0 0 20px 20px #f8fafc !important;
   border-radius: 1rem;
 }
 

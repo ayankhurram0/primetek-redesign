@@ -144,16 +144,16 @@ export const AboutHero = () => {
       {/* Central Hero Content */}
       <div className="relative z-10 w-[85%] mx-auto max-w-4xl text-center flex flex-col items-center justify-center">
 
-        <span className="text-teal-400 font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-6 block hero-subtitle">
+        <span className="text-accent font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-6 block hero-subtitle">
           Lorem Ipsum
         </span>
 
-        <h1 className="text-5xl xl:text-7xl font-bold text-white tracking-tight leading-[1.05] uppercase mb-8 hero-title max-w-3xl font-display">
+        <h1 className="text-5xl xl:text-7xl font-bold text-ink tracking-tight leading-[1.05] uppercase mb-8 hero-title max-w-3xl font-display">
           Lorem Ipsum <br />
-          <span className="text-teal-400">Dolor Sit Amet</span>
+          <span className="text-accent">Dolor Sit Amet</span>
         </h1>
 
-        <p className="text-lg md:text-xl lg:text-2xl text-slate-300/80 font-light leading-relaxed max-w-2xl mx-auto hero-description font-sans">
+        <p className="text-lg md:text-xl lg:text-2xl text-ink/80 font-light leading-relaxed max-w-2xl mx-auto hero-description font-sans">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud.
         </p>
 

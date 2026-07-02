@@ -78,19 +78,19 @@ export const OurJourney = () => {
             {/* Text content */}
             <div className="jrow-content flex-1 flex flex-col justify-center">
               {/* Title */}
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white uppercase tracking-tight leading-none mb-6 font-display whitespace-pre-line">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-ink uppercase tracking-tight leading-none mb-6 font-display whitespace-pre-line">
                 {step.title}
               </h2>
 
               {/* Body */}
-              <p className="text-base md:text-lg lg:text-xl text-slate-400 font-light leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg lg:text-xl text-ink-muted font-light leading-relaxed max-w-xl">
                 {step.body}
               </p>
 
               {/* WE ARE PRIMETEK footer */}
               {step.isLast && (
                 <div className="mt-12 pt-6">
-                  <span className="text-teal-400 font-bold uppercase tracking-[0.3em] text-sm">
+                  <span className="text-accent font-bold uppercase tracking-[0.3em] text-sm">
                     We Are PrimeTek
                   </span>
                 </div>

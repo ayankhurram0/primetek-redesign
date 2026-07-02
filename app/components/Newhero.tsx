@@ -42,23 +42,26 @@ const pbmData = [
 
 const COLORS = ['#99f6e4', '#5eead4', '#2dd4bf', '#0d9488'];
 
+const healthCardClass =
+  "w-80 h-80 rounded-3xl p-5 flex flex-col justify-between shrink-0 bg-white/85 backdrop-blur-xl border-2 border-accent/50 ring-1 ring-accent/25 shadow-[0_12px_40px_rgba(6,43,52,0.1),0_0_0_1px_rgba(13,148,136,0.15)]";
+
 const HealthCards = ({ mounted }: { mounted: boolean }) => (
   !mounted ? (
     <>
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="w-72 h-72 bg-[#042f2e]/90 backdrop-blur-xl rounded-3xl p-5 border border-[#2dd4bf]/20 flex flex-col justify-between shrink-0 animate-pulse" />
+        <div key={i} className={`${healthCardClass} animate-pulse`} />
       ))}
     </>
   ) : (
     <>
       {/* Card 1: Audit Readiness (Line Chart) */}
-      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className={healthCardClass}>
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <TrendingUp size={14} className="text-white font-bold" />
-            <span className="text-[9px] uppercase tracking-widest text-white font-bold">Audit Readiness</span>
+            <TrendingUp size={14} className="text-ink font-bold" />
+            <span className="text-[9px] uppercase tracking-widest text-ink font-bold">Audit Readiness</span>
           </div>
-          <Info size={14} className="text-white" />
+          <Info size={14} className="text-ink" />
         </div>
         <div className="flex-1 mt-4">
           <ResponsiveContainer width="100%" height={120}>
@@ -74,22 +77,22 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             </LineChart>
           </ResponsiveContainer>
           <div className="mt-2">
-            <h3 className="text-lg font-display font-bold leading-tight text-white">Readiness Score</h3>
-            <p className="text-[9px] text-white">90% increase in compliance readiness over Q1.</p>
+            <h3 className="text-lg font-display font-bold leading-tight text-ink">Readiness Score</h3>
+            <p className="text-[9px] text-ink">90% increase in compliance readiness over Q1.</p>
           </div>
         </div>
-        <div className="bg-teal-900/20 p-2 px-3 rounded-2xl flex items-center justify-between mt-1">
-          <span className="text-[9px] font-bold text-white">Ready for Review</span>
+        <div className="bg-accent/10 p-2 px-3 rounded-2xl flex items-center justify-between mt-1">
+          <span className="text-[9px] font-bold text-ink">Ready for Review</span>
           <div className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
         </div>
       </div>
 
       {/* Card 2: Compliance Protocol (Area Chart) */}
-      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className={healthCardClass}>
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <Activity size={14} className="text-white font-bold" />
-            <span className="text-[9px] uppercase tracking-widest text-white font-bold">Compliance Protocol</span>
+            <Activity size={14} className="text-ink font-bold" />
+            <span className="text-[9px] uppercase tracking-widest text-ink font-bold">Compliance Protocol</span>
           </div>
           <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
         </div>
@@ -112,24 +115,24 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             </AreaChart>
           </ResponsiveContainer>
           <div className="mt-2">
-            <h3 className="text-lg font-display font-bold leading-tight text-white">Protocol Adherence</h3>
-            <p className="text-[9px] text-white">Real-time monitoring of institutional requirements.</p>
+            <h3 className="text-lg font-display font-bold leading-tight text-ink">Protocol Adherence</h3>
+            <p className="text-[9px] text-ink">Real-time monitoring of institutional requirements.</p>
           </div>
         </div>
-        <div className="flex justify-between items-end mt-2 text-white">
+        <div className="flex justify-between items-end mt-2 text-ink">
           <div className="text-2xl font-bold">85%</div>
           <div className="text-[9px] opacity-60 mb-1 font-bold">Weekly Avg</div>
         </div>
       </div>
 
       {/* Card 3: Reimbursement Reconciliation (Bar Chart) */}
-      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className={healthCardClass}>
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <BarChart3 size={14} className="text-white font-bold" />
-            <span className="text-[9px] uppercase tracking-widest text-white font-bold">Reconciliation</span>
+            <BarChart3 size={14} className="text-ink font-bold" />
+            <span className="text-[9px] uppercase tracking-widest text-ink font-bold">Reconciliation</span>
           </div>
-          <ChevronRight size={14} className="text-white" />
+          <ChevronRight size={14} className="text-ink" />
         </div>
         <div className="flex-1 mt-4">
           <ResponsiveContainer width="100%" height={120}>
@@ -142,30 +145,30 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             </BarChart>
           </ResponsiveContainer>
           <div className="mt-2">
-            <h3 className="text-lg font-display font-bold leading-tight text-white">Revenue Recovery</h3>
-            <p className="text-[9px] text-white">Discrepancy resolution and cycle efficiency.</p>
+            <h3 className="text-lg font-display font-bold leading-tight text-ink">Revenue Recovery</h3>
+            <p className="text-[9px] text-ink">Discrepancy resolution and cycle efficiency.</p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 mt-2">
-          <div className="bg-white/5 p-2 rounded-xl">
-            <div className="text-[7px] text-white uppercase font-bold">Recovered</div>
+          <div className="bg-white/65 p-2 rounded-xl">
+            <div className="text-[7px] text-ink uppercase font-bold">Recovered</div>
             <div className="text-xs font-bold text-[#4ade80]">+$12.4k</div>
           </div>
-          <div className="bg-teal-900/20 p-2 rounded-xl">
-            <div className="text-[7px] text-white uppercase font-bold">Pending</div>
+          <div className="bg-accent/10 p-2 rounded-xl">
+            <div className="text-[7px] text-ink uppercase font-bold">Pending</div>
             <div className="text-xs font-bold text-[#fbbf24]">$4.2k</div>
           </div>
         </div>
       </div>
 
       {/* Card 4: PBM Checklist (Pie Chart) */}
-      <div className="w-80 h-80 bg-[#04212a] rounded-3xl p-5 border border-white/10 flex flex-col justify-between shrink-0 shadow-lg shadow-teal-900/10">
+      <div className={healthCardClass}>
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2">
-            <PieChartIcon size={14} className="text-white font-bold" />
-            <span className="text-[9px] uppercase tracking-widest text-white font-bold">PBM Checklist</span>
+            <PieChartIcon size={14} className="text-ink font-bold" />
+            <span className="text-[9px] uppercase tracking-widest text-ink font-bold">PBM Checklist</span>
           </div>
-          <Info size={14} className="text-white" />
+          <Info size={14} className="text-ink" />
         </div>
         <div className="flex-1 mt-4 flex items-center justify-center">
           <ResponsiveContainer width="100%" height={140}>
@@ -187,8 +190,8 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
           </ResponsiveContainer>
         </div>
         <div className="space-y-1 mt-2">
-          <h3 className="text-lg font-display font-bold leading-tight text-white">Verification Audit</h3>
-          <div className="flex gap-2 text-[7px] text-white font-bold">
+          <h3 className="text-lg font-display font-bold leading-tight text-ink">Verification Audit</h3>
+          <div className="flex gap-2 text-[7px] text-ink font-bold">
             <div className="flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" /> Verified
             </div>
@@ -281,7 +284,7 @@ export default function App() {
               className=""
             >
               <div className="py-12 rounded-full">
-                <span className="text-md 2xl:text-4xl font-bold tracking-wider uppercase text-[#2dd4bf]">
+                <span className="text-md 2xl:text-4xl font-bold tracking-wider uppercase text-accent">
                   OPERATIONAL SYSTEMS BUILT FOR INDEPENDENT & MULTI-LOCATION PHARMACIES
                 </span>
               </div>
@@ -291,9 +294,9 @@ export default function App() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight text-white"
+              className="text-5xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight text-ink"
             >
-              Is your pharmacy losing revenue due to hidden <span className="text-[#2dd4bf]">compliance gaps?</span>
+              Is your pharmacy losing revenue due to hidden <span className="text-accent">compliance gaps?</span>
             </motion.h1>
           </div>
 
@@ -303,7 +306,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="text-lg 2xl:text-3xl text-white/60 mb-14 font-medium z-10"
+              className="text-lg 2xl:text-3xl text-ink-muted mb-14 font-medium z-10"
             >
               Built to support pharmacies navigating PBM pressure, audit risk, and operational complexity.
             </motion.p>

@@ -221,7 +221,7 @@ function BenchmarkCard({
           />
         </div>
 
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2.5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-subtle mb-2.5">
           Avg Monthly Recovery
         </p>
 
@@ -249,7 +249,7 @@ function BenchmarkCard({
           className="mt-auto pt-5"
           style={{ borderTop: `1px solid rgba(${theme.accentRgb}, 0.15)` }}
         >
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 mb-3">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-subtle mb-3">
             Efficiency Delta
           </p>
           <div className="flex items-center gap-3">
@@ -308,10 +308,10 @@ export default function PerformanceMatrix() {
               >
                 Performance
               </span>
-              <span className="block text-white mt-1">Benchmarks.</span>
+              <span className="block text-ink mt-1">Benchmarks.</span>
             </h2>
 
-            <p className="text-slate-400/90 text-base md:text-[1.05rem] leading-relaxed max-w-[340px] mb-10">
+            <p className="text-ink-muted/90 text-base md:text-[1.05rem] leading-relaxed max-w-[340px] mb-10">
               Aggregated data from over 1,200 independent pharmacy nodes currently operating on the
               PrimeTek Secure-Link™ standard.
             </p>
@@ -335,10 +335,10 @@ export default function PerformanceMatrix() {
                   <Shield className="w-5 h-5 text-[#22E8E8]" />
                 </div>
                 <div>
-                  <p className="text-[13px] font-bold uppercase tracking-wide text-white mb-1.5">
+                  <p className="text-[13px] font-bold uppercase tracking-wide text-ink mb-1.5">
                     Statistical Certainty
                   </p>
-                  <p className="text-[11px] text-slate-500 leading-relaxed uppercase tracking-wider">
+                  <p className="text-[11px] text-ink-subtle leading-relaxed uppercase tracking-wider">
                     Data reflects 2024–2025 fiscal verification.
                   </p>
                   <p className="text-[11px] text-[#22E8E8] mt-1.5 uppercase tracking-wider font-semibold">

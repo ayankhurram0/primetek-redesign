@@ -14,7 +14,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-transparent text-white font-montserrat relative overflow-hidden">
+    <footer className="bg-transparent text-ink font-montserrat relative overflow-hidden">
       <div className="relative z-10 px-8 md:px-16 pt-10 pb-0">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-8">
           {/* Col 1: Brand/Logo */}
@@ -22,19 +22,19 @@ export default function Footer() {
             <div className="w-40">
               <Image src={logocolor} alt="PrimeTek Logo" className="w-full h-auto" />
             </div>
-            <p className="text-white/60 text-xs md:text-sm 2xl:text-base leading-relaxed">
+            <p className="text-ink-muted text-xs md:text-sm 2xl:text-base leading-relaxed">
               Empowering pharmacies through advanced audit readiness and revenue optimization solutions.
             </p>
           </div>
 
           {/* Col 2: Navigation (Shifted) */}
           <div className="flex flex-col gap-4 md:pl-12">
-            <span className="text-teal-400 text-xs font-bold uppercase tracking-widest mb-2">Navigation</span>
+            <span className="text-accent text-xs font-bold uppercase tracking-widest mb-2">Navigation</span>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-white/60 text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-teal-400 hover:translate-x-1 transition-all duration-300"
+                className="text-ink-muted text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-accent hover:translate-x-1 transition-all duration-300"
               >
                 {link.name}
               </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <span className="text-teal-400 text-xs font-bold uppercase tracking-widest mb-2">Knowledge</span>
+            <span className="text-accent text-xs font-bold uppercase tracking-widest mb-2">Knowledge</span>
             {[
               "Compliance Guide",
               "Case Studies",
@@ -53,7 +53,7 @@ export default function Footer() {
               <Link
                 key={resource}
                 href="/blog"
-                className="text-white/60 text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-teal-400 hover:translate-x-1 transition-all duration-300"
+                className="text-ink-muted text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-accent hover:translate-x-1 transition-all duration-300"
               >
                 {resource}
               </Link>
@@ -62,14 +62,14 @@ export default function Footer() {
 
           {/* Col 4: Contact Info */}
           <div className="flex flex-col gap-4 text-left">
-            <span className="text-teal-400 text-xs font-bold uppercase tracking-widest mb-2">Headquarters</span>
+            <span className="text-accent text-xs font-bold uppercase tracking-widest mb-2">Headquarters</span>
             <div className="space-y-3">
-              <p className="text-white/80 text-xs md:text-sm 2xl:text-base leading-relaxed">
+              <p className="text-ink text-xs md:text-sm 2xl:text-base leading-relaxed">
                 3 Gateway Center, 100 Mulberry Street,<br />
                 Newark, NJ 07102
               </p>
               <div className="pt-2 space-y-1">
-                <p className="text-teal-400 font-medium text-xs md:text-sm 2xl:text-base break-all">
+                <p className="text-accent font-medium text-xs md:text-sm 2xl:text-base break-all">
                   info@primetekservices.com
                 </p>
               </div>
@@ -78,14 +78,14 @@ export default function Footer() {
         </div>
 
         {/* Center: Social Icons */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-white/10 gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-ink/10 gap-8">
           <div className="flex flex-col gap-2">
-            <p className="text-white/60 text-xs 2xl:text-sm font-medium tracking-wide">
+            <p className="text-ink-muted text-xs 2xl:text-sm font-medium tracking-wide">
               © 2026 PRIMETEK SERVICES. ALL RIGHTS RESERVED.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-white/40 text-xs 2xl:text-sm hover:text-teal-400 transition-colors">PRIVACY POLICY</Link>
-              <Link href="#" className="text-white/40 text-xs 2xl:text-sm hover:text-teal-400 transition-colors">TERMS OF SERVICE</Link>
+              <Link href="#" className="text-ink-subtle text-xs 2xl:text-sm hover:text-accent transition-colors">PRIVACY POLICY</Link>
+              <Link href="#" className="text-ink-subtle text-xs 2xl:text-sm hover:text-accent transition-colors">TERMS OF SERVICE</Link>
             </div>
           </div>
 
@@ -99,9 +99,9 @@ export default function Footer() {
               <a
                 key={social.icon}
                 href="#"
-                className="w-10 h-10 2xl:w-14 2xl:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-teal-400 hover:border-teal-400 hover:-translate-y-1 transition-all duration-300"
+                className="w-10 h-10 2xl:w-14 2xl:h-14 rounded-full bg-white/65 border border-ink/10 flex items-center justify-center hover:bg-teal-400 hover:border-teal-400 hover:-translate-y-1 transition-all duration-300"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 2xl:w-7 2xl:h-7 text-white">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 2xl:w-7 2xl:h-7 text-ink">
                   <path d={social.path} />
                 </svg>
               </a>

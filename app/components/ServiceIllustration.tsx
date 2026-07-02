@@ -164,7 +164,7 @@ function RevenueIllustration({ accent, uid }: { accent: string; uid: number }) {
           </g>
         ))}
       </svg>
-      <div className="absolute right-2 bottom-1 bg-white/5 border border-white/10 rounded-lg py-1 px-2.5 text-[8px] font-bold text-white flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
+      <div className="absolute right-2 bottom-1 bg-white/65 border border-ink/10 rounded-lg py-1 px-2.5 text-[8px] font-bold text-ink flex items-center gap-1.5 backdrop-blur-md z-10 font-mono">
         <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
         <span>Live Leakage: $1.2M+</span>
       </div>
@@ -422,7 +422,7 @@ function PatientIllustration({ accent }: { accent: string }) {
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 style={{ zIndex: 10 - stackPos, position: "absolute", width: "100%" }}
-                className="bg-black/50 backdrop-blur-xl border border-white/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg"
+                className="bg-black/50 backdrop-blur-xl border border-ink/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg"
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-1.5">
@@ -437,15 +437,15 @@ function PatientIllustration({ accent }: { accent: string }) {
                         <line x1="3" y1="10" x2="21" y2="10" />
                       </svg>
                     </div>
-                    <span className="text-[8px] text-white/50 font-semibold tracking-wide uppercase">
+                    <span className="text-[8px] text-ink-subtle font-semibold tracking-wide uppercase">
                       System • {item.initials}
                     </span>
                   </div>
-                  <span className="text-[8.5px] text-white/40">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
+                  <span className="text-[8.5px] text-ink-subtle">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
                 </div>
                 <div className="text-left">
-                  <span className="text-[9px] font-bold text-white/90 leading-tight block">{item.name}</span>
-                  <span className="text-[9px] text-white/60 line-clamp-2 leading-snug mt-0.5 block">{item.detail}</span>
+                  <span className="text-[9px] font-bold text-ink/90 leading-tight block">{item.name}</span>
+                  <span className="text-[9px] text-ink-muted line-clamp-2 leading-snug mt-0.5 block">{item.detail}</span>
                 </div>
               </motion.div>
             );

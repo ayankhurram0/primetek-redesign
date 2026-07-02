@@ -16,15 +16,15 @@ export default function CaseHero() {
             transition={{ duration: 0.8 }}
             className="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter uppercase mb-8"
           >
-            <span className="text-white">Proven</span> <br />
-            <span className="text-teal-400">Outcomes.</span>
+            <span className="text-ink">Proven</span> <br />
+            <span className="text-accent">Outcomes.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-xl md:text-2xl text-slate-400 max-w-3xl leading-tight mb-20"
+            className="text-xl md:text-2xl text-ink-muted max-w-3xl leading-tight mb-20"
           >
             Technical validation of PrimeTek system deployments across the Northeast independent pharmacy network.
           </motion.p>

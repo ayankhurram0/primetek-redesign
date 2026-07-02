@@ -155,7 +155,7 @@ export default function FrameworkSection() {
             <p className="text-black/60 text-base md:text-lg max-w-3xl leading-relaxed">
               PrimeTek Services applies a structured methodology designed specifically for pharmacy environments.
             </p>
-            <h3 className="text-teal-400 text-xl md:text-2xl font-bold mt-8">
+            <h3 className="text-accent text-xl md:text-2xl font-bold mt-8">
               Our 4-Step Operational Framework
             </h3>
           </motion.div>
@@ -186,7 +186,7 @@ export default function FrameworkSection() {
                   >
                     <div className={`flex-1 ${isRight ? "pr-8 text-right" : "pl-8 text-left"}`}>
                       <div className={`inline-block ${isRight ? "text-right" : "text-left"}`}>
-                        <span className="text-teal-400 text-xs font-mono tracking-tighter mb-2 block">
+                        <span className="text-accent text-xs font-mono tracking-tighter mb-2 block">
                           PHASE {step.id}
                         </span>
                         <h4 className="text-[#2b4c8c] text-2xl md:text-3xl font-bold mb-3">
@@ -203,7 +203,7 @@ export default function FrameworkSection() {
                         style={{ scale: transforms.scale }}
                         className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-teal-400 border-4 border-white shadow-lg flex items-center justify-center"
                       >
-                        <span className="text-white font-bold text-base">{step.id}</span>
+                        <span className="text-ink font-bold text-base">{step.id}</span>
                       </motion.div>
                     </div>
 
@@ -212,7 +212,7 @@ export default function FrameworkSection() {
                         style={{ scale: transforms.iconScale }}
                         className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white shadow-lg border border-gray-100 flex items-center justify-center"
                       >
-                        <Icon className="w-5 h-5 md:w-6 md:h-6 text-teal-400" strokeWidth={1.5} />
+                        <Icon className="w-5 h-5 md:w-6 md:h-6 text-accent" strokeWidth={1.5} />
                       </motion.div>
                     </div>
                   </motion.div>

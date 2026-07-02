@@ -50,7 +50,7 @@ export default function FancyButton({
             return "bg-gradient-to-r from-[#2b4c8c] via-blue-500 to-[#2b4c8c] bg-[length:200%_auto] hover:bg-right transition-all font-bold shadow-[0_0_20px_rgba(43,76,140,0.3)] border-transparent text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.6)]";
         }
         if (variant === "outline") {
-            return `bg-transparent border border-${borderColor} text-${textColor} hover:bg-white/5`;
+            return `bg-transparent border border-ink/20 text-ink hover:bg-ink/5`;
         }
         return `border border-${borderColor} text-${textColor}`;
     };

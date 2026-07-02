@@ -45,15 +45,15 @@ export const AlertSystem = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-rose-500 text-xl font-bold uppercase tracking-[0.4em] mb-10">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white/[0.03] border border-ink/10 text-rose-500 text-xl font-bold uppercase tracking-[0.4em] mb-10">
               <AlertCircle className="w-3 h-3 animate-pulse" />
               Real-Time Alert Protocol
             </div>
-            <h2 className="text-6xl md:text-5xl xl:text-6xl font-montserrat font-bold text-white mb-10 tracking-tighter leading-none">
+            <h2 className="text-6xl md:text-5xl xl:text-6xl font-montserrat font-bold text-ink mb-10 tracking-tighter leading-none">
               Issues Caught. <br />
-              <span className="text-slate-500">Before They Cost You.</span>
+              <span className="text-ink-subtle">Before They Cost You.</span>
             </h2>
-            <p className="text-xl font-montserrat text-slate-400 leading-relaxed mb-12 max-w-2xl">
+            <p className="text-xl font-montserrat text-ink-muted leading-relaxed mb-12 max-w-2xl">
               Every PrimeTek service includes our real-time alert layer. When a threshold breach, compliance risk, or reporting cycle anomaly occurs, your dedicated team and your staff are notified instantly.
             </p>
 
@@ -66,7 +66,7 @@ export const AlertSystem = () => {
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 group">
                   <div className="w-2 h-2 rounded-full bg-rose-500 group-hover:scale-150 transition-transform" />
-                  <span className="text-lg font-bold uppercase tracking-widest text-slate-500 group-hover:text-white transition-colors">{item}</span>
+                  <span className="text-lg font-bold uppercase tracking-widest text-ink-subtle group-hover:text-ink transition-colors">{item}</span>
                 </div>
               ))}
             </div>
@@ -76,17 +76,17 @@ export const AlertSystem = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="glass-card rounded-[48px] p-1 bg-white/5 border-white/10 shadow-2xl relative"
+            className="glass-card rounded-[48px] p-1 bg-white/65 border-ink/10 shadow-2xl relative"
           >
-            <div className="bg-[#010810]/40 backdrop-blur-3xl rounded-[44px] overflow-hidden border border-white/10">
-              <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between">
+            <div className="bg-white/60 backdrop-blur-3xl rounded-[44px] overflow-hidden border border-ink/10">
+              <div className="px-8 py-6 border-b border-ink/10 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="flex gap-1.5">
                     <div className="w-4 h-4 rounded-full bg-rose-500" />
                     <div className="w-4 h-4 rounded-full bg-amber-500" />
                     <div className="w-4 h-4 rounded-full bg-emerald-500" />
                   </div>
-                  <span className="text-base font-bold uppercase tracking-widest text-slate-600">PrimeTek Alert Feed — Live</span>
+                  <span className="text-base font-bold uppercase tracking-widest text-ink-subtle">PrimeTek Alert Feed — Live</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
@@ -96,14 +96,14 @@ export const AlertSystem = () => {
 
               <div className="p-4 space-y-3">
                 {alerts.map((alert) => (
-                  <div key={alert.id} className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl hover:bg-white/[0.04] transition-colors group">
+                  <div key={alert.id} className="p-6 bg-white/[0.02] border border-ink/10 rounded-3xl hover:bg-white/[0.04] transition-colors group">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-4">
                         <div className={`p-2.5 rounded-xl ${alert.bg} ${alert.color}`}>
                           <alert.icon className="w-5 h-5" />
                         </div>
                         <div>
-                          <div className="text-lg font-bold uppercase tracking-[0.2em] text-slate-500 group-hover:text-white transition-colors">{alert.title}</div>
+                          <div className="text-lg font-bold uppercase tracking-[0.2em] text-ink-subtle group-hover:text-ink transition-colors">{alert.title}</div>
                           <div className="text-base font-bold uppercase tracking-widest mt-0.5 opacity-50">{alert.time}</div>
                         </div>
                       </div>
@@ -111,14 +111,14 @@ export const AlertSystem = () => {
                         {alert.type}
                       </div>
                     </div>
-                    <p className="text-xl text-slate-500 font-light leading-relaxed pl-[60px]">
+                    <p className="text-xl text-ink-subtle font-light leading-relaxed pl-[60px]">
                       {alert.description}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <button className="w-full py-6 text-center text-base font-bold uppercase tracking-[0.3em] text-slate-600 hover:text-white hover:bg-white/5 transition-all border-t border-white/5 flex items-center justify-center gap-2">
+              <button className="w-full py-6 text-center text-base font-bold uppercase tracking-[0.3em] text-ink-subtle hover:text-ink hover:bg-white/65 transition-all border-t border-ink/10 flex items-center justify-center gap-2">
                 View Systematic Log <ArrowRight className="w-3 h-3" />
               </button>
             </div>

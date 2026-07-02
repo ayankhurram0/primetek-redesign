@@ -63,8 +63,8 @@ const SlideCard: React.FC<SlideCardProps> = ({ slide, index, totalSlides, smooth
         style={{ opacity: uiOpacity, y: useTransform(focus, [0, 1], [40, 0]) }}
         className="absolute inset-0 pointer-events-none z-10 p-10 flex flex-col justify-end"
       >
-        <h3 className="text-white text-xl 2xl:text-4xl font-bold mb-3 tracking-tight">{slide.title}</h3>
-        <p className="text-white text-lg 2xl:text-xl leading-relaxed mb-6 font-medium">
+        <h3 className="text-ink text-xl 2xl:text-4xl font-bold mb-3 tracking-tight">{slide.title}</h3>
+        <p className="text-ink text-lg 2xl:text-xl leading-relaxed mb-6 font-medium">
           {slide.desc}
         </p>
         <div className="pointer-events-auto">
@@ -190,7 +190,7 @@ export const PharmacySlider: React.FC = () => {
             style={{ opacity: criticalOpacity, y: criticalY }}
             className="absolute z-40 pointer-events-none px-12 2xl:px-24 text-left left-0 top-[35%] -translate-y-1/2"
           >
-            <p className="text-teal-400 font-bold text-2xl 2xl:text-6xl">Critical Insights</p>
+            <p className="text-accent font-bold text-2xl 2xl:text-6xl">Critical Insights</p>
           </motion.div>
 
           {/* Phase 2: Pharmacy heading (appears below on second scroll) */}

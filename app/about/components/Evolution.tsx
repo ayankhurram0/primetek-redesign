@@ -205,10 +205,10 @@ function MilestoneCard({
           </span>
           <span className="h-px flex-1 max-w-[72px]" style={{ backgroundColor: `${ACCENT}55` }} />
         </div>
-        <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
+        <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-ink mb-3 leading-tight">
           {milestone.title}
         </h3>
-        <p className="text-slate-300 text-base md:text-lg font-light leading-relaxed">
+        <p className="text-ink text-base md:text-lg font-light leading-relaxed">
           {milestone.body}
         </p>
       </div>
@@ -322,14 +322,14 @@ export const Evolution = () => {
           </div>
 
           <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-[1.05]">
-            <span className="text-white">Company </span>
+            <span className="text-ink">Company </span>
             <span
               className="bg-gradient-to-r from-white via-[#5eead4] to-[#2dd4bf] bg-clip-text text-transparent"
             >
               Timeline
             </span>
           </h2>
-          <p className="text-slate-400 text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed">
+          <p className="text-ink-muted text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed">
             Milestones that shaped our growth and success
           </p>
         </header>

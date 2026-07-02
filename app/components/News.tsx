@@ -253,7 +253,7 @@ export default function IntelligenceDashboard() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/50 text-red-500 text-sm font-bold uppercase tracking-[0.1em] shadow-[0_0_20px_rgba(239,68,68,0.15)]">
                 Real-Time Alerts
               </div>
-              <h2 className="text-5xl lg:text-6xl 2xl:text-7xl font-bold tracking-tight text-white leading-tight">
+              <h2 className="text-5xl lg:text-6xl 2xl:text-7xl font-bold tracking-tight text-ink leading-tight">
                 Proactive Risk <br />
                 <span className="text-red-600"> Alerts Included</span>
               </h2>
@@ -269,16 +269,16 @@ export default function IntelligenceDashboard() {
                   }}
                   className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 backdrop-blur-md group ${activeAlertId === alert.id
                     ? `bg-gradient-to-r ${alert.colorScheme?.bg} ${alert.colorScheme?.border} shadow-[0_0_30px_rgba(255,255,255,0.1)]`
-                    : `bg-[#090E11]/95 border-white/10 hover:border-white/20 hover:bg-[#0E161B]`
+                    : `bg-white/80/95 border-ink/10 hover:border-ink/15 hover:bg-white/85`
                     }`}
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? alert.colorScheme?.icon + ' ' + alert.colorScheme?.text : 'bg-[#131B1E] text-white/70'}`}>
+                    <div className={`p-2 rounded-lg ${activeAlertId === alert.id ? alert.colorScheme?.icon + ' ' + alert.colorScheme?.text : 'bg-[#131B1E] text-ink-muted'}`}>
                       {React.createElement(getAlertIcon(alert.category, alert.priority), { className: "w-8 h-8" })}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className={`text-base font-semibold uppercase tracking-wider mb-1 ${activeAlertId === alert.id ? alert.colorScheme?.text : 'text-white/90'}`}>{alert.category}</div>
-                      <div className="text-lg font-medium truncate text-white group-hover:text-white transition-colors">{alert.title}</div>
+                      <div className={`text-base font-semibold uppercase tracking-wider mb-1 ${activeAlertId === alert.id ? alert.colorScheme?.text : 'text-ink/90'}`}>{alert.category}</div>
+                      <div className="text-lg font-medium truncate text-ink group-hover:text-ink transition-colors">{alert.title}</div>
                     </div>
                     {activeAlertId === alert.id && (
                       <motion.div
@@ -319,7 +319,7 @@ export default function IntelligenceDashboard() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -30 }}
                 transition={{ duration: 0.4 }}
-                className={`absolute inset-0 w-full h-full backdrop-blur-xl rounded-2xl overflow-hidden group border-2 bg-[#090E11] ${activeAlert.colorScheme?.border || 'border-white/30'} flex flex-col p-8`}
+                className={`absolute inset-0 w-full h-full backdrop-blur-xl rounded-2xl overflow-hidden group border-2 bg-white/80 ${activeAlert.colorScheme?.border || 'border-ink/20'} flex flex-col p-8`}
               >
                 <img src={typeof activeAlert.image === 'string' ? activeAlert.image : activeAlert.image.src} alt={activeAlert.title} className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-15 -z-10" />
 
@@ -332,7 +332,7 @@ export default function IntelligenceDashboard() {
                       <div className="w-4 h-4 rounded-full bg-white/30" />
                     </div>
                     <div>
-                      <div className={`p-3 rounded-full flex gap-3 ${activeAlert.colorScheme?.icon || 'bg-white/20'} text-white backdrop-blur-sm relative`}>
+                      <div className={`p-3 rounded-full flex gap-3 ${activeAlert.colorScheme?.icon || 'bg-white/20'} text-ink backdrop-blur-sm relative`}>
                         <motion.div
                           className="absolute inset-0 rounded-full"
                           animate={{
@@ -350,7 +350,7 @@ export default function IntelligenceDashboard() {
                           }}
                         />
                         {React.createElement(getAlertIcon(activeAlert.category, activeAlert.priority), { className: "w-6 h-6 relative z-10" })}
-                        <div className="text-white text-xl font-semibold relative z-10">{activeAlert.category}</div>
+                        <div className="text-ink text-xl font-semibold relative z-10">{activeAlert.category}</div>
                       </div>
                     </div>
                   </div>
@@ -362,25 +362,25 @@ export default function IntelligenceDashboard() {
                     {/* Left Column: Text & Updates */}
                     <div className="flex-1 flex flex-col h-full justify-between pb-4">
                       <div className="space-y-4">
-                        <h2 className="text-4xl lg:text-5xl font-sans font-bold text-white leading-tight">
+                        <h2 className="text-4xl lg:text-5xl font-sans font-bold text-ink leading-tight">
                           {activeAlert.title}
                         </h2>
-                        <p className="text-slate-400 leading-relaxed text-xl">
+                        <p className="text-ink-muted leading-relaxed text-xl">
                           {activeAlert.description}
                         </p>
                       </div>
 
                       <div className="space-y-3 mt-auto">
-                        <h3 className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Recent Updates</h3>
+                        <h3 className="text-xs font-bold tracking-[0.2em] text-ink-subtle uppercase">Recent Updates</h3>
                         {activeAlert.activities.map((act, i) => {
                           const tokens = getColorTokens(activeAlert.colorScheme?.text);
                           return (
                             <div key={i} className={`flex items-center justify-between p-3 rounded-lg border ${activeAlert.colorScheme?.border || 'border-red-500/30'} ${activeAlert.colorScheme?.bg || 'bg-red-950/20'} group/item hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all`}>
                               <div className="flex items-center gap-3">
                                 <div className={`w-3 h-3 rounded-full ${tokens.dotBg} ${tokens.dotShadow}`} />
-                                <span className="text-xl font-medium text-white">{act.text}</span>
+                                <span className="text-xl font-medium text-ink">{act.text}</span>
                               </div>
-                              <span className="text-lg font-mono text-slate-500">{act.time}</span>
+                              <span className="text-lg font-mono text-ink-subtle">{act.time}</span>
                             </div>
                           );
                         })}

@@ -37,7 +37,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
                         </h2>
                     </div>
                     <div className="flex items-center gap-6">
-                        <span className="2xl:text-4xl text-3xl font-light text-teal-400">{number}</span>
+                        <span className="2xl:text-4xl text-3xl font-light text-accent">{number}</span>
                         <div className="w-[1px] h-12 bg-[#2b4c8c]/20" />
                         <div className="flex gap-2">
                             {[...Array(8)].map((_, i) => (
@@ -61,7 +61,7 @@ const ServiceSection = ({ number, title, description, imageSrc, imageAlt, zIndex
                             borderColor="teal-400"
                             bgColor="teak-400"
                             rippleColor="#2b4c8c"
-                            extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+                            extraClasses="hover:border-[#2b4c8c] hover:text-ink transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
                         />
                     </div>
 
@@ -222,7 +222,7 @@ export default function ServicesSticky() {
                             {titleWords.map((word, i) => (
                                 <span
                                     key={i}
-                                    className={`inline-block ${word === "that" || word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-teal-400"}`}
+                                    className={`inline-block ${word === "that" || word === "Protect" || word === "&" || word === "Grow" || word === "Revenue" || word === "Pharmacy" ? "text-[#2b4c8c]" : "text-accent"}`}
                                 >
                                     {word}
                                 </span>
@@ -242,7 +242,7 @@ export default function ServicesSticky() {
                                 borderColor="teal-400"
                                 bgColor="teak-400"
                                 rippleColor="#2b4c8c"
-                                extraClasses="hover:border-[#2b4c8c] hover:text-white transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
+                                extraClasses="hover:border-[#2b4c8c] hover:text-ink transition-all duration-200 2xl:py-5 2xl:px-10 px-8 py-4 font-bold text-lg shadow-[0_10px_30px_rgba(113,198,164,0.3)]"
                             />
                         </div>
                     </div>
