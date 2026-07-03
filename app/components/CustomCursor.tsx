@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
+const CURSOR_COLOR = "#062B34";
+const CURSOR_HOVER_COLOR = "#0d9488";
+
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -47,8 +50,8 @@ export default function CustomCursor() {
     if (cursorRef.current) {
       gsap.to(cursorRef.current, {
         scale: isHovered ? 1.5 : 1,
-        backgroundColor: "#ffffff",
-        mixBlendMode: isHovered ? "difference" : "normal",
+        backgroundColor: isHovered ? CURSOR_HOVER_COLOR : CURSOR_COLOR,
+        mixBlendMode: "normal",
         duration: 0.3,
       });
     }
@@ -60,8 +63,8 @@ export default function CustomCursor() {
         ref={cursorRef}
         className="fixed top-0 left-0 w-5 h-5 rounded-full pointer-events-none z-[9999] transition-colors"
         style={{
-          backgroundColor: "#ffffff",
-          boxShadow: "0 0 15px rgba(255, 255, 255, 0.6)"
+          backgroundColor: CURSOR_COLOR,
+          boxShadow: "0 0 12px rgba(6, 43, 52, 0.2)",
         }}
       />
       <style jsx global>{`

@@ -4,9 +4,9 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Search, FolderSync, FileCheck, TrendingUp } from "lucide-react";
 
-const ACCENT = "#18E7D5";
-const ACCENT_GLOW = "rgba(24, 231, 213, 0.18)";
-const TEXT_BODY = "#A9C3CB";
+const ACCENT = "#0d9488";
+const ACCENT_BRIGHT = "#18E7D5";
+const ACCENT_GLOW = "rgba(13, 148, 136, 0.15)";
 
 const steps = [
   {
@@ -65,12 +65,11 @@ function WorkflowStep({
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.45, delay: 0.5 + idx * 0.15 }}
-        className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full font-montserrat text-[11px] font-semibold tabular-nums mb-12 transition-all duration-[250ms]"
+        className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full font-montserrat text-[11px] font-bold tabular-nums mb-12 transition-all duration-[250ms] text-teal-700"
         style={{
-          color: ACCENT,
-          border: `1px solid ${isHovered ? "rgba(24,231,213,0.55)" : "rgba(24,231,213,0.35)"}`,
-          background: "rgba(24,231,213,0.08)",
-          boxShadow: isHovered ? `0 0 24px ${ACCENT_GLOW}` : `0 0 14px ${ACCENT_GLOW}`,
+          border: `1.5px solid ${isHovered ? "rgba(13,148,136,0.65)" : "rgba(13,148,136,0.45)"}`,
+          background: isHovered ? "rgba(13,148,136,0.12)" : "rgba(13,148,136,0.08)",
+          boxShadow: isHovered ? `0 0 20px ${ACCENT_GLOW}` : `0 0 10px ${ACCENT_GLOW}`,
         }}
       >
         {step.id}
@@ -84,14 +83,13 @@ function WorkflowStep({
         <motion.div
           animate={{ scale: isHovered ? 1.06 : 1, rotate: isHovered ? 3 : 0 }}
           transition={{ duration: 0.25 }}
-          className="w-[72px] h-[72px] rounded-2xl flex items-center justify-center mb-8 backdrop-blur-[16px] transition-[border-color,box-shadow] duration-[250ms]"
+          className="w-[72px] h-[72px] rounded-2xl flex items-center justify-center mb-8 bg-white border transition-[border-color,box-shadow] duration-[250ms] shadow-[0_4px_20px_rgba(6,43,52,0.06)]"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: `1px solid ${isHovered ? "rgba(24,231,213,0.4)" : "rgba(255,255,255,0.08)"}`,
-            boxShadow: isHovered ? `0 8px 32px rgba(0,0,0,0.15), 0 0 20px ${ACCENT_GLOW}` : "0 2px 16px rgba(0,0,0,0.08)",
+            borderColor: isHovered ? "rgba(13,148,136,0.5)" : "rgba(6,43,52,0.12)",
+            boxShadow: isHovered ? `0 8px 28px rgba(6,43,52,0.1), 0 0 20px ${ACCENT_GLOW}` : "0 4px 20px rgba(6,43,52,0.06)",
           }}
         >
-          <Icon className="w-6 h-6" style={{ color: ACCENT }} strokeWidth={1.5} />
+          <Icon className="w-6 h-6 text-teal-600" strokeWidth={1.75} />
         </motion.div>
 
         <div
@@ -103,17 +101,14 @@ function WorkflowStep({
           {step.title}
         </h4>
 
-        <p
-          className="text-base leading-relaxed font-montserrat font-light max-w-[240px]"
-          style={{ color: TEXT_BODY }}
-        >
+        <p className="text-base leading-relaxed font-montserrat font-normal max-w-[240px] text-ink-muted">
           {step.description}
         </p>
       </motion.div>
 
       {idx < steps.length - 1 && (
         <div className="md:hidden flex flex-col items-center py-8">
-          <div className="w-px h-10 bg-white/[0.06]" />
+          <div className="w-px h-10 bg-ink/15" />
         </div>
       )}
     </motion.div>
@@ -195,9 +190,9 @@ export const ServicesOnboarding = () => {
             className="text-4xl md:text-5xl xl:text-[3.5rem] font-display font-bold leading-[1.08] tracking-tight mb-6"
           >
             <span className="text-ink">From </span>
-            <span style={{ color: ACCENT }}>Onboarding</span>
+            <span style={{ color: ACCENT_BRIGHT }}>Onboarding</span>
             <span className="text-ink"> to </span>
-            <span style={{ color: ACCENT }}>Intelligence.</span>
+            <span style={{ color: ACCENT_BRIGHT }}>Intelligence.</span>
           </motion.h3>
 
           <motion.p
@@ -205,8 +200,7 @@ export const ServicesOnboarding = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-lg leading-relaxed font-montserrat font-light"
-            style={{ color: TEXT_BODY }}
+            className="text-base md:text-lg leading-relaxed font-montserrat font-normal text-ink-muted"
           >
             A streamlined process built to turn pharmacy challenges into clear insights and
             measurable results.
@@ -215,7 +209,7 @@ export const ServicesOnboarding = () => {
 
         <div className="relative">
           <div className="hidden md:block absolute left-[12.5%] right-[12.5%] top-5 h-px z-0">
-            <div className="absolute inset-0 bg-white/[0.06]" />
+            <div className="absolute inset-0 bg-ink/10" />
             <motion.div
               className="absolute inset-0 origin-left"
               style={{ background: ACCENT }}

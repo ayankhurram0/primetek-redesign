@@ -28,13 +28,17 @@ export const LoginForm: React.FC = () => {
 
       <div className="flex items-center justify-between mb-10 px-1">
         <label className="flex items-center gap-3 cursor-pointer group">
-          <input 
-            type="checkbox" 
-            className="w-5 h-5 rounded border-white/10 bg-white/5 text-[#2dd4bf] focus:ring-[#2dd4bf]/20 focus:ring-offset-0 transition-all"
+          <input
+            type="checkbox"
+            className="h-5 w-5 rounded border-ink/20 bg-white text-accent focus:ring-accent/20 focus:ring-offset-0"
           />
-          <span className="text-sm text-white/40 group-hover:text-white/60 transition-colors">Remember me</span>
+          <span className="text-sm text-ink-muted transition-colors group-hover:text-ink">
+            Remember me
+          </span>
         </label>
-        <a href="#" className="text-sm text-[#2dd4bf] hover:underline">Forgot password?</a>
+        <a href="#" className="text-sm text-accent hover:underline">
+          Forgot password?
+        </a>
       </div>
 
       <FancyButton

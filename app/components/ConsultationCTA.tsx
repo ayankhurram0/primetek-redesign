@@ -93,13 +93,13 @@ export default function ConsultationCTA() {
         <div className="rounded-[4rem] py-24 px-8 text-center relative overflow-hidden group">
           {/* Interactive Globe Background */}
           <div 
-            className="absolute inset-0 z-0 opacity-20 pointer-events-none transition-opacity duration-700 group-hover:opacity-40 overflow-hidden"
+            className="absolute inset-0 z-0 opacity-[0.72] pointer-events-none transition-opacity duration-700 group-hover:opacity-90 overflow-hidden"
             style={{
-              maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)"
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)"
             }}
           >
-            <div className="w-full h-full scale-[2.5]">
+            <div className="w-full h-full scale-[2.2]">
               <Globe />
             </div>
           </div>

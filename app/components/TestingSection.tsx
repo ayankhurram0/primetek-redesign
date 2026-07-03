@@ -102,10 +102,11 @@ function RevenueIntelligenceCard() {
     return (
         <div
             id="revenue-intelligence-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF4A3A]/50 p-6 transition-all duration-300 hover:border-[#FF4A3A] hover:shadow-[0_0_20px_5px_rgba(255,74,58,0.6),inset_0_0_60px_15px_rgba(255,74,58,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[360px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF4A3A]/50 bg-white p-6 shadow-[0_4px_24px_rgba(6,43,52,0.06)] transition-all duration-300 hover:border-[#FF4A3A] hover:bg-[#FF4A3A]/12 hover:shadow-[0_0_20px_5px_rgba(255,74,58,0.6),inset_0_0_60px_15px_rgba(255,74,58,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[360px]"
         >
+            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF4A3A]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-transparent p-4 border border-[#FF4A3A]/20 transition-all duration-300 group-hover:border-[#FF4A3A]/50 overflow-hidden">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-slate-50 p-4 border border-[#FF4A3A]/20 transition-all duration-300 group-hover:border-[#FF4A3A]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF4A3A]/40 bg-[#FF4A3A]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF4A3A] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF4A3A]" />
@@ -208,10 +209,10 @@ function RevenueIntelligenceCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
                     Revenue Intelligence & Reporting
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Real-time revenue tracking that flags underpayments and recovers lost income automatically.
                 </p>
             </div>
@@ -220,10 +221,10 @@ function RevenueIntelligenceCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#analyze"
-                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
+                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
                 >
                     <div className="flex-1 min-w-0">
-                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
+                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
                             <span className="font-bold text-[#FF4A3A] text-[18px]">$1.2M+</span> avg. underpayments recovered per store.
                         </span>
                     </div>
@@ -283,10 +284,11 @@ function ClaimsReimbursementCard() {
     return (
         <div
             id="claims-reimbursement-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF6B00]/50 p-6 transition-all duration-300 hover:border-[#FF6B00] hover:shadow-[0_0_20px_5px_rgba(255,107,0,0.6),inset_0_0_60px_15px_rgba(255,107,0,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF6B00]/50 bg-white p-6 shadow-[0_4px_24px_rgba(6,43,52,0.06)] transition-all duration-300 hover:border-[#FF6B00] hover:bg-[#FF6B00]/12 hover:shadow-[0_0_20px_5px_rgba(255,107,0,0.6),inset_0_0_60px_15px_rgba(255,107,0,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
+            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF6B00]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl p-4 border border-[#FF6B00]/20 transition-all duration-300 group-hover:border-[#FF6B00]/50 overflow-hidden">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-slate-50 p-4 border border-[#FF6B00]/20 transition-all duration-300 group-hover:border-[#FF6B00]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF6B00] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00]" />
@@ -428,10 +430,10 @@ function ClaimsReimbursementCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
                     Claims & Reimbursement Optimization
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Automatically fix claim errors and maximize clean-claim reimbursement flow.
                 </p>
             </div>
@@ -440,10 +442,10 @@ function ClaimsReimbursementCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#claims"
-                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
+                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
                 >
                     <div className="flex-1">
-                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap">
                             <span className="font-bold text-[#FF6B00] text-[18px]">19%</span> increase in clean-claim recovery rates.
                         </span>
                     </div>
@@ -487,10 +489,11 @@ function ComplianceAuditCard() {
     return (
         <div
             id="compliance-audit-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF9F29]/50 p-6 transition-all duration-300 hover:border-[#FF9F29] hover:shadow-[0_0_20px_5px_rgba(255,159,41,0.6),inset_0_0_60px_15px_rgba(255,159,41,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#FF9F29]/50 bg-white p-6 shadow-[0_4px_24px_rgba(6,43,52,0.06)] transition-all duration-300 hover:border-[#FF9F29] hover:bg-[#FF9F29]/12 hover:shadow-[0_0_20px_5px_rgba(255,159,41,0.6),inset_0_0_60px_15px_rgba(255,159,41,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
+            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF9F29]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-transparent p-4 border border-[#FF9F29]/20 transition-all duration-300 group-hover:border-[#FF9F29]/50 overflow-hidden">
+            <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-slate-50 p-4 border border-[#FF9F29]/20 transition-all duration-300 group-hover:border-[#FF9F29]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF9F29]/40 bg-[#FF9F29]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF9F29] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF9F29]" />
@@ -611,10 +614,10 @@ function ComplianceAuditCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#FF9F29]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF9F29]">
                     Compliance & Audit Protection
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Stay permanently audit-ready by detecting compliance gaps before they become liabilities.
                 </p>
             </div>
@@ -623,10 +626,10 @@ function ComplianceAuditCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#audits"
-                    className="flex items-center justify-between gap-2 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
+                    className="flex items-center justify-between gap-2 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
                 >
                     <div className="flex-1 min-w-0">
-                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
+                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
                             <span className="font-bold text-[#FF9F29] text-[18px]">87%</span> achieve full compliance within 30 days.
                         </span>
                     </div>
@@ -694,10 +697,11 @@ function PatientOperationalCard() {
     return (
         <div
             id="patient-operational-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#3B82F6]/50 p-6 transition-all duration-300 hover:border-[#3B82F6] hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.6),inset_0_0_60px_15px_rgba(59,130,246,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#3B82F6]/50 bg-white p-6 shadow-[0_4px_24px_rgba(6,43,52,0.06)] transition-all duration-300 hover:border-[#3B82F6] hover:bg-[#3B82F6]/12 hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.6),inset_0_0_60px_15px_rgba(59,130,246,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
+            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#3B82F6]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-transparent p-3 border border-[#3B82F6]/20 transition-all duration-300 group-hover:border-[#3B82F6]/50 overflow-hidden">
+            <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-slate-50 p-3 border border-[#3B82F6]/20 transition-all duration-300 group-hover:border-[#3B82F6]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#3B82F6]/40 bg-[#3B82F6]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#3B82F6] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
@@ -757,10 +761,10 @@ function PatientOperationalCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
                     Patient & Operational Support Systems
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Streamline every pharmacy workflow from patient onboarding to team coordination.
                 </p>
             </div>
@@ -769,10 +773,10 @@ function PatientOperationalCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#operations"
-                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
+                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
                 >
                     <div className="flex-1">
-                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap">
                             <span className="font-bold text-[#3B82F6] text-[18px]">30%</span> reduction in bottlenecks.
                         </span>
                     </div>
@@ -818,10 +822,11 @@ function PharmacyGrowthCard() {
     return (
         <div
             id="pharmacy-growth-card"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#00C48C]/50 p-6 transition-all duration-300 hover:border-[#00C48C] hover:shadow-[0_0_20px_5px_rgba(0,196,140,0.6),inset_0_0_60px_15px_rgba(0,196,140,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#00C48C]/50 bg-white p-6 shadow-[0_4px_24px_rgba(6,43,52,0.06)] transition-all duration-300 hover:border-[#00C48C] hover:bg-[#00C48C]/12 hover:shadow-[0_0_20px_5px_rgba(0,196,140,0.6),inset_0_0_60px_15px_rgba(0,196,140,0.5)] hover:-translate-y-2 hover:scale-[1.02] min-h-[380px]"
         >
+            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#00C48C]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex h-[160px] w-full items-center justify-center rounded-xl bg-transparent p-4 border border-[#00C48C]/20 transition-all duration-300 group-hover:border-[#00C48C]/50 overflow-hidden">
+            <div className="relative flex h-[160px] w-full items-center justify-center rounded-xl bg-slate-50 p-4 border border-[#00C48C]/20 transition-all duration-300 group-hover:border-[#00C48C]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-3 right-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#00C48C]/40 bg-[#00C48C]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#00C48C] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00C48C]" />
@@ -952,10 +957,10 @@ function PharmacyGrowthCard() {
 
             {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-[#FFFFFF] leading-tight transition-colors duration-300 group-hover:text-[#00C48C]">
+                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#00C48C]">
                     Pharmacy Growth & Performance Strategy
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#8E9B9E] font-normal min-h-[48px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Optimize procurement pricing and sourcing to grow your pharmacy's total margins.
                 </p>
             </div>
@@ -964,10 +969,10 @@ function PharmacyGrowthCard() {
             <div className="mt-0 pt-0">
                 <a
                     href="#growth"
-                    className="flex items-center justify-between gap-4 bg-white/70 rounded-xl p-4 group/btn transition-colors hover:bg-white/80"
+                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
                 >
                     <div className="flex-1">
-                        <span className="text-[10px] text-gray-300 leading-snug block whitespace-nowrap">
+                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap">
                             <span className="font-bold text-[#00C48C] text-[18px]">+18%</span> margin amplification across departments.
                         </span>
                     </div>

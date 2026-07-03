@@ -239,7 +239,7 @@ const colorMap: Record<string, string> = {
   "orange-500": "#f97316",
   "sky-400": "#38bdf8",
   "emerald-400": "#34d399",
-  "brand-teal": "#2dd4bf"
+  "brand-teal": "#2dd4bf",
 };
 
 export const ServicesDetail = () => {
@@ -249,18 +249,6 @@ export const ServicesDetail = () => {
 
   return (
     <section className="relative w-[85%] mx-auto py-16 md:py-24">
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none transition-all duration-500"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${accent} 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
-      <div
-        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none opacity-20 transition-all duration-700"
-        style={{ background: `radial-gradient(circle, ${accent} 0%, transparent 70%)` }}
-      />
-
       <div className="relative z-10 space-y-8">
         {/* Service selector */}
         <div className="w-full">
@@ -273,14 +261,16 @@ export const ServicesDetail = () => {
                   key={service.id}
                   type="button"
                   onClick={() => setActiveId(service.id)}
-                  className={`w-full flex flex-col items-center justify-center gap-4 px-3 py-5 rounded-xl border transition-all duration-300 min-h-[100px] ${
+                  className={`w-full flex flex-col items-center justify-center gap-4 px-3 py-5 rounded-xl border transition-all duration-300 min-h-[100px] bg-white shadow-[0_8px_32px_rgba(6,43,52,0.08)] ${
                     isActive
-                      ? "border-ink/15 bg-white/[0.08]"
-                      : "border-transparent bg-white/[0.02] hover:bg-white/[0.05]"
+                      ? "border-ink/15"
+                      : "border-ink/10 hover:border-ink/20 hover:shadow-[0_12px_36px_rgba(6,43,52,0.1)]"
                   }`}
                   style={{
                     borderColor: isActive ? `${color}50` : undefined,
-                    boxShadow: isActive ? `0 4px 24px ${color}20` : undefined,
+                    boxShadow: isActive
+                      ? `0 8px 32px rgba(6,43,52,0.08), 0 2px 12px ${color}18`
+                      : undefined,
                   }}
                 >
                   <div className="flex items-center gap-4">
@@ -297,7 +287,7 @@ export const ServicesDetail = () => {
                   </div>
                   <span
                     className={`text-sm sm:text-base font-bold uppercase tracking-wide text-center leading-snug whitespace-normal ${
-                      isActive ? "text-ink" : "text-ink-subtle"
+                      isActive ? "text-ink" : "text-ink-muted"
                     }`}
                   >
                     {service.title}
@@ -316,45 +306,33 @@ export const ServicesDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.4, ease: "circOut" }}
-            className="relative rounded-3xl p-[2px]"
-            style={{
-              background: `linear-gradient(135deg, ${accent}99 0%, ${accent}35 25%, ${accent}25 50%, ${accent}35 75%, ${accent}99 100%)`,
-              boxShadow: `
-                0 0 36px ${accent}55,
-                0 0 72px ${accent}28,
-                -16px 0 48px ${accent}40,
-                16px 0 48px ${accent}40,
-                0 -12px 40px ${accent}35,
-                0 12px 40px ${accent}35
-              `,
-            }}
+            className="overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_12px_40px_rgba(6,43,52,0.1)]"
           >
-            <div className="rounded-[23px] border border-white/[0.08] bg-white/75/40 backdrop-blur-2xl backdrop-saturate-150 overflow-hidden">
               <div
                 className="h-1 w-full"
                 style={{ background: `linear-gradient(90deg, ${accent}, transparent 80%)` }}
               />
 
               {/* Hero */}
-              <div className="p-8 md:p-12 lg:p-14 border-b border-white/[0.06]">
+              <div className="border-b border-ink/10 p-8 md:p-12 lg:p-14">
                 <div className="grid lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-start">
                   <div>
-                    <div className="flex items-center gap-3 mb-6">
+                    <div className="mb-6 flex items-center gap-3">
                       <div
-                        className="w-11 h-11 rounded-xl flex items-center justify-center"
+                        className="flex h-11 w-11 items-center justify-center rounded-xl"
                         style={{
-                          backgroundColor: `${accent}18`,
-                          border: `1px solid ${accent}35`,
+                          backgroundColor: `${accent}14`,
+                          border: `1px solid ${accent}30`,
                         }}
                       >
-                        <activeService.icon className="w-5 h-5" style={{ color: accent }} />
+                        <activeService.icon className="h-5 w-5" style={{ color: accent }} />
                       </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-ink-subtle">
                           Service {activeService.id} · {activeService.identity}
                         </p>
                         <p
-                          className="text-[10px] font-bold uppercase tracking-[0.2em] mt-0.5"
+                          className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.2em]"
                           style={{ color: accent }}
                         >
                           {activeService.title}
@@ -365,24 +343,22 @@ export const ServicesDetail = () => {
                     <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-montserrat font-bold text-ink tracking-tight leading-[1.1] mb-6">
                       {activeService.headline}
                     </h2>
-                    <p className="text-ink text-base md:text-lg font-light leading-relaxed whitespace-pre-line max-w-4xl">
+                    <p className="max-w-4xl whitespace-pre-line text-base font-light leading-relaxed text-ink-muted md:text-lg">
                       {activeService.description}
                     </p>
                   </div>
 
                   {/* Sidebar: flow graphic + stat */}
                   <div className="flex flex-col gap-4">
-                    <div className="w-full h-44 border border-ink/10 rounded-2xl relative overflow-hidden flex items-center justify-center shrink-0 p-3 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150">
+                    <div className="relative flex h-44 w-full shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-slate-50 p-3">
                       <ServiceIllustration
                         index={parseInt(activeService.id, 10) - 1}
                         color={accent}
                       />
                     </div>
-                    <div
-                      className="rounded-2xl p-6 text-center border border-ink/10 bg-white/[0.04] backdrop-blur-lg backdrop-saturate-150"
-                    >
+                    <div className="rounded-2xl border border-ink/10 bg-slate-50 p-6 text-center shadow-[0_4px_20px_rgba(6,43,52,0.05)]">
                       <div
-                        className="text-4xl font-bold font-outfit tracking-tight mb-2"
+                        className="mb-2 text-4xl font-bold tracking-tight"
                         style={{ color: accent }}
                       >
                         {activeService.stat}
@@ -396,18 +372,18 @@ export const ServicesDetail = () => {
               </div>
 
               {/* What we do */}
-              <div className="p-8 md:p-12 lg:p-14 border-b border-white/[0.06]">
+              <div className="border-b border-ink/10 p-8 md:p-12 lg:p-14">
                 <h3
-                  className="text-[11px] font-bold uppercase tracking-[0.4em] mb-8"
+                  className="mb-8 text-[11px] font-bold uppercase tracking-[0.4em]"
                   style={{ color: accent }}
                 >
                   What We Do
                 </h3>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
                   {activeService.whatWeDo.map((item, i) => (
                     <div
                       key={i}
-                      className="rounded-xl border border-white/[0.1] bg-white/[0.05] backdrop-blur-lg backdrop-saturate-150 p-5 transition-colors hover:bg-white/[0.08]"
+                      className="rounded-xl border border-ink/10 bg-slate-50 p-5 transition-colors hover:bg-white"
                       style={{ borderLeftWidth: "2px", borderLeftColor: accent }}
                     >
                       <h4 className="text-ink text-sm font-bold mb-2 leading-snug">
@@ -422,10 +398,10 @@ export const ServicesDetail = () => {
               </div>
 
               {/* Alert + Outcomes */}
-              <div className="grid lg:grid-cols-2 gap-0 lg:divide-x divide-white/[0.06]">
+              <div className="grid gap-0 lg:grid-cols-2 lg:divide-x divide-ink/10">
                 <div className="p-8 md:p-12 lg:p-14">
                   <h3
-                    className="text-[11px] font-bold uppercase tracking-[0.4em] mb-4"
+                    className="mb-4 text-[11px] font-bold uppercase tracking-[0.4em]"
                     style={{ color: accent }}
                   >
                     Alert System
@@ -438,9 +414,9 @@ export const ServicesDetail = () => {
                   </p>
                 </div>
 
-                <div className="p-8 md:p-12 lg:p-14 border-t lg:border-t-0 border-white/[0.06]">
+                <div className="border-t border-ink/10 p-8 md:p-12 lg:border-t-0 lg:p-14">
                   <h3
-                    className="text-[11px] font-bold uppercase tracking-[0.4em] mb-6"
+                    className="mb-6 text-[11px] font-bold uppercase tracking-[0.4em]"
                     style={{ color: accent }}
                   >
                     Outcomes
@@ -449,12 +425,12 @@ export const ServicesDetail = () => {
                     {activeService.outcomes.map((outcome, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <div
-                          className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: `${accent}20` }}
+                          className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                          style={{ backgroundColor: `${accent}18` }}
                         >
-                          <CheckCircle2 className="w-3.5 h-3.5" style={{ color: accent }} />
+                          <CheckCircle2 className="h-3.5 w-3.5" style={{ color: accent }} />
                         </div>
-                        <span className="text-slate-200 text-sm font-medium leading-snug">
+                        <span className="text-sm font-medium leading-snug text-ink-muted">
                           {outcome}
                         </span>
                       </li>
@@ -464,7 +440,7 @@ export const ServicesDetail = () => {
               </div>
 
               {/* CTAs */}
-              <div className="px-8 md:px-12 lg:px-14 py-8 border-t border-white/[0.06] flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 border-t border-ink/10 px-8 py-8 md:px-12 lg:px-14">
                 <FancyButton
                   label="Schedule Analysis"
                   variant="primary"
@@ -480,7 +456,6 @@ export const ServicesDetail = () => {
                   extraClasses="text-sm font-bold uppercase tracking-[0.2em] px-10 py-5 border border-ink/15 hover:bg-white/65"
                 />
               </div>
-            </div>
           </motion.div>
         </AnimatePresence>
         </div>

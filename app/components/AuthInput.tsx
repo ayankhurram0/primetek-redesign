@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -13,17 +13,23 @@ export const AuthInput: React.FC<AuthInputProps> = ({ label, icon, ...props }) =
 
   return (
     <div className="relative mb-8">
-      <div 
-        className={`relative flex items-center bg-white/5 rounded-2xl border transition-all duration-300 ${
-          isFocused ? "border-[#2dd4bf] ring-1 ring-[#2dd4bf]/20 shadow-[0_0_20px_rgba(45,212,191,0.1)]" : "border-white/10"
+      <div
+        className={`relative flex items-center rounded-2xl border bg-slate-50 transition-all duration-300 ${
+          isFocused
+            ? "border-accent ring-1 ring-accent/20 shadow-[0_4px_20px_rgba(13,148,136,0.1)]"
+            : "border-ink/15"
         }`}
       >
         {icon && (
-          <div className={`pl-5 pr-4 shrink-0 transition-colors duration-300 ${isFocused ? "text-[#2dd4bf]" : "text-white/40"}`}>
+          <div
+            className={`shrink-0 pl-5 pr-4 transition-colors duration-300 ${
+              isFocused ? "text-accent" : "text-ink-subtle"
+            }`}
+          >
             {icon}
           </div>
         )}
-        
+
         <input
           {...props}
           onFocus={(e) => {
@@ -39,28 +45,29 @@ export const AuthInput: React.FC<AuthInputProps> = ({ label, icon, ...props }) =
             setHasValue(!!e.target.value);
             props.onChange?.(e);
           }}
-          className={`w-full bg-transparent border-0 focus:ring-0 text-white ${icon ? "pl-3" : "pl-5"} pr-5 py-5 placeholder-transparent text-base outline-none focus:outline-none focus:border-transparent`}
+          className={`w-full border-0 bg-transparent py-5 text-base text-ink outline-none focus:border-transparent focus:ring-0 placeholder-transparent ${
+            icon ? "pl-3" : "pl-5"
+          } pr-5`}
           placeholder={label}
         />
 
         <label
-          className={`absolute transition-all duration-300 pointer-events-none ${
-            (isFocused || hasValue) 
-              ? "text-xs -top-2.5 left-4 px-2 bg-[#020817] rounded-md text-[#2dd4bf] font-bold uppercase tracking-widest" 
-              : `text-base text-white/40 ${icon ? "left-[4.75rem]" : "left-5"}`
+          className={`pointer-events-none absolute transition-all duration-300 ${
+            isFocused || hasValue
+              ? "-top-2.5 left-4 rounded-md bg-white px-2 text-xs font-bold uppercase tracking-widest text-accent"
+              : `text-base text-ink-subtle ${icon ? "left-[4.75rem]" : "left-5"}`
           }`}
         >
           {label}
         </label>
 
-        {/* Focus Gradient Line at bottom */}
         <AnimatePresence>
           {isFocused && (
-            <motion.div 
+            <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               exit={{ scaleX: 0 }}
-              className="absolute bottom-0 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-[#2dd4bf] to-transparent"
+              className="absolute bottom-0 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-accent to-transparent"
             />
           )}
         </AnimatePresence>

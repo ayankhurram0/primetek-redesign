@@ -4,11 +4,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-import { Send, CheckCircle2, Clock, Check, Phone, Printer, Mail, MapPin, ArrowRight } from "lucide-react";
+import { CheckCircle2, Clock, Check, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 
 export const ContactFormSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const cardClass =
+    "reveal-form bg-white border border-ink/10 rounded-3xl shadow-[0_8px_32px_rgba(6,43,52,0.08)]";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -38,7 +41,7 @@ export const ContactFormSection = () => {
         {/* Left Column: Info & Details */}
         <div className="lg:col-span-4 flex flex-col gap-6 h-full">
           {/* What to Expect */}
-          <div className="reveal-form bg-white/[0.03] p-8 border border-ink/10 rounded-3xl flex-1 flex flex-col justify-center">
+          <div className={`${cardClass} p-8 flex-1 flex flex-col justify-center`}>
             <h3 className="text-3xl font-bold text-accent mb-6 uppercase tracking-tight">What <span className="text-ink">to Expect</span></h3>
             <ul className="space-y-4">
               {[
@@ -59,12 +62,11 @@ export const ContactFormSection = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="reveal-form bg-white/[0.03] p-8 border border-ink/10 rounded-3xl flex-1 flex flex-col justify-center">
+          <div className={`${cardClass} p-8 flex-1 flex flex-col justify-center`}>
             <h3 className="text-3xl font-bold text-accent mb-6 uppercase tracking-tight">Contact <span className="text-ink">Information</span></h3>
             <div className="space-y-4">
               {[
                 { icon: Phone, label: "Phone", value: "(908) 521-4440" },
-                { icon: Printer, label: "Fax", value: "(908) 760-6990" },
                 { icon: Mail, label: "Email", value: "info@primetekservices.com" },
                 { icon: MapPin, label: "Location", value: "New Jersey, USA" },
               ].map((item, i) => (
@@ -82,7 +84,7 @@ export const ContactFormSection = () => {
           </div>
 
           {/* Office Hours */}
-          <div className="reveal-form bg-teal-400/5 p-8 border border-teal-400/10 rounded-3xl flex-1 flex flex-col justify-center">
+          <div className={`${cardClass} p-8 flex-1 flex flex-col justify-center`}>
             <div className="flex items-center gap-3 text-ink mb-6">
               <Clock className="w-6 h-6 text-accent" />
               <h3 className="text-3xl font-bold text-accent uppercase tracking-tight">Office <span className="text-ink">Hours</span></h3>
@@ -106,7 +108,7 @@ export const ContactFormSection = () => {
 
         {/* Right Column: Form */}
         <div className="lg:col-span-8 h-full">
-          <div className="reveal-form bg-white/[0.02] border border-ink/10 p-12 md:p-20 shadow-2xl rounded-3xl h-full flex flex-col justify-center">
+          <div className={`${cardClass} p-12 md:p-20 h-full flex flex-col justify-center`}>
             {isSubmitted ? (
               <div className="text-center py-20">
                 <div className="w-24 h-24 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-10">
@@ -133,26 +135,26 @@ export const ContactFormSection = () => {
                 <div className="grid md:grid-cols-2 gap-10">
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Full Name <span className="text-rose-500">*</span></label>
-                    <input required type="text" placeholder="Jane Smith" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <input required type="text" placeholder="Jane Smith" className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Email Address <span className="text-rose-500">*</span></label>
-                    <input required type="email" placeholder="jane@pharmacy.com" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <input required type="email" placeholder="jane@pharmacy.com" className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Phone Number</label>
-                    <input type="tel" placeholder="(555) 000-0000" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <input type="tel" placeholder="(555) 000-0000" className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Pharmacy Name <span className="text-rose-500">*</span></label>
-                    <input required type="text" placeholder="Main Street Pharmacy" className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
+                    <input required type="text" placeholder="Main Street Pharmacy" className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-10">
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Number of Locations</label>
-                    <select className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent transition-all appearance-none">
+                    <select className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent transition-all appearance-none">
                       <option className="bg-brand-dark">Select...</option>
                       <option className="bg-brand-dark">1-2 Locations</option>
                       <option className="bg-brand-dark">3-5 Locations</option>
@@ -162,7 +164,7 @@ export const ContactFormSection = () => {
                   </div>
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Primary Interest</label>
-                    <select className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent transition-all appearance-none">
+                    <select className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent transition-all appearance-none">
                       <option className="bg-brand-dark">Select a service...</option>
                       <option className="bg-brand-dark">Audit Protection</option>
                       <option className="bg-brand-dark">Revenue Intelligence</option>
@@ -174,7 +176,7 @@ export const ContactFormSection = () => {
 
                 <div className="space-y-3">
                   <label className="text-lg font-bold uppercase tracking-widest text-ink">Tell Us About Your Situation</label>
-                  <textarea rows={5} placeholder="Describe your current challenges, goals, or any specific concerns you'd like to discuss on the call..." className="w-full bg-white/[0.03] border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all resize-none"></textarea>
+                  <textarea rows={5} placeholder="Describe your current challenges, goals, or any specific concerns you'd like to discuss on the call..." className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all resize-none"></textarea>
                 </div>
 
                 <button type="submit" className="w-full bg-brand-teal text-brand-dark text-xl py-6 rounded-lg font-bold uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-white transition-all shadow-xl shadow-brand-dark/10 group">

@@ -40,9 +40,9 @@ export default function RootLayout({
       className={`${montserrat.variable} ${merriweather.variable} ${poppins.variable} antialiased`}
     >
       <body className="flex flex-col bg-transparent" suppressHydrationWarning={true}>
+        <Preloader />
         <div id="site-content" className="relative z-[1] flex flex-col flex-1 min-h-screen isolate">
           <CustomCursor />
-          <Preloader />
           <SmoothScroll>{children}</SmoothScroll>
         </div>
       </body>

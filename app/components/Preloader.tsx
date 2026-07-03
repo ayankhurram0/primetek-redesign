@@ -1,297 +1,180 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { MutableRefObject } from "react";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import logo from "@/src/assets/footer-logo.png";
 
-const MIN_DISPLAY_MS = 500;
-const MAX_WAIT_MS = 12_000;
+const MIN_DISPLAY_MS = 1400;
+const MAX_WAIT_MS = 5000;
+const EXIT_MS = 600;
+const SITE_BG = "/images/website-background.png";
 
-/** Yield so React can commit the new route and client trees before we measure "ready". */
-function yieldToReact(): Promise<void> {
-  return new Promise((r) => setTimeout(r, 0));
+function dispatchComplete(): void {
+  window.dispatchEvent(new CustomEvent("preloaderComplete"));
 }
 
-function waitWindowLoad(): Promise<void> {
-  if (document.readyState === "complete") {
-    return Promise.resolve();
-  }
-  return new Promise((resolve) => {
-    window.addEventListener("load", () => resolve(), { once: true });
-  });
-}
-
-async function waitFonts(): Promise<void> {
-  try {
-    if (typeof document !== "undefined" && document.fonts?.ready) {
-      await document.fonts.ready;
-    }
-  } catch {
-    /* ignore */
-  }
-}
-
-/** After paint so layout from client components has settled. */
-function waitNextPaint(): Promise<void> {
-  return new Promise((resolve) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => resolve());
-    });
-  });
-}
-
-/** Brief idle slice so low-priority hydration work can run (cap so we never hang forever). */
-function waitIdleCap(ms: number): Promise<void> {
-  return new Promise((resolve) => {
-    const ric = window.requestIdleCallback;
-    if (typeof ric === "function") {
-      ric(() => resolve(), { timeout: ms });
-    } else {
-      setTimeout(resolve, Math.min(ms, 80));
-    }
-  });
-}
-
-function smoothProgressTo(
-  target: number,
-  progressRef: MutableRefObject<number>,
-  setProgress: (n: number) => void,
-  signal: AbortSignal,
-): Promise<void> {
-  return new Promise((resolve) => {
-    const step = () => {
-      if (signal.aborted) {
-        resolve();
-        return;
-      }
-      const cur = progressRef.current;
-      if (cur >= target - 0.5) {
-        progressRef.current = target;
-        setProgress(target);
-        resolve();
-        return;
-      }
-      progressRef.current += (target - cur) * 0.18;
-      setProgress(progressRef.current);
-      requestAnimationFrame(step);
-    };
-    step();
-  });
-}
-
-async function runReadyPipeline(
-  signal: AbortSignal,
-  progressRef: MutableRefObject<number>,
-  setProgress: (n: number) => void,
-): Promise<void> {
-  if (signal.aborted) return;
-
-  await yieldToReact();
-  if (signal.aborted) return;
-  await smoothProgressTo(18, progressRef, setProgress, signal);
-  if (signal.aborted) return;
-
-  await waitWindowLoad();
-  if (signal.aborted) return;
-  await smoothProgressTo(48, progressRef, setProgress, signal);
-  if (signal.aborted) return;
-
-  await waitFonts();
-  if (signal.aborted) return;
-  await smoothProgressTo(72, progressRef, setProgress, signal);
-  if (signal.aborted) return;
-
-  await waitNextPaint();
-  if (signal.aborted) return;
-  await smoothProgressTo(90, progressRef, setProgress, signal);
-  if (signal.aborted) return;
-
-  await waitIdleCap(200);
-  if (signal.aborted) return;
-  await smoothProgressTo(99, progressRef, setProgress, signal);
-}
-
-function finishProgressAndHide(
-  startTime: number,
-  progressRef: MutableRefObject<number>,
-  setProgress: (n: number) => void,
-  setIsLoading: (v: boolean) => void,
-  signal: AbortSignal,
-) {
-  const elapsed = Date.now() - startTime;
-  const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
-
-  window.setTimeout(() => {
-    if (signal.aborted) return;
-
-    const animateToComplete = () => {
-      if (signal.aborted) return;
-      if (progressRef.current >= 100) {
-        window.setTimeout(() => {
-          if (signal.aborted) return;
-          setIsLoading(false);
-          window.dispatchEvent(new CustomEvent("preloaderComplete"));
-        }, 400);
-        return;
-      }
-
-      const diff = 100 - progressRef.current;
-      progressRef.current += diff * 0.14;
-      setProgress(progressRef.current);
-
-      if (progressRef.current < 99.9) {
-        requestAnimationFrame(animateToComplete);
-      } else {
-        progressRef.current = 100;
-        setProgress(100);
-        window.setTimeout(() => {
-          if (signal.aborted) return;
-          setIsLoading(false);
-          window.dispatchEvent(new CustomEvent("preloaderComplete"));
-        }, 400);
-      }
-    };
-
-    animateToComplete();
-  }, remaining);
-}
-
-const LoadingScreen = () => {
+export default function Preloader() {
   const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const pathname = usePathname();
+  const [visible, setVisible] = useState(true);
+  const [exiting, setExiting] = useState(false);
   const progressRef = useRef(0);
-  const previousPathnameRef = useRef(pathname);
-  const abortRef = useRef<AbortController | null>(null);
+  const doneRef = useRef(false);
+  const runIdRef = useRef(0);
 
   useEffect(() => {
-    if (previousPathnameRef.current !== pathname) {
-      previousPathnameRef.current = pathname;
-      abortRef.current?.abort();
-      setIsLoading(true);
-      setProgress(0);
-      progressRef.current = 0;
-    }
-  }, [pathname]);
+    const runId = ++runIdRef.current;
+    const stale = () => runId !== runIdRef.current;
 
-  useEffect(() => {
-    abortRef.current?.abort();
-    const controller = new AbortController();
-    abortRef.current = controller;
-    const { signal } = controller;
+    let exitTimer: ReturnType<typeof setTimeout> | undefined;
+    let finishTimer: ReturnType<typeof setTimeout> | undefined;
+    let maxTimer: ReturnType<typeof setTimeout> | undefined;
+    let rafId: number | null = null;
     const startTime = Date.now();
 
-    let timeoutId: number | undefined;
+    document.body.style.overflow = "hidden";
 
-    const run = async () => {
-      try {
-        await Promise.race([
-          runReadyPipeline(signal, progressRef, setProgress),
-          new Promise<void>((_, reject) => {
-            timeoutId = window.setTimeout(
-              () => reject(new Error("timeout")),
-              MAX_WAIT_MS,
-            );
-          }),
-        ]);
-      } catch {
-        /* hard cap elapsed — still dismiss */
-      } finally {
-        if (timeoutId !== undefined) {
-          window.clearTimeout(timeoutId);
-        }
-      }
+    // Preload background so it paints with the preloader
+    const bgPreload = new window.Image();
+    bgPreload.src = SITE_BG;
 
-      if (signal.aborted) return;
-
-      finishProgressAndHide(
-        startTime,
-        progressRef,
-        setProgress,
-        setIsLoading,
-        signal,
-      );
+    const setP = (value: number) => {
+      if (stale()) return;
+      progressRef.current = value;
+      setProgress(value);
     };
 
+    const animateTo = (target: number): Promise<void> =>
+      new Promise((resolve) => {
+        const step = () => {
+          if (stale()) {
+            resolve();
+            return;
+          }
+
+          const current = progressRef.current;
+          if (current >= target - 0.5) {
+            setP(target);
+            resolve();
+            return;
+          }
+
+          setP(current + (target - current) * 0.1);
+          rafId = requestAnimationFrame(step);
+        };
+
+        step();
+      });
+
+    const finish = () => {
+      if (stale() || doneRef.current) return;
+      doneRef.current = true;
+
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      setP(100);
+      setExiting(true);
+
+      exitTimer = setTimeout(() => {
+        if (stale()) return;
+        setVisible(false);
+        document.body.style.overflow = "";
+        dispatchComplete();
+      }, EXIT_MS);
+    };
+
+    const run = async () => {
+      await animateTo(10);
+      if (stale()) return;
+
+      await animateTo(35);
+      if (stale()) return;
+
+      try {
+        await Promise.race([
+          document.fonts?.ready ?? Promise.resolve(),
+          new Promise<void>((r) => setTimeout(r, 600)),
+        ]);
+      } catch {
+        /* ignore */
+      }
+
+      if (stale()) return;
+      await animateTo(60);
+      if (stale()) return;
+
+      await new Promise<void>((r) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => r())),
+      );
+
+      if (stale()) return;
+      await animateTo(85);
+      if (stale()) return;
+      await animateTo(100);
+
+      if (stale()) return;
+
+      const elapsed = Date.now() - startTime;
+      finishTimer = setTimeout(finish, Math.max(0, MIN_DISPLAY_MS - elapsed));
+    };
+
+    maxTimer = setTimeout(finish, MAX_WAIT_MS);
     void run();
 
     return () => {
-      if (timeoutId !== undefined) {
-        window.clearTimeout(timeoutId);
-      }
-      controller.abort();
-    };
-  }, [pathname]);
-
-  useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
+      runIdRef.current++;
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      clearTimeout(exitTimer);
+      clearTimeout(finishTimer);
+      clearTimeout(maxTimer);
       document.body.style.overflow = "";
     };
-  }, [isLoading]);
+  }, []);
 
-  if (!isLoading) return null;
+  if (!visible) return null;
 
   return (
     <div
       data-loading-screen="true"
+      aria-live="polite"
+      className="fixed inset-0 z-[99999] flex items-center justify-center"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 99999,
-        transition: "opacity 0.8s ease-out",
-        opacity: isLoading ? 1 : 0,
-        pointerEvents: isLoading ? "auto" : "none",
-        background: "transparent",
+        pointerEvents: exiting ? "none" : "auto",
+        opacity: exiting ? 0 : 1,
+        transition: `opacity ${EXIT_MS}ms ease-out`,
       }}
     >
+      {/* Site background image — img ensures it loads during preloader */}
+      <div aria-hidden className="absolute inset-0 overflow-hidden bg-white">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={SITE_BG}
+          alt=""
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        {/* Light white wash — keeps bg visible like the rest of the site */}
+        <div className="absolute inset-0 bg-white/45" />
+      </div>
 
-      <div
-        style={{
-          position: "relative",
-          width: "600px",
-          maxWidth: "80vw",
-        }}
-      >
+      {/* Logo fill animation */}
+      <div className="relative z-10 w-[600px] max-w-[80vw]">
         <Image
           src={logo}
-          alt="PrimeTek"
+          alt=""
+          aria-hidden
           width={800}
           height={400}
-          style={{
-            opacity: 0.15,
-            display: "block",
-            width: "100%",
-            height: "auto",
-          }}
+          className="block h-auto w-full opacity-[0.18]"
           priority
         />
 
         <div
+          className="absolute inset-0"
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            WebkitMaskImage: `linear-gradient(to right, black ${progress}%, transparent ${Math.min(progress + 1.5, 100)}%)`,
-            maskImage: `linear-gradient(to right, black ${progress}%, transparent ${Math.min(progress + 1.5, 100)}%)`,
+            WebkitMaskImage: `linear-gradient(to right, black ${progress}%, transparent ${Math.min(progress + 2, 100)}%)`,
+            maskImage: `linear-gradient(to right, black ${progress}%, transparent ${Math.min(progress + 2, 100)}%)`,
             WebkitMaskSize: "100% 100%",
             maskSize: "100% 100%",
-            willChange: "mask-image",
-            transition: "mask-image 0.03s linear",
           }}
         >
           <Image
@@ -299,18 +182,11 @@ const LoadingScreen = () => {
             alt="PrimeTek"
             width={800}
             height={400}
-            style={{
-              opacity: 1,
-              display: "block",
-              width: "100%",
-              height: "auto",
-            }}
+            className="block h-auto w-full"
             priority
           />
         </div>
       </div>
     </div>
   );
-};
-
-export default LoadingScreen;
+}

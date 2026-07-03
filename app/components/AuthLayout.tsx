@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/src/assets/footer-logo.png";
 import pharmacistImage from "@/src/assets/pharmacist.png";
+
+const SITE_BG = "/images/website-background.png";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -15,8 +16,10 @@ interface AuthLayoutProps {
 
 export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitle, type }) => {
   return (
-    <div className="relative w-screen h-screen bg-[#020817] flex overflow-hidden font-sans">
-      <style dangerouslySetInnerHTML={{__html: `
+    <div className="relative flex h-screen w-screen overflow-hidden bg-[#020817] font-sans">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         html, body {
           overflow: hidden !important;
           height: 100% !important;
@@ -26,115 +29,111 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
           display: none !important;
         }
-      `}} />
-      
-      {/* Left side: Premium Image Block (hidden on mobile/tablet, shown on lg and above) */}
-      <div className="hidden lg:flex lg:w-[45%] xl:w-[40%] relative bg-[#01141a] overflow-hidden flex-col justify-between p-16 border-r border-white/10">
-        {/* Subtle dark green overlay for blending into theme */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#020817] via-transparent to-[#005969]/40 z-10" />
-        
-        {/* Background Image */}
+      `,
+        }}
+      />
+
+      {/* Left side: image + testimonial */}
+      <div className="relative hidden flex-col justify-between overflow-hidden border-r border-white/10 p-16 lg:flex lg:w-[45%] xl:w-[40%]">
+        <div className="absolute inset-0 z-10 bg-gradient-to-tr from-[#020817] via-transparent to-[#005969]/40" />
         <Image
           src={pharmacistImage}
           alt="Pharmacy professional"
           fill
           priority
-          className="object-cover opacity-60 z-0 scale-110"
+          className="z-0 scale-110 object-cover opacity-60"
         />
 
-        {/* Logo at the top left */}
         <div className="relative z-20">
           <Link href="/">
-            <Image
-              src={logo}
-              alt="PrimeTek Logo"
-              width={220}
-              height={55}
-              className="h-16 w-auto"
-            />
+            <Image src={logo} alt="PrimeTek Logo" width={220} height={55} className="h-16 w-auto" />
           </Link>
         </div>
 
-        {/* Testimonial Quote at the bottom */}
-        <div className="relative z-20 bg-[#020817]/70 backdrop-blur-md p-10 rounded-3xl border border-white/10 max-w-lg shadow-2xl">
-          <p className="text-white text-xl font-medium leading-relaxed mb-6 font-display italic">
-            "PrimeTek restored complete visibility over our claims margins and protected us from clawbacks when we faced PBM audit pressure."
+        <div className="relative z-20 max-w-lg rounded-3xl border border-white/10 bg-[#020817]/70 p-10 shadow-2xl backdrop-blur-md">
+          <p className="mb-6 font-display text-xl font-medium italic leading-relaxed text-white">
+            &ldquo;PrimeTek restored complete visibility over our claims margins and protected us from
+            clawbacks when we faced PBM audit pressure.&rdquo;
           </p>
           <div>
-            <div className="text-white font-bold uppercase tracking-wider text-sm">Independent Pharmacy Owner</div>
-            <div className="text-teal-400 text-xs mt-1 uppercase tracking-wider">Multi-Store Client</div>
+            <div className="text-sm font-bold uppercase tracking-wider text-white">
+              Independent Pharmacy Owner
+            </div>
+            <div className="mt-1 text-xs uppercase tracking-wider text-teal-400">Multi-Store Client</div>
           </div>
         </div>
       </div>
 
-      {/* Right side: Form Container */}
-      <div className="w-full lg:w-[55%] xl:w-[60%] flex items-center justify-center p-8 md:p-16 relative overflow-y-auto overflow-x-hidden no-scrollbar">
-         {/* Background Spotlight Gradient */}
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.06)_0%,transparent_80%)] pointer-events-none" />
-         
-         {/* Background Grid - Matching Hero.tsx */}
-         <div 
-           className="absolute inset-0 opacity-[0.03] pointer-events-none"
-           style={{ backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`, backgroundSize: '40px 40px' }} 
-         />
+      {/* Right side: form panel over site background */}
+      <div className="relative flex w-full items-center justify-center overflow-y-auto overflow-x-hidden p-8 md:p-16 lg:w-[55%] xl:w-[60%]">
+        <div aria-hidden className="absolute inset-0 overflow-hidden bg-white">
+          <Image
+            src={SITE_BG}
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-white/45" />
+        </div>
 
-         {/* Decorative Blur Orbs */}
-         <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#2dd4bf]/3 blur-[120px] rounded-full pointer-events-none" />
-         <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#2b4c8c]/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="relative z-10 w-full max-w-lg py-10">
+          <div className="mb-10 flex justify-center lg:hidden">
+            <Link href="/">
+              <Image src={logo} alt="PrimeTek Logo" width={200} height={50} className="h-12 w-auto" />
+            </Link>
+          </div>
 
-         <div className="w-full max-w-lg relative z-10 py-10">
-           {/* Logo for mobile only */}
-           <div className="flex justify-center mb-10 lg:hidden">
-             <Link href="/">
-               <Image
-                 src={logo}
-                 alt="PrimeTek Logo"
-                 width={200}
-                 height={50}
-                 className="h-12 w-auto"
-               />
-             </Link>
-           </div>
+          <div className="mb-10 text-center">
+            <h1 className="mb-4 text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+              {title}
+            </h1>
+            <p className="mx-auto max-w-md text-base leading-relaxed text-ink-muted md:text-lg">
+              {subtitle}
+            </p>
+          </div>
 
-           <div className="mb-10 text-center">
-             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
-               {title}
-             </h1>
-             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-md mx-auto">
-               {subtitle}
-             </p>
-           </div>
+          {children}
 
-           {children}
+          <div className="mt-10 border-t border-ink/10 pt-10 text-center">
+            {type === "login" ? (
+              <p className="text-base text-ink-muted">
+                Don&apos;t have an account?{" "}
+                <Link href="/signup" className="font-semibold text-accent hover:underline">
+                  Sign up for free
+                </Link>
+              </p>
+            ) : (
+              <p className="text-base text-ink-muted">
+                Already have an account?{" "}
+                <Link href="/login" className="font-semibold text-accent hover:underline">
+                  Sign in
+                </Link>
+              </p>
+            )}
+          </div>
 
-           <div className="mt-10 pt-10 border-t border-white/5 text-center">
-             {type === "login" ? (
-               <p className="text-white/40 text-base">
-                 Don't have an account?{" "}
-                 <Link href="/signup" className="text-[#2dd4bf] font-semibold hover:underline">
-                   Sign up for free
-                 </Link>
-               </p>
-             ) : (
-               <p className="text-white/40 text-base">
-                 Already have an account?{" "}
-                 <Link href="/login" className="text-[#2dd4bf] font-semibold hover:underline">
-                   Sign in
-                 </Link>
-               </p>
-             )}
-           </div>
-
-           {/* Back to Home */}
-           <div className="text-center mt-10">
-             <Link href="/" className="text-white/40 hover:text-white text-base transition-colors flex items-center justify-center gap-2">
-               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                 <path d="m15 18-6-6 6-6"/>
-               </svg>
-               Back to homepage
-             </Link>
-           </div>
-         </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/"
+              className="flex items-center justify-center gap-2 text-base text-ink-muted transition-colors hover:text-ink"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+              Back to homepage
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -160,12 +160,12 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-ink/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white border border-ink/10 rounded-3xl p-6 shadow-[0_4px_24px_rgba(6,43,52,0.06)] transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
                                     {/* Stylized Service Illustration Graphic */}
-                                    <div className="w-full h-44 bg-white/[0.01] border border-ink/10 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
+                                    <div className="w-full h-44 bg-slate-50 border border-ink/10 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
                                         <ServiceIllustration index={idx} color={service.accentColor} />
                                     </div>
 
@@ -184,7 +184,7 @@ export const ServicesSection: React.FC = () => {
                                         {service.description}
                                     </p>
 
-                                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-ink/10 flex items-center justify-between">
+                                    <div className="bg-slate-50 rounded-2xl p-4 border border-ink/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <div
@@ -220,12 +220,12 @@ export const ServicesSection: React.FC = () => {
                                 <Link
                                     href="/services"
                                     key={idx}
-                                    className={`service-category-card group relative bg-white/10 backdrop-blur-md border border-ink/10 rounded-3xl p-6 transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
+                                    className={`service-category-card group relative bg-white border border-ink/10 rounded-3xl p-6 shadow-[0_4px_24px_rgba(6,43,52,0.06)] transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden ${service.hoverClass}`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.glow} opacity-10 group-hover:opacity-30 transition-all duration-700 pointer-events-none rounded-3xl`} />
 
                                     {/* Stylized Service Illustration Graphic */}
-                                    <div className="w-full h-44 bg-white/[0.01] border border-ink/10 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
+                                    <div className="w-full h-44 bg-slate-50 border border-ink/10 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center shrink-0 p-3">
                                         <ServiceIllustration index={idx + 3} color={service.accentColor} />
                                     </div>
 
@@ -244,7 +244,7 @@ export const ServicesSection: React.FC = () => {
                                         {service.description}
                                     </p>
 
-                                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-ink/10 flex items-center justify-between">
+                                    <div className="bg-slate-50 rounded-2xl p-4 border border-ink/10 flex items-center justify-between">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <div

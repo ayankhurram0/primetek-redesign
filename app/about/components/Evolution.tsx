@@ -323,11 +323,7 @@ export const Evolution = () => {
 
           <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-[1.05]">
             <span className="text-ink">Company </span>
-            <span
-              className="bg-gradient-to-r from-white via-[#5eead4] to-[#2dd4bf] bg-clip-text text-transparent"
-            >
-              Timeline
-            </span>
+            <span style={{ color: ACCENT }}>Timeline</span>
           </h2>
           <p className="text-ink-muted text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed">
             Milestones that shaped our growth and success
