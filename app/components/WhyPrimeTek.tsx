@@ -171,7 +171,7 @@ export const WhyPrimeTekSection: React.FC = () => {
             {steps.map((step, idx) => (
               <div
                 key={idx}
-                className="why-step-card bg-white/75 border border-ink/10 rounded-2xl p-6 flex flex-col items-start text-left min-h-[260px] relative transition-all hover:bg-white/75/80 hover:border-teal-400/30"
+                className="why-step-card bg-white border border-ink/10 rounded-2xl p-6 flex flex-col items-start text-left min-h-[260px] relative transition-all hover:border-teal-400/30 shadow-xl"
               >
                 <div className="flex flex-col mb-4">
                   <span className="text-xl font-bold text-accent mb-1">{step.id}</span>

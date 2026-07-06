@@ -15,7 +15,7 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden font-montserrat">
-      <div className="relative z-10 border-t border-ink/10 bg-white/95 px-8 pt-10 pb-8 shadow-[0_-8px_32px_rgba(6,43,52,0.04)] backdrop-blur-md md:px-16">
+      <div className="relative z-10 border-t border-ink/10 bg-transparent px-8 pt-10 pb-8 backdrop-blur-md md:px-16">
         <div className="mb-8 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           {/* Col 1: Brand/Logo */}
           <div className="flex flex-col gap-6 lg:col-span-1">
@@ -110,10 +110,8 @@ export default function Footer() {
         </div>
       </div>
       {/* Decorative watermark — kept subtle so it never competes with text */}
-      <div className="pointer-events-none relative z-0 select-none bg-white px-8 pb-4 pt-2 md:px-14">
-        <div className="opacity-20">
-          <Image src={primetek} alt="" aria-hidden className="h-full w-full" />
-        </div>
+      <div className="pointer-events-none relative z-0 select-none bg-transparent px-8 pb-4 pt-2 md:px-14">
+        <Image src={primetek} alt="" aria-hidden className="h-full w-full" />
       </div>
     </footer>
   );

@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import vandm1 from "@/src/assets/vandm1.png";
+import vandm3 from "@/src/assets/vandm3.png";
+import vandm4 from "@/src/assets/vandm4.png";
 import vandm5 from "@/src/assets/vandm5.png";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -44,6 +46,33 @@ const steps = [
     tagline: "We do the analysis. You make the decisions.",
     img: vandm5,
     imgAlt: "PrimeTek mission",
+    flip: true,
+  },
+  {
+    number: "03",
+    title: "OUR CORE PURPOSE",
+    paragraphs: [
+      "Simplify. Protect. Grow.",
+    ],
+    bullets: [
+      "We simplify pharmacy operations by eliminating fragmented systems.",
+      "We protect pharmacies through proactive compliance monitoring, revenue intelligence, and early risk detection.",
+      "We help pharmacies grow by turning operational data into business intelligence that drives smarter decisions and higher profitability.",
+    ],
+    img: vandm3,
+    imgAlt: "PrimeTek core purpose",
+    flip: false,
+  },
+  {
+    number: "04",
+    title: "THE PRIMETEK PROMISE",
+    paragraphs: [
+      "We believe pharmacy owners should spend their time leading their business—not chasing reports, logging into multiple websites, or trying to interpret complex PBM data.",
+      "Primetek works behind the scenes every day—collecting data, monitoring compliance, analyzing financial performance, and delivering clear recommendations—so pharmacy owners can focus on expanding clinical services, strengthening patient relationships, increasing revenue, and building the future of their pharmacy.",
+    ],
+    tagline: "One Platform. One Login. Complete Operational Intelligence.",
+    img: vandm4,
+    imgAlt: "PrimeTek promise",
     flip: true,
     isLast: true,
   },
@@ -103,7 +132,7 @@ export const OurJourney = () => {
                 {step.title}
               </h2>
 
-              <div className="max-w-xl space-y-4 text-base font-light leading-relaxed text-ink-muted md:text-lg lg:text-xl">
+              <div className="max-w-none space-y-4 text-base font-light leading-relaxed text-ink-muted md:text-lg lg:text-xl">
                 {step.paragraphs.map((paragraph) => (
                   <p key={paragraph.slice(0, 40)}>{paragraph}</p>
                 ))}

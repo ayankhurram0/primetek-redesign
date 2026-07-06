@@ -18,6 +18,7 @@
 html {
   font-size: 85%;
   position: relative;
+  background-color: #ffffff;
 }
 
 html::before {
@@ -25,11 +26,11 @@ html::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: #ffffff;
   background-image: url("/images/website-background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  opacity: 0.45;
   pointer-events: none;
 }
 
@@ -202,6 +203,7 @@ input:-webkit-autofill:active {
 .no-scrollbar::-webkit-scrollbar {
   display: none !important;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;

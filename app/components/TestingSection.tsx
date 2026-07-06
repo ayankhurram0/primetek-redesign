@@ -106,9 +106,9 @@ function RevenueIntelligenceCard() {
         >
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF4A3A]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-slate-50 p-4 border border-[#FF4A3A]/20 transition-all duration-300 group-hover:border-[#FF4A3A]/50 overflow-hidden">
-                {/* Badge — top right inside visual box */}
-                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF4A3A]/40 bg-[#FF4A3A]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF4A3A] pointer-events-none">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-[#FF4A3A]/5 border border-[#FF4A3A]/15 p-4 transition-all duration-300 group-hover:border-[#FF4A3A]/30 overflow-hidden">
+                {/* Badge — top left inside visual box */}
+                <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF4A3A]/40 bg-[#FF4A3A]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF4A3A] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF4A3A]" />
                     Live Tracking
                 </div>
@@ -207,30 +207,29 @@ function RevenueIntelligenceCard() {
                 </div>
             </div>
 
-            {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
                     Revenue Intelligence & Reporting
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
+                <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Real-time revenue tracking that flags underpayments and recovers lost income automatically.
                 </p>
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-0 pt-0">
+            <div className="mt-4 pt-0">
                 <a
                     href="#analyze"
-                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
+                    className="flex items-center justify-between gap-4 bg-[#FF4A3A]/5 hover:bg-[#FF4A3A]/8 border border-[#FF4A3A]/15 hover:border-[#FF4A3A]/25 rounded-2xl p-4 group/btn transition-all duration-300"
                 >
-                    <div className="flex-1 min-w-0">
-                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
-                            <span className="font-bold text-[#FF4A3A] text-[18px]">$1.2M+</span> avg. underpayments recovered per store.
+                    <div className="flex-1">
+                        <span className="text-[12px] text-ink-subtle leading-normal block">
+                            <span className="font-bold text-[#FF4A3A] text-xl">$1.2M+</span> avg. underpayments recovered per store.
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[9px] font-bold text-[#FF4A3A] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                    <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-[12px] font-bold text-[#FF4A3A] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Analyze Revenue
                         </span>
                         <span className="text-[#FF4A3A] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -288,7 +287,7 @@ function ClaimsReimbursementCard() {
         >
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF6B00]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-slate-50 p-4 border border-[#FF6B00]/20 transition-all duration-300 group-hover:border-[#FF6B00]/50 overflow-hidden">
+            <div className="relative flex flex-col h-[140px] w-full justify-between rounded-xl bg-[#FF6B00]/5 border border-[#FF6B00]/15 p-4 transition-all duration-300 group-hover:border-[#FF6B00]/30 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF6B00] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00]" />
@@ -428,30 +427,29 @@ function ClaimsReimbursementCard() {
                 </div>
             </div>
 
-            {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
                     Claims & Reimbursement Optimization
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
+                <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Automatically fix claim errors and maximize clean-claim reimbursement flow.
                 </p>
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-0 pt-0">
+            <div className="mt-4 pt-0">
                 <a
                     href="#claims"
-                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
+                    className="flex items-center justify-between gap-4 bg-[#FF6B00]/5 hover:bg-[#FF6B00]/8 border border-[#FF6B00]/15 hover:border-[#FF6B00]/25 rounded-2xl p-4 group/btn transition-all duration-300"
                 >
                     <div className="flex-1">
-                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap">
-                            <span className="font-bold text-[#FF6B00] text-[18px]">19%</span> increase in clean-claim recovery rates.
+                        <span className="text-[12px] text-ink-subtle leading-normal block">
+                            <span className="font-bold text-[#FF6B00] text-xl">19%</span> increase in clean-claim recovery rates.
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[9px] font-bold text-[#FF6B00] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                    <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-[12px] font-bold text-[#FF6B00] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Fix My Claims
                         </span>
                         <span className="text-[#FF6B00] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -493,7 +491,7 @@ function ComplianceAuditCard() {
         >
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF9F29]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-slate-50 p-4 border border-[#FF9F29]/20 transition-all duration-300 group-hover:border-[#FF9F29]/50 overflow-hidden">
+            <div className="relative flex h-[140px] w-full flex-col justify-between rounded-xl bg-[#FF9F29]/5 border border-[#FF9F29]/15 p-4 transition-all duration-300 group-hover:border-[#FF9F29]/30 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#FF9F29]/40 bg-[#FF9F29]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#FF9F29] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF9F29]" />
@@ -612,30 +610,29 @@ function ComplianceAuditCard() {
                 </div>
             </div>
 
-            {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF9F29]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF9F29]">
                     Compliance & Audit Protection
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
+                <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Stay permanently audit-ready by detecting compliance gaps before they become liabilities.
                 </p>
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-0 pt-0">
+            <div className="mt-4 pt-0">
                 <a
                     href="#audits"
-                    className="flex items-center justify-between gap-2 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
+                    className="flex items-center justify-between gap-4 bg-[#FF9F29]/5 hover:bg-[#FF9F29]/8 border border-[#FF9F29]/15 hover:border-[#FF9F29]/25 rounded-2xl p-4 group/btn transition-all duration-300"
                 >
-                    <div className="flex-1 min-w-0">
-                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap overflow-hidden text-ellipsis">
-                            <span className="font-bold text-[#FF9F29] text-[18px]">87%</span> achieve full compliance within 30 days.
+                    <div className="flex-1">
+                        <span className="text-[12px] text-ink-subtle leading-normal block">
+                            <span className="font-bold text-[#FF9F29] text-xl">87%</span> achieve full compliance within 30 days.
                         </span>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-[9px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                        <span className="text-[12px] font-bold text-[#FF9F29] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Check Audit Risk
                         </span>
                         <span className="text-[#FF9F29] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -663,20 +660,20 @@ interface QueueItem {
 const OPERATIONS_QUEUE: QueueItem[] = [
     {
         initials: "SJ",
-        name: "Sarah Jenkins, PharmD",
-        detail: "Automated audit of prior authorization forms resolved 4 pending clinical exceptions for client pipeline sync.",
+        name: "Prior authorization audit complete",
+        detail: "Automated audit of prior authorization forms resolved 4 pending clinical exceptions.",
         defaultStatus: "In Review",
     },
     {
         initials: "DM",
-        name: "David Miller, RPh",
-        detail: "Daily inventory reconciliation completed. 12 prescription bottlenecks automatically resolved & batch-routed to central fill.",
+        name: "Daily reconciliation complete",
+        detail: "Daily inventory reconciliation completed. 12 prescription bottlenecks automatically resolved & batch-routed to fulfillment.",
         defaultStatus: "In Review",
     },
     {
         initials: "ER",
-        name: "Elena Rostova, CPht",
-        detail: "Client pharmacy onboarding logs fully audited. Flagged clinical compliance checks updated to premium active-state.",
+        name: "Pharmacy onboarding logs audited",
+        detail: "Client pharmacy onboarding logs fully audited. Compliance checks updated to active-state.",
         defaultStatus: "In Review",
     },
 ];
@@ -701,7 +698,7 @@ function PatientOperationalCard() {
         >
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#3B82F6]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-slate-50 p-3 border border-[#3B82F6]/20 transition-all duration-300 group-hover:border-[#3B82F6]/50 overflow-hidden">
+            <div className="relative flex min-h-[150px] w-full items-start justify-center rounded-xl bg-[#3B82F6]/5 border border-[#3B82F6]/15 p-3 transition-all duration-300 group-hover:border-[#3B82F6]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#3B82F6]/40 bg-[#3B82F6]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#3B82F6] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
@@ -726,28 +723,23 @@ function PatientOperationalCard() {
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     style={{ zIndex: 10 - stackPos, position: "absolute", width: "100%" }}
-                                    className="bg-black/50 backdrop-blur-xl border border-ink/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg"
+                                    className="bg-[#121824] border border-slate-700/40 rounded-[16px] p-3.5 flex flex-col gap-2 shadow-2xl"
                                 >
                                     {/* Top Header */}
                                     <div className="flex justify-between items-center px-0.5">
-                                        <div className="flex items-center gap-1.5">
-                                            <div className="w-4 h-4 rounded-md bg-blue-500/20 flex items-center justify-center shrink-0">
-                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.5">
-                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                                </svg>
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-6 h-6 rounded-md bg-[#2563eb] flex items-center justify-center shrink-0">
+                                                <RotateCcw className="w-3.5 h-3.5 text-white" />
                                             </div>
-                                            <span className="text-[8px] text-ink-subtle font-semibold tracking-wide uppercase">System • {item.initials}</span>
+                                            <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider font-mono">SYSTEM · {item.initials}</span>
                                         </div>
-                                        <span className="text-[8.5px] text-ink-subtle">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
+                                        <span className="text-[9px] text-slate-500 font-medium">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
                                     </div>
 
                                     {/* Body */}
                                     <div className="flex flex-col text-left px-0.5 mt-0.5">
-                                        <span className="text-[9px] font-bold text-ink/90 leading-tight">{item.name}</span>
-                                        <span className="text-[9px] text-ink-muted line-clamp-2 leading-snug mt-0.5">{item.detail}</span>
+                                        <span className="text-[11px] font-bold text-white leading-tight">{item.name}</span>
+                                        <span className="text-[10px] text-slate-400 leading-normal mt-1">{item.detail}</span>
                                     </div>
                                 </motion.div>
                             );
@@ -759,30 +751,29 @@ function PatientOperationalCard() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
             </div>
 
-            {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
                     Patient & Operational Support Systems
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
+                <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Streamline every pharmacy workflow from patient onboarding to team coordination.
                 </p>
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-0 pt-0">
+            <div className="mt-4 pt-0">
                 <a
                     href="#operations"
-                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
+                    className="flex items-center justify-between gap-4 bg-[#3B82F6]/5 hover:bg-[#3B82F6]/8 border border-[#3B82F6]/15 hover:border-[#3B82F6]/25 rounded-2xl p-4 group/btn transition-all duration-300"
                 >
                     <div className="flex-1">
-                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap">
-                            <span className="font-bold text-[#3B82F6] text-[18px]">30%</span> reduction in bottlenecks.
+                        <span className="text-[12px] text-ink-subtle leading-normal block">
+                            <span className="font-bold text-[#3B82F6] text-xl">30%</span> reduction in bottlenecks.
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[9px] font-bold text-[#3B82F6] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                    <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-[12px] font-bold text-[#3B82F6] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Improve Operations
                         </span>
                         <span className="text-[#3B82F6] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
@@ -826,7 +817,7 @@ function PharmacyGrowthCard() {
         >
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#00C48C]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             {/* Visual Animation Area */}
-            <div className="relative flex h-[160px] w-full items-center justify-center rounded-xl bg-slate-50 p-4 border border-[#00C48C]/20 transition-all duration-300 group-hover:border-[#00C48C]/50 overflow-hidden">
+            <div className="relative flex h-[160px] w-full items-center justify-center rounded-xl bg-[#00C48C]/5 border border-[#00C48C]/15 p-4 transition-all duration-300 group-hover:border-[#00C48C]/50 overflow-hidden">
                 {/* Badge — top right inside visual box */}
                 <div className="absolute top-3 right-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#00C48C]/40 bg-[#00C48C]/5 text-[8px] font-mono font-bold uppercase tracking-widest text-[#00C48C] pointer-events-none">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00C48C]" />
@@ -955,30 +946,29 @@ function PharmacyGrowthCard() {
                 </svg>
             </div>
 
-            {/* Description and Metadata */}
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#00C48C]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#00C48C]">
                     Pharmacy Growth & Performance Strategy
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-ink-muted font-normal min-h-[48px]">
+                <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
                     Optimize procurement pricing and sourcing to grow your pharmacy's total margins.
                 </p>
             </div>
 
             {/* Bottom section with metric and action */}
-            <div className="mt-0 pt-0">
+            <div className="mt-4 pt-0">
                 <a
                     href="#growth"
-                    className="flex items-center justify-between gap-4 bg-slate-50 rounded-xl border border-ink/8 p-4 group/btn transition-colors hover:bg-slate-100"
+                    className="flex items-center justify-between gap-4 bg-[#00C48C]/5 hover:bg-[#00C48C]/8 border border-[#00C48C]/15 hover:border-[#00C48C]/25 rounded-2xl p-4 group/btn transition-all duration-300"
                 >
                     <div className="flex-1">
-                        <span className="text-[10px] text-ink-subtle leading-snug block whitespace-nowrap">
-                            <span className="font-bold text-[#00C48C] text-[18px]">+18%</span> margin amplification across departments.
+                        <span className="text-[12px] text-ink-subtle leading-normal block">
+                            <span className="font-bold text-[#00C48C] text-xl">+18%</span> margin amplification across departments.
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[9px] font-bold text-[#00C48C] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
+                    <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-[12px] font-bold text-[#00C48C] uppercase tracking-widest leading-tight text-left whitespace-nowrap">
                             Grow My Pharmacy
                         </span>
                         <span className="text-[#00C48C] text-base transition-transform duration-300 group-hover/btn:translate-x-1">
