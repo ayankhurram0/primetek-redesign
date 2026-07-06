@@ -174,7 +174,7 @@ export const OurFramework: React.FC = () => {
                       </div>
 
                       <div className="hidden md:flex justify-center relative z-20">
-                        <div className="row-dot w-12 h-12 rounded-full border-2 border-[#010810] shadow-md flex items-center justify-center text-ink text-md font-bold bg-teal-400 backdrop-blur-md">
+                        <div className="row-dot w-12 h-12 rounded-full shadow-md flex items-center justify-center text-ink text-md font-bold bg-teal-400 backdrop-blur-md">
                           {step.id}
                         </div>
                       </div>

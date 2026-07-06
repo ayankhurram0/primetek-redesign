@@ -9,16 +9,18 @@ import { Target, Eye } from "lucide-react";
 const missionVision = [
   {
     title: "Our Mission",
-    description: "To empower independent pharmacies with the operational intelligence, compliance protection, and revenue insights they need to thrive in an increasingly complex healthcare landscape — without adding clinical burden.",
+    description:
+      "At Primetek Services, our mission is to transform the independent pharmacy industry by bringing every critical operational function into one intelligent platform. We leverage AI, advanced analytics, and pharmacy expertise to automate reporting, simplify compliance, and uncover hidden revenue opportunities—so owners get their time back. We do the analysis. You make the decisions.",
     icon: Target,
-    type: "mission"
+    type: "mission",
   },
   {
     title: "Our Vision",
-    description: "A future where every independent pharmacy — regardless of size — has access to enterprise-grade operational intelligence, enabling them to compete, protect their revenue, and deliver exceptional care to their communities.",
+    description:
+      "To become the leading AI-powered operational intelligence platform for independent pharmacies across the United States—centralizing every critical insight in one secure dashboard so pharmacies can stay compliant, maximize reimbursements, detect risks early, and thrive in an increasingly complex healthcare environment.",
     icon: Eye,
-    type: "vision"
-  }
+    type: "vision",
+  },
 ];
 
 export const MissionVision = () => {
@@ -26,7 +28,8 @@ export const MissionVision = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".reveal-mission",
+      gsap.fromTo(
+        ".reveal-mission",
         { opacity: 0, y: 40 },
         {
           opacity: 1,
@@ -36,30 +39,27 @@ export const MissionVision = () => {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
-            toggleActions: "play none none none"
-          }
-        }
+            toggleActions: "play none none none",
+          },
+        },
       );
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-26 relative bg-transparent">
+    <section ref={containerRef} className="relative bg-transparent px-26 py-24">
       <div className="relative z-10">
-        <div className="grid md:grid-cols-2 gap-8">
-          {missionVision.map((item, i) => (
+        <div className="grid gap-8 md:grid-cols-2">
+          {missionVision.map((item) => (
             <div
               key={item.title}
-              className={`reveal-mission p-16 rounded-[48px] relative overflow-hidden group bg-white/[0.02] border border-ink/10 shadow-xl hover:shadow-2xl transition-all duration-700 backdrop-blur-xl
-              `}
+              className="reveal-mission group relative overflow-hidden rounded-[48px] border border-ink/10 bg-white/[0.02] p-16 shadow-xl backdrop-blur-xl transition-all duration-700 hover:shadow-2xl"
             >
-              <item.icon className="w-16 h-16 text-accent mb-16 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
-              <h3 className="text-6xl font-bold text-ink mb-8 tracking-tighter uppercase">{item.title}</h3>
-              <p className="text-2xl text-ink-muted font-medium leading-relaxed">
-                {item.description}
-              </p>
-              <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-teal opacity-0 group-hover:opacity-5 blur-[100px] transition-opacity" />
+              <item.icon className="mb-16 h-16 w-16 text-accent opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" />
+              <h3 className="mb-8 text-6xl font-bold uppercase tracking-tighter text-ink">{item.title}</h3>
+              <p className="text-2xl font-medium leading-relaxed text-ink-muted">{item.description}</p>
+              <div className="absolute bottom-0 right-0 h-64 w-64 bg-brand-teal opacity-0 blur-[100px] transition-opacity group-hover:opacity-5" />
             </div>
           ))}
         </div>

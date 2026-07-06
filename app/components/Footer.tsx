@@ -14,15 +14,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-transparent text-ink font-montserrat relative overflow-hidden">
-      <div className="relative z-10 px-8 md:px-16 pt-10 pb-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-8">
+    <footer className="relative overflow-hidden font-montserrat">
+      <div className="relative z-10 border-t border-ink/10 bg-white/95 px-8 pt-10 pb-8 shadow-[0_-8px_32px_rgba(6,43,52,0.04)] backdrop-blur-md md:px-16">
+        <div className="mb-8 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           {/* Col 1: Brand/Logo */}
           <div className="flex flex-col gap-6 lg:col-span-1">
             <div className="w-40">
-              <Image src={logocolor} alt="PrimeTek Logo" className="w-full h-auto" />
+              <Image src={logocolor} alt="PrimeTek Logo" className="h-auto w-full" />
             </div>
-            <p className="text-ink-muted text-xs md:text-sm 2xl:text-base leading-relaxed">
+            <p className="text-sm leading-relaxed text-ink/80 md:text-base 2xl:text-lg">
               Empowering pharmacies through advanced audit readiness and revenue optimization solutions.
             </p>
           </div>
@@ -34,7 +34,7 @@ export default function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-ink-muted text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-accent hover:translate-x-1 transition-all duration-300"
+                className="text-sm font-medium tracking-wide text-ink/75 transition-all duration-300 hover:translate-x-1 hover:text-accent md:text-base 2xl:text-lg"
               >
                 {link.name}
               </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
               <Link
                 key={resource}
                 href="/blog"
-                className="text-ink-muted text-xs md:text-sm 2xl:text-base font-medium tracking-wide hover:text-accent hover:translate-x-1 transition-all duration-300"
+                className="text-sm font-medium tracking-wide text-ink/75 transition-all duration-300 hover:translate-x-1 hover:text-accent md:text-base 2xl:text-lg"
               >
                 {resource}
               </Link>
@@ -64,7 +64,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4 text-left">
             <span className="text-accent text-xs font-bold uppercase tracking-widest mb-2">Headquarters</span>
             <div className="space-y-3">
-              <p className="text-ink text-xs md:text-sm 2xl:text-base leading-relaxed">
+              <p className="text-sm leading-relaxed text-ink md:text-base 2xl:text-lg">
                 3 Gateway Center, 100 Mulberry Street,<br />
                 Newark, NJ 07102
               </p>
@@ -78,14 +78,14 @@ export default function Footer() {
         </div>
 
         {/* Center: Social Icons */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-ink/10 gap-8">
+        <div className="flex flex-col items-center justify-between gap-8 border-t border-ink/15 pt-6 md:flex-row">
           <div className="flex flex-col gap-2">
-            <p className="text-ink-muted text-xs 2xl:text-sm font-medium tracking-wide">
+            <p className="text-xs font-semibold tracking-wide text-ink/80 2xl:text-sm">
               © 2026 PRIMETEK SERVICES. ALL RIGHTS RESERVED.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-ink-subtle text-xs 2xl:text-sm hover:text-accent transition-colors">PRIVACY POLICY</Link>
-              <Link href="#" className="text-ink-subtle text-xs 2xl:text-sm hover:text-accent transition-colors">TERMS OF SERVICE</Link>
+              <Link href="#" className="text-xs font-semibold text-ink/70 transition-colors hover:text-accent 2xl:text-sm">PRIVACY POLICY</Link>
+              <Link href="#" className="text-xs font-semibold text-ink/70 transition-colors hover:text-accent 2xl:text-sm">TERMS OF SERVICE</Link>
             </div>
           </div>
 
@@ -109,10 +109,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      {/* Large Background Logo - Behind everything */}
-      <div className=" pointer-events-none select-none z-0 md:px-14 pb-4 pt-2">
-        <div className="text-[19vw] font-bold text-[#2b4c8c] tracking-lose leading-none text-left ">
-          <Image src={primetek} alt="PrimeTek" className="w-full h-full" />
+      {/* Decorative watermark — kept subtle so it never competes with text */}
+      <div className="pointer-events-none relative z-0 select-none bg-white px-8 pb-4 pt-2 md:px-14">
+        <div className="opacity-20">
+          <Image src={primetek} alt="" aria-hidden className="h-full w-full" />
         </div>
       </div>
     </footer>
