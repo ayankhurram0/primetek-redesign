@@ -21,7 +21,7 @@ import type { StaticImageData } from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
-type AlertThemeKey = 'red' | 'blue' | 'purple' | 'orange';
+type AlertThemeKey = 'red' | 'blue' | 'purple' | 'orange' | 'teal';
 
 interface AlertTheme {
   cardGradient: string;
@@ -140,6 +140,29 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     glowRgb: '249 115 22',
     categoryText: 'text-orange-600',
   },
+  teal: {
+    cardGradient: 'bg-gradient-to-r from-teal-500/30 to-teal-600/20',
+    cardBorder: 'border-teal-400/55',
+    iconBg: 'bg-teal-500/25',
+    iconText: 'text-teal-600',
+    accentBar: 'bg-teal-500',
+    panelBorder: 'border-teal-300/70',
+    panelOverlay: 'bg-gradient-to-br from-teal-500/25 via-teal-200/40 to-white/55',
+    headerBg: 'bg-gradient-to-r from-teal-100/90 to-teal-50/70',
+    badgeBg: 'bg-teal-500 text-white',
+    badgeShadow: 'shadow-[0_0_24px_rgba(20,184,166,0.45)]',
+    activityBg: 'bg-teal-500/10',
+    activityBorder: 'border-teal-400/45',
+    activityHover: 'hover:bg-teal-500/15 hover:border-teal-400/60',
+    dotBg: 'bg-teal-500',
+    dotShadow: 'shadow-[0_0_12px_#14b8a6]',
+    radarBorder: 'border-teal-500/50',
+    radarBg: 'bg-teal-500/20',
+    radarBorderSolid: 'border-teal-500',
+    radarText: 'text-teal-500',
+    glowRgb: '20 184 166',
+    categoryText: 'text-teal-600',
+  },
 };
 
 export interface AlertItem {
@@ -217,8 +240,8 @@ export const ALERTS: AlertItem[] = [
     category: 'Audit Exposure Watch',
     priority: 'High',
     description: 'Potential high-risk product activity detected. Review dispensing patterns before audit exposure increases.',
-    accentColor: 'text-red-500',
-    theme: 'red',
+    accentColor: 'text-teal-600',
+    theme: 'teal',
     image: gapsCard,
     activities: [
       { text: 'Flagged: 3 NDC codes under review', time: 'Just now' },
@@ -287,7 +310,7 @@ function AlertDetailContent({ alert }: { alert: AlertItem }) {
 
   return (
     <>
-      {/* Background layers */}
+      {/* Background image + wash */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <img
           src={imageSrc}
@@ -337,15 +360,9 @@ function AlertDetailContent({ alert }: { alert: AlertItem }) {
           </div>
         </div>
 
-        {/* Right: image + radar overlay */}
+        {/* Right: radar only */}
         <div className="relative hidden w-80 shrink-0 items-center justify-center lg:flex">
           <div className="relative flex h-72 w-full items-center justify-center">
-            <img
-              src={imageSrc}
-              alt=""
-              className="absolute inset-0 h-full w-full rounded-xl object-contain opacity-80"
-              aria-hidden
-            />
             <RadarAnimation key={alert.id} icon={Icon} theme={theme} />
           </div>
         </div>
@@ -448,9 +465,14 @@ export default function IntelligenceDashboard() {
                     onClick={() => selectAlert(alert.id)}
                     className={`group relative w-full overflow-hidden rounded-xl border-2 p-4 text-left backdrop-blur-md transition-all duration-300 ${
                       isActive
-                        ? `${theme.cardGradient} ${theme.cardBorder} shadow-[0_4px_24px_rgba(239,68,68,0.12)]`
-                        : 'border-red-200/60 bg-white/70 hover:border-red-300/70 hover:bg-white/85'
+                        ? `${theme.cardGradient} ${theme.cardBorder}`
+                        : 'border-ink/10 bg-white/70 hover:border-ink/20 hover:bg-white/85'
                     }`}
+                    style={
+                      isActive
+                        ? { boxShadow: `0 4px 24px rgba(${theme.glowRgb} / 0.18)` }
+                        : undefined
+                    }
                   >
                     {isActive && (
                       <div className={`absolute top-3 bottom-3 left-0 w-1 rounded-full ${theme.accentBar}`} />
