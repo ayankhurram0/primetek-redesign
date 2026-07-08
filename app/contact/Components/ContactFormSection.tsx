@@ -66,7 +66,6 @@ export const ContactFormSection = () => {
             <h3 className="text-3xl font-bold text-accent mb-6 uppercase tracking-tight">Contact <span className="text-ink">Information</span></h3>
             <div className="space-y-4">
               {[
-                { icon: Phone, label: "Phone", value: "(908) 521-4440" },
                 { icon: Mail, label: "Email", value: "info@primetekservices.com" },
                 { icon: MapPin, label: "Location", value: "New Jersey, USA" },
               ].map((item, i) => (
@@ -140,10 +139,6 @@ export const ContactFormSection = () => {
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Email Address <span className="text-rose-500">*</span></label>
                     <input required type="email" placeholder="jane@pharmacy.com" className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-lg font-bold uppercase tracking-widest text-ink">Phone Number</label>
-                    <input type="tel" placeholder="(555) 000-0000" className="w-full bg-slate-50 border border-ink/10 px-6 py-6 rounded-lg text-ink focus:outline-none focus:border-accent focus:ring-1 focus:ring-brand-teal transition-all" />
                   </div>
                   <div className="space-y-3">
                     <label className="text-lg font-bold uppercase tracking-widest text-ink">Pharmacy Name <span className="text-rose-500">*</span></label>

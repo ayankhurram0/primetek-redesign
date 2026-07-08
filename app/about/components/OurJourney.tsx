@@ -132,7 +132,7 @@ export const OurJourney = () => {
                 {step.title}
               </h2>
 
-              <div className="max-w-none space-y-4 text-base font-light leading-relaxed text-ink-muted md:text-lg lg:text-xl">
+              <div className="max-w-none space-y-4 text-base leading-relaxed text-ink-muted md:text-lg lg:text-xl">
                 {step.paragraphs.map((paragraph) => (
                   <p key={paragraph.slice(0, 40)}>{paragraph}</p>
                 ))}

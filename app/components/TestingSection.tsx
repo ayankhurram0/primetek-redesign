@@ -208,7 +208,7 @@ function RevenueIntelligenceCard() {
             </div>
 
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF4A3A]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-[#FF4A3A] leading-tight">
                     Revenue Intelligence & Reporting
                 </h3>
                 <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
@@ -428,7 +428,7 @@ function ClaimsReimbursementCard() {
             </div>
 
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF6B00]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-[#FF6B00] leading-tight">
                     Claims & Reimbursement Optimization
                 </h3>
                 <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
@@ -611,7 +611,7 @@ function ComplianceAuditCard() {
             </div>
 
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#FF9F29]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-[#FF9F29] leading-tight">
                     Compliance & Audit Protection
                 </h3>
                 <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
@@ -723,23 +723,23 @@ function PatientOperationalCard() {
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     style={{ zIndex: 10 - stackPos, position: "absolute", width: "100%" }}
-                                    className="bg-[#121824] border border-slate-700/40 rounded-[16px] p-3.5 flex flex-col gap-2 shadow-2xl"
+                                    className="bg-[#2563eb] border border-blue-400/40 rounded-[16px] p-3.5 flex flex-col gap-2 shadow-2xl"
                                 >
                                     {/* Top Header */}
                                     <div className="flex justify-between items-center px-0.5">
                                         <div className="flex items-center gap-2">
-                                            <div className="w-6 h-6 rounded-md bg-[#2563eb] flex items-center justify-center shrink-0">
+                                            <div className="w-6 h-6 rounded-md bg-black flex items-center justify-center shrink-0">
                                                 <RotateCcw className="w-3.5 h-3.5 text-white" />
                                             </div>
-                                            <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider font-mono">SYSTEM · {item.initials}</span>
+                                            <span className="text-[9px] text-white font-bold uppercase tracking-wider font-mono">SYSTEM · {item.initials}</span>
                                         </div>
-                                        <span className="text-[9px] text-slate-500 font-medium">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
+                                        <span className="text-[9px] text-white font-medium">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
                                     </div>
 
                                     {/* Body */}
                                     <div className="flex flex-col text-left px-0.5 mt-0.5">
                                         <span className="text-[11px] font-bold text-white leading-tight">{item.name}</span>
-                                        <span className="text-[10px] text-slate-400 leading-normal mt-1">{item.detail}</span>
+                                        <span className="text-[10px] text-white leading-normal mt-1">{item.detail}</span>
                                     </div>
                                 </motion.div>
                             );
@@ -752,7 +752,7 @@ function PatientOperationalCard() {
             </div>
 
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#3B82F6]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-[#3B82F6] leading-tight">
                     Patient & Operational Support Systems
                 </h3>
                 <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">
@@ -947,7 +947,7 @@ function PharmacyGrowthCard() {
             </div>
 
             <div className="mt-5 text-left">
-                <h3 className="font-serif text-2xl font-bold tracking-normal text-ink leading-tight transition-colors duration-300 group-hover:text-[#00C48C]">
+                <h3 className="font-serif text-2xl font-bold tracking-normal text-[#00C48C] leading-tight">
                     Pharmacy Growth & Performance Strategy
                 </h3>
                 <p className="mt-2 text-base leading-relaxed text-ink-muted font-normal min-h-[48px]">

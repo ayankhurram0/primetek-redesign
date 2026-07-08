@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
+import { RotateCcw } from "lucide-react";
+
 type ServiceIllustrationProps = {
   index: number;
   color?: string;
@@ -10,10 +12,10 @@ type ServiceIllustrationProps = {
 
 const ACCENTS = ["#FF4A3A", "#FF6B00", "#FF9F29", "#3B82F6", "#00C48C"] as const;
 
-function StatusBadge({ label, accent }: { label: string; accent: string }) {
+function StatusBadge({ label, accent, className = "top-2.5 right-2.5" }: { label: string; accent: string; className?: string }) {
   return (
     <div
-      className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full text-[8px] font-mono font-bold uppercase tracking-widest pointer-events-none"
+      className={`absolute z-20 flex items-center gap-1.5 px-3 py-1 rounded-full text-[8px] font-mono font-bold uppercase tracking-widest pointer-events-none ${className}`}
       style={{
         border: `1px solid ${accent}66`,
         backgroundColor: `${accent}0d`,
@@ -403,9 +405,9 @@ function PatientIllustration({ accent }: { accent: string }) {
 
   return (
     <div className="w-full h-full relative overflow-hidden flex items-start justify-center pt-2">
-      <StatusBadge label="Sync" accent={accent} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full blur-2xl pointer-events-none" style={{ backgroundColor: `${accent}1a` }} />
-      <div className="relative w-full max-w-[280px] h-[110px]">
+      <StatusBadge label="Sync" accent={accent} className="top-2.5 left-2.5" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="relative w-full max-w-[280px] h-[105px] mt-3">
         <AnimatePresence>
           {notifications.map((itemIndex, stackPos) => {
             const item = OPERATIONS_QUEUE[itemIndex];
@@ -413,39 +415,32 @@ function PatientIllustration({ accent }: { accent: string }) {
             return (
               <motion.div
                 key={`${itemIndex}-${stackPos}`}
-                initial={{ opacity: 0, y: -40 }}
+                initial={{ opacity: 0, y: -40, scale: 1 }}
                 animate={{
                   opacity: isTop ? 1 : stackPos === 1 ? 0.6 : 0.35,
-                  y: stackPos * 10,
+                  y: stackPos * 8,
                   scale: 1 - stackPos * 0.04,
                 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 style={{ zIndex: 10 - stackPos, position: "absolute", width: "100%" }}
-                className="bg-black/50 backdrop-blur-xl border border-ink/10 rounded-[14px] p-3 flex flex-col gap-1.5 shadow-lg"
+                className="bg-[#2563eb] border border-blue-400/40 rounded-[14px] p-2.5 flex flex-col gap-1.5 shadow-2xl"
               >
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-1.5">
-                    <div
-                      className="w-4 h-4 rounded-md flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: `${accent}33` }}
-                    >
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="2.5">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                      </svg>
+                {/* Top Header */}
+                <div className="flex justify-between items-center px-0.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-md bg-black flex items-center justify-center shrink-0">
+                      <RotateCcw className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-[8px] text-ink-subtle font-semibold tracking-wide uppercase">
-                      System • {item.initials}
+                    <span className="text-[8.5px] text-white font-bold uppercase tracking-wider font-mono">
+                      SYSTEM · {item.initials}
                     </span>
                   </div>
-                  <span className="text-[8.5px] text-ink-subtle">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
+                  <span className="text-[8.5px] text-white font-medium">{isTop ? "now" : `${stackPos * 2}m ago`}</span>
                 </div>
-                <div className="text-left">
-                  <span className="text-[9px] font-bold text-ink/90 leading-tight block">{item.name}</span>
-                  <span className="text-[9px] text-ink-muted line-clamp-2 leading-snug mt-0.5 block">{item.detail}</span>
+                <div className="text-left px-0.5 mt-0.5">
+                  <span className="text-[10px] font-bold text-white leading-tight block">{item.name}</span>
+                  <span className="text-[9px] text-white leading-normal mt-0.5 block">{item.detail}</span>
                 </div>
               </motion.div>
             );
