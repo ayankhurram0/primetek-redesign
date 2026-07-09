@@ -80,28 +80,28 @@ export default function Testimonials() {
         <AnimationWrapper direction="up" distance={30} delay={0.1} className="w-full mb-20">
           <div className="w-full bg-white/75 backdrop-blur-xl border border-ink/10 py-10 px-6 md:px-12 flex flex-col md:flex-row justify-around items-center gap-8 rounded-2xl md:rounded-full shadow-lg shadow-ink/5">
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-[#64c4ad] mb-2">
                 <AnimatedNumber value={4.2} prefix="$" suffix="M+" decimals={1} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Revenue Recovered</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-[#64c4ad] uppercase">Revenue Recovered</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-[#64c4ad] mb-2">
                 <AnimatedNumber value={98} suffix="%" decimals={0} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Audit Readiness Score</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-[#64c4ad] uppercase">Audit Readiness Score</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-[#64c4ad] mb-2">
                 <AnimatedNumber value={2} suffix="x" decimals={0} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Monthly Reporting Cycle</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-[#64c4ad] uppercase">Monthly Reporting Cycle</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-ink mb-2">
+              <div className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-[#64c4ad] mb-2">
                 <AnimatedNumber value={100} suffix="+" decimals={0} />
               </div>
-              <div className="text-xs md:text-sm font-semibold tracking-wider text-ink uppercase">Pharmacies Supported</div>
+              <div className="text-xs md:text-sm font-semibold tracking-wider text-[#64c4ad] uppercase">Pharmacies Supported</div>
             </div>
           </div>
         </AnimationWrapper>
