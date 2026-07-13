@@ -9,12 +9,19 @@ import {
 } from "lucide-react";
 import FancyButton from "@/app/components/button";
 import { ServiceIllustration } from "@/app/components/ServiceIllustration";
+import {
+  FeatureStepCard,
+  FEATURE_BLUE as BLUE,
+  FEATURE_TEAL as TEAL,
+} from "@/app/components/FeatureStepCard";
 
 const services = [
   {
     id: "01",
     title: "REVENUE INTELLIGENCE & REPORTING",
     identity: "Visibility",
+    cardBlurb:
+      "Clear visibility into financial performance, risk, and reimbursement trends.",
     icon: BarChart3,
     headline: "Gain Clear Visibility Into Your Pharmacy’s Financial Performance",
     description: "We transform raw pharmacy and PBM data into actionable insights, allowing you to detect irregularities, monitor trends, and make informed operational decisions.\n\nReports are delivered twice monthly, with immediate notification if critical discrepancies or performance concerns are identified.",
@@ -59,6 +66,8 @@ const services = [
     id: "02",
     title: "CLAIMS & REIMBURSEMENT OPTIMIZATION",
     identity: "Recovery",
+    cardBlurb:
+      "Recover missed revenue and strengthen clean-claim reimbursement outcomes.",
     icon: TrendingUp,
     headline: "Capture Missed Revenue and Strengthen Reimbursement Outcomes",
     description: "We actively review and manage your claims activity to resolve payment issues, correct inefficiencies, and ensure your pharmacy is reimbursed accurately and consistently.\n\nReviews are conducted bi-monthly, with prompt escalation of any payment discrepancies or claim-related issues.",
@@ -103,6 +112,8 @@ const services = [
     id: "03",
     title: "COMPLIANCE & AUDIT PROTECTION",
     identity: "Defense",
+    cardBlurb:
+      "Stay audit-ready by catching compliance gaps before they become liabilities.",
     icon: ShieldCheck,
     headline: "Maintain Control in a High-Risk Audit Environment",
     description: "We evaluate your operational and documentation practices against current payer expectations to reduce exposure and reinforce audit preparedness.\n\nCompliance reviews are performed twice per month, with immediate notification of any areas that may increase audit vulnerability.",
@@ -147,6 +158,8 @@ const services = [
     id: "04",
     title: "PATIENT & OPERATIONAL SUPPORT SYSTEMS",
     identity: "Efficiency",
+    cardBlurb:
+      "Streamline patient workflows and operational coordination across your pharmacy.",
     icon: Users,
     headline: "Reduce Operational Strain and Improve Patient Flow",
     description: "We support day-to-day pharmacy operations by improving communication, managing patient interactions, and helping your team operate more efficiently without added internal burden.\n\nActivity summaries are provided bi-monthly, with visibility into engagement trends and operational gaps.",
@@ -191,6 +204,8 @@ const services = [
     id: "05",
     title: "PHARMACY GROWTH & PERFORMANCE STRATEGY",
     identity: "Expansion",
+    cardBlurb:
+      "Grow margins with procurement, pricing, and performance strategy.",
     icon: TrendingUp,
     headline: "Make Smarter Decisions That Drive Long-Term Profitability",
     description: "We analyze financial patterns, purchasing behavior, and payer dynamics to identify opportunities that strengthen margins and support sustainable growth.\n\nInsights are delivered twice monthly, with immediate notification of any performance shifts requiring attention.",
@@ -250,51 +265,21 @@ export const ServicesDetail = () => {
   return (
     <section className="relative w-[85%] mx-auto py-16 md:py-24">
       <div className="relative z-10 space-y-8">
-        {/* Service selector */}
+        {/* Service selector — same card component as Why PrimeTek */}
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 w-full">
-            {services.map((service) => {
-              const isActive = activeId === service.id;
-              const color = colorMap[service.color];
-              return (
-                <button
-                  key={service.id}
-                  type="button"
-                  onClick={() => setActiveId(service.id)}
-                  className={`w-full flex flex-col items-center justify-center gap-4 px-3 py-5 rounded-xl border transition-all duration-300 min-h-[100px] bg-white shadow-[0_8px_32px_rgba(6,43,52,0.08)] ${
-                    isActive
-                      ? "border-ink/15"
-                      : "border-ink/10 hover:border-ink/20 hover:shadow-[0_12px_36px_rgba(6,43,52,0.1)]"
-                  }`}
-                  style={{
-                    borderColor: isActive ? `${color}50` : undefined,
-                    boxShadow: isActive
-                      ? `0 8px 32px rgba(6,43,52,0.08), 0 2px 12px ${color}18`
-                      : undefined,
-                  }}
-                >
-                  <div className="flex items-center gap-4">
-                    <span
-                      className="text-xl sm:text-2xl font-bold font-mono tabular-nums shrink-0"
-                      style={{ color: isActive ? color : "#64748b" }}
-                    >
-                      {service.id}
-                    </span>
-                    <service.icon
-                      className="w-8 h-8 sm:w-9 sm:h-9 shrink-0"
-                      style={{ color: isActive ? color : "#64748b" }}
-                    />
-                  </div>
-                  <span
-                    className={`text-sm sm:text-base font-bold uppercase tracking-wide text-center leading-snug whitespace-normal ${
-                      isActive ? "text-ink" : "text-ink-muted"
-                    }`}
-                  >
-                    {service.title}
-                  </span>
-                </button>
-              );
-            })}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-4">
+            {services.map((service, index) => (
+              <FeatureStepCard
+                key={service.id}
+                id={service.id}
+                title={service.identity}
+                description={service.cardBlurb}
+                icon={service.icon}
+                accent={index % 2 === 0 ? BLUE : TEAL}
+                active={activeId === service.id}
+                onClick={() => setActiveId(service.id)}
+              />
+            ))}
           </div>
         </div>
 

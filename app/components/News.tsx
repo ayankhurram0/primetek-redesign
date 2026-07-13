@@ -31,12 +31,19 @@ interface AlertTheme {
   accentBar: string;
   panelBorder: string;
   panelOverlay: string;
+  panelScrim: string;
+  imageOpacity: string;
   headerBg: string;
   badgeBg: string;
   badgeShadow: string;
   activityBg: string;
   activityBorder: string;
   activityHover: string;
+  titleText: string;
+  bodyText: string;
+  mutedText: string;
+  activityText: string;
+  activityTime: string;
   dotBg: string;
   dotShadow: string;
   radarBorder: string;
@@ -55,13 +62,20 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     iconText: 'text-red-600',
     accentBar: 'bg-red-500',
     panelBorder: 'border-red-300/70',
-    panelOverlay: 'bg-gradient-to-br from-red-500/30 via-rose-200/45 to-white/55',
-    headerBg: 'bg-gradient-to-r from-red-100/90 to-red-50/70',
+    panelOverlay: 'bg-gradient-to-br from-red-500/35 via-rose-100/55 to-white/70',
+    panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
+    imageOpacity: 'opacity-[0.22]',
+    headerBg: 'bg-gradient-to-r from-red-100/95 to-red-50/90',
     badgeBg: 'bg-red-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(239,68,68,0.45)]',
-    activityBg: 'bg-red-500/10',
+    activityBg: 'bg-white/80',
     activityBorder: 'border-red-400/45',
-    activityHover: 'hover:bg-red-500/15 hover:border-red-400/60',
+    activityHover: 'hover:bg-white/95 hover:border-red-400/60',
+    titleText: '!text-ink',
+    bodyText: 'text-ink/80',
+    mutedText: 'text-ink/60',
+    activityText: 'text-ink',
+    activityTime: 'text-ink/55',
     dotBg: 'bg-red-500',
     dotShadow: 'shadow-[0_0_12px_#ef4444]',
     radarBorder: 'border-red-500/50',
@@ -78,13 +92,20 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     iconText: 'text-blue-600',
     accentBar: 'bg-blue-500',
     panelBorder: 'border-blue-300/70',
-    panelOverlay: 'bg-gradient-to-br from-blue-500/25 via-blue-200/40 to-white/55',
-    headerBg: 'bg-gradient-to-r from-blue-100/90 to-blue-50/70',
+    panelOverlay: 'bg-gradient-to-br from-blue-500/30 via-blue-100/55 to-white/70',
+    panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
+    imageOpacity: 'opacity-[0.22]',
+    headerBg: 'bg-gradient-to-r from-blue-100/95 to-blue-50/90',
     badgeBg: 'bg-blue-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(59,130,246,0.45)]',
-    activityBg: 'bg-blue-500/10',
+    activityBg: 'bg-white/80',
     activityBorder: 'border-blue-400/45',
-    activityHover: 'hover:bg-blue-500/15 hover:border-blue-400/60',
+    activityHover: 'hover:bg-white/95 hover:border-blue-400/60',
+    titleText: '!text-ink',
+    bodyText: 'text-ink/80',
+    mutedText: 'text-ink/60',
+    activityText: 'text-ink',
+    activityTime: 'text-ink/55',
     dotBg: 'bg-blue-500',
     dotShadow: 'shadow-[0_0_12px_#3b82f6]',
     radarBorder: 'border-blue-500/50',
@@ -100,20 +121,27 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     iconBg: 'bg-purple-500/25',
     iconText: 'text-purple-600',
     accentBar: 'bg-purple-500',
-    panelBorder: 'border-purple-300/70',
-    panelOverlay: 'bg-gradient-to-br from-purple-500/25 via-purple-200/40 to-white/55',
-    headerBg: 'bg-gradient-to-r from-purple-100/90 to-purple-50/70',
+    panelBorder: 'border-purple-400/60',
+    panelOverlay: 'bg-gradient-to-br from-purple-800/88 via-purple-600/82 to-purple-500/78',
+    panelScrim: 'bg-gradient-to-r from-purple-900/40 via-purple-800/15 to-transparent',
+    imageOpacity: 'opacity-[0.28]',
+    headerBg: 'bg-purple-800/70',
     badgeBg: 'bg-purple-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(168,85,247,0.45)]',
-    activityBg: 'bg-purple-500/10',
-    activityBorder: 'border-purple-400/45',
-    activityHover: 'hover:bg-purple-500/15 hover:border-purple-400/60',
-    dotBg: 'bg-purple-500',
-    dotShadow: 'shadow-[0_0_12px_#a855f7]',
-    radarBorder: 'border-purple-500/50',
-    radarBg: 'bg-purple-500/20',
-    radarBorderSolid: 'border-purple-500',
-    radarText: 'text-purple-500',
+    activityBg: 'bg-white/15',
+    activityBorder: 'border-white/30',
+    activityHover: 'hover:bg-white/25 hover:border-white/45',
+    titleText: '!text-white',
+    bodyText: 'text-white/90',
+    mutedText: 'text-white/70',
+    activityText: 'text-white',
+    activityTime: 'text-white/70',
+    dotBg: 'bg-white',
+    dotShadow: 'shadow-[0_0_12px_rgba(255,255,255,0.55)]',
+    radarBorder: 'border-white/40',
+    radarBg: 'bg-white/15',
+    radarBorderSolid: 'border-white',
+    radarText: 'text-white',
     glowRgb: '168 85 247',
     categoryText: 'text-purple-600',
   },
@@ -124,13 +152,20 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     iconText: 'text-orange-600',
     accentBar: 'bg-orange-500',
     panelBorder: 'border-orange-300/70',
-    panelOverlay: 'bg-gradient-to-br from-orange-500/25 via-orange-200/40 to-white/55',
-    headerBg: 'bg-gradient-to-r from-orange-100/90 to-orange-50/70',
+    panelOverlay: 'bg-gradient-to-br from-orange-500/30 via-orange-100/55 to-white/70',
+    panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
+    imageOpacity: 'opacity-[0.22]',
+    headerBg: 'bg-gradient-to-r from-orange-100/95 to-orange-50/90',
     badgeBg: 'bg-orange-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(249,115,22,0.45)]',
-    activityBg: 'bg-orange-500/10',
+    activityBg: 'bg-white/80',
     activityBorder: 'border-orange-400/45',
-    activityHover: 'hover:bg-orange-500/15 hover:border-orange-400/60',
+    activityHover: 'hover:bg-white/95 hover:border-orange-400/60',
+    titleText: '!text-ink',
+    bodyText: 'text-ink/80',
+    mutedText: 'text-ink/60',
+    activityText: 'text-ink',
+    activityTime: 'text-ink/55',
     dotBg: 'bg-orange-500',
     dotShadow: 'shadow-[0_0_12px_#f97316]',
     radarBorder: 'border-orange-500/50',
@@ -147,13 +182,20 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     iconText: 'text-teal-600',
     accentBar: 'bg-teal-500',
     panelBorder: 'border-teal-300/70',
-    panelOverlay: 'bg-gradient-to-br from-teal-500/25 via-teal-200/40 to-white/55',
-    headerBg: 'bg-gradient-to-r from-teal-100/90 to-teal-50/70',
+    panelOverlay: 'bg-gradient-to-br from-teal-500/30 via-teal-100/55 to-white/70',
+    panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
+    imageOpacity: 'opacity-[0.22]',
+    headerBg: 'bg-gradient-to-r from-teal-100/95 to-teal-50/90',
     badgeBg: 'bg-teal-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(20,184,166,0.45)]',
-    activityBg: 'bg-teal-500/10',
+    activityBg: 'bg-white/80',
     activityBorder: 'border-teal-400/45',
-    activityHover: 'hover:bg-teal-500/15 hover:border-teal-400/60',
+    activityHover: 'hover:bg-white/95 hover:border-teal-400/60',
+    titleText: '!text-ink',
+    bodyText: 'text-ink/80',
+    mutedText: 'text-ink/60',
+    activityText: 'text-ink',
+    activityTime: 'text-ink/55',
     dotBg: 'bg-teal-500',
     dotShadow: 'shadow-[0_0_12px_#14b8a6]',
     radarBorder: 'border-teal-500/50',
@@ -315,9 +357,10 @@ function AlertDetailContent({ alert }: { alert: AlertItem }) {
         <img
           src={imageSrc}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.28]"
+          className={`absolute inset-0 h-full w-full object-cover ${theme.imageOpacity}`}
         />
         <div className={`absolute inset-0 ${theme.panelOverlay}`} />
+        <div className={`absolute inset-0 ${theme.panelScrim}`} />
       </div>
 
       {/* Top bar */}
@@ -337,24 +380,26 @@ function AlertDetailContent({ alert }: { alert: AlertItem }) {
       <div className="relative z-10 flex flex-1 flex-col gap-6 overflow-hidden p-8 pt-6 lg:flex-row lg:items-stretch lg:justify-between">
         <div className="flex flex-1 flex-col justify-between gap-6">
           <div className="space-y-4">
-            <h3 className="font-display text-4xl font-bold leading-tight text-ink lg:text-5xl">
+            <h3 className={`font-display text-4xl font-bold leading-tight lg:text-5xl ${theme.titleText}`}>
               {alert.title}
             </h3>
-            <p className="text-xl leading-relaxed text-ink-muted">{alert.description}</p>
+            <p className={`text-xl leading-relaxed ${theme.bodyText}`}>
+              {alert.description}
+            </p>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-ink-subtle">Recent Updates</h4>
+            <h4 className={`text-xs font-bold uppercase tracking-[0.2em] ${theme.mutedText}`}>Recent Updates</h4>
             {alert.activities.map((act, i) => (
               <div
                 key={`${alert.id}-activity-${i}`}
-                className={`flex items-center justify-between rounded-lg border p-3 transition-all ${theme.activityBg} ${theme.activityBorder} ${theme.activityHover}`}
+                className={`flex items-center justify-between rounded-lg border p-3 backdrop-blur-sm transition-all ${theme.activityBg} ${theme.activityBorder} ${theme.activityHover}`}
               >
                 <div className="flex items-center gap-3">
                   <div className={`h-3 w-3 shrink-0 rounded-full ${theme.dotBg} ${theme.dotShadow}`} />
-                  <span className="text-lg font-medium text-ink">{act.text}</span>
+                  <span className={`text-lg font-medium ${theme.activityText}`}>{act.text}</span>
                 </div>
-                <span className="shrink-0 pl-4 font-mono text-base text-ink-subtle">{act.time}</span>
+                <span className={`shrink-0 pl-4 font-mono text-base ${theme.activityTime}`}>{act.time}</span>
               </div>
             ))}
           </div>

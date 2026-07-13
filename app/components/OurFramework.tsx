@@ -166,15 +166,15 @@ export const OurFramework: React.FC = () => {
                           </div>
                         ) : (
                           <div className="row-icon flex justify-end items-center">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-ink shadow-lg group">
-                              <Icon className="w-8 h-8 lg:w-12 lg:h-12" strokeWidth={1} />
+                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-white shadow-lg group">
+                              <Icon className="w-8 h-8 lg:w-12 lg:h-12 text-white" strokeWidth={1} />
                             </div>
                           </div>
                         )}
                       </div>
 
                       <div className="hidden md:flex justify-center relative z-20">
-                        <div className="row-dot w-12 h-12 rounded-full shadow-md flex items-center justify-center text-ink text-md font-bold bg-teal-400 backdrop-blur-md">
+                        <div className="row-dot w-12 h-12 rounded-full shadow-md flex items-center justify-center text-white text-md font-bold bg-teal-400 backdrop-blur-md">
                           {step.id}
                         </div>
                       </div>
@@ -182,8 +182,8 @@ export const OurFramework: React.FC = () => {
                       <div className="md:pl-10">
                         {isTextOnLeft ? (
                           <div className="row-icon flex justify-start items-center">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-ink shadow-lg group">
-                              <Icon className="w-8 h-8 lg:w-12 lg:h-12" strokeWidth={1} />
+                            <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-teal-400 flex items-center justify-center text-white shadow-lg group">
+                              <Icon className="w-8 h-8 lg:w-12 lg:h-12 text-white" strokeWidth={1} />
                             </div>
                           </div>
                         ) : (
