@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import aboutImg1 from "@/src/assets/aboutimg1.png";
-import aboutImg2 from "@/src/assets/aboutimg2.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,12 +12,11 @@ export const AboutHero = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Intro animations
       gsap.from(".hero-subtitle", {
         opacity: 0,
         y: -15,
         duration: 0.8,
-        ease: "power2.out"
+        ease: "power2.out",
       });
 
       gsap.from(".hero-title", {
@@ -27,7 +24,7 @@ export const AboutHero = () => {
         y: 30,
         duration: 1,
         ease: "power3.out",
-        delay: 0.1
+        delay: 0.1,
       });
 
       gsap.from(".hero-description", {
@@ -35,38 +32,33 @@ export const AboutHero = () => {
         y: 20,
         duration: 0.8,
         ease: "power2.out",
-        delay: 0.3
+        delay: 0.3,
       });
 
-      gsap.from(".about-img-left", {
-        opacity: 0,
-        x: -80,
-        duration: 1.4,
-        ease: "power4.out",
-        delay: 0.2
-      });
+      gsap.fromTo(
+        ".about-hero-bg",
+        { scale: 1.06, opacity: 0.85 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1.6,
+          ease: "power2.out",
+        },
+      );
 
-      gsap.from(".about-img-right", {
-        opacity: 0,
-        x: 80,
-        duration: 1.4,
-        ease: "power4.out",
-        delay: 0.2
-      });
-
-      // Scroll animations
-      gsap.fromTo(heroRef.current,
+      gsap.fromTo(
+        heroRef.current,
         { scale: 1, opacity: 1 },
         {
-          scale: 0.95,
-          opacity: 0,
+          scale: 0.98,
+          opacity: 0.55,
           scrollTrigger: {
             trigger: heroRef.current,
             start: "center center",
             end: "bottom top",
             scrub: true,
-          }
-        }
+          },
+        },
       );
     }, containerRef);
     return () => ctx.revert();
@@ -75,88 +67,41 @@ export const AboutHero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-16 pt-32 pb-20 overflow-hidden bg-transparent"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-transparent px-6 pb-20 pt-32 md:px-16"
     >
-      {/* Background Masked Images */}
-
-      {/* Left Image: Female Pharmacist */}
       <div
-        className="absolute left-0 top-[10%] w-[38%] lg:w-[32%] xl:w-[28%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-left"
+        ref={heroRef}
+        className="about-hero-bg pointer-events-none absolute inset-0 z-0"
+        aria-hidden
       >
-        {/* Horizontal Blend */}
-        <div
-          className="w-full h-full"
-          style={{
-            maskImage: "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
-            WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
-          }}
-        >
-          {/* Vertical Blend */}
-          <div
-            className="w-full h-full relative"
-            style={{
-              maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
-              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
-            }}
-          >
-            <Image
-              src={aboutImg1}
-              alt="Pharmacist on front lines"
-              fill
-              className="object-cover object-top opacity-90 lg:opacity-100"
-              priority
-            />
-          </div>
-        </div>
+        <Image
+          src="/images/about-hero-bg.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Soft center wash so headline stays readable */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.72)_0%,rgba(255,255,255,0.35)_42%,rgba(255,255,255,0.08)_70%,transparent_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/50 to-transparent" />
       </div>
 
-      {/* Right Image: Patient/Man */}
-      <div
-        className="absolute right-0 top-[10%] w-[38%] lg:w-[32%] xl:w-[28%] h-[80%] pointer-events-none z-0 overflow-hidden about-img-right"
-      >
-        {/* Horizontal Blend */}
-        <div
-          className="w-full h-full"
-          style={{
-            maskImage: "linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
-            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
-          }}
-        >
-          {/* Vertical Blend */}
-          <div
-            className="w-full h-full relative"
-            style={{
-              maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
-              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
-            }}
-          >
-            <Image
-              src={aboutImg2}
-              alt="Independent pharmacy customer"
-              fill
-              className="object-cover object-top opacity-90 lg:opacity-100"
-              priority
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Central Hero Content */}
-      <div className="relative z-10 w-[85%] mx-auto max-w-4xl text-center flex flex-col items-center justify-center">
-
-        <span className="text-accent font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-6 block hero-subtitle">
+      <div className="relative z-10 mx-auto flex w-[85%] max-w-4xl flex-col items-center justify-center text-center">
+        <span className="hero-subtitle mb-6 block text-sm font-bold uppercase tracking-[0.2em] text-accent md:text-base">
           Lorem Ipsum
         </span>
 
-        <h1 className="text-5xl xl:text-7xl font-bold text-ink tracking-tight leading-[1.05] uppercase mb-8 hero-title max-w-3xl font-display">
+        <h1 className="hero-title mb-8 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.05] tracking-tight text-ink xl:text-7xl">
           Lorem Ipsum <br />
           <span className="text-accent">Dolor Sit Amet</span>
         </h1>
 
-        <p className="text-lg md:text-xl lg:text-2xl text-ink/80 font-light leading-relaxed max-w-2xl mx-auto hero-description font-sans">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud.
+        <p className="hero-description mx-auto max-w-2xl font-sans text-lg font-light leading-relaxed text-ink/80 md:text-xl lg:text-2xl">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam quis nostrud.
         </p>
-
       </div>
     </section>
   );

@@ -63,11 +63,13 @@ function ServiceCardShell({
       <div className={styles.numberBadge}>{step}</div>
       <div className={styles.iconDisc}>{icon}</div>
       <div className={styles.main}>
-        <div className={styles.statusPill}>
-          <span className={styles.statusDot} />
-          {badge}
+        <div className={styles.cardHead}>
+          <h3 className={styles.cardTitle}>{title}</h3>
+          <div className={styles.statusPill}>
+            <span className={styles.statusDot} />
+            {badge}
+          </div>
         </div>
-        <h3 className={styles.cardTitle}>{title}</h3>
         <p className={styles.cardDescription}>{description}</p>
         <div className={styles.graphicSlot}>{children}</div>
       </div>
@@ -171,27 +173,29 @@ function RevenueIntelligenceCard() {
       badge="Live Tracking"
       accent={ACCENTS.blue.accent}
       accentDeep={ACCENTS.blue.deep}
-      icon={<Target className="h-5 w-5" strokeWidth={1.6} />}
+      icon={<Target className="h-9 w-9" strokeWidth={1.6} />}
       metric="$1.2M+"
       metricLabel="avg. underpayments recovered per store."
       cta="Analyze Revenue"
       href="#analyze"
     >
-      <div className="relative flex h-full min-h-[96px] w-full flex-col justify-between overflow-hidden rounded-xl border border-[#c5d4eb] bg-[#f4f7fc] p-2.5">
+      <div
+        className={`${styles.graphicPanel} border-[#c5d4eb] bg-[#f4f7fc]`}
+      >
         <motion.div
           className="pointer-events-none absolute top-0 bottom-0 z-10 w-[1.5px] bg-gradient-to-b from-transparent via-[#2b4c8c]/60 to-transparent"
           animate={{ x: ["30px", "330px", "30px"] }}
           transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
         />
 
-        <div className="relative mt-1 flex h-28 w-full flex-1 items-center justify-center">
-          <div className="pointer-events-none absolute inset-0 flex flex-col justify-between px-4 py-6 opacity-20">
+        <div className="relative mt-0 flex h-full w-full flex-1 items-center justify-center">
+          <div className="pointer-events-none absolute inset-0 flex flex-col justify-between px-4 py-4 opacity-20">
             <div className="w-full border-b border-dashed border-[#2b4c8c]" />
             <div className="w-full border-b border-dashed border-[#2b4c8c]" />
             <div className="w-full border-b border-dashed border-[#2b4c8c]" />
           </div>
 
-          <svg className="h-20 w-full overflow-visible" viewBox="0 0 350 110" fill="none">
+          <svg className="h-[72px] w-full overflow-visible" viewBox="0 0 350 110" fill="none">
             <defs>
               <linearGradient id="blueCurveGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={BLUE} stopOpacity="0.18" />
@@ -300,25 +304,27 @@ function ComplianceAuditCard() {
       badge="Risk Scanner Active"
       accent={ACCENTS.teal.accent}
       accentDeep={ACCENTS.teal.deep}
-      icon={<ShieldCheck className="h-5 w-5" strokeWidth={1.6} />}
+      icon={<ShieldCheck className="h-9 w-9" strokeWidth={1.6} />}
       metric="87%"
       metricLabel="achieve full compliance within 30 days."
       cta="Check Audit Risk"
       href="#audits"
     >
-      <div className="relative flex h-full min-h-[96px] w-full flex-col justify-between overflow-hidden rounded-xl border border-[#b8e8e8] bg-[#f0fafa] p-2.5">
+      <div
+        className={`${styles.graphicPanel} border-[#b8e8e8] bg-[#f0fafa]`}
+      >
         <motion.div
           className="pointer-events-none absolute inset-x-0 h-10 bg-gradient-to-b from-transparent via-[#00a3a3]/10 to-transparent"
           animate={{ y: [-40, 180] }}
           transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
         />
 
-        <div className="relative mt-2 flex h-[90px] w-full flex-1 items-center justify-center">
-          <div className="relative z-10 flex w-full items-center justify-between px-4">
-            <div className="absolute top-[22px] left-[38px] right-[38px] h-[2.5px] -translate-y-1/2 bg-[#00a3a3]/15" />
+        <div className="relative mt-0 flex h-full w-full flex-1 items-center justify-center">
+          <div className="relative z-10 flex w-full items-center justify-between px-3">
+            <div className="absolute top-[18px] left-[34px] right-[34px] h-[2.5px] -translate-y-1/2 bg-[#00a3a3]/15" />
             <motion.div
-              className="absolute top-[22px] left-[38px] h-[2.5px] origin-left -translate-y-1/2 bg-[#00a3a3]"
-              style={{ right: "38px" }}
+              className="absolute top-[18px] left-[34px] h-[2.5px] origin-left -translate-y-1/2 bg-[#00a3a3]"
+              style={{ right: "34px" }}
               initial={false}
               animate={{
                 scaleX: activeStage === 0 ? 0 : activeStage === 1 ? 0.5 : 1,
@@ -434,15 +440,17 @@ function ClaimsReimbursementCard() {
       badge="Auto-Route"
       accent={ACCENTS.orange.accent}
       accentDeep={ACCENTS.orange.deep}
-      icon={<FileText className="h-5 w-5" strokeWidth={1.6} />}
+      icon={<FileText className="h-9 w-9" strokeWidth={1.6} />}
       metric="19%"
       metricLabel="increase in clean-claim recovery rates."
       cta="Fix My Claims"
       href="#claims"
     >
-      <div className="relative flex h-full min-h-[96px] w-full flex-col justify-between overflow-hidden rounded-xl border border-[#fed7aa] bg-[#fff7ed] p-2.5">
-        <div className="relative mt-1 flex h-[110px] w-full flex-1 items-center justify-center">
-          <svg className="h-20 w-full overflow-visible" viewBox="0 0 320 100" fill="none">
+      <div
+        className={`${styles.graphicPanel} border-[#fed7aa] bg-[#fff7ed]`}
+      >
+        <div className="relative mt-0 flex h-full w-full flex-1 items-center justify-center">
+          <svg className="h-[72px] w-full overflow-visible" viewBox="0 0 320 100" fill="none">
             <path
               d="M50 50 L120 50"
               stroke="rgba(249,115,22,0.15)"
@@ -652,65 +660,70 @@ function PatientOperationalCard() {
       badge="Sync"
       accent={ACCENTS.royal.accent}
       accentDeep={ACCENTS.royal.deep}
-      icon={<Users className="h-5 w-5" strokeWidth={1.6} />}
+      icon={<Users className="h-9 w-9" strokeWidth={1.6} />}
       metric="30%"
       metricLabel="reduction in bottlenecks."
       cta="Improve Operations"
       href="#operations"
     >
-      <div className="relative flex min-h-[96px] w-full items-start justify-center overflow-hidden rounded-xl border border-[#c7d2fe] bg-[#eef2ff] p-2.5">
-        <div className="relative h-[88px] w-full max-w-[280px]">
-          <AnimatePresence>
-            {notifications.map((itemIndex, stackPos) => {
-              const item = OPERATIONS_QUEUE[itemIndex];
-              const isTop = stackPos === 0;
-              return (
-                <motion.div
-                  key={itemIndex}
-                  initial={{ opacity: 0, y: -40, scale: 1 }}
-                  animate={{
-                    opacity: isTop ? 1 : stackPos === 1 ? 0.6 : 0.35,
-                    y: stackPos * 10,
-                    scale: 1 - stackPos * 0.04,
-                  }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  style={{
-                    zIndex: 10 - stackPos,
-                    position: "absolute",
-                    width: "100%",
-                  }}
-                  className="flex flex-col gap-2 rounded-[16px] border border-indigo-300/40 bg-[#4f46e5] p-2.5 shadow-2xl"
-                >
-                  <div className="flex items-center justify-between px-0.5">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-black">
-                        <RotateCcw className="h-3.5 w-3.5 text-white" />
+      <div
+        className={`${styles.graphicPanel} border-[#c7d2fe] bg-[#eef2ff]`}
+      >
+        <div className="relative mx-auto flex h-full w-full max-w-[280px] items-center justify-center">
+          <div className="relative w-full" style={{ height: 78 }}>
+            <AnimatePresence>
+              {notifications.map((itemIndex, stackPos) => {
+                const item = OPERATIONS_QUEUE[itemIndex];
+                const isTop = stackPos === 0;
+                return (
+                  <motion.div
+                    key={itemIndex}
+                    initial={{ opacity: 0, y: -40, scale: 1 }}
+                    animate={{
+                      opacity: isTop ? 1 : stackPos === 1 ? 0.6 : 0.35,
+                      y: stackPos * 8,
+                      scale: 1 - stackPos * 0.04,
+                    }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    style={{
+                      zIndex: 10 - stackPos,
+                      position: "absolute",
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                      width: "100%",
+                    }}
+                    className="flex flex-col gap-1 rounded-[12px] border border-indigo-300/40 bg-[#4f46e5] p-2 shadow-2xl"
+                  >
+                    <div className="flex items-center justify-between px-0.5">
+                      <div className="flex items-center gap-2">
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-black">
+                          <RotateCcw className="h-3.5 w-3.5 text-white" />
+                        </div>
+                        <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-white">
+                          SYSTEM · {item.initials}
+                        </span>
                       </div>
-                      <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-white">
-                        SYSTEM · {item.initials}
+                      <span className="text-[9px] font-medium text-white">
+                        {isTop ? "now" : `${stackPos * 2}m ago`}
                       </span>
                     </div>
-                    <span className="text-[9px] font-medium text-white">
-                      {isTop ? "now" : `${stackPos * 2}m ago`}
-                    </span>
-                  </div>
 
-                  <div className="mt-0.5 flex flex-col px-0.5 text-left">
-                    <span className="text-[11px] font-bold leading-tight text-white">
-                      {item.name}
-                    </span>
-                    <span className="mt-1 text-[10px] leading-normal text-white">
-                      {item.detail}
-                    </span>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
+                    <div className="mt-0.5 flex flex-col px-0.5 text-left">
+                      <span className="line-clamp-1 text-[11px] font-bold leading-tight text-white">
+                        {item.name}
+                      </span>
+                      <span className="mt-0.5 line-clamp-1 text-[10px] leading-normal text-white/90">
+                        {item.detail}
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
         </div>
-
-        <div className="pointer-events-none absolute top-1/2 left-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-2xl" />
       </div>
     </ServiceCardShell>
   );
@@ -748,17 +761,20 @@ function PharmacyGrowthCard() {
       badge="Growth Scale"
       accent={ACCENTS.green.accent}
       accentDeep={ACCENTS.green.deep}
-      icon={<BarChart3 className="h-5 w-5" strokeWidth={1.6} />}
+      icon={<BarChart3 className="h-9 w-9" strokeWidth={1.6} />}
       metric="+18%"
       metricLabel="margin amplification across departments."
       cta="Grow My Pharmacy"
       href="#growth"
     >
-      <div className="relative flex h-full min-h-[96px] w-full items-center justify-center overflow-hidden rounded-xl border border-[#bbf7d0] bg-[#f0fdf4] p-2.5">
+      <div
+        className={`${styles.graphicPanel} border-[#bbf7d0] bg-[#f0fdf4]`}
+      >
         <svg
-          className="mt-0 h-[88px] w-full overflow-visible"
+          className="h-full w-full overflow-visible"
           viewBox="0 0 500 130"
           fill="none"
+          preserveAspectRatio="xMidYMid meet"
         >
           <line
             x1="20"
@@ -1000,14 +1016,6 @@ function PharmacyGrowthCard() {
 // SECTION
 // ==========================================
 
-const TIMELINE_DOTS = [
-  ACCENTS.blue.accent,
-  ACCENTS.teal.accent,
-  ACCENTS.orange.accent,
-  ACCENTS.royal.accent,
-  ACCENTS.green.accent,
-];
-
 export default function TestingSection() {
   return (
     <section className={styles.section}>
@@ -1048,18 +1056,6 @@ export default function TestingSection() {
         <div className={styles.gridBottom}>
           <PatientOperationalCard />
           <PharmacyGrowthCard />
-        </div>
-
-        <div className={styles.timeline} aria-hidden>
-          {TIMELINE_DOTS.map((color, i) => (
-            <React.Fragment key={color}>
-              {i > 0 && <div className={styles.timelineRail} />}
-              <div
-                className={styles.timelineDot}
-                style={{ background: color }}
-              />
-            </React.Fragment>
-          ))}
         </div>
       </div>
     </section>

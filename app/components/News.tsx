@@ -56,9 +56,9 @@ interface AlertTheme {
 
 const THEMES: Record<AlertThemeKey, AlertTheme> = {
   red: {
-    cardGradient: 'bg-gradient-to-r from-red-500/35 to-red-600/25',
-    cardBorder: 'border-red-400/55',
-    iconBg: 'bg-red-500/25',
+    cardGradient: 'bg-white',
+    cardBorder: 'border-red-400',
+    iconBg: 'bg-red-50',
     iconText: 'text-red-600',
     accentBar: 'bg-red-500',
     panelBorder: 'border-red-300/70',
@@ -86,9 +86,9 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     categoryText: 'text-red-600',
   },
   blue: {
-    cardGradient: 'bg-gradient-to-r from-blue-500/30 to-blue-600/20',
-    cardBorder: 'border-blue-400/55',
-    iconBg: 'bg-blue-500/25',
+    cardGradient: 'bg-white',
+    cardBorder: 'border-blue-400',
+    iconBg: 'bg-blue-50',
     iconText: 'text-blue-600',
     accentBar: 'bg-blue-500',
     panelBorder: 'border-blue-300/70',
@@ -116,39 +116,39 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     categoryText: 'text-blue-600',
   },
   purple: {
-    cardGradient: 'bg-gradient-to-r from-purple-500/35 to-purple-600/25',
-    cardBorder: 'border-purple-400/55',
-    iconBg: 'bg-purple-500/25',
+    cardGradient: 'bg-white',
+    cardBorder: 'border-purple-400',
+    iconBg: 'bg-purple-50',
     iconText: 'text-purple-600',
     accentBar: 'bg-purple-500',
-    panelBorder: 'border-purple-400/60',
-    panelOverlay: 'bg-gradient-to-br from-purple-800/88 via-purple-600/82 to-purple-500/78',
-    panelScrim: 'bg-gradient-to-r from-purple-900/40 via-purple-800/15 to-transparent',
-    imageOpacity: 'opacity-[0.28]',
-    headerBg: 'bg-purple-800/70',
+    panelBorder: 'border-purple-300/70',
+    panelOverlay: 'bg-gradient-to-br from-purple-500/28 via-purple-100/55 to-white/70',
+    panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
+    imageOpacity: 'opacity-[0.22]',
+    headerBg: 'bg-gradient-to-r from-purple-100/95 to-purple-50/90',
     badgeBg: 'bg-purple-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(168,85,247,0.45)]',
-    activityBg: 'bg-white/15',
-    activityBorder: 'border-white/30',
-    activityHover: 'hover:bg-white/25 hover:border-white/45',
-    titleText: '!text-white',
-    bodyText: 'text-white/90',
-    mutedText: 'text-white/70',
-    activityText: 'text-white',
-    activityTime: 'text-white/70',
-    dotBg: 'bg-white',
-    dotShadow: 'shadow-[0_0_12px_rgba(255,255,255,0.55)]',
-    radarBorder: 'border-white/40',
-    radarBg: 'bg-white/15',
-    radarBorderSolid: 'border-white',
-    radarText: 'text-white',
+    activityBg: 'bg-white/80',
+    activityBorder: 'border-purple-400/45',
+    activityHover: 'hover:bg-white/95 hover:border-purple-400/60',
+    titleText: '!text-ink',
+    bodyText: 'text-ink/80',
+    mutedText: 'text-ink/60',
+    activityText: 'text-ink',
+    activityTime: 'text-ink/55',
+    dotBg: 'bg-purple-500',
+    dotShadow: 'shadow-[0_0_12px_#a855f7]',
+    radarBorder: 'border-purple-500/50',
+    radarBg: 'bg-purple-500/20',
+    radarBorderSolid: 'border-purple-500',
+    radarText: 'text-purple-500',
     glowRgb: '168 85 247',
     categoryText: 'text-purple-600',
   },
   orange: {
-    cardGradient: 'bg-gradient-to-r from-orange-500/30 to-orange-600/20',
-    cardBorder: 'border-orange-400/55',
-    iconBg: 'bg-orange-500/25',
+    cardGradient: 'bg-white',
+    cardBorder: 'border-orange-400',
+    iconBg: 'bg-orange-50',
     iconText: 'text-orange-600',
     accentBar: 'bg-orange-500',
     panelBorder: 'border-orange-300/70',
@@ -176,9 +176,9 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     categoryText: 'text-orange-600',
   },
   teal: {
-    cardGradient: 'bg-gradient-to-r from-teal-500/30 to-teal-600/20',
-    cardBorder: 'border-teal-400/55',
-    iconBg: 'bg-teal-500/25',
+    cardGradient: 'bg-white',
+    cardBorder: 'border-teal-400',
+    iconBg: 'bg-teal-50',
     iconText: 'text-teal-600',
     accentBar: 'bg-teal-500',
     panelBorder: 'border-teal-300/70',
@@ -299,15 +299,15 @@ function getImageSrc(image: string | StaticImageData): string {
 
 function RadarAnimation({ icon: Icon, theme }: { icon: LucideIcon; theme: AlertTheme }) {
   return (
-    <div className="relative w-72 h-72 flex items-center justify-center">
+    <div className="relative flex h-52 w-52 items-center justify-center">
       {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}
           className={`absolute rounded-full border-2 ${theme.radarBorder}`}
-          initial={{ width: 100, height: 100, opacity: 0 }}
+          initial={{ width: 72, height: 72, opacity: 0 }}
           animate={{
-            width: 100 + i * 55,
-            height: 100 + i * 55,
+            width: 72 + i * 40,
+            height: 72 + i * 40,
             opacity: [0, 0.5, 0],
           }}
           transition={{
@@ -319,12 +319,12 @@ function RadarAnimation({ icon: Icon, theme }: { icon: LucideIcon; theme: AlertT
         />
       ))}
       <motion.div
-        className={`z-10 ${theme.radarBg} p-6 rounded-full border-2 ${theme.radarBorderSolid}`}
+        className={`z-10 rounded-full border-2 p-4 ${theme.radarBg} ${theme.radarBorderSolid}`}
         style={{ boxShadow: `0 0 30px rgba(${theme.glowRgb} / 0.35)` }}
         animate={{ scale: [1, 1.12, 1] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <Icon className={`w-14 h-14 ${theme.radarText}`} />
+        <Icon className={`h-10 w-10 ${theme.radarText}`} />
       </motion.div>
     </div>
   );
@@ -364,50 +364,51 @@ function AlertDetailContent({ alert }: { alert: AlertItem }) {
       </div>
 
       {/* Top bar */}
-      <div className={`relative z-20 flex shrink-0 items-center gap-8 border-b px-6 py-4 ${theme.headerBg} ${theme.panelBorder}`}>
-        <div className="flex gap-2.5">
-          <div className="h-3.5 w-3.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.9)] ring-1 ring-white/80" />
-          <div className="h-3.5 w-3.5 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
-          <div className="h-3.5 w-3.5 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
+      <div className={`relative z-20 flex shrink-0 items-center gap-6 border-b px-5 py-3 ${theme.headerBg} ${theme.panelBorder}`}>
+        <div className="flex gap-2">
+          <div className="h-3 w-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.9)] ring-1 ring-white/80" />
+          <div className="h-3 w-3 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
+          <div className="h-3 w-3 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
         </div>
-        <div className={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-base font-semibold ${theme.badgeBg} ${theme.badgeShadow}`}>
-          <Icon className="h-5 w-5 shrink-0" />
+        <div className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold ${theme.badgeBg} ${theme.badgeShadow}`}>
+          <Icon className="h-4 w-4 shrink-0" />
           <span>{alert.category}</span>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-1 flex-col gap-6 overflow-hidden p-8 pt-6 lg:flex-row lg:items-stretch lg:justify-between">
-        <div className="flex flex-1 flex-col justify-between gap-6">
-          <div className="space-y-4">
-            <h3 className={`font-display text-4xl font-bold leading-tight lg:text-5xl ${theme.titleText}`}>
+      <div className="relative z-10 flex flex-1 flex-col gap-4 overflow-hidden p-6 pt-5 lg:flex-row lg:items-stretch lg:justify-between">
+        <div className="flex flex-1 flex-col justify-between gap-4">
+          <div className="space-y-3">
+            <h3 className={`font-display text-3xl font-bold leading-tight lg:text-[2.5rem] ${theme.titleText}`}>
               {alert.title}
             </h3>
-            <p className={`text-xl leading-relaxed ${theme.bodyText}`}>
+            <p className={`text-lg leading-relaxed lg:text-xl ${theme.bodyText}`}>
               {alert.description}
             </p>
           </div>
 
-          <div className="space-y-3">
+          {/* Recent Updates */}
+          <div className="space-y-2">
             <h4 className={`text-xs font-bold uppercase tracking-[0.2em] ${theme.mutedText}`}>Recent Updates</h4>
             {alert.activities.map((act, i) => (
               <div
                 key={`${alert.id}-activity-${i}`}
-                className={`flex items-center justify-between rounded-lg border p-3 backdrop-blur-sm transition-all ${theme.activityBg} ${theme.activityBorder} ${theme.activityHover}`}
+                className={`flex items-center justify-between rounded-lg border px-3.5 py-2.5 backdrop-blur-sm transition-all ${theme.activityBg} ${theme.activityBorder} ${theme.activityHover}`}
               >
-                <div className="flex items-center gap-3">
-                  <div className={`h-3 w-3 shrink-0 rounded-full ${theme.dotBg} ${theme.dotShadow}`} />
-                  <span className={`text-lg font-medium ${theme.activityText}`}>{act.text}</span>
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <div className={`h-2.5 w-2.5 shrink-0 rounded-full ${theme.dotBg} ${theme.dotShadow}`} />
+                  <span className={`truncate text-base font-medium leading-snug ${theme.activityText}`}>{act.text}</span>
                 </div>
-                <span className={`shrink-0 pl-4 font-mono text-base ${theme.activityTime}`}>{act.time}</span>
+                <span className={`shrink-0 pl-3 font-mono text-sm leading-snug ${theme.activityTime}`}>{act.time}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Right: radar only */}
-        <div className="relative hidden w-80 shrink-0 items-center justify-center lg:flex">
-          <div className="relative flex h-72 w-full items-center justify-center">
+        <div className="relative hidden w-64 shrink-0 items-center justify-center lg:flex">
+          <div className="relative flex h-52 w-full items-center justify-center">
             <RadarAnimation key={alert.id} icon={Icon} theme={theme} />
           </div>
         </div>
@@ -470,104 +471,89 @@ export default function IntelligenceDashboard() {
 
   return (
     <div ref={sectionRef} className="relative z-10 h-auto space-y-8 overflow-hidden 2xl:py-20">
-      {/* Ambient reddish background wash */}
+      {/* Soft cool atmosphere — light slate + teal, faint alert accent */}
       <div
         className="pointer-events-none absolute inset-0 z-0"
         style={{
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
-          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)',
+          maskImage: 'linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)',
         }}
       >
-        <div className="absolute top-[10%] left-[-5%] h-[850px] w-[1100px] rounded-[100%] bg-red-500/50 blur-[220px]" />
-        <div className="absolute top-[25%] left-[15%] h-[600px] w-[750px] rounded-[100%] bg-rose-400/45 blur-[180px]" />
-        <div className="absolute top-[40%] right-0 h-[550px] w-[700px] rounded-[100%] bg-red-400/35 blur-[200px]" />
+        <div className="absolute inset-0 bg-[#f7f9fc]" />
+        <div className="absolute top-[-10%] left-[-8%] h-[70%] w-[55%] rounded-full bg-[#2b4c8c]/[0.07] blur-[120px]" />
+        <div className="absolute bottom-[-5%] right-[-6%] h-[60%] w-[50%] rounded-full bg-teal-500/[0.08] blur-[130px]" />
+        <div className="absolute top-[35%] left-[40%] h-[40%] w-[35%] rounded-full bg-rose-400/[0.06] blur-[110px]" />
+        <div
+          className="absolute inset-y-[8%] right-0 w-[28%] opacity-[0.35]"
+          style={{
+            backgroundImage: 'radial-gradient(rgba(100,116,139,0.35) 1px, transparent 1px)',
+            backgroundSize: '18px 18px',
+            maskImage: 'linear-gradient(90deg, transparent, #000 40%)',
+            WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 40%)',
+          }}
+        />
       </div>
 
       <section ref={dashboardRef} id="intelligence" className="mx-auto w-[85%] animate-in fade-in duration-700">
-        <div className="flex flex-col items-center gap-8 lg:grid lg:grid-cols-12">
-          {/* Left column */}
-          <div className="flex w-full flex-col space-y-8 lg:col-span-4">
-            <section ref={headingRef} className="space-y-4 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 rounded-full border border-red-500/50 bg-red-600/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.1em] text-red-500 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
-                Real-Time Alerts
-              </div>
-              <h2 className="text-5xl font-bold leading-tight tracking-tight text-ink lg:text-6xl 2xl:text-7xl">
-                Proactive Risk <br />
-                <span className="text-red-600"> Alerts Included</span>
-              </h2>
-            </section>
+        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_minmax(0,1fr)_auto] lg:gap-x-8 lg:gap-y-6">
+          {/* Heading — left only */}
+          <section
+            ref={headingRef}
+            className="space-y-4 text-center lg:col-start-1 lg:col-end-5 lg:row-start-1 lg:text-left"
+          >
+            <div className="inline-flex items-center gap-2 rounded-full border border-red-500/50 bg-red-600/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.1em] text-red-500 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+              Real-Time Alerts
+            </div>
+            <h2 className="text-5xl font-bold leading-tight tracking-tight text-ink lg:text-6xl 2xl:text-7xl">
+              Proactive Risk <br />
+              <span className="text-red-600"> Alerts Included</span>
+            </h2>
+          </section>
 
-            <div className="w-full space-y-3">
-              {ALERTS.map((alert) => {
-                const isActive = activeAlertId === alert.id;
-                const theme = THEMES[alert.theme];
-                const Icon = getAlertIcon(alert.category);
+          {/* Alert list — left, middle row */}
+          <div className="w-full space-y-3 lg:col-start-1 lg:col-end-5 lg:row-start-2">
+            {ALERTS.map((alert) => {
+              const isActive = activeAlertId === alert.id;
+              const theme = THEMES[alert.theme];
+              const Icon = getAlertIcon(alert.category);
 
-                return (
-                  <button
-                    key={alert.id}
-                    type="button"
-                    onClick={() => selectAlert(alert.id)}
-                    className={`group relative w-full overflow-hidden rounded-xl border-2 p-4 text-left backdrop-blur-md transition-all duration-300 ${
-                      isActive
-                        ? `${theme.cardGradient} ${theme.cardBorder}`
-                        : 'border-ink/10 bg-white/70 hover:border-ink/20 hover:bg-white/85'
-                    }`}
-                    style={
-                      isActive
-                        ? { boxShadow: `0 4px 24px rgba(${theme.glowRgb} / 0.18)` }
-                        : undefined
-                    }
-                  >
-                    {isActive && (
-                      <div className={`absolute top-3 bottom-3 left-0 w-1 rounded-full ${theme.accentBar}`} />
-                    )}
-                    <div className="flex items-center gap-4">
-                      <div className={`shrink-0 rounded-lg p-2 ${theme.iconBg} ${theme.iconText} ${isActive ? '' : 'opacity-70'}`}>
-                        <Icon className="h-8 w-8" />
+              return (
+                <button
+                  key={alert.id}
+                  type="button"
+                  onClick={() => selectAlert(alert.id)}
+                  className={`group relative w-full overflow-hidden rounded-xl border p-4 text-left shadow-sm transition-all duration-300 ${
+                    isActive
+                      ? `${theme.cardGradient} ${theme.cardBorder} shadow-md`
+                      : 'border-slate-200/80 bg-white/90 hover:border-slate-300 hover:bg-white hover:shadow-md'
+                  }`}
+                  style={
+                    isActive
+                      ? { boxShadow: `0 8px 28px rgba(${theme.glowRgb} / 0.22)` }
+                      : undefined
+                  }
+                >
+                  {isActive && (
+                    <div className={`absolute top-3 bottom-3 left-0 w-1 rounded-full ${theme.accentBar}`} />
+                  )}
+                    <div className="flex items-center gap-4 pl-1.5">
+                      <div className={`shrink-0 rounded-lg p-2.5 ${theme.iconBg} ${theme.iconText}`}>
+                        <Icon className="h-8 w-8" strokeWidth={1.75} />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className={`mb-1 text-base font-semibold uppercase tracking-wider ${isActive ? theme.categoryText : 'text-ink/70'}`}>
+                        <div className={`mb-1.5 text-base font-bold uppercase tracking-wider ${theme.categoryText}`}>
                           {alert.category}
                         </div>
-                        <div className="truncate text-lg font-medium text-ink">{alert.title}</div>
+                        <div className="truncate text-lg font-semibold leading-snug text-ink">{alert.title}</div>
                       </div>
                     </div>
-                  </button>
-                );
-              })}
-
-              <div className="flex items-center justify-between px-2 pt-4 text-xs text-red-400/60">
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1">
-                    {ALERTS.map((_, i) => (
-                      <div
-                        key={i}
-                        className={`h-2 rounded-full transition-all duration-1000 ${
-                          isAutoRotating && activeIndex === i
-                            ? 'w-6 bg-red-500 shadow-[0_0_8px_#ef4444]'
-                            : 'w-2 bg-red-500/30'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-xl text-red-300">Auto-rotating</span>
-                </div>
-                {!isAutoRotating && (
-                  <button
-                    type="button"
-                    onClick={() => setIsAutoRotating(true)}
-                    className="font-semibold text-red-400 transition-colors hover:text-red-300 hover:underline"
-                  >
-                    Resume
-                  </button>
-                )}
-              </div>
-            </div>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Detail panel */}
-          <div className="relative mt-1 h-[635px] w-full lg:col-span-8">
+          {/* Detail panel — spans heading + alert list rows only */}
+          <div className="relative min-h-[420px] w-full lg:col-start-5 lg:col-end-13 lg:row-start-1 lg:row-end-3 lg:min-h-0">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={activeAlertId}
@@ -580,6 +566,34 @@ export default function IntelligenceDashboard() {
                 <AlertDetailContent alert={activeAlert} />
               </motion.div>
             </AnimatePresence>
+          </div>
+
+          {/* Auto-rotate — under alerts only, does not extend the panel */}
+          <div className="flex items-center justify-between px-2 text-xs text-red-400/60 lg:col-start-1 lg:col-end-5 lg:row-start-3">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                {ALERTS.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-2 rounded-full transition-all duration-1000 ${
+                      isAutoRotating && activeIndex === i
+                        ? 'w-6 bg-red-500 shadow-[0_0_8px_#ef4444]'
+                        : 'w-2 bg-red-500/30'
+                    }`}
+                  />
+                ))}
+              </div>
+              <span className="text-xl text-red-300">Auto-rotating</span>
+            </div>
+            {!isAutoRotating && (
+              <button
+                type="button"
+                onClick={() => setIsAutoRotating(true)}
+                className="font-semibold text-red-400 transition-colors hover:text-red-300 hover:underline"
+              >
+                Resume
+              </button>
+            )}
           </div>
         </div>
       </section>
