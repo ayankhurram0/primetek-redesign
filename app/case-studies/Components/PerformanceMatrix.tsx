@@ -6,7 +6,7 @@ import {
   Shield,
   TrendingUp,
   BarChart3,
-  FlaskConical,
+  PieChart,
   ArrowUpRight,
 } from "lucide-react";
 import { RollingRecovery, RollingPercent } from "@/app/components/RollingNumber";
@@ -15,16 +15,19 @@ const CARD_THEMES = [
   {
     accent: "#0df5c4",
     accentRgb: "13, 245, 196",
-    chartPoints: [22, 26, 24, 32, 30, 38, 42, 48],
+    chart: "bar" as const,
+    chartPoints: [22, 34, 28, 42, 38, 52, 48, 62],
   },
   {
     accent: "#2b66ff",
     accentRgb: "43, 102, 255",
-    chartPoints: [28, 32, 38, 36, 46, 52, 58, 66],
+    chart: "pie" as const,
+    chartPoints: [42, 28, 18, 12],
   },
   {
     accent: "#a238ff",
     accentRgb: "162, 56, 255",
+    chart: "line" as const,
     chartPoints: [18, 20, 26, 34, 48, 62, 78, 94],
   },
 ] as const;
@@ -34,13 +37,13 @@ const tiers = [
     tier: "Node_Alpha",
     recovery: { type: "range" as const, min: 12, max: 18, unit: "k" },
     efficiency: 22,
-    icon: FlaskConical,
+    icon: BarChart3,
   },
   {
     tier: "Node_Beta",
     recovery: { type: "range" as const, min: 45, max: 90, unit: "k" },
     efficiency: 34,
-    icon: BarChart3,
+    icon: PieChart,
   },
   {
     tier: "Node_Gamma",
@@ -70,6 +73,152 @@ function smoothLinePath(
   return d;
 }
 
+function MiniBarChart({
+  color,
+  rgb,
+  points,
+  play,
+}: {
+  color: string;
+  rgb: string;
+  points: readonly number[];
+  play: boolean;
+}) {
+  const width = 280;
+  const height = 100;
+  const padX = 8;
+  const padY = 10;
+  const max = Math.max(...points);
+  const barGap = 6;
+  const barW = (width - padX * 2 - barGap * (points.length - 1)) / points.length;
+
+  return (
+    <div className="relative my-5 h-[100px] w-full">
+      {[0.3, 0.55, 0.8].map((y) => (
+        <div
+          key={y}
+          className="absolute left-0 right-0 h-px"
+          style={{
+            top: `${y * 100}%`,
+            background: `linear-gradient(90deg, transparent 5%, rgba(${rgb}, 0.1) 50%, transparent 95%)`,
+          }}
+        />
+      ))}
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className="h-full w-full overflow-visible"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        {points.map((p, i) => {
+          const barH = ((p / max) * (height - padY * 2));
+          const x = padX + i * (barW + barGap);
+          const y = height - padY - barH;
+          return (
+            <motion.rect
+              key={i}
+              x={x}
+              width={barW}
+              rx={3}
+              fill={color}
+              initial={{ y: height - padY, height: 0, opacity: 0 }}
+              animate={
+                play
+                  ? { y, height: barH, opacity: 0.85 - i * 0.04 }
+                  : { y: height - padY, height: 0, opacity: 0 }
+              }
+              transition={{
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.45 + i * 0.06,
+              }}
+              style={{ filter: `drop-shadow(0 0 6px rgba(${rgb}, 0.35))` }}
+            />
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
+function MiniPieChart({
+  color,
+  rgb,
+  points,
+  play,
+}: {
+  color: string;
+  rgb: string;
+  points: readonly number[];
+  play: boolean;
+}) {
+  const size = 100;
+  const cx = size / 2;
+  const cy = size / 2;
+  const r = 36;
+  const total = points.reduce((a, b) => a + b, 0);
+  const opacities = [1, 0.72, 0.48, 0.28];
+
+  let angle = -90;
+  const slices = points.map((value, i) => {
+    const sweep = (value / total) * 360;
+    const start = angle;
+    const end = angle + sweep;
+    angle = end;
+
+    const startRad = (start * Math.PI) / 180;
+    const endRad = (end * Math.PI) / 180;
+    const x1 = cx + r * Math.cos(startRad);
+    const y1 = cy + r * Math.sin(startRad);
+    const x2 = cx + r * Math.cos(endRad);
+    const y2 = cy + r * Math.sin(endRad);
+    const large = sweep > 180 ? 1 : 0;
+    const d = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`;
+
+    return { d, opacity: opacities[i] ?? 0.25 };
+  });
+
+  return (
+    <div className="relative my-5 flex h-[100px] w-full items-center justify-center">
+      <svg
+        viewBox={`0 0 ${size} ${size}`}
+        className="h-[96px] w-[96px] overflow-visible"
+        aria-hidden
+      >
+        {slices.map((slice, i) => (
+          <motion.path
+            key={i}
+            d={slice.d}
+            fill={color}
+            fillOpacity={slice.opacity}
+            stroke={`rgba(${rgb}, 0.15)`}
+            strokeWidth={1}
+            initial={{ scale: 0.4, opacity: 0 }}
+            animate={play ? { scale: 1, opacity: 1 } : { scale: 0.4, opacity: 0 }}
+            transition={{
+              duration: 0.65,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.4 + i * 0.08,
+            }}
+            style={{
+              transformOrigin: `${cx}px ${cy}px`,
+              filter: `drop-shadow(0 0 8px rgba(${rgb}, 0.3))`,
+            }}
+          />
+        ))}
+        <circle
+          cx={cx}
+          cy={cy}
+          r={14}
+          fill="rgba(255,255,255,0.92)"
+          stroke={`rgba(${rgb}, 0.2)`}
+          strokeWidth={1}
+        />
+      </svg>
+    </div>
+  );
+}
+
 function MiniSparkline({
   color,
   rgb,
@@ -95,7 +244,7 @@ function MiniSparkline({
     y: padY + (1 - (p - min) / range) * (height - padY * 2),
   }));
 
-  const flatCoords = points.map((p, i) => ({
+  const flatCoords = points.map((_, i) => ({
     x: padX + (i / (points.length - 1)) * (width - padX * 2),
     y: height - padY,
   }));
@@ -108,7 +257,7 @@ function MiniSparkline({
   const dotIndices = [1, 3, 5, 7];
 
   return (
-    <div className="relative w-full h-[100px] my-5">
+    <div className="relative my-5 h-[100px] w-full">
       {[0.3, 0.55, 0.8].map((y) => (
         <div
           key={y}
@@ -121,7 +270,7 @@ function MiniSparkline({
       ))}
       <svg
         viewBox={`0 0 ${width} ${height}`}
-        className="w-full h-full overflow-visible"
+        className="h-full w-full overflow-visible"
         preserveAspectRatio="none"
         aria-hidden
       >
@@ -167,7 +316,11 @@ function MiniSparkline({
             r="3.5"
             fill={color}
             initial={{ cy: height - padY, opacity: 0, scale: 0 }}
-            animate={play ? { cy: coords[i].y, opacity: 1, scale: 1 } : { cy: height - padY, opacity: 0, scale: 0 }}
+            animate={
+              play
+                ? { cy: coords[i].y, opacity: 1, scale: 1 }
+                : { cy: height - padY, opacity: 0, scale: 0 }
+            }
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.8 + i * 0.05 }}
             style={{ filter: `drop-shadow(0 0 6px ${color})` }}
           />
@@ -175,6 +328,28 @@ function MiniSparkline({
       </svg>
     </div>
   );
+}
+
+function CardChart({
+  type,
+  color,
+  rgb,
+  points,
+  play,
+}: {
+  type: "bar" | "pie" | "line";
+  color: string;
+  rgb: string;
+  points: readonly number[];
+  play: boolean;
+}) {
+  if (type === "bar") {
+    return <MiniBarChart color={color} rgb={rgb} points={points} play={play} />;
+  }
+  if (type === "pie") {
+    return <MiniPieChart color={color} rgb={rgb} points={points} play={play} />;
+  }
+  return <MiniSparkline color={color} rgb={rgb} points={points} play={play} />;
 }
 
 function BenchmarkCard({
@@ -238,7 +413,8 @@ function BenchmarkCard({
           />
         </div>
 
-        <MiniSparkline
+        <CardChart
+          type={theme.chart}
           color={theme.accent}
           rgb={theme.accentRgb}
           points={theme.chartPoints}

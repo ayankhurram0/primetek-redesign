@@ -56,7 +56,8 @@
 .inner {
   position: relative;
   z-index: 1;
-  width: min(1400px, 92%);
+  width: 85%;
+  max-width: none;
   margin: 0 auto;
 }
 

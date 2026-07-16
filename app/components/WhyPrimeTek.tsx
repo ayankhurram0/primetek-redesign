@@ -3,11 +3,10 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  Target,
   BarChart3,
   Users,
   ShieldCheck,
-  Search,
+  TrendingUp,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -29,39 +28,42 @@ const steps: {
 }[] = [
   {
     id: "01",
-    title: "Profit Focus",
-    icon: Target,
+    title: "Visibility",
+    icon: BarChart3,
     description:
-      "Prioritize reimbursement, audit exposure, and efficiency—everything else is noise.",
+      "Clear visibility into financial performance, risk, and reimbursement trends.",
     accent: BLUE,
   },
   {
     id: "02",
-    title: "Actionable Data",
-    icon: BarChart3,
-    description: "Turn payer data into clear, executable decisions.",
+    title: "Recovery",
+    icon: TrendingUp,
+    description:
+      "Recover missed revenue and strengthen clean-claim reimbursement outcomes.",
     accent: TEAL,
   },
   {
     id: "03",
-    title: "Embedded Systems",
-    icon: Users,
-    description: "Operate inside your workflows—not as external support.",
+    title: "Defense",
+    icon: ShieldCheck,
+    description:
+      "Stay audit-ready by catching compliance gaps before they become liabilities.",
     accent: BLUE,
   },
   {
     id: "04",
-    title: "Compliance Control",
-    icon: ShieldCheck,
+    title: "Efficiency",
+    icon: Users,
     description:
-      "Maintain audit readiness without disrupting clinical operations.",
+      "Streamline patient workflows and operational coordination across your pharmacy.",
     accent: TEAL,
   },
   {
     id: "05",
-    title: "Continuous Monitoring",
-    icon: Search,
-    description: "Identify issues early before they become financial losses.",
+    title: "Expansion",
+    icon: TrendingUp,
+    description:
+      "Grow margins with procurement, pricing, and performance strategy.",
     accent: BLUE,
   },
 ];
@@ -156,7 +158,7 @@ export const WhyPrimeTekSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative mx-auto w-[85%] overflow-hidden font-montserrat"
+      className="relative mx-auto w-[85%] overflow-visible font-montserrat"
     >
       <div
         ref={triggerRef}
@@ -214,7 +216,7 @@ export const WhyPrimeTekSection: React.FC = () => {
 
         {/* Cards + timeline */}
         <div className="relative z-10 mx-auto w-full max-w-[1700px]">
-          <div className="relative z-10 grid grid-cols-1 gap-5 pb-24 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4 xl:gap-5">
+          <div className="relative z-10 grid grid-cols-1 gap-8 pb-24 pl-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6 xl:gap-7">
             {steps.map((step) => (
               <FeatureStepCard
                 key={step.id}

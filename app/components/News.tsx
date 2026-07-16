@@ -64,7 +64,7 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     panelBorder: 'border-red-300/70',
     panelOverlay: 'bg-gradient-to-br from-red-500/35 via-rose-100/55 to-white/70',
     panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
-    imageOpacity: 'opacity-[0.22]',
+    imageOpacity: 'opacity-[0.32]',
     headerBg: 'bg-gradient-to-r from-red-100/95 to-red-50/90',
     badgeBg: 'bg-red-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(239,68,68,0.45)]',
@@ -94,7 +94,7 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     panelBorder: 'border-blue-300/70',
     panelOverlay: 'bg-gradient-to-br from-blue-500/30 via-blue-100/55 to-white/70',
     panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
-    imageOpacity: 'opacity-[0.22]',
+    imageOpacity: 'opacity-[0.32]',
     headerBg: 'bg-gradient-to-r from-blue-100/95 to-blue-50/90',
     badgeBg: 'bg-blue-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(59,130,246,0.45)]',
@@ -124,7 +124,7 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     panelBorder: 'border-purple-300/70',
     panelOverlay: 'bg-gradient-to-br from-purple-500/28 via-purple-100/55 to-white/70',
     panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
-    imageOpacity: 'opacity-[0.22]',
+    imageOpacity: 'opacity-[0.32]',
     headerBg: 'bg-gradient-to-r from-purple-100/95 to-purple-50/90',
     badgeBg: 'bg-purple-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(168,85,247,0.45)]',
@@ -154,7 +154,7 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     panelBorder: 'border-orange-300/70',
     panelOverlay: 'bg-gradient-to-br from-orange-500/30 via-orange-100/55 to-white/70',
     panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
-    imageOpacity: 'opacity-[0.22]',
+    imageOpacity: 'opacity-[0.32]',
     headerBg: 'bg-gradient-to-r from-orange-100/95 to-orange-50/90',
     badgeBg: 'bg-orange-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(249,115,22,0.45)]',
@@ -184,7 +184,7 @@ const THEMES: Record<AlertThemeKey, AlertTheme> = {
     panelBorder: 'border-teal-300/70',
     panelOverlay: 'bg-gradient-to-br from-teal-500/30 via-teal-100/55 to-white/70',
     panelScrim: 'bg-gradient-to-r from-white/70 via-white/35 to-transparent lg:via-white/25',
-    imageOpacity: 'opacity-[0.22]',
+    imageOpacity: 'opacity-[0.32]',
     headerBg: 'bg-gradient-to-r from-teal-100/95 to-teal-50/90',
     badgeBg: 'bg-teal-500 text-white',
     badgeShadow: 'shadow-[0_0_24px_rgba(20,184,166,0.45)]',
@@ -297,35 +297,46 @@ function getImageSrc(image: string | StaticImageData): string {
   return typeof image === 'string' ? image : image.src;
 }
 
-function RadarAnimation({ icon: Icon, theme }: { icon: LucideIcon; theme: AlertTheme }) {
+function DashboardPreview({ icon: Icon, theme }: { icon: LucideIcon; theme: AlertTheme }) {
   return (
-    <div className="relative flex h-52 w-52 items-center justify-center">
-      {[...Array(4)].map((_, i) => (
-        <motion.div
-          key={i}
-          className={`absolute rounded-full border-2 ${theme.radarBorder}`}
-          initial={{ width: 72, height: 72, opacity: 0 }}
-          animate={{
-            width: 72 + i * 40,
-            height: 72 + i * 40,
-            opacity: [0, 0.5, 0],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: i * 0.5,
-            ease: 'linear',
-          }}
-        />
-      ))}
-      <motion.div
-        className={`z-10 rounded-full border-2 p-4 ${theme.radarBg} ${theme.radarBorderSolid}`}
-        style={{ boxShadow: `0 0 30px rgba(${theme.glowRgb} / 0.35)` }}
-        animate={{ scale: [1, 1.12, 1] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+    <div className="relative flex h-full w-full items-center justify-center">
+      <div
+        className="relative w-full max-w-[210px] rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_18px_50px_rgba(15,23,42,0.1)] backdrop-blur-sm"
+        style={{ borderColor: `rgba(${theme.glowRgb} / 0.28)` }}
       >
-        <Icon className={`h-10 w-10 ${theme.radarText}`} />
-      </motion.div>
+        <div className="mb-3 flex gap-1.5">
+          <div className="h-2 w-2 rounded-full bg-slate-300/90" />
+          <div className="h-2 w-2 rounded-full bg-slate-300/70" />
+          <div className="h-2 w-2 rounded-full bg-slate-300/70" />
+        </div>
+
+        <div
+          className="mb-4 flex h-[88px] items-center justify-center rounded-xl"
+          style={{
+            background: `linear-gradient(160deg, rgba(${theme.glowRgb} / 0.16) 0%, rgba(${theme.glowRgb} / 0.06) 100%)`,
+          }}
+        >
+          <Icon className={`h-10 w-10 ${theme.radarText}`} strokeWidth={1.75} />
+        </div>
+
+        <div className="mb-3 space-y-2">
+          <div className="h-2 w-full rounded-full bg-slate-200/90" />
+          <div className="h-2 w-[72%] rounded-full bg-slate-200/70" />
+        </div>
+
+        <div className="flex h-[56px] items-end gap-1.5">
+          {[36, 58, 46, 70, 52].map((h, i) => (
+            <div
+              key={i}
+              className="flex-1 rounded-t-md"
+              style={{
+                height: `${h}%`,
+                backgroundColor: `rgba(${theme.glowRgb} / ${0.28 + i * 0.08})`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -364,15 +375,17 @@ function AlertDetailContent({ alert }: { alert: AlertItem }) {
       </div>
 
       {/* Top bar */}
-      <div className={`relative z-20 flex shrink-0 items-center gap-6 border-b px-5 py-3 ${theme.headerBg} ${theme.panelBorder}`}>
+      <div className={`relative z-20 flex shrink-0 items-center border-b px-5 py-3.5 ${theme.headerBg} ${theme.panelBorder}`}>
         <div className="flex gap-2">
           <div className="h-3 w-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.9)] ring-1 ring-white/80" />
           <div className="h-3 w-3 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
           <div className="h-3 w-3 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
         </div>
-        <div className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold ${theme.badgeBg} ${theme.badgeShadow}`}>
-          <Icon className="h-4 w-4 shrink-0" />
-          <span>{alert.category}</span>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold ${theme.badgeBg} ${theme.badgeShadow}`}>
+            <Icon className="h-4 w-4 shrink-0" />
+            <span>{alert.category}</span>
+          </div>
         </div>
       </div>
 
@@ -389,28 +402,26 @@ function AlertDetailContent({ alert }: { alert: AlertItem }) {
           </div>
 
           {/* Recent Updates */}
-          <div className="space-y-2">
-            <h4 className={`text-xs font-bold uppercase tracking-[0.2em] ${theme.mutedText}`}>Recent Updates</h4>
+          <div className="space-y-3">
+            <h4 className={`text-sm font-bold uppercase tracking-[0.2em] ${theme.mutedText}`}>Recent Updates</h4>
             {alert.activities.map((act, i) => (
               <div
                 key={`${alert.id}-activity-${i}`}
-                className={`flex items-center justify-between rounded-lg border px-3.5 py-2.5 backdrop-blur-sm transition-all ${theme.activityBg} ${theme.activityBorder} ${theme.activityHover}`}
+                className={`flex items-center justify-between rounded-xl border px-5 py-4 backdrop-blur-sm transition-all ${theme.activityBg} ${theme.activityBorder} ${theme.activityHover}`}
               >
-                <div className="flex min-w-0 items-center gap-2.5">
-                  <div className={`h-2.5 w-2.5 shrink-0 rounded-full ${theme.dotBg} ${theme.dotShadow}`} />
-                  <span className={`truncate text-base font-medium leading-snug ${theme.activityText}`}>{act.text}</span>
+                <div className="flex min-w-0 items-center gap-3.5">
+                  <div className={`h-3.5 w-3.5 shrink-0 rounded-full ${theme.dotBg} ${theme.dotShadow}`} />
+                  <span className={`truncate text-lg font-medium leading-snug ${theme.activityText}`}>{act.text}</span>
                 </div>
-                <span className={`shrink-0 pl-3 font-mono text-sm leading-snug ${theme.activityTime}`}>{act.time}</span>
+                <span className={`shrink-0 pl-4 font-mono text-base leading-snug ${theme.activityTime}`}>{act.time}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right: radar only */}
-        <div className="relative hidden w-64 shrink-0 items-center justify-center lg:flex">
-          <div className="relative flex h-52 w-full items-center justify-center">
-            <RadarAnimation key={alert.id} icon={Icon} theme={theme} />
-          </div>
+        {/* Right: dashboard preview */}
+        <div className="relative hidden w-72 shrink-0 items-center justify-center lg:flex">
+          <DashboardPreview key={alert.id} icon={Icon} theme={theme} />
         </div>
       </div>
     </>
@@ -470,31 +481,54 @@ export default function IntelligenceDashboard() {
   };
 
   return (
-    <div ref={sectionRef} className="relative z-10 h-auto space-y-8 overflow-hidden 2xl:py-20">
-      {/* Soft cool atmosphere — light slate + teal, faint alert accent */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)',
-          maskImage: 'linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)',
-        }}
-      >
-        <div className="absolute inset-0 bg-[#f7f9fc]" />
-        <div className="absolute top-[-10%] left-[-8%] h-[70%] w-[55%] rounded-full bg-[#2b4c8c]/[0.07] blur-[120px]" />
-        <div className="absolute bottom-[-5%] right-[-6%] h-[60%] w-[50%] rounded-full bg-teal-500/[0.08] blur-[130px]" />
-        <div className="absolute top-[35%] left-[40%] h-[40%] w-[35%] rounded-full bg-rose-400/[0.06] blur-[110px]" />
+    <div ref={sectionRef} className="relative isolate z-10 w-full overflow-hidden py-16 lg:py-20 2xl:py-24">
+      {/* Reference bg — opaque blush base, diffused glows, dot grid on right */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+        {/* Solid base blocks global site texture from bleeding through */}
+        <div className="absolute inset-0 bg-[#fff9f9]" />
+
+        {/* Left heading wash */}
+        <div className="absolute -left-[12%] top-[2%] h-[72%] w-[58%] rounded-full bg-[#fecdd3]/55 blur-[110px]" />
+        <div className="absolute left-[4%] top-[18%] h-[48%] w-[38%] rounded-full bg-[#fda4af]/30 blur-[90px]" />
+
+        {/* Right coral glow behind dashboard */}
+        <div className="absolute -right-[6%] top-[8%] h-[78%] w-[52%] rounded-full bg-[#fca5a5]/35 blur-[130px]" />
+        <div className="absolute right-[2%] bottom-[6%] h-[42%] w-[34%] rounded-full bg-[#fecaca]/28 blur-[100px]" />
+
+        {/* Horizontal blush → white gradient */}
         <div
-          className="absolute inset-y-[8%] right-0 w-[28%] opacity-[0.35]"
+          className="absolute inset-0"
           style={{
-            backgroundImage: 'radial-gradient(rgba(100,116,139,0.35) 1px, transparent 1px)',
-            backgroundSize: '18px 18px',
-            maskImage: 'linear-gradient(90deg, transparent, #000 40%)',
-            WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 40%)',
+            background:
+              'linear-gradient(90deg, #ffe4e6 0%, #fff1f2 18%, #fffbfb 42%, #ffffff 62%, #ffffff 82%, #fff5f5 100%)',
+          }}
+        />
+
+        {/* Soft center lift — keeps middle airy like the ref */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 70% 85% at 58% 48%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.55) 45%, transparent 78%)',
+          }}
+        />
+
+        {/* Right-edge dot grid */}
+        <div
+          className="absolute inset-y-0 right-0 w-[42%]"
+          style={{
+            backgroundImage:
+              'radial-gradient(rgba(248, 113, 113, 0.42) 1.15px, transparent 1.15px)',
+            backgroundSize: '12px 12px',
+            WebkitMaskImage:
+              'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.25) 38%, rgba(0,0,0,0.9) 100%)',
+            maskImage:
+              'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.25) 38%, rgba(0,0,0,0.9) 100%)',
           }}
         />
       </div>
 
-      <section ref={dashboardRef} id="intelligence" className="mx-auto w-[85%] animate-in fade-in duration-700">
+      <section ref={dashboardRef} id="intelligence" className="relative z-10 mx-auto w-[85%] animate-in fade-in duration-700">
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_minmax(0,1fr)_auto] lg:gap-x-8 lg:gap-y-6">
           {/* Heading — left only */}
           <section
@@ -522,21 +556,18 @@ export default function IntelligenceDashboard() {
                   key={alert.id}
                   type="button"
                   onClick={() => selectAlert(alert.id)}
-                  className={`group relative w-full overflow-hidden rounded-xl border p-4 text-left shadow-sm transition-all duration-300 ${
+                  className={`group relative w-full overflow-hidden rounded-xl border p-4 text-left transition-all duration-300 ${
                     isActive
-                      ? `${theme.cardGradient} ${theme.cardBorder} shadow-md`
-                      : 'border-slate-200/80 bg-white/90 hover:border-slate-300 hover:bg-white hover:shadow-md'
+                      ? `${theme.cardGradient} border-2 ${theme.cardBorder} shadow-md`
+                      : 'border-slate-200/70 bg-white/95 shadow-sm hover:border-slate-300 hover:bg-white hover:shadow-md'
                   }`}
                   style={
                     isActive
-                      ? { boxShadow: `0 8px 28px rgba(${theme.glowRgb} / 0.22)` }
+                      ? { boxShadow: `0 10px 32px rgba(${theme.glowRgb} / 0.18)` }
                       : undefined
                   }
                 >
-                  {isActive && (
-                    <div className={`absolute top-3 bottom-3 left-0 w-1 rounded-full ${theme.accentBar}`} />
-                  )}
-                    <div className="flex items-center gap-4 pl-1.5">
+                    <div className="flex items-center gap-4">
                       <div className={`shrink-0 rounded-lg p-2.5 ${theme.iconBg} ${theme.iconText}`}>
                         <Icon className="h-8 w-8" strokeWidth={1.75} />
                       </div>
@@ -561,7 +592,7 @@ export default function IntelligenceDashboard() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className={`absolute inset-0 flex flex-col overflow-hidden rounded-2xl border-2 backdrop-blur-xl ${THEMES[activeAlert.theme].panelBorder}`}
+                className={`absolute inset-0 flex flex-col overflow-hidden rounded-[1.75rem] border-2 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.08),0_10px_32px_rgba(248,113,113,0.1)] ${THEMES[activeAlert.theme].panelBorder}`}
               >
                 <AlertDetailContent alert={activeAlert} />
               </motion.div>
@@ -569,21 +600,21 @@ export default function IntelligenceDashboard() {
           </div>
 
           {/* Auto-rotate — under alerts only, does not extend the panel */}
-          <div className="flex items-center justify-between px-2 text-xs text-red-400/60 lg:col-start-1 lg:col-end-5 lg:row-start-3">
+          <div className="flex items-center justify-between px-2 text-xs text-red-400/70 lg:col-start-1 lg:col-end-5 lg:row-start-3">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
                 {ALERTS.map((_, i) => (
                   <div
                     key={i}
-                    className={`h-2 rounded-full transition-all duration-1000 ${
+                    className={`h-1.5 rounded-full transition-all duration-1000 ${
                       isAutoRotating && activeIndex === i
-                        ? 'w-6 bg-red-500 shadow-[0_0_8px_#ef4444]'
-                        : 'w-2 bg-red-500/30'
+                        ? 'w-5 bg-red-500 shadow-[0_0_8px_#ef4444]'
+                        : 'w-1.5 bg-red-500/30'
                     }`}
                   />
                 ))}
               </div>
-              <span className="text-xl text-red-300">Auto-rotating</span>
+              <span className="text-sm font-medium text-red-400/80">Auto-rotating</span>
             </div>
             {!isAutoRotating && (
               <button

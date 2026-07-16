@@ -12,7 +12,6 @@ import ConsultationCTA from "./components/ConsultationCTA";
 import { OrbitingSection } from "./components/OrbitingSection";
 import { OurFramework } from "./components/OurFramework";
 import { ServicesSection } from "./components/Services";
-import TestingSection from "./components/TestingSection";
 import Newhero from "./components/Newhero";
 import SmoothScroll from "./components/SmoothScroll";
 import gsap from 'gsap';
@@ -30,7 +29,6 @@ export default function Home() {
           <Navbar />
           <Newhero />
           <News />
-          <TestingSection />
           <OrbitingSection />
           <WhyPrimeTekSection />
           <OurFramework />

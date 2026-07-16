@@ -1,196 +1,287 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'motion/react';
-import { Quote, MapPin, Calendar, Hash } from 'lucide-react';
+import React from "react";
+import { motion } from "motion/react";
+import {
+  Quote,
+  MapPin,
+  Calendar,
+  Hash,
+  FileText,
+  Server,
+  Check,
+} from "lucide-react";
 
 export interface CaseStudyData {
-   category: string;
-   type: string;
-   title: string;
-   location: string;
-   statValue: string;
-   statLabel: string;
-   statDuration: string;
-   challenge: string;
-   approach: string;
-   results: string[];
-   quote: string;
-   author: string;
-   authorRole: string;
-   theme: 'teal' | 'purple' | 'blue' | 'red';
+  category: string;
+  type: string;
+  title: string;
+  headlinePrimary?: string;
+  headlineAccent?: string;
+  location: string;
+  statValue: string;
+  statLabel: string;
+  statDuration: string;
+  challenge: string;
+  approach: string;
+  results: string[];
+  quote: string;
+  author: string;
+  authorRole: string;
+  theme: "teal" | "purple" | "blue" | "red";
 }
 
 const themeStyles = {
-   teal: {
-      border: 'border-teal-400/20',
-      text: 'text-accent',
-      bg: 'bg-teal-400/5',
-      accent: 'bg-teal-400',
-      accentHex: '#2dd4bf',
-   },
-   purple: {
-      border: 'border-purple-500/20',
-      text: 'text-purple-400',
-      bg: 'bg-purple-500/5',
-      accent: 'bg-purple-500',
-      accentHex: '#a855f7',
-   },
-   blue: {
-      border: 'border-blue-500/20',
-      text: 'text-blue-400',
-      bg: 'bg-blue-500/5',
-      accent: 'bg-blue-500',
-      accentHex: '#3b82f6',
-   },
-   red: {
-      border: 'border-red-500/20',
-      text: 'text-red-400',
-      bg: 'bg-red-500/5',
-      accent: 'bg-red-500',
-      accentHex: '#ef4444',
-   }
+  teal: {
+    accent: "#059669",
+    accentLight: "#d1fae5",
+    accentSoft: "#ecfdf5",
+    background: "/images/case-study-card-bg-teal.png",
+  },
+  purple: {
+    accent: "#7c3aed",
+    accentLight: "#ddd6fe",
+    accentSoft: "#f5f3ff",
+    background: "/images/case-study-card-bg-purple.png",
+  },
+  blue: {
+    accent: "#2563eb",
+    accentLight: "#bfdbfe",
+    accentSoft: "#eff6ff",
+    background: "/images/case-study-card-bg-blue.png",
+  },
+  red: {
+    accent: "#dc2626",
+    accentLight: "#fecaca",
+    accentSoft: "#fef2f2",
+    background: "/images/case-study-card-bg-red.png",
+  },
 };
 
+function getHeadline(study: CaseStudyData) {
+  if (study.headlinePrimary && study.headlineAccent) {
+    return {
+      primary: study.headlinePrimary,
+      accent: study.headlineAccent,
+    };
+  }
+
+  const parts = study.title.split(/\s+(?=(?:Recovered|Avoided|Improvement|Catches)\b)/i);
+  if (parts.length >= 2) {
+    return {
+      primary: parts[0].toUpperCase(),
+      accent: parts.slice(1).join(" ").toUpperCase(),
+    };
+  }
+
+  return {
+    primary: study.title.toUpperCase(),
+    accent: "",
+  };
+}
+
 interface CaseStudyCardProps {
-   study: CaseStudyData;
-   idx: number;
-   key?: React.Key;
+  study: CaseStudyData;
+  idx: number;
+  key?: React.Key;
 }
 
 export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
-   const styles = themeStyles[study.theme];
-   const accent = styles.accentHex;
+  const styles = themeStyles[study.theme];
+  const { primary, accent: headlineAccent } = getHeadline(study);
 
-   return (
-      <motion.div
-         initial={{ opacity: 0, y: 40 }}
-         whileInView={{ opacity: 1, y: 0 }}
-         viewport={{ once: true, margin: "-100px" }}
-         className="mb-24 py-6 md:py-8 font-montserrat"
-      >
-         <div
-            className="relative p-[2px]"
-            style={{
-               background: `linear-gradient(135deg, ${accent}99 0%, ${accent}35 25%, ${accent}25 50%, ${accent}35 75%, ${accent}99 100%)`,
-               boxShadow: `
-                  0 0 36px ${accent}55,
-                  0 0 72px ${accent}28,
-                  -16px 0 48px ${accent}40,
-                  16px 0 48px ${accent}40,
-                  0 -12px 40px ${accent}35,
-                  0 12px 40px ${accent}35
-               `,
-            }}
-         >
-            <div className="bg-transparent border border-white/[0.08] relative overflow-hidden group">
-         {/* Background ID Watermark */}
-         <div className="absolute top-0 right-0 p-8 select-none pointer-events-none opacity-[0.02]">
-            <span className="text-9xl font-display font-bold  tracking-tighter">NODE_0{idx + 1}</span>
-         </div>
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      className="mb-24 py-6 font-montserrat md:py-8"
+    >
+      <div className="relative overflow-hidden rounded-[28px] border border-slate-200/70 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+        <div
+          className="case-study-card__background pointer-events-none absolute inset-0 -z-10"
+          style={{
+            backgroundImage: `url('${styles.background}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+          aria-hidden
+        />
 
-         {/* Header Technical Bar */}
-         <div className={`px-10 py-4 border-b border-ink/10 flex items-center justify-between bg-transparent`}>
-            <div className="flex items-center gap-6">
-               <span className={`flex items-center gap-2 text-xl font-montserrat font-bold uppercase tracking-[0.3em] ${styles.text}`}>
-                  <Hash className="w-4 h-4" /> STUDY LOG 0{idx + 1}
-               </span>
-               <span className="hidden sm:block w-px h-6 bg-white/10" />
-               <span className="hidden sm:block text-xl text-ink-subtle font-montserrat font-bold uppercase tracking-widest">{study.type}</span>
-            </div>
-            <div className={`px-4 py-2 rounded-sm border border-current text-xl font-montserrat font-bold uppercase tracking-[0.2em] ${styles.text}`}>
-               {study.category}
-            </div>
-         </div>
+        {/* Header */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/70 px-8 py-4 md:px-10">
+          <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-slate-500">
+            <span className="flex items-center gap-1.5" style={{ color: styles.accent }}>
+              <Hash className="h-3.5 w-3.5" />
+              Study Log 0{idx + 1}
+            </span>
+            <span className="text-slate-300">|</span>
+            <span>{study.type}</span>
+          </div>
+          <div
+            className="rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em]"
+            style={{ borderColor: styles.accent, color: styles.accent }}
+          >
+            {study.category}
+          </div>
+        </div>
 
-         <div className="p-10 md:p-16">
-            {/* Title & Metadata */}
-            <div className="flex flex-col lg:flex-row gap-16 mb-16">
-               <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-6 mb-8">
-                     <div className="flex items-center gap-2 text-lg font-montserrat text-ink-subtle font-bold uppercase tracking-widest">
-                        <MapPin className={`w-5 h-5 ${styles.text}`} /> {study.location}
-                     </div>
-                     <div className="flex items-center gap-2 text-lg font-montserrat text-ink-subtle font-bold uppercase tracking-widest">
-                        <Calendar className={`w-5 h-5 ${styles.text}`} /> {study.statDuration}
-                     </div>
+        <div className="p-8 md:p-12 lg:p-14">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
+            {/* Left column */}
+            <div>
+              <div className="mb-8 flex flex-wrap items-center gap-6">
+                <div
+                  className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest"
+                  style={{ color: styles.accent }}
+                >
+                  <MapPin className="h-4 w-4" />
+                  {study.location}
+                </div>
+                <div
+                  className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest"
+                  style={{ color: styles.accent }}
+                >
+                  <Calendar className="h-4 w-4" />
+                  {study.statDuration}
+                </div>
+              </div>
+
+              <h2 className="font-display text-[clamp(2.4rem,4.8vw,4.5rem)] font-bold uppercase leading-[0.98] tracking-tight">
+                <span className="block text-ink">{primary}</span>
+                {headlineAccent ? (
+                  <span className="block" style={{ color: styles.accent }}>
+                    {headlineAccent}
+                  </span>
+                ) : null}
+              </h2>
+
+              <div className="mt-12 grid gap-10 border-t border-slate-200/80 pt-10 md:grid-cols-2 md:gap-12">
+                <div>
+                  <div className="mb-5 flex items-center gap-3">
+                    <div
+                      className="flex h-10 w-10 items-center justify-center rounded-full"
+                      style={{ backgroundColor: styles.accentSoft, color: styles.accent }}
+                    >
+                      <FileText className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <h4
+                      className="text-sm font-bold uppercase tracking-[0.22em]"
+                      style={{ color: styles.accent }}
+                    >
+                      Initial Condition
+                    </h4>
                   </div>
+                  <p className="text-base leading-relaxed text-slate-500 md:text-[1.05rem]">
+                    {study.challenge}
+                  </p>
+                </div>
 
-                  <h2 className="text-5xl md:text-6xl font-display font-bold text-ink leading-[1] tracking-tighter uppercase mb-10">
-                     {study.title}
-                  </h2>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-10 border-t border-ink/10">
-                     <div className="space-y-4">
-                        <h4 className={`text-xl font-montserrat font-bold uppercase mb-4 ${styles.text}`}>INITIAL CONDITION</h4>
-                        <p className="text-ink-muted text-xl leading-relaxed font-light">{study.challenge}</p>
-                     </div>
-                     <div className="space-y-4">
-                        <h4 className={`text-xl font-montserrat font-bold uppercase mb-4 ${styles.text}`}>SYSTEM DEPLOYMENT</h4>
-                        <p className="text-ink-muted text-xl leading-relaxed font-light">{study.approach}</p>
-                     </div>
+                <div className="md:border-l md:border-slate-200/80 md:pl-10">
+                  <div className="mb-5 flex items-center gap-3">
+                    <div
+                      className="flex h-10 w-10 items-center justify-center rounded-full"
+                      style={{ backgroundColor: styles.accentSoft, color: styles.accent }}
+                    >
+                      <Server className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <h4
+                      className="text-sm font-bold uppercase tracking-[0.22em]"
+                      style={{ color: styles.accent }}
+                    >
+                      System Deployment
+                    </h4>
                   </div>
-               </div>
-
-               {/* Diagnostic Stat Panel */}
-               <div className="lg:w-80 shrink-0">
-                  <div className="sticky top-10">
-                     <div
-                        className={`p-10 border relative overflow-hidden bg-transparent ${styles.border}`}
-                        style={{
-                           borderColor: `${accent}40`,
-                           boxShadow: `0 0 28px ${accent}30`,
-                        }}
-                     >
-                        <div className="absolute top-0 right-0 w-16 h-16 bg-white/65 -translate-y-1/2 translate-x-1/2 rotate-45" />
-                        <div className={`text-6xl font-display font-bold mb-2 tracking-tighter ${styles.text}`} style={{ textShadow: `0 0 32px ${accent}55` }}>{study.statValue}</div>
-                        <div className="text-xl text-ink font-montserrat font-bold uppercase mb-4">{study.statLabel}</div>
-                        <div className="h-1 w-full bg-white/65 rounded-full overflow-hidden">
-                           <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: '100%' }}
-                              transition={{ duration: 1, delay: 0.5 }}
-                              className={`h-full ${styles.accent}`}
-                           />
-                        </div>
-                     </div>
-
-                     <div className="mt-8">
-                        <ul className="space-y-4">
-                           {study.results.map((result, i) => (
-                              <li key={i} className="flex items-start gap-3 group/li">
-                                 <div className={`w-2 h-2 rounded-full mt-2.5 shrink-0 ${styles.accent} opacity-50 group-hover/li:opacity-100 transition-opacity`} />
-                                 <span className="text-ink font-montserrat text-lg leading-tight uppercase opacity-80">{result}</span>
-                              </li>
-                           ))}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
+                  <p className="text-base leading-relaxed text-slate-500 md:text-[1.05rem]">
+                    {study.approach}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Quote Terminal */}
-            <div
-               className="border p-12 relative overflow-hidden bg-transparent"
-               style={{
-                  borderColor: `${accent}35`,
-                  boxShadow: `0 0 32px ${accent}22`,
-               }}
-            >
-               <Quote className={`absolute top-10 right-10 w-20 h-20 opacity-5 ${styles.text}`} />
-               <p className={`text-2xl md:text-3xl font-display font-bold mb-10 relative z-10 leading-[1.1] tracking-tight ${styles.text}`}>
-                  "{study.quote}"
-               </p>
-               <div className={`flex items-center gap-6 relative z-10 border-l-2 pl-6 ${styles.text.replace('text-', 'border-')}`}>
-                  <div>
-                     <div className="text-ink font-montserrat font-bold text-2xl uppercase tracking-widest">{study.author}</div>
-                     <div className="text-2xl text-ink-subtle font-montserrat font-bold uppercase tracking-widest mt-1 opacity-60 font-bold">{study.authorRole}</div>
+            {/* Right column */}
+            <div>
+              <div className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-[0_16px_48px_rgba(15,23,42,0.08)]">
+                <div
+                  className="absolute top-0 right-0 h-16 w-16 translate-x-1/2 -translate-y-1/2 rotate-45"
+                  style={{ backgroundColor: styles.accentLight }}
+                />
+                <div
+                  className="relative mb-2 font-display text-6xl font-bold tracking-tighter"
+                  style={{ color: styles.accent }}
+                >
+                  {study.statValue}
+                </div>
+                <div className="relative mb-5 text-xs font-bold uppercase tracking-[0.24em] text-ink">
+                  {study.statLabel}
+                </div>
+                <div
+                  className="relative h-1.5 w-full overflow-hidden rounded-full"
+                  style={{ backgroundColor: styles.accentLight }}
+                >
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "82%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.35, ease: "easeOut" }}
+                    className="h-full rounded-full"
+                    style={{ backgroundColor: styles.accent }}
+                  />
+                </div>
+              </div>
+
+              <ul className="mt-8 space-y-5">
+                {study.results.map((result, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div
+                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+                      style={{ backgroundColor: styles.accent }}
+                    >
+                      <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase leading-snug tracking-wide text-slate-600">
+                      {result}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Testimonial */}
+          <div className="relative mt-12 overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-[0_12px_40px_rgba(15,23,42,0.06)] md:p-10">
+            <Quote
+              className="pointer-events-none absolute top-6 right-6 h-24 w-24 opacity-[0.07]"
+              style={{ color: styles.accent }}
+            />
+            <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-start">
+              <div
+                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full"
+                style={{ backgroundColor: styles.accent }}
+              >
+                <Quote className="h-7 w-7 text-white" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="mb-6 font-display text-2xl font-bold leading-[1.15] tracking-tight text-ink md:text-[1.75rem]">
+                  &ldquo;{study.quote}&rdquo;
+                </p>
+                <div>
+                  <div
+                    className="text-xs font-bold uppercase tracking-[0.28em]"
+                    style={{ color: styles.accent }}
+                  >
+                    {study.author}
                   </div>
-               </div>
+                  <div className="mt-1 text-xs font-bold uppercase tracking-[0.22em] text-slate-400">
+                    {study.authorRole}
+                  </div>
+                </div>
+              </div>
             </div>
-            </div>
-         </div>
-         </div>
-      </motion.div>
-   );
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
