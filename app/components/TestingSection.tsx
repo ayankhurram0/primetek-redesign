@@ -13,11 +13,11 @@ import {
 import styles from "./TestingSection.module.css";
 
 const ACCENTS = {
-  blue: { accent: "#2b4c8c", deep: "#1a335f" },
-  teal: { accent: "#00a3a3", deep: "#007a7a" },
-  orange: { accent: "#f97316", deep: "#ea580c" },
-  royal: { accent: "#4f46e5", deep: "#3730a3" },
-  green: { accent: "#22c55e", deep: "#16a34a" },
+  blue: { accent: "#2A6DFA", deep: "#0D204A" },
+  teal: { accent: "#149E9E", deep: "#0A6B6C" },
+  orange: { accent: "#F28D35", deep: "#B45C10" },
+  royal: { accent: "#3B6CF4", deep: "#1D4ED8" },
+  green: { accent: "#149E5D", deep: "#00703C" },
 } as const;
 
 type ServiceCardShellProps = {
@@ -180,22 +180,22 @@ function RevenueIntelligenceCard() {
       href="#analyze"
     >
       <div
-        className={`${styles.graphicPanel} border-[#c5d4eb] bg-[#f4f7fc]`}
+        className={`${styles.graphicPanel} border-[#bfdbfe] bg-[#eff6ff]`}
       >
         <motion.div
-          className="pointer-events-none absolute top-0 bottom-0 z-10 w-[1.5px] bg-gradient-to-b from-transparent via-[#2b4c8c]/60 to-transparent"
+          className="pointer-events-none absolute top-0 bottom-0 z-10 w-[1.5px] bg-gradient-to-b from-transparent via-[#2A6DFA]/55 to-transparent"
           animate={{ x: ["30px", "330px", "30px"] }}
           transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
         />
 
         <div className="relative mt-0 flex h-full w-full flex-1 items-center justify-center">
           <div className="pointer-events-none absolute inset-0 flex flex-col justify-between px-4 py-4 opacity-20">
-            <div className="w-full border-b border-dashed border-[#2b4c8c]" />
-            <div className="w-full border-b border-dashed border-[#2b4c8c]" />
-            <div className="w-full border-b border-dashed border-[#2b4c8c]" />
+            <div className="w-full border-b border-dashed border-[#2A6DFA]" />
+            <div className="w-full border-b border-dashed border-[#2A6DFA]" />
+            <div className="w-full border-b border-dashed border-[#2A6DFA]" />
           </div>
 
-          <svg className="h-[72px] w-full overflow-visible" viewBox="0 0 350 110" fill="none">
+          <svg className="h-full w-full overflow-visible" viewBox="0 0 350 110" fill="none" preserveAspectRatio="xMidYMid meet">
             <defs>
               <linearGradient id="blueCurveGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={BLUE} stopOpacity="0.18" />
@@ -265,7 +265,7 @@ function RevenueIntelligenceCard() {
           </svg>
 
           <div className="absolute bottom-1 right-2 z-10 flex items-center gap-1.5 rounded-lg border border-ink/10 bg-white/80 px-2.5 py-1 font-mono text-[8px] font-bold text-ink backdrop-blur-md">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#2b4c8c]" />
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#2A6DFA]" />
             <span>Live Leakage: $1.2M+</span>
           </div>
         </div>
@@ -311,20 +311,20 @@ function ComplianceAuditCard() {
       href="#audits"
     >
       <div
-        className={`${styles.graphicPanel} border-[#b8e8e8] bg-[#f0fafa]`}
+        className={`${styles.graphicPanel} border-[#9adede] bg-[#eefbfb]`}
       >
         <motion.div
-          className="pointer-events-none absolute inset-x-0 h-10 bg-gradient-to-b from-transparent via-[#00a3a3]/10 to-transparent"
+          className="pointer-events-none absolute inset-x-0 h-10 bg-gradient-to-b from-transparent via-[#149E9E]/12 to-transparent"
           animate={{ y: [-40, 180] }}
           transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
         />
 
-        <div className="relative mt-0 flex h-full w-full flex-1 items-center justify-center">
-          <div className="relative z-10 flex w-full items-center justify-between px-3">
-            <div className="absolute top-[18px] left-[34px] right-[34px] h-[2.5px] -translate-y-1/2 bg-[#00a3a3]/15" />
+        <div className="relative flex h-full w-full flex-1 items-center justify-center px-2">
+          <div className="relative z-10 flex w-full max-w-full items-center justify-between gap-6 px-4 sm:gap-8 sm:px-5">
+            <div className="absolute top-[22px] left-[52px] right-[52px] h-[2.5px] -translate-y-1/2 bg-[#149E9E]/15" />
             <motion.div
-              className="absolute top-[18px] left-[34px] h-[2.5px] origin-left -translate-y-1/2 bg-[#00a3a3]"
-              style={{ right: "34px" }}
+              className="absolute top-[22px] left-[52px] h-[2.5px] origin-left -translate-y-1/2 bg-[#149E9E]"
+              style={{ right: "52px" }}
               initial={false}
               animate={{
                 scaleX: activeStage === 0 ? 0 : activeStage === 1 ? 0.5 : 1,
@@ -343,14 +343,14 @@ function ComplianceAuditCard() {
                 <div
                   key={stage}
                   onClick={() => setActiveStage(stage)}
-                  className="group/node relative flex cursor-pointer flex-col items-center gap-2"
+                  className="group/node relative flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-2.5"
                 >
                   <div
-                    className={`flex h-11 w-11 items-center justify-center rounded-full border-2 text-xs font-bold transition-all duration-300 ${
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold transition-all duration-300 ${
                       isActive
-                        ? "scale-110 border-[#00a3a3] bg-white text-[#00a3a3] shadow-[0_0_15px_rgba(0,163,163,0.3)] font-mono"
+                        ? "scale-110 border-[#149E9E] bg-white font-mono text-[#149E9E] shadow-[0_0_15px_rgba(20,158,158,0.3)]"
                         : isDone
-                          ? "border-[#00a3a3] bg-white text-[#00a3a3]"
+                          ? "border-[#149E9E] bg-white text-[#149E9E]"
                           : "border-ink/10 bg-white text-ink-subtle"
                     }`}
                   >
@@ -372,8 +372,8 @@ function ComplianceAuditCard() {
                     )}
                   </div>
                   <span
-                    className={`text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${
-                      isActive ? "text-[#00a3a3]" : "text-ink-subtle"
+                    className={`text-center text-[8.5px] font-bold uppercase tracking-wider transition-colors duration-300 ${
+                      isActive ? "text-[#149E9E]" : "text-ink-subtle"
                     }`}
                   >
                     {label}
@@ -447,31 +447,31 @@ function ClaimsReimbursementCard() {
       href="#claims"
     >
       <div
-        className={`${styles.graphicPanel} border-[#fed7aa] bg-[#fff7ed]`}
+        className={`${styles.graphicPanel} border-[#fdba74] bg-[#fff7ed]`}
       >
         <div className="relative mt-0 flex h-full w-full flex-1 items-center justify-center">
-          <svg className="h-[72px] w-full overflow-visible" viewBox="0 0 320 100" fill="none">
+          <svg className="h-full w-full overflow-visible" viewBox="0 0 320 100" fill="none" preserveAspectRatio="xMidYMid meet">
             <path
               d="M50 50 L120 50"
-              stroke="rgba(249,115,22,0.15)"
+              stroke="rgba(242,141,53,0.15)"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
             <path
               d="M120 50 L215 20"
-              stroke="rgba(249,115,22,0.15)"
+              stroke="rgba(242,141,53,0.15)"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
             <path
               d="M120 50 L215 50"
-              stroke="rgba(249,115,22,0.15)"
+              stroke="rgba(242,141,53,0.15)"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
             <path
               d="M120 50 L215 80"
-              stroke="rgba(249,115,22,0.15)"
+              stroke="rgba(242,141,53,0.15)"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
@@ -481,7 +481,7 @@ function ClaimsReimbursementCard() {
               stroke={ORANGE}
               strokeWidth="3.5"
               strokeLinecap="round"
-              className="drop-shadow-[0_0_6px_rgba(249,115,22,0.45)]"
+              className="drop-shadow-[0_0_6px_rgba(242,141,53,0.45)]"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               key={activeRouteIndex}
@@ -506,8 +506,8 @@ function ClaimsReimbursementCard() {
                 cx="50"
                 cy="50"
                 r="14"
-                fill="rgba(249,115,22,0.06)"
-                stroke="rgba(249,115,22,0.2)"
+                fill="rgba(242,141,53,0.06)"
+                stroke="rgba(242,141,53,0.2)"
                 strokeWidth="1.5"
               />
               <motion.circle
@@ -528,10 +528,10 @@ function ClaimsReimbursementCard() {
                 cx="120"
                 cy="50"
                 r="18"
-                fill="rgba(249,115,22,0.1)"
+                fill="rgba(242,141,53,0.1)"
                 stroke={ORANGE}
                 strokeWidth="2"
-                className="drop-shadow-[0_0_6px_rgba(249,115,22,0.3)]"
+                className="drop-shadow-[0_0_6px_rgba(242,141,53,0.3)]"
               />
               <motion.circle
                 cx="120"
@@ -561,10 +561,10 @@ function ClaimsReimbursementCard() {
                     r={isTarget ? "12" : "10"}
                     fill={
                       isTarget
-                        ? "rgba(249,115,22,0.14)"
-                        : "rgba(249,115,22,0.04)"
+                        ? "rgba(242,141,53,0.14)"
+                        : "rgba(242,141,53,0.04)"
                     }
-                    stroke={isTarget ? ORANGE : "rgba(249,115,22,0.25)"}
+                    stroke={isTarget ? ORANGE : "rgba(242,141,53,0.25)"}
                     strokeWidth="1.5"
                     className="transition-colors duration-200"
                   />
@@ -572,7 +572,7 @@ function ClaimsReimbursementCard() {
                     cx="215"
                     cy={nodeY}
                     r={isTarget ? "5.5" : "4"}
-                    fill={isTarget ? ORANGE : "rgba(249,115,22,0.35)"}
+                    fill={isTarget ? ORANGE : "rgba(242,141,53,0.35)"}
                     className="transition-colors duration-200"
                   />
                   <text
@@ -594,7 +594,7 @@ function ClaimsReimbursementCard() {
             <span className="block text-[7.5px] font-mono uppercase leading-none text-gray-500">
               Pipe Status:
             </span>
-            <span className="mt-0.5 inline-block animate-pulse text-[8px] font-mono font-bold uppercase text-[#f97316]">
+            <span className="mt-0.5 inline-block animate-pulse text-[8px] font-mono font-bold uppercase text-[#F28D35]">
               {isRouting ? "processing..." : routeStatus}
             </span>
           </div>
@@ -667,10 +667,10 @@ function PatientOperationalCard() {
       href="#operations"
     >
       <div
-        className={`${styles.graphicPanel} border-[#c7d2fe] bg-[#eef2ff]`}
+        className={`${styles.graphicPanel} border-[#bfdbfe] bg-[#eff6ff]`}
       >
-        <div className="relative mx-auto flex h-full w-full max-w-[280px] items-center justify-center">
-          <div className="relative w-full" style={{ height: 78 }}>
+        <div className="relative flex h-full w-full items-center justify-center">
+          <div className="relative h-full w-full" style={{ maxHeight: "100%" }}>
             <AnimatePresence>
               {notifications.map((itemIndex, stackPos) => {
                 const item = OPERATIONS_QUEUE[itemIndex];
@@ -694,7 +694,7 @@ function PatientOperationalCard() {
                       top: 0,
                       width: "100%",
                     }}
-                    className="flex flex-col gap-1 rounded-[12px] border border-indigo-300/40 bg-[#4f46e5] p-2 shadow-2xl"
+                    className="flex flex-col gap-1 rounded-[12px] border border-blue-300/40 bg-[#3B6CF4] p-2 shadow-2xl"
                   >
                     <div className="flex items-center justify-between px-0.5">
                       <div className="flex items-center gap-2">
@@ -768,7 +768,7 @@ function PharmacyGrowthCard() {
       href="#growth"
     >
       <div
-        className={`${styles.graphicPanel} border-[#bbf7d0] bg-[#f0fdf4]`}
+        className={`${styles.graphicPanel} border-[#86efac] bg-[#ecfdf5]`}
       >
         <svg
           className="h-full w-full overflow-visible"
@@ -781,7 +781,7 @@ function PharmacyGrowthCard() {
             y1="110"
             x2="480"
             y2="110"
-            stroke="rgba(34,197,94,0.2)"
+            stroke="rgba(20,158,93,0.2)"
             strokeWidth="1"
           />
 
@@ -790,7 +790,7 @@ function PharmacyGrowthCard() {
             width="55"
             rx="6"
             fill={GREEN}
-            className="cursor-pointer drop-shadow-[0_0_8px_rgba(34,197,94,0.3)]"
+            className="cursor-pointer drop-shadow-[0_0_8px_rgba(20,158,93,0.3)]"
             animate={{ y: [110, 110, 80, 80, 110], height: [0, 0, 30, 30, 0] }}
             transition={{
               duration: 5,
@@ -805,7 +805,7 @@ function PharmacyGrowthCard() {
             width="55"
             rx="6"
             fill={GREEN}
-            className="cursor-pointer drop-shadow-[0_0_8px_rgba(34,197,94,0.3)]"
+            className="cursor-pointer drop-shadow-[0_0_8px_rgba(20,158,93,0.3)]"
             animate={{ y: [110, 110, 65, 65, 110], height: [0, 0, 45, 45, 0] }}
             transition={{
               duration: 5,
@@ -820,7 +820,7 @@ function PharmacyGrowthCard() {
             width="55"
             rx="6"
             fill={GREEN}
-            className="cursor-pointer drop-shadow-[0_0_8px_rgba(34,197,94,0.3)]"
+            className="cursor-pointer drop-shadow-[0_0_8px_rgba(20,158,93,0.3)]"
             animate={{ y: [110, 110, 75, 75, 110], height: [0, 0, 35, 35, 0] }}
             transition={{
               duration: 5,
@@ -835,7 +835,7 @@ function PharmacyGrowthCard() {
             width="55"
             rx="6"
             fill={GREEN}
-            className="cursor-pointer drop-shadow-[0_0_8px_rgba(34,197,94,0.3)]"
+            className="cursor-pointer drop-shadow-[0_0_8px_rgba(20,158,93,0.3)]"
             animate={{ y: [110, 110, 55, 55, 110], height: [0, 0, 55, 55, 0] }}
             transition={{
               duration: 5,
@@ -850,7 +850,7 @@ function PharmacyGrowthCard() {
             width="55"
             rx="6"
             fill={GREEN}
-            className="cursor-pointer drop-shadow-[0_0_8px_rgba(34,197,94,0.3)]"
+            className="cursor-pointer drop-shadow-[0_0_8px_rgba(20,158,93,0.3)]"
             animate={{ y: [110, 110, 38, 38, 110], height: [0, 0, 72, 72, 0] }}
             transition={{
               duration: 5,
@@ -927,7 +927,7 @@ function PharmacyGrowthCard() {
               strokeWidth="3.2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="drop-shadow-[0_0_6px_rgba(34,197,94,0.4)]"
+              className="drop-shadow-[0_0_6px_rgba(20,158,93,0.4)]"
               animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
               transition={{
                 duration: 5,
@@ -944,7 +944,7 @@ function PharmacyGrowthCard() {
               fill={GREEN}
               stroke={GREEN}
               strokeWidth="1"
-              className="drop-shadow-[0_0_6px_rgba(34,197,94,0.4)]"
+              className="drop-shadow-[0_0_6px_rgba(20,158,93,0.4)]"
               animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
               style={{ transformOrigin: "157.5px 52px" }}
               transition={{
@@ -961,7 +961,7 @@ function PharmacyGrowthCard() {
               fill={GREEN}
               stroke={GREEN}
               strokeWidth="1"
-              className="drop-shadow-[0_0_6px_rgba(34,197,94,0.4)]"
+              className="drop-shadow-[0_0_6px_rgba(20,158,93,0.4)]"
               animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
               style={{ transformOrigin: "252.5px 62px" }}
               transition={{
@@ -978,7 +978,7 @@ function PharmacyGrowthCard() {
               fill={GREEN}
               stroke={GREEN}
               strokeWidth="1"
-              className="drop-shadow-[0_0_6px_rgba(34,197,94,0.4)]"
+              className="drop-shadow-[0_0_6px_rgba(20,158,93,0.4)]"
               animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
               style={{ transformOrigin: "347.5px 42px" }}
               transition={{
@@ -995,7 +995,7 @@ function PharmacyGrowthCard() {
               fill={GREEN}
               stroke={GREEN}
               strokeWidth="1"
-              className="drop-shadow-[0_0_6px_rgba(34,197,94,0.4)]"
+              className="drop-shadow-[0_0_6px_rgba(20,158,93,0.4)]"
               animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
               style={{ transformOrigin: "442.5px 26px" }}
               transition={{
