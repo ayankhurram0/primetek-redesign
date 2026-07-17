@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { Search, FolderSync, FileCheck, TrendingUp } from "lucide-react";
 
 const ACCENT = "#0d9488";
-const ACCENT_BRIGHT = "#18E7D5";
+const ACCENT_BRIGHT = "#14b8a6";
 const ACCENT_GLOW = "rgba(13, 148, 136, 0.15)";
 
 const steps = [

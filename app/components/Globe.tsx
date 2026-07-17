@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 
 /** Matches primary FancyButton gradient + --accent-light */
-const NEON = "#18E7D5";
-const TEAL = "#14b8a6";
-const EMERALD = "#10b981";
+const NEON = "#14b8a6";
+const TEAL = "#0d9488";
+const EMERALD = "#0f766e";
 
 export default function Globe() {  const canvasRef = useRef<HTMLCanvasElement>(null);
 

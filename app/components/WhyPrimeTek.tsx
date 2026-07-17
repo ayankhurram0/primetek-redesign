@@ -199,7 +199,7 @@ export const WhyPrimeTekSection: React.FC = () => {
           >
             Operational Control for Pharmacies
             <br />
-            <span className="bg-gradient-to-r from-[#14b8a6] via-[#2dd4bf] to-[#5eead4] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0f766e] via-[#0d9488] to-[#14b8a6] bg-clip-text text-transparent">
               Under Constant Pressure
             </span>
           </h2>
@@ -237,14 +237,14 @@ export const WhyPrimeTekSection: React.FC = () => {
                 className="absolute left-0 top-1/2 h-px w-[8%] -translate-y-1/2"
                 style={{
                   backgroundImage:
-                    "repeating-linear-gradient(90deg, #2dd4bf 0 3px, transparent 3px 7px)",
+                    "repeating-linear-gradient(90deg, #0d9488 0 3px, transparent 3px 7px)",
                 }}
               />
               <div
                 className="absolute right-0 top-1/2 h-px w-[8%] -translate-y-1/2"
                 style={{
                   backgroundImage:
-                    "repeating-linear-gradient(90deg, #2dd4bf 0 3px, transparent 3px 7px)",
+                    "repeating-linear-gradient(90deg, #0d9488 0 3px, transparent 3px 7px)",
                 }}
               />
 
@@ -252,7 +252,7 @@ export const WhyPrimeTekSection: React.FC = () => {
               <div className="absolute left-[8%] right-[8%] top-1/2 h-[1.5px] -translate-y-1/2 overflow-hidden rounded-full bg-teal-200/70">
                 <div
                   ref={progressLineRef}
-                  className="h-full w-full bg-[#2dd4bf]"
+                  className="h-full w-full bg-[#0d9488]"
                 />
               </div>
 

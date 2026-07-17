@@ -73,6 +73,18 @@ export const AboutHero = () => {
         ref={heroRef}
         className="about-hero-bg pointer-events-none absolute inset-0 z-0"
         aria-hidden
+        style={{
+          maskImage: [
+            "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+          ].join(", "),
+          WebkitMaskImage: [
+            "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+          ].join(", "),
+          maskComposite: "intersect",
+          WebkitMaskComposite: "source-in",
+        }}
       >
         <Image
           src="/images/about-hero-bg.png"
@@ -82,9 +94,6 @@ export const AboutHero = () => {
           sizes="100vw"
           className="object-cover object-center"
         />
-        {/* Soft center wash so headline stays readable */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.72)_0%,rgba(255,255,255,0.35)_42%,rgba(255,255,255,0.08)_70%,transparent_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/50 to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto flex w-[85%] max-w-4xl flex-col items-center justify-center text-center">

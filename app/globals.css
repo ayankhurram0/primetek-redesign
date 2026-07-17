@@ -8,8 +8,8 @@
   --ink: #062b34;
   --ink-muted: #5a7a85;
   --ink-subtle: #6b8a94;
-  --accent: #0d9488;
-  --accent-light: #18e7d5;
+  --accent: #0f766e;
+  --accent-light: #14b8a6;
   --surface: rgba(255, 255, 255, 0.72);
   --surface-border: rgba(6, 43, 52, 0.1);
   --site-background-image: url("/images/website-background.png");
@@ -46,8 +46,11 @@ html::before {
   --color-ink: #062b34;
   --color-ink-muted: #5a7a85;
   --color-ink-subtle: #6b8a94;
-  --color-accent: #0d9488;
-  --color-accent-light: #18e7d5;
+  --color-accent: #0f766e;
+  --color-accent-light: #14b8a6;
+  --color-teal-300: #2dd4bf;
+  --color-teal-400: #14b8a6;
+  --color-teal-500: #0d9488;
   --color-surface: rgba(255, 255, 255, 0.72);
   --font-montserrat: var(--font-montserrat);
   --font-merriweather: var(--font-merriweather);
@@ -119,14 +122,14 @@ body::-webkit-scrollbar-track,
 html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb,
 *::-webkit-scrollbar-thumb {
-  background: #14b8a6 !important;
+  background: #0d9488 !important;
   border-radius: 4px;
 }
 
 html::-webkit-scrollbar-thumb:hover,
 body::-webkit-scrollbar-thumb:hover,
 *::-webkit-scrollbar-thumb:hover {
-  background: #0d9488 !important;
+  background: #0f766e !important;
 }
 
 html::-webkit-scrollbar-corner,
@@ -140,7 +143,7 @@ html,
 body,
 * {
   scrollbar-width: thin;
-  scrollbar-color: #14b8a6 rgba(0, 0, 0, 0.1) !important;
+  scrollbar-color: #0d9488 rgba(0, 0, 0, 0.1) !important;
 }
 
 .lenis.lenis-scrolling iframe {
@@ -149,7 +152,7 @@ body,
 
 /* Dynamic scrollbar color — set --scrollbar-color on the element */
 .custom-scrollbar {
-  --scrollbar-color: #14b8a6;
+  --scrollbar-color: #0d9488;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

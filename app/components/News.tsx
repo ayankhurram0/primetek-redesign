@@ -481,52 +481,61 @@ export default function IntelligenceDashboard() {
   };
 
   return (
-    <div ref={sectionRef} className="relative isolate z-10 w-full overflow-hidden py-16 lg:py-20 2xl:py-24">
-      {/* Reference bg — opaque blush base, diffused glows, dot grid on right */}
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-        {/* Solid base blocks global site texture from bleeding through */}
-        <div className="absolute inset-0 bg-[#fff9f9]" />
+    <div ref={sectionRef} className="relative isolate z-10 w-full overflow-hidden py-28 lg:py-36 2xl:py-44">
+      {/* Soft red atmosphere — fades into neighboring sections at top & bottom */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        aria-hidden
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
+        }}
+      >
+        <div className="absolute inset-0 bg-[#faf8f7]/90" />
 
-        {/* Left heading wash */}
-        <div className="absolute -left-[12%] top-[2%] h-[72%] w-[58%] rounded-full bg-[#fecdd3]/55 blur-[110px]" />
-        <div className="absolute left-[4%] top-[18%] h-[48%] w-[38%] rounded-full bg-[#fda4af]/30 blur-[90px]" />
-
-        {/* Right coral glow behind dashboard */}
-        <div className="absolute -right-[6%] top-[8%] h-[78%] w-[52%] rounded-full bg-[#fca5a5]/35 blur-[130px]" />
-        <div className="absolute right-[2%] bottom-[6%] h-[42%] w-[34%] rounded-full bg-[#fecaca]/28 blur-[100px]" />
-
-        {/* Horizontal blush → white gradient */}
+        {/* Subtle gray dot grid across the section */}
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(90deg, #ffe4e6 0%, #fff1f2 18%, #fffbfb 42%, #ffffff 62%, #ffffff 82%, #fff5f5 100%)',
-          }}
-        />
-
-        {/* Soft center lift — keeps middle airy like the ref */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 70% 85% at 58% 48%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.55) 45%, transparent 78%)',
-          }}
-        />
-
-        {/* Right-edge dot grid */}
-        <div
-          className="absolute inset-y-0 right-0 w-[42%]"
+          className="absolute inset-0 opacity-[0.45]"
           style={{
             backgroundImage:
-              'radial-gradient(rgba(248, 113, 113, 0.42) 1.15px, transparent 1.15px)',
-            backgroundSize: '12px 12px',
-            WebkitMaskImage:
-              'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.25) 38%, rgba(0,0,0,0.9) 100%)',
-            maskImage:
-              'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.25) 38%, rgba(0,0,0,0.9) 100%)',
+              'radial-gradient(rgba(148, 163, 184, 0.55) 1px, transparent 1px)',
+            backgroundSize: '18px 18px',
+          }}
+        />
+
+        {/* Bottom-left red bloom */}
+        <div className="absolute -left-[14%] bottom-[-18%] h-[70%] w-[55%] rounded-full bg-[#f87171]/55 blur-[100px]" />
+        <div className="absolute left-[-4%] bottom-[-6%] h-[48%] w-[38%] rounded-full bg-[#ef4444]/40 blur-[80px]" />
+
+        {/* Top-right red bloom */}
+        <div className="absolute -right-[12%] top-[-16%] h-[72%] w-[52%] rounded-full bg-[#f87171]/50 blur-[110px]" />
+        <div className="absolute right-[-2%] top-[-4%] h-[46%] w-[36%] rounded-full bg-[#ef4444]/38 blur-[85px]" />
+
+        {/* Soft supporting washes so corners don't feel isolated */}
+        <div className="absolute -left-[8%] top-[-10%] h-[50%] w-[40%] rounded-full bg-[#fda4af]/35 blur-[100px]" />
+        <div className="absolute right-[8%] bottom-[-8%] h-[40%] w-[34%] rounded-full bg-[#fecaca]/30 blur-[90px]" />
+
+        {/* Center stays airy / readable */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 65% 70% at 48% 48%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.45) 48%, transparent 75%)',
           }}
         />
       </div>
+
+      {/* Extra soft seam washes over the hard section edges */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 bg-gradient-to-b from-white via-white/70 to-transparent"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 bg-gradient-to-t from-white via-white/70 to-transparent"
+        aria-hidden
+      />
 
       <section ref={dashboardRef} id="intelligence" className="relative z-10 mx-auto w-[85%] animate-in fade-in duration-700">
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_minmax(0,1fr)_auto] lg:gap-x-8 lg:gap-y-6">

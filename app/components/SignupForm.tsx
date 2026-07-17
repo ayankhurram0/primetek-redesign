@@ -55,10 +55,10 @@ export const SignupForm: React.FC = () => {
           <input 
             type="checkbox" 
             required
-            className="mt-1 w-5 h-5 rounded border-white/10 bg-white/5 text-[#2dd4bf] focus:ring-[#2dd4bf]/20 focus:ring-offset-0 transition-all"
+            className="mt-1 w-5 h-5 rounded border-white/10 bg-white/5 text-[#0d9488] focus:ring-[#0d9488]/20 focus:ring-offset-0 transition-all"
           />
           <span className="text-sm text-white/40 group-hover:text-white/60 transition-colors leading-relaxed">
-            I agree to the <a href="#" className="text-[#2dd4bf] hover:underline">Terms of Service</a> and <a href="#" className="text-[#2dd4bf] hover:underline">Privacy Policy</a>
+            I agree to the <a href="#" className="text-[#0d9488] hover:underline">Terms of Service</a> and <a href="#" className="text-[#0d9488] hover:underline">Privacy Policy</a>
           </span>
         </label>
       </div>

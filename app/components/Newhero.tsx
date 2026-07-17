@@ -40,7 +40,7 @@ const pbmData = [
   { name: 'Flagged', value: 100 },
 ];
 
-const COLORS = ['#99f6e4', '#5eead4', '#2dd4bf', '#0d9488'];
+const COLORS = ['#5eead4', '#2dd4bf', '#14b8a6', '#0d9488'];
 
 const healthCardClass =
   "w-80 h-80 rounded-3xl p-5 flex flex-col justify-between shrink-0 bg-white/85 backdrop-blur-xl border-2 border-accent/50 ring-1 ring-accent/25 shadow-[0_40px_90px_rgba(6,43,52,0.18),12px_12px_0_0px_rgba(13,148,136,0.5),0_0_60px_rgba(45,212,191,0.1)] transform-gpu will-change-transform [transform-style:preserve-3d] [transform:translateZ(18px)]";
@@ -69,9 +69,9 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
               <Line
                 type="monotone"
                 dataKey="value"
-                stroke="#2dd4bf"
+                stroke="#0d9488"
                 strokeWidth={3}
-                dot={{ r: 4, fill: '#2dd4bf' }}
+                dot={{ r: 4, fill: '#0d9488' }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>
@@ -101,14 +101,14 @@ const HealthCards = ({ mounted }: { mounted: boolean }) => (
             <AreaChart data={complianceData}>
               <defs>
                 <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#2dd4bf" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#2dd4bf" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#0d9488" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#0d9488" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <Area
                 type="monotone"
                 dataKey="value"
-                stroke="#2dd4bf"
+                stroke="#0d9488"
                 fillOpacity={1}
                 fill="url(#colorVal)"
               />
