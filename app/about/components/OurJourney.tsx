@@ -192,7 +192,7 @@ export const OurJourney = () => {
                   alt={step.imgAlt}
                   fill
                   priority
-                  className="scale-105 object-cover opacity-85 transition-all duration-700"
+                  className="scale-105 object-cover transition-all duration-700"
                 />
 
                 <div

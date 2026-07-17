@@ -157,8 +157,9 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
                 ) : null}
               </h2>
 
-              <div className="mt-12 grid gap-10 border-t border-slate-200/80 pt-10 md:grid-cols-2 md:gap-12">
-                <div>
+              <div className="grid gap-10 pt-10 md:grid-cols-2 md:gap-8">
+
+                <div className="md:border-slate-200/80 bg-white p-8 shadow-[0_12px_40px_rgba(15,23,42,0.06)] md:p-10 border border-slate-200/80 rounded-2xl">
                   <div className="mb-5 flex items-center gap-3">
                     <div
                       className="flex h-10 w-10 items-center justify-center rounded-full"
@@ -167,18 +168,18 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
                       <FileText className="h-5 w-5" strokeWidth={1.75} />
                     </div>
                     <h4
-                      className="text-sm font-bold uppercase tracking-[0.22em]"
+                      className="text-md font-black uppercase tracking-[0.22em]"
                       style={{ color: styles.accent }}
                     >
                       Initial Condition
                     </h4>
                   </div>
-                  <p className="text-base leading-relaxed text-slate-500 md:text-[1.05rem]">
+                  <p className="text-base leading-relaxed text-black md:text-[1.05rem]">
                     {study.challenge}
                   </p>
                 </div>
 
-                <div className="md:border-l md:border-slate-200/80 md:pl-10">
+                <div className="md:pl-10 md:border-slate-200/80 bg-white p-8 shadow-[0_12px_40px_rgba(15,23,42,0.06)] md:p-10 border border-slate-200/80 rounded-2xl">
                   <div className="mb-5 flex items-center gap-3">
                     <div
                       className="flex h-10 w-10 items-center justify-center rounded-full"
@@ -187,13 +188,13 @@ export default function CaseStudyCard({ study, idx }: CaseStudyCardProps) {
                       <Server className="h-5 w-5" strokeWidth={1.75} />
                     </div>
                     <h4
-                      className="text-sm font-bold uppercase tracking-[0.22em]"
+                      className="text-md font-black uppercase tracking-[0.22em]"
                       style={{ color: styles.accent }}
                     >
                       System Deployment
                     </h4>
                   </div>
-                  <p className="text-base leading-relaxed text-slate-500 md:text-[1.05rem]">
+                  <p className="text-base leading-relaxed text-black md:text-[1.05rem]">
                     {study.approach}
                   </p>
                 </div>

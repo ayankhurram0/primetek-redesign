@@ -43,7 +43,7 @@ const pbmData = [
 const COLORS = ['#99f6e4', '#5eead4', '#2dd4bf', '#0d9488'];
 
 const healthCardClass =
-  "w-80 h-80 rounded-3xl p-5 flex flex-col justify-between shrink-0 bg-white/85 backdrop-blur-xl border-2 border-accent/50 ring-1 ring-accent/25 shadow-[0_12px_40px_rgba(6,43,52,0.1),0_0_0_1px_rgba(13,148,136,0.15)]";
+  "w-80 h-80 rounded-3xl p-5 flex flex-col justify-between shrink-0 bg-white/85 backdrop-blur-xl border-2 border-accent/50 ring-1 ring-accent/25 shadow-[0_40px_90px_rgba(6,43,52,0.18),12px_12px_0_0px_rgba(13,148,136,0.5),0_0_60px_rgba(45,212,191,0.1)] transform-gpu will-change-transform [transform-style:preserve-3d] [transform:translateZ(18px)]";
 
 const HealthCards = ({ mounted }: { mounted: boolean }) => (
   !mounted ? (

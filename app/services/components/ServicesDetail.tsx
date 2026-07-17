@@ -313,11 +313,11 @@ export const ServicesDetail = () => {
                         <activeService.icon className="h-5 w-5" style={{ color: accent }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-ink-subtle">
+                        <p className="text-sm font-bold uppercase tracking-[0.3em] text-ink-subtle">
                           Service {activeService.id} · {activeService.identity}
                         </p>
                         <p
-                          className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.2em]"
+                          className="mt-0.5 text-md font-bold uppercase tracking-[0.2em]"
                           style={{ color: accent }}
                         >
                           {activeService.title}
@@ -359,22 +359,22 @@ export const ServicesDetail = () => {
               {/* What we do */}
               <div className="border-b border-ink/10 p-8 md:p-12 lg:p-14">
                 <h3
-                  className="mb-8 text-[11px] font-bold uppercase tracking-[0.4em]"
+                  className="mb-8 text-xl font-bold uppercase tracking-[0.4em]"
                   style={{ color: accent }}
                 >
                   What We Do
                 </h3>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-1">
                   {activeService.whatWeDo.map((item, i) => (
                     <div
                       key={i}
                       className="rounded-xl border border-ink/10 bg-slate-50 p-5 transition-colors hover:bg-white"
                       style={{ borderLeftWidth: "2px", borderLeftColor: accent }}
                     >
-                      <h4 className="text-ink text-sm font-bold mb-2 leading-snug">
+                      <h4 className="text-ink text-lg font-bold mb-2 leading-snug">
                         {item.title}
                       </h4>
-                      <p className="text-ink-muted text-sm font-light leading-relaxed">
+                      <p className="text-ink-muted text-md leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -386,7 +386,7 @@ export const ServicesDetail = () => {
               <div className="grid gap-0 lg:grid-cols-2 lg:divide-x divide-ink/10">
                 <div className="p-8 md:p-12 lg:p-14">
                   <h3
-                    className="mb-4 text-[11px] font-bold uppercase tracking-[0.4em]"
+                    className="mb-4 text-xl font-bold uppercase tracking-[0.4em]"
                     style={{ color: accent }}
                   >
                     Alert System
@@ -394,14 +394,14 @@ export const ServicesDetail = () => {
                   <h4 className="text-xl font-bold text-ink mb-4 leading-snug">
                     {activeService.alertSystem.headline}
                   </h4>
-                  <p className="text-ink-muted text-sm font-light leading-relaxed">
+                  <p className="text-ink-muted text-md leading-relaxed">
                     {activeService.alertSystem.desc}
                   </p>
                 </div>
 
                 <div className="border-t border-ink/10 p-8 md:p-12 lg:border-t-0 lg:p-14">
                   <h3
-                    className="mb-6 text-[11px] font-bold uppercase tracking-[0.4em]"
+                    className="mb-6 text-xl font-bold uppercase tracking-[0.4em]"
                     style={{ color: accent }}
                   >
                     Outcomes
@@ -415,7 +415,7 @@ export const ServicesDetail = () => {
                         >
                           <CheckCircle2 className="h-3.5 w-3.5" style={{ color: accent }} />
                         </div>
-                        <span className="text-sm font-medium leading-snug text-ink-muted">
+                        <span className="text-md font-medium leading-snug text-ink-muted">
                           {outcome}
                         </span>
                       </li>
