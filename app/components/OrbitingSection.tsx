@@ -31,7 +31,7 @@ const badgeData = [
     title: "Audit",
     sub: "Monitoring",
     desc: "Proactive monitoring to identify issues before they become problems.",
-    accent: "#2dd4bf",
+    accent: "#0d9488",
     hoverGlow: "hover:shadow-[0_0_50px_rgba(45,212,191,0.3)] hover:border-teal-400",
     textColor: "text-accent",
     labelPos: "right"

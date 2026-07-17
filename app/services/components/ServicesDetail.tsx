@@ -254,7 +254,7 @@ const colorMap: Record<string, string> = {
   "orange-500": "#f97316",
   "sky-400": "#38bdf8",
   "emerald-400": "#34d399",
-  "brand-teal": "#2dd4bf",
+  "brand-teal": "#0d9488",
 };
 
 export const ServicesDetail = () => {

@@ -15,20 +15,9 @@ const steps = [
     number: "01",
     title: "OUR VISION",
     paragraphs: [
-      "Our vision is to become the leading AI-powered operational intelligence platform for independent pharmacies across the United States.",
-      "We envision a future where pharmacy owners no longer need to log into multiple PBM portals, manufacturer websites, compliance systems, or reporting platforms. Instead, every critical piece of operational intelligence is centralized, simplified, and presented in one secure dashboard.",
-      "Through intelligent automation, predictive analytics, and seamless integrations, we empower pharmacies to:",
-    ],
-    bullets: [
-      "Maintain continuous compliance with PBMs, CMS, and regulatory requirements.",
-      "Maximize reimbursements and profitability.",
-      "Detect operational risks before they become financial losses.",
-      "Make faster, data-driven business decisions.",
-      "Spend less time managing reports and more time growing their business and caring for patients.",
-    ],
-    closing: [
-      "Our vision is not just to build software.",
-      "Our vision is to become the operational intelligence partner that helps every independent pharmacy operate smarter, remain compliant, and thrive in an increasingly complex healthcare environment.",
+      "Our vision is to become the leading AI-powered operations platform for independent pharmacies.",
+      "We believe pharmacy owners shouldn't have to juggle multiple systems to manage their business. By bringing everything into one intelligent dashboard, we help pharmacies stay compliant, improve profitability, reduce operational risks, and make smarter decisions with confidence.",
+      "Our goal is simple: to be the trusted technology partner that helps independent pharmacies work smarter, grow faster, and focus more on patient care.",
     ],
     img: vandm1,
     imgAlt: "PrimeTek vision",
@@ -38,10 +27,8 @@ const steps = [
     number: "02",
     title: "OUR MISSION",
     paragraphs: [
-      "At Primetek Services, our mission is to transform the independent pharmacy industry by bringing every critical operational function into one intelligent platform.",
-      "We leverage artificial intelligence, advanced analytics, and pharmacy expertise to automate reporting, simplify compliance, uncover hidden revenue opportunities, and provide pharmacy owners with clear, actionable insights.",
-      "Our goal is simple: give pharmacy owners their time back.",
-      "Instead of spending hours reviewing reports, managing multiple portals, tracking reimbursements, or worrying about compliance, pharmacy owners can rely on Primetek to monitor their business continuously while they focus on what matters most—serving patients, growing their business, and improving profitability.",
+      "At Primetek Services, our mission is to help independent pharmacies run smarter with AI-powered technology. We simplify compliance, automate reporting, uncover revenue opportunities, and deliver clear insights—all from one intelligent platform.",
+      "By handling the complexity behind the scenes, we give pharmacy owners more time to focus on their patients, grow their business, and make confident decisions. We do the analysis, so you can focus on what matters most.",
     ],
     tagline: "We do the analysis. You make the decisions.",
     img: vandm5,
@@ -170,39 +157,29 @@ export const OurJourney = () => {
             <div
               className="absolute inset-0 h-full w-full"
               style={{
-                maskImage: step.flip
-                  ? "linear-gradient(to right, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)"
-                  : "linear-gradient(to left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)",
-                WebkitMaskImage: step.flip
-                  ? "linear-gradient(to right, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)"
-                  : "linear-gradient(to left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%)",
+                maskImage: [
+                  step.flip
+                    ? "linear-gradient(to right, transparent 0%, black 10%, black 48%, transparent 100%)"
+                    : "linear-gradient(to left, transparent 0%, black 10%, black 48%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+                ].join(", "),
+                WebkitMaskImage: [
+                  step.flip
+                    ? "linear-gradient(to right, transparent 0%, black 10%, black 48%, transparent 100%)"
+                    : "linear-gradient(to left, transparent 0%, black 10%, black 48%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+                ].join(", "),
+                maskComposite: "intersect",
+                WebkitMaskComposite: "source-in",
               }}
             >
-              <div
-                className="relative h-full w-full"
-                style={{
-                  maskImage:
-                    "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)",
-                }}
-              >
-                <Image
-                  src={step.img}
-                  alt={step.imgAlt}
-                  fill
-                  priority
-                  className="scale-105 object-cover opacity-85 transition-all duration-700"
-                />
-
-                <div
-                  className={`absolute inset-0 blur-[100px] ${
-                    step.flip
-                      ? "bg-[radial-gradient(circle_at_75%_50%,rgba(0,89,105,0.15),transparent_55%)]"
-                      : "bg-[radial-gradient(circle_at_25%_50%,rgba(0,89,105,0.15),transparent_55%)]"
-                  }`}
-                />
-              </div>
+              <Image
+                src={step.img}
+                alt={step.imgAlt}
+                fill
+                priority
+                className="object-cover opacity-90 transition-all duration-700"
+              />
             </div>
           </div>
         </div>

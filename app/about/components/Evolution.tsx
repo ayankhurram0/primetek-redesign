@@ -18,8 +18,9 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ACCENT = "#2dd4bf";
-const ACCENT_DIM = "#14b8a6";
+const ACCENT = "#0d9488";
+const ACCENT_DIM = "#0f766e";
+const BLUE = "#2b4c8c";
 
 const milestones = [
   {
@@ -147,15 +148,15 @@ function MapPinMarker({
             cx="50"
             cy="42"
             r="22"
-            fill="rgba(0,0,0,0.4)"
-            stroke={`${ACCENT}60`}
+            fill={lit ? BLUE : `${BLUE}99`}
+            stroke={`${BLUE}80`}
             strokeWidth="1.5"
-            strokeOpacity={lit ? 1 : 0.35}
+            strokeOpacity={lit ? 1 : 0.5}
           />
         </svg>
         <Icon
           className="absolute top-[26px] md:top-[28px] w-7 h-7 md:w-8 md:h-8 transition-colors duration-500"
-          style={{ color: lit ? ACCENT : `${ACCENT}70` }}
+          style={{ color: "#ffffff" }}
           strokeWidth={1.6}
         />
       </div>
@@ -221,12 +222,12 @@ function MilestoneCard({
         <div
           className="w-[60px] h-[60px] md:w-[68px] md:h-[68px] rounded-full border flex items-center justify-center transition-all duration-500 group-hover:scale-105"
           style={{
-            borderColor: `${ACCENT}45`,
-            backgroundColor: "rgba(0,0,0,0.35)",
-            boxShadow: `0 0 28px ${ACCENT}20, inset 0 0 20px ${ACCENT}08`,
+            borderColor: `${BLUE}55`,
+            backgroundColor: BLUE,
+            boxShadow: `0 0 28px ${BLUE}35, inset 0 0 20px rgba(255,255,255,0.08)`,
           }}
         >
-          <Icon className="w-7 h-7 md:w-8 md:h-8" style={{ color: ACCENT }} strokeWidth={1.5} />
+          <Icon className="w-7 h-7 md:w-8 md:h-8 text-white" strokeWidth={1.5} />
         </div>
       </div>
     </motion.div>

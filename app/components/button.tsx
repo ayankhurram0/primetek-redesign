@@ -44,7 +44,7 @@ export default function FancyButton({
 
     const getVariantClasses = () => {
         if (variant === "primary") {
-            return "bg-gradient-to-r from-[#14b8a6] via-[#10b981] to-[#0f766e] bg-[length:200%_auto] hover:bg-right transition-all font-bold shadow-[inset_0px_2px_4px_rgba(255,255,255,0.4),0px_4px_25px_rgba(20,184,166,0.6)] ring-1 ring-white/20 border-transparent text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.6)]";
+            return "bg-gradient-to-r from-[#0d9488] via-[#0f766e] to-[#115e59] bg-[length:200%_auto] hover:bg-right transition-all font-bold shadow-[inset_0px_2px_4px_rgba(255,255,255,0.35),0px_4px_25px_rgba(13,148,136,0.45)] ring-1 ring-white/20 border-transparent text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.6)]";
         }
         if (variant === "secondary") {
             return "bg-gradient-to-r from-[#2b4c8c] via-blue-500 to-[#2b4c8c] bg-[length:200%_auto] hover:bg-right transition-all font-bold shadow-[0_0_20px_rgba(43,76,140,0.3)] border-transparent text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.6)]";

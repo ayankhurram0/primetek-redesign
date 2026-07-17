@@ -91,14 +91,20 @@ export default function ConsultationCTA() {
 
       <div className="w-full px-26">
         <div className="rounded-[4rem] py-24 px-8 text-center relative overflow-hidden group">
-          {/* Interactive Globe Background */}
-          <div 
+          {/* Interactive Globe Background — fades out at top & bottom */}
+          <div
             className="absolute inset-0 z-0 opacity-[0.72] pointer-events-none transition-opacity duration-700 group-hover:opacity-90"
             style={{
-              maskImage:
-                "radial-gradient(ellipse 95% 85% at 50% 50%, black 0%, black 28%, rgba(0,0,0,0.75) 48%, rgba(0,0,0,0.35) 62%, transparent 82%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse 95% 85% at 50% 50%, black 0%, black 28%, rgba(0,0,0,0.75) 48%, rgba(0,0,0,0.35) 62%, transparent 82%)",
+              maskImage: [
+                "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+                "radial-gradient(ellipse 95% 85% at 50% 50%, black 0%, black 32%, rgba(0,0,0,0.7) 52%, rgba(0,0,0,0.3) 68%, transparent 86%)",
+              ].join(", "),
+              WebkitMaskImage: [
+                "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+                "radial-gradient(ellipse 95% 85% at 50% 50%, black 0%, black 32%, rgba(0,0,0,0.7) 52%, rgba(0,0,0,0.3) 68%, transparent 86%)",
+              ].join(", "),
+              maskComposite: "intersect",
+              WebkitMaskComposite: "source-in",
             }}
           >
             <div className="h-full w-full scale-[2]">

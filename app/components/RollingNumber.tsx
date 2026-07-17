@@ -78,7 +78,7 @@ export function RollingRecovery({
   className = "",
   delay = 0,
   play: playProp,
-  glowColor = "#2dd4bf",
+  glowColor = "#0d9488",
 }: {
   stat: RecoveryStat;
   className?: string;
@@ -169,7 +169,7 @@ export function RollingStat({
   value,
   className = "",
   delay = 0,
-  glowColor = "#2dd4bf",
+  glowColor = "#0d9488",
 }: {
   value: string;
   className?: string;

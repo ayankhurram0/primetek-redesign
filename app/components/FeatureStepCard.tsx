@@ -4,7 +4,7 @@ import React from "react";
 import { ArrowRight, type LucideIcon } from "lucide-react";
 
 export const FEATURE_BLUE = "#2b4c8c";
-export const FEATURE_TEAL = "#2dd4bf";
+export const FEATURE_TEAL = "#0d9488";
 
 const CHAMFER = 28;
 

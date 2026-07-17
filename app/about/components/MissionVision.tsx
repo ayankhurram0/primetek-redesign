@@ -10,14 +10,14 @@ const missionVision = [
   {
     title: "Our Mission",
     description:
-      "At Primetek Services, our mission is to transform the independent pharmacy industry by bringing every critical operational function into one intelligent platform. We leverage AI, advanced analytics, and pharmacy expertise to automate reporting, simplify compliance, and uncover hidden revenue opportunities—so owners get their time back. We do the analysis. You make the decisions.",
+      "At Primetek Services, our mission is to help independent pharmacies run smarter with AI-powered technology. We simplify compliance, automate reporting, uncover revenue opportunities, and deliver clear insights—all from one intelligent platform. By handling the complexity behind the scenes, we give pharmacy owners more time to focus on their patients, grow their business, and make confident decisions. We do the analysis, so you can focus on what matters most.",
     icon: Target,
     type: "mission",
   },
   {
     title: "Our Vision",
     description:
-      "To become the leading AI-powered operational intelligence platform for independent pharmacies across the United States—centralizing every critical insight in one secure dashboard so pharmacies can stay compliant, maximize reimbursements, detect risks early, and thrive in an increasingly complex healthcare environment.",
+      "Our vision is to become the leading AI-powered operations platform for independent pharmacies. We believe pharmacy owners shouldn't have to juggle multiple systems to manage their business. By bringing everything into one intelligent dashboard, we help pharmacies stay compliant, improve profitability, reduce operational risks, and make smarter decisions with confidence. Our goal is simple: to be the trusted technology partner that helps independent pharmacies work smarter, grow faster, and focus more on patient care.",
     icon: Eye,
     type: "vision",
   },
